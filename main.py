@@ -4,9 +4,9 @@ import random
 
 import tiktoken
 
-PROMPT_SIZE_LIST = [ 1500, 6000, 12000, 30000]
+PROMPT_SIZE_LIST = [ 1500, 6000, 12000]
 
-ROUGH_QUESTION_LOCATIONS = [100, 1200, 5700, 11700, 29700]
+ROUGH_QUESTION_LOCATIONS = [100, 1200, 5700, 11700]
 
 #QUESTION_LOCATIONS = [100, 1300, 2800, 4300, 5800, 7300, 8800, 10300, 11800, 13300, 14800, 16300, 17800, 19300, 20800,
 #                      22300, 23800, 25300, 26800, 28300, 29800]
@@ -117,13 +117,6 @@ def select_questions_for_prompt(file_path, number_of_questions):
     with open(file_path, "r") as file:
         question_dict_list = json.load(file)
     question_list = [Limerick.from_dict(question_dict) for question_dict in question_dict_list]
-    question_dict_list = []
-    for question in question_list:
-        if question.token_count is None:
-            question.generate_tokens()
-        question_dict_list.append(question.to_dict())
-    with open("full_questions.json", "w") as file:
-        json.dump(question_dict_list, file, indent=4)
     selected_question_dict = {}
     while len(selected_question_dict) < number_of_questions:
         index = random.randint(0, len(question_list) - 1)
@@ -131,7 +124,7 @@ def select_questions_for_prompt(file_path, number_of_questions):
         if selected_question_dict.get(question.id, None) is None:
             selected_question_dict[question.id] = question
     result = list(selected_question_dict.values())
-    return result
+    return result, selected_question_dict
 
 
 def select_limericks_for_prompt(limerick_list, question_dict, max_token_count):
@@ -140,18 +133,20 @@ def select_limericks_for_prompt(limerick_list, question_dict, max_token_count):
     while current_token_count < max_token_count:
         index = random.randint(0, len(limerick_list) - 1)
         limerick = limerick_list[index]
-        if selected_limerick_dict.get(limerick.id, None) is None:
+        if selected_limerick_dict.get(limerick.id, None) is None and question_dict.get(limerick.id, None) is None:
             selected_limerick_dict[limerick.id] = limerick
             current_token_count += limerick.token_count
     result = list(selected_limerick_dict.values())
     return result
 
+def generate_prompt_of_size(prompt_size, limerick_list, question_list, rough_question_location_list):
+    just do sub 16k ones on gpt 3.5 turbo and haiku -- both cheap
 
 def generate_prompts(limerick_list, prompt_size_list, rough_question_location_list):
     prompts = []
-    selected_question_list = select_questions_for_prompt("full_questions.json", len(rough_question_location_list))
+    selected_question_list, selected_question_dict = select_questions_for_prompt("full_questions.json", len(rough_question_location_list))
     max_token_count = prompt_size_list[-1]
-    selected_limerick_list = select_limericks_for_prompt(limerick_list, max_token_count)
+    selected_limerick_list = select_limericks_for_prompt(limerick_list, selected_question_dict, max_token_count)
     for prompt_size in prompt_size_list:
         prompt = generate_prompt_of_size(prompt_size, selected_limerick_list, selected_question_list,
                                          rough_question_location_list)
