@@ -8,12 +8,13 @@ PROMPT_SIZE_LIST = [ 1500, 6000, 12000]
 
 ROUGH_QUESTION_LOCATIONS = [100, 1200, 5700, 11700]
 
-#QUESTION_LOCATIONS = [100, 1300, 2800, 4300, 5800, 7300, 8800, 10300, 11800, 13300, 14800, 16300, 17800, 19300, 20800,
-#                      22300, 23800, 25300, 26800, 28300, 29800]
+INTRO_TO_PROMPT = "This is a test to see how well you are paying attention. This text is a series of limericks. " \
+    "At the end of the list of limericks, there will be a question. The question will be about one of the limericks. " \
+    "Please answer the question as concisely as possible."
 
 
 class Limerick:
-    def __init__(self, id, author, text, question=None, answer=None, tokens=None, token_count=None):
+    def __init__(self, id, author, text, question=None, answer=None, tokens=None, token_count=None, target_location=0):
         self.id = id
         self.author = author
         self.text = text
@@ -21,6 +22,7 @@ class Limerick:
         self.answer = answer
         self.tokens = tokens
         self.token_count = token_count
+        self.target_location = target_location
 
     def generate_tokens(self, encoder):
         self.tokens = encoder.encode(self.text)
@@ -42,21 +44,72 @@ class Limerick:
         return result
 
 class LimerickPrompt:
-    def __init__(self, limerick, question, answer, prompt, prompt_size):
-        self.limerick = limerick
-        self.question = question
-        self.answer = answer
-        self.prompt = prompt
-        self.prompt_size = prompt_size
+    def __init__(self, target_size, question_list, text, token_count=0):
+        self.target_size = target_size
+        self.question_list = question_list
+        self.text = text
+        self.token_count = token_count
+
+    def add_limerick(self, limerick):
+        if self.token_count + limerick.token_count <= self.target_size:
+            self.text += "\n\n" + limerick.text
+            self.token_count += limerick.token_count
+
+    def write_to_file(self, file_path):
+        with open(file_path, "w") as file:
+            json.dump(self.to_dict(), file, indent=4)
 
     def to_dict(self):
         result = copy.copy(vars(self))
+        if self.question_list is not None:
+            index = 0
+            for question in self.question_list:
+                result["question_list"][index] = question.to_dict()
+                index += 1
         return result
 
     @staticmethod
     def from_dict(dictionary):
         result = LimerickPrompt(**dictionary)
         return result
+
+    @staticmethod
+    def for_target_size(target_size, question_list, question_location_list):
+        trimmed_question_list = []
+        index = 0
+        for question_location in question_location_list:
+            if question_location < target_size:
+                trimmed_question_list.append(question_list[index])
+                index += 1
+            else:
+                break
+        result = LimerickPrompt(target_size, trimmed_question_list, INTRO_TO_PROMPT)
+        return result
+
+
+class LimerickListBuilder:
+    def __init__(self, question_list, question_dict):
+        self.limerick_list = []
+        self.limerick_dict = {}
+        self.question_list = copy.copy(question_list) # builder modifies the list, so copy it first
+        self.question_dict = question_dict
+        self.current_token_count = 0
+        self.prior_token_count = 0
+
+    def test_and_add_limerick(self, limerick):
+        if self.limerick_dict.get(limerick.id, None) is None and self.question_dict.get(limerick.id, None) is None:
+            self.add_limerick(limerick)
+            if (len(self.question_list) > 0 and
+                    self.prior_token_count < self.question_list[0].target_location <= self.current_token_count):
+                question = self.question_list.pop(0)
+                self.add_limerick(question)
+
+    def add_limerick(self, limerick):
+        self.prior_token_count = self.current_token_count
+        self.limerick_dict[limerick.id] = limerick
+        self.limerick_list.append(limerick)
+        self.current_token_count += limerick.token_count
+
 
 def read_and_init_limericks(file_path):
     result = []
@@ -113,45 +166,50 @@ def generate_answers(limerick_list, number_of_answers, file_path):
     return result
 
 
-def select_questions_for_prompt(file_path, number_of_questions):
+def select_questions_for_prompt(file_path, location_list):
     with open(file_path, "r") as file:
         question_dict_list = json.load(file)
     question_list = [Limerick.from_dict(question_dict) for question_dict in question_dict_list]
     selected_question_dict = {}
-    while len(selected_question_dict) < number_of_questions:
+    while len(selected_question_dict) < len(location_list):
         index = random.randint(0, len(question_list) - 1)
         question = question_list[index]
         if selected_question_dict.get(question.id, None) is None:
+            question = copy.copy(question)
+            question.target_location = location_list[len(selected_question_dict)]
             selected_question_dict[question.id] = question
     result = list(selected_question_dict.values())
     return result, selected_question_dict
 
 
-def select_limericks_for_prompt(limerick_list, question_dict, max_token_count):
-    current_token_count = 0
-    selected_limerick_dict = {}
-    while current_token_count < max_token_count:
+def select_limericks_for_prompt(limerick_list, question_list, question_dict, max_token_count):
+    builder = LimerickListBuilder(question_list, question_dict)
+    while builder.current_token_count < max_token_count:
         index = random.randint(0, len(limerick_list) - 1)
         limerick = limerick_list[index]
-        if selected_limerick_dict.get(limerick.id, None) is None and question_dict.get(limerick.id, None) is None:
-            selected_limerick_dict[limerick.id] = limerick
-            current_token_count += limerick.token_count
-    result = list(selected_limerick_dict.values())
+        builder.test_and_add_limerick(limerick)
+    result = builder.limerick_list
     return result
 
-def generate_prompt_of_size(prompt_size, limerick_list, question_list, rough_question_location_list):
-    just do sub 16k ones on gpt 3.5 turbo and haiku -- both cheap
 
 def generate_prompts(limerick_list, prompt_size_list, rough_question_location_list):
-    prompts = []
-    selected_question_list, selected_question_dict = select_questions_for_prompt("full_questions.json", len(rough_question_location_list))
+    selected_question_list, selected_question_dict = select_questions_for_prompt("full_questions.json",
+                                                                                 rough_question_location_list)
     max_token_count = prompt_size_list[-1]
-    selected_limerick_list = select_limericks_for_prompt(limerick_list, selected_question_dict, max_token_count)
-    for prompt_size in prompt_size_list:
-        prompt = generate_prompt_of_size(prompt_size, selected_limerick_list, selected_question_list,
-                                         rough_question_location_list)
-        prompts.append(LimerickPrompt(selected_limerick_list, selected_question_list, prompt, prompt_size))
-    return prompts
+    selected_limerick_list = select_limericks_for_prompt(limerick_list, selected_question_list, selected_question_dict,
+                                                         max_token_count)
+    prompt_list = [LimerickPrompt.for_target_size(prompt_size, selected_question_list, rough_question_location_list)
+                   for prompt_size in prompt_size_list]
+    index = 0
+    for limerick in selected_limerick_list:
+        index += 1
+        if index % 10 == 0:
+            print(".")
+        for prompt in prompt_list:
+            prompt.add_limerick(limerick)
+    for prompt in prompt_list:
+        prompt.write_to_file("prompt_" + str(prompt.target_size) + ".json")
+    return prompt_list
 
 
 # Press the green button in the gutter to run the script.
