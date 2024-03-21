@@ -85,7 +85,6 @@ def generate_answers(limerick_list, number_of_answers, file_path):
 def generate_prompts(prompt_size_list):
     prompts = []
     limericks = read_and_init_limericks("limerick_dataset_oedilf_v3.json")
-    limericks_with_questions = generate_answers(limericks, 3, "questions.json")
     return prompts
 
 
@@ -95,7 +94,7 @@ if __name__ == '__main__':
     user_input = input()
     user_input = user_input.strip()
     if user_input == "1":
-        generate_answers(read_and_init_limericks("limerick_dataset_oedilf_v3.json"), 27, "questions2.json")
+        generate_answers(read_and_init_limericks("limerick_dataset_oedilf_v3.json"), 7, "questions2.json")
     elif user_input == "2":
         generate_prompts(PROMPT_SIZE_LIST)
     elif user_input == "3":
