@@ -4,9 +4,11 @@ import random
 
 import tiktoken
 
-PROMPT_SIZE_LIST = [ 1500, 6000, 12000]
+from llm_client import LLM_CLIENT_LIST
 
-ROUGH_QUESTION_LOCATIONS = [100, 1200, 5700, 11700]
+PROMPT_SIZE_LIST = [ 12000, 100000]
+
+ROUGH_QUESTION_LOCATIONS = [100, 1200, 5700, 11700, 80000, 99700]
 
 INTRO_TO_PROMPT = "This is a test to see how well you are paying attention. This text is a series of limericks. " \
     "At the end of the list of limericks, there will be a question. The question will be about one of the limericks. " \
@@ -70,6 +72,11 @@ class LimerickPrompt:
 
     @staticmethod
     def from_dict(dictionary):
+        question_list = dictionary.get("question_list", None)
+        if question_list is not None:
+            dictionary.pop("question_list", None)
+            question_list = [Limerick.from_dict(question_dict) for question_dict in question_list]
+            dictionary["question_list"] = question_list
         result = LimerickPrompt(**dictionary)
         return result
 
@@ -212,7 +219,38 @@ def generate_prompts(limerick_list, prompt_size_list, rough_question_location_li
     return prompt_list
 
 
-# Press the green button in the gutter to run the script.
+def print_result(prompt, client, question, result):
+    print("---------------------------------")
+    print("Client:", client.llm_name)
+    print("Prompt Size:", prompt.token_count)
+    print("Location:", question.target_location)
+    print("Limerick:", question.text)
+    print("Question:", question.question)
+    print("Good Answer:", question.answer)
+    print("Generated Answer:", result)
+
+
+def write_prompt_text_to_file(prompt_text, prompt_file, client_name, question_id):
+    file_name = prompt_file + "_" + client_name + "_" + question_id + ".txt"
+    with open(file_name, "w") as file:
+        file.write(prompt_text)
+
+
+def run_prompts(prompt_file_list, client_list):
+    for client in client_list:
+        for prompt_file in prompt_file_list:
+            with open(prompt_file, "r") as file:
+                prompt_dict = json.load(file)
+                prompt = LimerickPrompt.from_dict(prompt_dict)
+                if client.in_context_window(prompt.token_count):
+                    for question in prompt.question_list:
+                        prompt_text = prompt.text
+                        prompt_text += "\n\n" + question.question
+                        result = client.prompt(prompt_text)
+                        print_result(prompt, client, question, result)
+                        write_prompt_text_to_file(prompt_text, prompt_file, client.llm_name, str(question.id))
+
+
 if __name__ == '__main__':
     # find_the_longest_limerick_in_tokens(read_and_init_limericks("limerick_dataset_oedilf_v3.json"))
     print("Enter 1 to generate questions, 2 to generate prompts or 3 to run prompts:")
@@ -223,6 +261,6 @@ if __name__ == '__main__':
     elif user_input == "2":
         generate_prompts(read_and_init_limericks("limerick_dataset_oedilf_v3.json"), PROMPT_SIZE_LIST, ROUGH_QUESTION_LOCATIONS)
     elif user_input == "3":
-        pass
+        run_prompts(["prompt_12000.json", "prompt_100000.json"], LLM_CLIENT_LIST)
     else:
         print("Invalid input")
