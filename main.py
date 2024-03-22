@@ -6,7 +6,7 @@ import tiktoken
 
 from llm_client import LLM_CLIENT_LIST
 
-PROMPT_SIZE_LIST = [ 12000, 100000]
+PROMPT_SIZE_LIST = [ 1500, 6000, 12000, 100000]
 
 ROUGH_QUESTION_LOCATIONS = [100, 1200, 5700, 11700, 80000, 99700]
 
@@ -46,16 +46,29 @@ class Limerick:
         return result
 
 class LimerickPrompt:
-    def __init__(self, target_size, question_list, text, token_count=0):
+    def __init__(self, target_size, question_list, text, token_count=0, limerick_list=None):
         self.target_size = target_size
         self.question_list = question_list
+        self.limerick_list = limerick_list
         self.text = text
         self.token_count = token_count
 
     def add_limerick(self, limerick):
         if self.token_count + limerick.token_count <= self.target_size:
-            self.text += "\n\n" + limerick.text
+            if self.limerick_list is None:
+                self.limerick_list = []
+            self.limerick_list.append(limerick)
             self.token_count += limerick.token_count
+
+    def build_text_from_limerick_list(self, repeat_count_for_questions=1):
+        self.text += "\n\n" # intro of prompt was added in the constructor
+        for limerick in self.limerick_list:
+            if limerick.target_location != 0:
+                add_count = repeat_count_for_questions
+            else:
+                add_count = 1
+            for i in range(add_count):
+                self.text += "\n\n" + limerick.text
 
     def write_to_file(self, file_path):
         with open(file_path, "w") as file:
@@ -68,6 +81,11 @@ class LimerickPrompt:
             for question in self.question_list:
                 result["question_list"][index] = question.to_dict()
                 index += 1
+        if self.limerick_list is not None:
+            index = 0
+            for limerick in self.limerick_list:
+                result["limerick_list"][index] = limerick.to_dict()
+                index += 1
         return result
 
     @staticmethod
@@ -77,6 +95,11 @@ class LimerickPrompt:
             dictionary.pop("question_list", None)
             question_list = [Limerick.from_dict(question_dict) for question_dict in question_list]
             dictionary["question_list"] = question_list
+        limerick_list = dictionary.get("limerick_list", None)
+        if limerick_list is not None:
+            dictionary.pop("limerick_list", None)
+            limerick_list = [Limerick.from_dict(limerick_dict) for limerick_dict in limerick_list]
+            dictionary["limerick_list"] = limerick_list
         result = LimerickPrompt(**dictionary)
         return result
 
@@ -110,6 +133,7 @@ class LimerickListBuilder:
                     self.prior_token_count < self.question_list[0].target_location <= self.current_token_count):
                 question = self.question_list.pop(0)
                 self.add_limerick(question)
+
 
     def add_limerick(self, limerick):
         self.prior_token_count = self.current_token_count
@@ -243,6 +267,7 @@ def run_prompts(prompt_file_list, client_list):
                 prompt_dict = json.load(file)
                 prompt = LimerickPrompt.from_dict(prompt_dict)
                 if client.in_context_window(prompt.token_count):
+                    prompt.build_text_from_limerick_list(1)
                     for question in prompt.question_list:
                         prompt_text = prompt.text
                         prompt_text += "\n\n" + question.question
@@ -261,6 +286,6 @@ if __name__ == '__main__':
     elif user_input == "2":
         generate_prompts(read_and_init_limericks("limerick_dataset_oedilf_v3.json"), PROMPT_SIZE_LIST, ROUGH_QUESTION_LOCATIONS)
     elif user_input == "3":
-        run_prompts(["prompt_12000.json", "prompt_100000.json"], LLM_CLIENT_LIST)
+        run_prompts(["prompt_1500.json", "prompt_12000.json"], LLM_CLIENT_LIST)
     else:
         print("Invalid input")

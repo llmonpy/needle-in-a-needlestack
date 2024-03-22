@@ -2,20 +2,20 @@
     "target_size": 12000,
     "question_list": [
         {
+            "id": 98591,
+            "author": "Chris J. Strolin",
+            "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+            "question": "Who do they blame in the blamestorming session after someone dies?",
+            "answer": "Jaun",
+            "token_count": 39,
+            "target_location": 100
+        },
+        {
             "id": 85401,
             "author": "MikeAq",
             "text": "To compose a morose epicedium\nCan brighten one's torpor and tedium.\nI myself have an urge\nTo create a sad dirge \u2014\nOne not overly mournful, just medium.",
             "question": "How can one brighten one's torpor and tedium?",
             "answer": "Compose a morose epicedium",
-            "token_count": 43,
-            "target_location": 100
-        },
-        {
-            "id": 54553,
-            "author": "Richard English",
-            "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",
-            "question": "What is sought by the English top brass?",
-            "answer": "Cranberry glass",
             "token_count": 43,
             "target_location": 1200
         },
@@ -29,15 +29,2537 @@
             "target_location": 5700
         },
         {
-            "id": 105797,
-            "author": "MikeAq",
-            "text": "Cruciverbalists learn crosswordese,\nFilling puzzles with words such as these:\nDies irae and busto \u2014\nLess-used words that you must know\nTo solve crossword puzzles with ease.",
-            "question": "What do cruciverbalists learn?",
-            "answer": "Crosswordese",
-            "token_count": 41,
+            "id": 86941,
+            "author": "Janet McConnaughey",
+            "text": "\"Hey, Mom, I've a chance at my dream \u2014\nThe X-treme Harley Acrobats Team!\"\nShe frowned at me, scaring\nMe out of my daring:\nShe eyebrowed me out of my scheme.",
+            "question": "How did mom scare me out of joining the X-treme Harley Acrobats Team?",
+            "answer": "She frowned at me",
+            "token_count": 47,
             "target_location": 11700
         }
     ],
-    "text": "This is a test to see how well you are paying attention. This text is a series of limericks. At the end of the list of limericks, there will be a question. The question will be about one of the limericks. Please answer the question as concisely as possible.\n\nMy life was unhinged and bourgeois,\nSo I turned to my roots, et voila!,\nI grew out my beard\nAnd Torah I revered,\nBecoming baal teshuva.\n\nSince her recent divorce, my aunt Min\nHas had wrinkles appear in her skin.\nShe is no longer bold;\nShe's grown suddenly old,\nLooking careworn, unhappy and thin.\n\nThe Agonyclites stood when they prayed,\nLeaving others disturbed and dismayed.\nThe authorities felt\nThat they ought to have knelt,\nAnd I think that they should have obeyed.\n\nTo compose a morose epicedium\nCan brighten one's torpor and tedium.\nI myself have an urge\nTo create a sad dirge \u2014\nOne not overly mournful, just medium.\n\nWhen making Canadian law,\nThe parliamentarians jaw\u2014\nAnd they may take all night,\nIf they happen to fight\nWith the ones from the Bloc Qu\u00e9b\u00e9cois.\n\nWhen the butler is sounding the gong,\nSee their dinner gowns, slinky and long.\nBut when ladies depart,\nThen the menfolk will start\nTo make bets on who's wearing a thong.\n\nSend a cover sheet out with your fax\nSo it won't simply fall through the cracks.\nList the issues involved\nAnd we'll see they're resolved\u2014\nBasic facts, not the whole ball of wax.\n\nWhile flipping a hamburger patty,\nPoor Mitzi went quietly batty \u2014\nSaid, \"French fries with that?\"\nAs she deep-fried a rat.\n\"There's no difference; it all ends up fatty.\"\n\nI've decided to learn how to bake\nAnd, unshaken, I'm planning to make\nMy first try as a rookie\nA chocolate chip cookie,\nBefore I attempt chocolate cake.\n\nPeople's sex lives can shock and appall.\nOh, it's strange all the things that enthrall.\nChains and whips, leather chaps,\nBut the weirdest, perhaps:\nAphallatia \u2014 no sex at all.\n\nWhen deciding to lend you some cash,\nBankers never are hasty or rash.\nThey apply credit scoring\n(A term that sounds boring)\nTo decide if you're trusty or trash.\n\nThe gambler, brow knit in a frown,\nWatched his faro chip assets go down.\n\"This is rigged, so they say,\nBut I still have to play.\nIt's the only game left in this town.\"\n\nJake got caught with those hubcaps he steals.\nNow he sits in jail cooling his heels\u2014\nNot the best of careers.\nHe'll serve one to two years,\n'Less his lawyer can file some appeals.\n\nThis puss was abandoned, James knew,\nAnd a stray takes a risk near a zoo,\nSo he whispered, \"Here, kitty,\"\nAnd held out, from pity,\nA hand \u2014 but the tiger took two.\n\nAn adept aquafortist named Dave\nUsing acid would etch and engrave.\nOne foul day, a bad leak\nSaw some splash on his cheek.\nHe survived, though\u2014a very close shave.\n\nIf you're hearing-impaired, no apology\nIs required; consult the anthology\nOf professions for one\nThat tests hearing \u2014 it's done\nBy those licensed to do audiology.\n\nThere oughta be some kind of law\nWhen the gals in the office all jaw\nAbout babies.  Obsessing,\nThey're always expressing\nDelight with that sugary \"Awwwww!\"\n\nWe're direct-grant schools. Note, if you please,\nBeing frightfully posh, we charge fees,\nBut we tolerate proles\n(Just a few) on our rolls,\n'Cause the government pays us for these.\n\nWe're anarchists (rules will appall us),\nYet we dress with a smartness that's flawless.\nWe're tailored discreetly\nAnd matched quite completely:\nWe needn't be slobs to be lawless.\n\nHaunted houses are best viewed by night,\nWhen there's not one sane person in sight.\nIf gales blow while it rains\nAnd ghosts rattle their chains,\nThen they're sure to deliver a fright.\n\nIt's that roll in his gait, you'll agree,\nHis white ducks and distaste for debris:\nSince he crawled from the crib,\nBy the cut of his jib,\nIt's been clear that his true home's the sea.\n\nThere's a pigment that's yellowish-brown\nFor which bister's the relevant noun\u2014\nAnd it's bistered you get\nWhen you soak it, and let\nJackson Pollock start going to town.\n\nThe first antidetonant, lead,\nDid horrible things as it spread\nFrom our cars to our plains,\nInto little kids' brains.\nNow we use safer octanes instead.\n\n\"From the left, take a fist,\" I declare,\nAs your punch hits from right.  Oh, despair.\nThat chiasmus up there\nHas a pattern \u2014 just stare;\nIt's a cross that I'm sure you can bear.\n\nYou'd think nothing could make a man sadder\nThan having a full, sloshy bladder,\nLegs crossed at the knee\n'Cause he's so full of pee \u2014\nThen the sprinklers start, making him madder.\n\nA long parting again must be faced.\nHugging tightly, they fiercely embraced;\nEvery clasp in the past\nHas proved fast love can last\nWhen on friendship and loyalty based.\n\nI said, \"Joe, Daddy thinks that you're drony,\nAnd I'm sure he believes you're a phony\nWith a proneness to shirk,\nAnd allergic to work.\"\nJoe was irked, and he bellowed: \"Baloney!\"\n\nIn two seconds, a setting's erased.\nWith a clock wipe, the scene is replaced:\nSecond hand sweeps around\nAnd the film's on new ground\u2014\nGives a place change an odd, vintage taste.\n\nSome folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.\n\nWith chloramine we can be sure\nThat a potable state will endure\nIn the water we drink,\nFor we'd all like to think\nThat what flows from the tap's clean and pure.\n\nInvitations don't always invite;\nDinner parties are often a fright.\nLet the host mutter, \"Weasels!\"\nWe'll say we've got measles\nAnd dine in, my darling, tonight.\n\nWhile you went for a weekend to Rome,\nYour new washer spat masses of foam.\nIt smothered the floor,\nBarely dammed by the door:\nYou will need antifoam when you're home.\n\nThe devil produces a spark\nOf power for spells in the dark.\nBlack arts are espoused\nBy people like Faust\nWho bargain their souls for a lark.\n\nIn limerick writing, your meter\nIs anapest.  Would it be neater\nWedding iamb and trochee?\nThat's not okey-dokey!\nUse antispast?  Never, you cheater!\n\nYou amaze me, my dear Mr. Fox,\nWhen you lift up that mountain of rocks.\nI'm astounded and awed,\nAnd I'm barefoot, by Gawd,\nFor your prowess has knocked off my socks.\n\nMy anesthesiologist, Jill,\nHas a useful and wonderful skill.\nShe will keep you pain-free\nThrough your surgery, see\u2014\nBut just wait till she sends you her bill.\n\nCountry mile: that's a long way to go?\nAll us hicks in the sticks would say no.\nIn Chicago, a mile\nTakes an hour (what a trial!)\u2014\nAround here, just a minute or so.\n\nAn ultrasound scan can detect\nVenous flow, by the Doppler effect.\nIt will show if you've got\nA vein blocked by a clot\nWhen a DVT's what to suspect.\n\nSaid I, to the database lass,\n\"Your server's become a morass.\nYour front-end is fine\n(Handles better than mine),\nBut your back-end's a pain in the ass.\"\n\nFor most 'bee stings' the bees take the fall,\nThough it isn't the bees' fault at all;\nVespine pests, yellow jackets\nUndertake an attack; it's\nA typical day's ER call.\n\nWith amazingly great gifts I'll ply you:\nFirst to Normandy, France I will fly you.\nNext, a New Orleans creek\nI will mail you next week.\nYes, that's Bayou Bayeux I will buy you.\n\nFumed a bee with a flap of its wing,\n\"We can't gather up pollen or sting!\nSomething's clogged our corbiculae,\nSoddened our spiculae:\nRain is a terrible thing!\"\n\nAt a wedding reception in Cana,\nThe dear bride was a beauty, a sheyna,\nAnd one guest was so fine\nHe turned water to wine\nAnd the groom to a former abstainer.\n\nAmarantaceous indeed!\nCommon \"pig\" is the name of this weed.\nThose sesquipedalian\nWords are so alien;\nSmart Alecs ain't what we need.\n\nWhen you come to our marshmallow store,\nYou'll find oil drums of Fluff on the floor.\nWe found barrels no good,\nSince the slivers from wood\nPrompted negligence lawsuits galore.\n\nOn those far rolling hills they're still farming;\nThis countryside view is so charming.\nBut on turning my head\nI see townscapes instead,\nAnd the rate of their spread is alarming.\n\nTo my fans, I admit my indebtedness;\nHaving failed them, I feel a regrettedness\nThat my Broadway career's\nDisappeared\u2014no more cheers.\nIt's gone foul, with malodorous fetidness.\n\nYour dementia evolves by degrees,\nAs your brain's forming holes like Swiss cheese.\nNow you firmly avow\nThat you suffer \"mad cow\",\nThough you've caught Creutzfeldt-Jakob disease.\n\nThis delusion I have of negation\nIs a matter of utmost frustration\nTo those who agree\nThat there is a world. Me?\nI just know it's a long-dead location.\n\nThere's a break in line 5 of this verse,\nA short tale of a murderous nurse.\nI had come to her ward\nFor some warts I'd ignored,\nBut went home the next day\u2026 \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0in a hearse!\n\nSure, an octopus might use a tool,\nBut some trivia even more cool?\nA consortium's when\nThere's a lot more than ten.\nI suppose they're too smart for a school.\n\nAcinetiform's not what I'm called.\nSuch a thought has me quite unenthralled,\nSince I'm neither suctorial,\nNor at all infusorial\nAnd by matter decayed I'm appalled.\n\nI know you won't find me pedantic\nWhen I tell you this beetle's gigantic.\nIt measures six inches;\nWith \"horns,\" the bug pinches.\nWhy do schoolgirls find beetles romantic?\n\nDancing farandoles earned us some praise:\nThreading Needles, escaping The Maze.\nOur footing was certain,\nOur clothing was curtain;\nSt Sepulchres: those were the days.\n\nOne would hope, in a crisis, benevolence\nWould be the response that takes prevalence.\nBut alas, we have seen\nPeople tend to be mean,\nAnd delight in their senseless malevolence.\n\nSaid the teacher, \"Use all of your brain \u2014\nHow much sand will this basin contain?\"\nThe class scratched its head,\n'Til one genius said:\n\"A basinful, sir, it is plain.\"\n\nTwo lessons were learned from the strife\nThat was faced by George Bailey and wife.\nOne: an angel earns wings\nEvery time a bell rings,\nAnd then two: it's a wonderful life.\n\nVeggies strewn on a plate like confetti\nAre brunoise.  The chef got them ready\nBy dicing real fine\n(One-eighth inch is divine)\nWhile she's keeping her knife sharp and steady.\n\nGood Samaritan laws can protect you\nFrom lawsuits you fear might deflect you\nFrom helping a stranger\nWho's facing a danger.\nThe courts will (correctly) respect you.\n\n\"Has the Girdle of Venus been banned\nFrom all stores? I just don't understand.\nI've looked high, I've looked low\u2014\"\n\"Further search please forgo.\nIt's right there in the palm of your hand.\"\n\nFrom our duck-hunting, home via Daniel's.\nHe said, \"Bring some deodorant granules\nNext time out, for that fug \u2014\nRotting rug \u2014 makes me chug.\"\nThat's the trouble with wet cocker spaniels.\n\nA creationist posits the cause\nOf all life that on Earth ever was\nMust be God, because life\nBegets life; now it's rife\nAnd complies with its Prime Mover's laws.\n\nDrawings, diagrammatically sound,\nThat plot out the lie of the ground\n(Landscape plans, with no hues,\nFlat, cross-sectional views),\nStir no joy in my soul, I have found.\n\n\"Listen, boys,\" said field officer Joe\nTo the sergeants, lieutenants (below\nHis own major's rank) \"we\nWill capture this tank. We\nWill deal all these devils a blow\".\n\nWe've got C-rations, some fit to eat,\nWith their tins of unspecified meat\n(Which some claim is wombat.\nBut hell, this is combat),\nAnd coffee and fudge. Ain't that sweet!\n\nWhen an actor attempting a leap\nMissed his mark and fell into a heap,\nThe censor (God love her)\nHis mouth could not cover,\nBut hid his loud curses with BLEEEEEEP.\n\nAn enantiomorphic connection\nResembles a mirror's reflection.\nThe form of the first\nIs the second, reversed.\nYou've a pair close at hand for inspection.\n\nWould the Democrats find it a blessing\nIf their two top contenders stopped pressing\nTo be first and became\nA merged team with one aim\u2014\nC-and-O,  their best skills coalescing?\n\nVacationing, I shall make hay,\nAnd service my joy, come what may,\nAs I coin verbs denominative\nTo show I'm predominative\nAnd leverage my MBA.\n\nHaving stop, cease, desist on their mind,\nPirate captains might say, you will find,\n\"Avast behind!\" This\nCould be taken amiss\nBy their crews, who could think them unkind!\n\nWhile prowling his base's perimeter\nMajor Tom wore his medals and scimitar.\nWhen he shouted, \"Jump to it!\"\nTroops knew to construe it\nAs \"high 'nuff to need an altimeter.\"\n\nWhen the Pinto arrived at my station,\nIt suffered from poor carburetion.\nI started to fix\nThe gas/oxygen mix\nBut got high from the fuel's emanation.\n\nOn the beaches of Puerto Vallarta\nAre Canadians; Greeks live in Sparta;\nAnd in Java, the Dutch\nDon't do anything much,\nExcept ask you the way to Batavia.\n\nShe's been out for a night on the tiles;\nStaggers home, sees the phone, and drunk dials\u2014\n\"You can keep your damned bitch,\nBut I'll sue, and be rich.\nAnd your 'son'? Well, here's news, hon. He's Lyall's.\"\n\nAmmodramus, a genus of sparrows,\nFeatures several with tails sharp as arrows.\nFrom the fens where they skulk\nThey eat grass seeds in bulk\nAnd snatch bugs by the dawn and dusk scarrows.\n\n\"But he got fewer votes!\"\u2014that's your spin\nWhen you call into question his win.\nBut contest all you will.\nWill you protest until\nThe electoral loser gets in?\n\nFrom its blossoms, a lovely perfume\nFills the air when this vine is in bloom.\nChilean jasmine is fine\nIn a garden like mine;\nBrought inside it brings scent to each room.\n\nWhat's a chaetopod? That is a term\nThat's applied to an annelid worm,\nAs its bristle, or seta,\nIs known as a chaeta.\nThese beasties can make people squirm.\n\n\"I was walking along when my skin\nStarted dripping right off of my chin,\nTill my whole epidermis\nFilled a two gallon thermos!\"\nIs a lie this dermatic a sin?\n\nMy Chemistry grade's a disgrace.\nThe compound they gave me to trace\nAs my final exam\nWas an ampholyte; damn!\nI just couldn't tell: acid or base?\n\nThe last boat floats away from the shore.\nNow I wish I had boarded before,\nBut I couldn't decide.\nWas it sloth?  Was it pride?\nDoes it matter at all anymore?\n\nI have an old burro named Jo\nWho is cranky, obnoxious, and slow.\nStill she's such a sweet ass,\nSo I travelled to Mass.\nAnd I married her, loving her so.\n\nThe waterscape, ebbing and swelling \u2014\nMesmeric, engrossing, dispelling\nAll thoughts from your mind\nAs your daydreams unwind \u2014\nIs hypnotic, alluring, compelling.\n\n\"Our best suspect, I've learned, has a twin,\"\nSaid the chief, with a look of chagrin.\n\"He'll try some kind of switch,\nSo be sure which is which.\nIn your search for him, factor it in.\"\n\nThe first book review! (Yes, my first book,\nWhich I wrote on some gobbledygook!)\nI was proud, man, but then\nRead the text once again\u2014\nThe reviewer, I found, was a schnook.\n\nAll the audience shouted \"Right on!\"\nWhen shrewd Newt tried his media con.\nSome feel he berated\nPoor Williams. Not sated,\nHe teed off; scored a clean hole in Juan.\n\nIn the late 1800s they came,\nProfiteers\u2014from old settlers to claim,\nIn the wake of lost war,\nThe spoils, legal, and more,\nAnd today they're still doing the same.\n\nWhen my  brother and I built our den\n(I'd be six-and-a-half; he'd be ten)\nIn that bracken-clad ditch,\nWe felt safe; we felt rich\nAnd as happy as pigs in a pen.\n\nMy blonde wife is impressive in height,\nAnd her beer mug's an everyday sight.\nShe appears German-looking\nWhile sauerkraut-cooking,\nBut was born on our own Isle of Wight.\n\nI get lost from the den to the loo;\nOnce arrived, I've no clue what to do.\nMy confusional state\nMeans I'm usually late\nFor appointments\u2026 except those with you.\n\nThe captain, face pale, turned to me.\n\"Here, use this bailing out this huge sea!\"\n\"Captain, give me a pail\nIf you want me to bail.\nThis spoon's not for sea, it's for tea!\"\n\nIt's wonderful stuff, cotton waste,\nFor cleaning machines (not in haste).\nIt soaks up the oil\nWithout too much toil,\nBut its downside has got to be faced.\n\nIf you can't find a purpose in life,\nAnd you yearn for the noose or the knife,\nYour unrest is anomic\nAnd seriocomic:\nYou're living in Scotland in Fife.\n\nCongregationalism's a sect;\nAll adherents, in Christ, are elect.\nEach self-governing church\nSits alone on its perch;\nPopes and bishops they roundly reject.\n\nAs he's hurrying past on the boat,\nShe's aware of the brush of his coat.\nWith the contact, this miss\nNow imagines his kiss,\nAnd she stifles a gasp in her throat.\n\nA pessimist sadly conceded\nHis hairline had sharply receded.\nHis wife is more bullish:\n\"What's left is quite fullish!\"\nTo me, his head's bigger than needed.\n\n\"What? You plan to defang that large asp?\"\nI declared, feeling scared and agasp.\n\"Pulling fangs from a snake\nMakes me quake. For God's sake,\nIf you do, keep a mighty firm grasp!\"\n\nThe three women of 9 Chickweed Lane\nAll live lives that are far from mundane.\nThese three generations\nEncourage flirtations.\n(They often have sex on the brain.)\n\nAny pipe\u2014when a liquid goes through it\u2014\nHas a name that is hard to intuit.\nStart with KAHN-dit. Sound stiff? Wrong?\nThen switch to a diphthong:\nChoose KAHN-doo-it, \u2013dyoo-it, or \u2013djoo-it.\n\nWhen electing MPs, the UK\nHas a fine democratical way:\nIt's 'one person, one vote'\u2014\nA good system, you'll note.\nEvery Briton has his or her say.\n\nAlthough Deus is Latin for \"God\",\nWhy \"in nomine Dei\"? It's odd\nThat the Lord of dimensions\nCan't banish declensions\nImposed by some ancient old sod.\n\nWhat two states have a quirk that's the same:\nJust one consonant sits in each name?\nO, i, a can be found,\n'Cause those vowels resound;\nNot an e nor a u is to blame.\n\nThe old gent had been given the eye,\nSo he gave it the old college try.\nBut her come-on was phony,\nJust bar dare baloney.\nPop's patient; he's still standing by.\n\nWith her lovers, my wife keeps in touch\nVia letters and phone calls and such.\n\"The first thirty-nine\nWeren't so bad,\" I'd opine,\n\"But this fortieth guy is too much!\"\n\nJimmy Dean, though deceased, still lives on\nIn a song he co-wrote: \"Big Bad John.\"\nHe made country hearts throb,\nGave a Muppet a job,\nAnd sold sausage from here to Taiwan.\n\nAcantho-'s from Greek and means \"spine.\"\nIt's a prefix and helps to define\nPlants with thorns/things vertebral\n(Used by folks most cerebral),\nAnd tree surgeons think it divine.\n\nArrhenius knew a reaction\nWould hasten if heated a fraction.\n\"I deduce some relation\nWith E-activation,\"\nHe said, with profound satisfaction.\n\nWhen a catalogue's dubbed raisonn\u00e9,\nIt's a Frenchified way you can say\nAnnotations exist,\nIn an index or list,\nOf the works that will be on display.\n\nThough this strip never had me in stitches,\nBroom-Hilda fills one of those niches.\nWhile not witty or striking,\nShe's good for those liking\nCigar-smoking, man-hungry witches.\n\nThere are granules of proteins right there,\nIn the outermost endosperm layer\nOf a seed, and they're bound\nTo the vitamins found\nIn that place, but the chickens don't care.\n\n\"Kitchen countertop's cracked,\" said the critic.\nSo, in shopping for something granitic\nThat would cover the block\nWith pastel fine-grained rock,\nI obtained and installed the aplitic.\n\nDistasting (disliking) cars slow,\nA snail bought a Jag at a show.\nPainting S on each side,\nHe took off for a ride.\nPeople cried, \"Look at that S-car go!\"\n\nBoth a flame and a year fade to ember.\nObserve, at the end of December,\nA word that's implying\nThe year's flame is dying\nBut burning enough to remember.\n\nAristarchus of Samos declared\nGeocentrists had possibly erred.\nWhen all's said and done,\nMight we orbit the sun?\nIs there infinite space? No one cared.\n\nHe thought that his words were acidic\nWhen he lectured in south Chappaquiddick;\nSo right for that hour,\nBeing fresh, sharp and sour,\nBut in truth they were dull \u2014 just bromidic.\n\nThreats in H-bomb-linked crises we got\nThrough the Cold War\u2014mistrust was our lot.\nArms reductions by name\nWere achieved all the same.\nRon and Gorbie stopped cold turning hot!\n\nI cherished my pet axolotl;\nI found him, one day, in a bottle.\nI tugged on his tail...\n\"Oh no!\" did I wail:\n\"I've rendered my lizard acaudal!\"\n\nFreedom's march by protestors was led\nWhen Britain's democracy bled.\nFrom my comfort zone why\nShould I march? No, I'll try\nWriting letters to broadsheets instead.\n\nThough my dive shop resembles a dive,\nI've got gear to keep divers alive.\nNo, I didn't invent it;\nI sell, trade or rent it.\nAnd I stock all you'll need to survive.\n\nIf fermented grain mash makes you frisky,\nYou need not think the age statement risky.\nTake a 12-year-old Scotch,\nWait four years and then watch:\nThe result?  Still a 12-year-old whisky.\n\nDeterminists say what's contained\nIn this limerick's been preordained\nBy the fates or whatever,\nNo matter how clever\nMy wording or how I've been trained.\n\nA - V - A - X - T - S - K - Y - R:\nOut in Iceland, this cheese is a star.\nWhile its flavor I'll praise,\nThough I've tried to for days\nI just cannot pronounce it so far.\n\nOur color sarn't's wife is a nag,\nAnd she scolds him and says he's a fag,\nBut he's always consoled\n(What a sight to behold!)\nWhen he leads us while bearing our flag.\n\nThere is nobody, penny-wise, wiser.\nHe could work as a scrimping adviser.\nHe's a demon for thrift.\nEven words get short shrift:\nNo econo is spared by this miser.\n\nHe writes music that orchestras play,\nAnd conducts in a calm, graceful way,\nBut I'd bet all my PEZ\nThat our maestro Boulez\nGets upset when they call him \"boo-LAY.\"\n\nThis is you if you hew to the view\nThat we've screwed up the world that we knew.\nThere can be no repair.\nBuy a gun, say a prayer.\nClearly chaos is coming.  We're  through!\n\nWhen you heard that the owner was dead\nYou moved in to his home in his stead.\nNow the new legal heir\nFinds that you're living there,\nAn abator; you're blocking his tread.\n\nThe housekeeper's friend NH3\nKeeps dwellings bacteria-free.\nGerms leave me alone if I\nAlways ammonify,\nAnd so do my in-laws \u2014 yippee!\n\nSee Cupid's swift arrows bestow\nWondrous love; they set hearts all aglow.\nMay he reach in his quiver\nAnd surely deliver\nHis arrow from bow to your beau.\n\nWhen Pete, on the cliffs of Peninnis,\nIsles of Scilly, and drunk (too much Guinness),\nFell down from the rock,\nIt was more than a shock:\nThe end of it all, it was \u2014 finis.\n\nMy girl's ten, but she's going on teen \u2014\nGetting nearer to grown-up, I mean.\nThese days no one denies,\nThanks to Internet's rise,\nKids age quicker from screens heard and seen.\n\nAs a pig, I was nearly forsaken:\nWithout the blue ribbon, I'm bacon.\nCharlotte did me up big,\nIn her web, spun \"SOME PIG\",\nSaved my hide, but she left my heart achin'.\n\nOh, don't throw your toys out your pram!\nYes, I treat all your emails as spam.\nHurt your feelings? Don't care;\nI don't like you, so there!\nJust accept that I don't give a damn!\n\nArame (that's seaweed, to you)\nCan be stir-fried to feed a whole crew.\nAs a side dish with fish,\nSome will say it's delish,\nBut tonight I'd prefer a fondue.\n\nIt was over before it began.\nI snuck out when he went to the can.\nThough I never could date him,\nI didn't berate him\nFor trying to pass as a man.\n\nPrincess, this was a poem for thee,\nMy anonymous, great addressee,\nWho lets no rhyme or meter\nDismay or defeat 'er,\nComposing ballades hassle-free.\n\nDon't respond to the troll.  That will lead him\nTo forum abuse.  We don't need him\nDisrupting our fun.\nIf you see his posts, run.\nHis one aim's to inflame, so don't feed him.\n\nThe cottonmouth's mouth is pure white.\nIt's a sight that fills swimmers with fright\n'Cause this snake likes to swim,\nAnd your future is grim\nIf this moccasin chooses to bite!\n\nCap crucifix clutter creation?\nPeg Protestant prop population?\nTrick-trending truth tramples,\nSo seek several samples\u2014\nA valuable cross-validation.\n\nWhen a color's chromatic, they say\nIt's defined as \"with hue.\" Well, OK...\nIt's \"a color with hue\"?\nI reply, \"Whoop-de-do!\"\n(What they mean is not black, white, or gray.)\n\nSaid Blanche, a despiser of Trump:\n\"When he tweets or he speaks on the stump,\nHe's asinus ad lyram \u2014\nHe lies! We can't hire 'im!\nI won't vote for an ass, I'm no chump!\"\n\nBy e-mail, e-missives are sent,\nWith an e-philosophical bent.\nE-clectic, they're cabled,\nE-lectric e-nabled.\nE-gad, they e-never relent!\n\nThe monarch's the role I've assumed;\nThe previous king has been doomed.\nHe was not labeled mean,\nNeither base nor obscene,\nBut persistently shabbily groomed.\n\nI will cobble a cobbler from scraps\nYou can gobble in bowls off your laps.\nTo this crusty meat dish\nI'll add veg if you wish.\nIf you're good, there'll be seconds \u2014 perhaps.\n\nIf crystals should split as a prism\nNot only with verticalism\u2014\nHorizontally too\u2014\nDiprismatic will do\nTo describe such a cleavage or schism.\n\nAn achenium's one kind of breed\nOf a fruit about which you may read;\nIndehiscent (no split),\nSingle-seeded, and it\nIs so bare that it's called naked seed.\n\nMiss World's need to pee never ceases,\nHence global awareness increases.\nBut she's somewhat dismayed,\nSince her major crusade\nIs not diuresis \u2014 world peace is.\n\nIt's at sunrise that reveille's blown\nAnd the skills of the bugler are shown.\nWith no valves to rely on,\nHe's forced to get by on\nOne set of harmonics alone.\n\nA linguaphile, she has collected\nWords she likes and considers neglected.\nI suggest that you look\nAt her marvelous book.\nWith the language bug you'll be infected.\n\n'Twas brillig, where mome raths were mimsy,\nFor Carroll, the master of whimsy.\nA slithy tove curls,\n'He is dodgy with girls',\nBut such gimbling gyre is quite flimsy.\n\nMy mother and I had this fight;\nAnd I know for a fact I am right!\nI am not going back\n'Til she cuts me some slack\u2014\nCan I crash on your sofa tonight?\n\nMiss Long's letter, a lengthy epistle\n(Sharply critical, pointed as thistle),\nMade the editor blink:\nNo, it wouldn't see ink.\nIn a wink it was binned like old gristle.\n\nAll my equities, company stocks,\nI would once keep locked up in a box:\nNow financials like these\nAre on line. It's a breeze\nAnd as safe, so they say, as Fort Knox.\n\nBasic chutney's a south-Asian relish\nOf vegetables cooks will embellish\nWith chilies and spices.\nThe consequent price is\nA chutney so hot that it's hellish.\n\nIn the old days, a guy could comprint.\nIt means print alongside; there's a hint\nThere of ties that will bind\u2014\nIf you willingly signed\nYour own name to another guy's stint.\n\nA wee child puffs a dandelion head,\nAnd its seeds are dispersed, widely spread.\nFrom this same basic word,\nA dispersal's occurred\nWhen a shooting-range target is read.\n\n\"I ain't never bin aimin' to hurt you.\nYou know that I'd never desert you.\"\nClem's words were like honey,\nBut Daisy felt funny,\nSo still she hangs onto her virtue.\n\nIt's from one of my favorite plays:\nIn the bosom of Arthur he lays.\nThus Sir John met his death.\nSo declares in one breath\nMistress Quickly\u2014she butchers the phrase.\n\n\"This tartly red cranberry's very\nDelicious in sauces,\" said Kerry.\n\"It's perfect with turkey \u2014\nAnd urine that's murky.\nIt's such a darned versatile berry!\"\n\nJoseph Conrad was obviously brighter\nThan others as sailor and fighter:\nOf Polish descent,\nHe learned English and went\nThrough adventures in life and as writer.\n\nLet's elasticize currency now.\nWe'll make bills out of rubber, I vow.\nThough today people holler,\n\"I can't stretch a dollar,\"\nThey could with this money, and how!\n\nIn voting, a long time ago,\nA black ball implied \"anti\", not \"pro\";\nSo you blackball (reject\nFrom a group or a sect)\nWhen you ostracize someone you know.\n\n\"I've been dealt a bad hand, God.  I'm fat,\nI'm not smart, and I'm one ugly cat.\"\n\"Lose some weight.  Read more books.\nIn regards to your looks,\nListen, Kevin.  I'm sorry 'bout that.\"\n\nYou are doing your prospects no good.\nThe results, to your detriment, could\nRather quickly arise,\nSo more tact I'd advise,\nTo avoid being misunderstood.\n\nAcross from the sun in the sky,\nThere's a counterglow, faint to the eye.\nIt's backscattered light\n(Due to space dust) at night,\nWhen it's dark and the weather is dry.\n\nDon't you spray me with that \u2014 don't you dare!\nI just came in this shop for some air.\nNow I'm covered with scent\nAnd I'm sorry I went\nPast that stinky concession-(sniff)-aire.\n\nYou're respectable, so, Mr. Hunt,\nOur scheme's failure means you take the brunt\nOf the wrath from those cheated,\nWhose funds we've depleted.\nThat's why you're set up as our front.\n\nBlackpool Sands is a family beach,\nWith the showers and snacks all in reach\nBut hang on, and don't panic,\nThe food is organic,\nAnd recycling is something they preach.\n\nIn stilettos this season's bespoke;\nOn a catwalk I strut before folk\nWho don't buy off the peg.\nDamn! I've not shaved one leg.\nThat's my cover blown! Yes, I'm a bloke.\n\n\"That barmaid called Mabel,\" said Bert,\n\"Is the sort what's as common as dirt:\nA foul-mouthed young hussy,\nWho ain't none too fussy\u2014\nThat's what I calls 'a nice piece of skirt.'\"\n\nA dieter, feeling laconic,\nDrank gulps of an acid dextronic.\nWhen the syrup kicked in,\nShe decried, \"It's a sin!\nI'm addicted \u2014 it's true, and it's chronic.\"\n\nIt's a problem I've battled all winter.\nIt might be my toner or tinter.\nWith my email, oh please,\nHelp me send out cc's,\nSince the carbons won't fit in my printer.\n\nBruce sniggered, \"Jeez, mate\u2014that was funny,\nTo see that I would have paid money.\nCan you do it again?\"\nI said, \"Shut up!\" And then,\n\"Help me get myself out of this dunny.\"\n\nA pattern of planes in the sky\nKeeps its shape as they come roaring by.\nThe formation of jets\nAlways gives me the sweats \u2014\nIn my dream I'm the pilots' bull's eye.\n\nYour ignition switch suddenly froze?\nAre the contact points clean? Do they close?\nIf they properly meet,\nThen the circuit's complete,\nAnd you'll find electricity flows.\n\nMy arms\u2014they won't wave! They just keep\nKinda hanging\u2014refusing to sweep!\nThey're no longer alive!\nCall a medic!... Oh. I've\nOnly rolled on them during my sleep.\n\nIn a cave or a mine, there's no light;\nIt's the same when you're cycling at night.\nWhere it's cold, dark, and damp,\nThe antique carbide lamp\nBurns a flame that's amazingly bright.\n\nBen's painting shows bare-naked trees\nBearing snow on their branches. One sees,\nA short distance away,\nA small horse and a sleigh.\nHis frost piece shows Frost expertise.\n\nA strong building within and without,\nIt's a citadel, blockhouse, redoubt.\nIt's a place of a sort\nThat is known as a fort:\nThat's the structure I'm talking about.\n\nMy wife is re-doing, with wicker,\nFrom our bed to the locker for liquor,\nBut a basketwork range?\nIt's alarming; it's strange.\nIf she won't change her mind, I might kick her.\n\nA beggar of fame and renown\nPlied the byways of old London town.\nToss a tuppence his way,\nHe would hound you each day\nTill he'd touched you for more than a crown.\n\nIf it ends in a  ?, one surmises\nThat in reading the piece, the voice rises,\nSo we know it's a query\n(At least that's the theory).\nOur language is full of surprises!\n\nList activity stages to do;\nList the time that each task will accrue;\nOvercome lazy tendencies:\nNote all dependencies\u2014\nTasks, in their places, you view.\n\nMy neurologist firmly asserts\nThat my alpha wave cues no alerts.\nI'm awake and at rest,\nAnd this EEG test\nReads from 8 up to 13 calm hertz.\n\nIn lands where the chicle trees grew,\nSticky gum could be tapped, Aztecs knew.\nThough still sweet and elastic,\nOur chewing gum's plastic\u2014\nPonder that, the next gumstick you chew.\n\nA Luddite proclaimed in frustration,\n\"SUVs are the scourge of the nation!\nAbominations! I yearn\nSo to burn, each in turn,\nAll the SUVs parked at the station.\"\n\nI find limericks are always a flop.\nThough with gusto they start at the top,\nAll my great expectation\nSuccumbs to frustration\nDown here, when abruptly they stop.\n\nAntibiotics will weaken\nOr kill the bacteria seekin'\nA host to infect,\nTo roast and deject.\nSo get to your doctor \u2014 stop freakin'!\n\nYour proctologist called and he said\nThat they didn't find polyps. Instead,\nAs they rummaged around\nThrough the clutter they found\nMiscellaneous crap\u2014and your head.\n\nIt's a bit of a cheat, I confess,\nTo say B-T-D-T-G-T-S\nIs a word! But I'm sure\nThat you've been there before\nAnd done that, got the shirt too, I guess.\n\nUse cellular concrete to build\nThe walls of your home, if you're skilled.\nThat avoids, at low cost,\nWasted heat that gets lost\u2014\nAnd you'll never feel painfully chilled.\n\nWhile the others conjectured or guessed,\nAll the salient points you addressed;\nHit the nail on the head,\nLeft no doubt\u2014not a shred\u2014\nScored bang on with your plan. I'm impressed.\n\n\"First the bar near my office,\" says Dwight,\n\"Then my local is where I'll alight.\"\nDiarticular tension\nHe calls this convention:\nHe's tight in two joints every night.\n\nJack got bopped on the head (with a crozier!)\nBy the bishop, who'd lost his composure\nWhen he called Jack a brat\nAnd Jack cracked, \"Man, you're fat!\"\nNow Jack prays for a speedy wound closure.\n\nEntomophilous plants require bugs\u2014\nCertain insects, not wind, birds or slugs:\nPerhaps beetles or bees\nSpread their seed, not the breeze.\nGuess these critters deserve herbal hugs.\n\nHe assured them he'd guarantee growth\nOr make good any loss to them both,\nBut the stock market crashed\nAfter which, unabashed,\nHe reneged and went back on his oath.\n\nA cornett? Spelling error, you think.\nBut it's not, I reply with a wink,\nFor unlike a cornet,\nThis one's wood, you can bet.\nIf in Germany, ask for a Zink.\n\nHe said, \"Hey! Come and dine at my house,\nThough the meal is bare-bones.\"  But his spouse\nReally gives me a scare;\nWould she really serve bear?\nI would rather eat pheasant or grouse.\n\nWhile travelling in England, Jane tried a\nLarge glass of a local-made cider.\nShe became discontented \u2014\nThe drink was fermented \u2014\nAnd alcohol vented outside her.\n\nTides of winnowing vapours stretch tight\nScudding wisps between frail shadow's light.\nSilent clamourings glow\nThrough Arcadian snow,\nGive my pale abstract thoughts second sight.\n\nWhen a don tells his wiseguys to kill,\nHe knows that they probably will\nDo away with the thug\nWith a shiv or a slug.\nSuch procedures are run-of-the-mill.\n\nWhen the genny went bad on my car,\nLights were flashing. I didn't get far.\nA car will devour\nElectrical power.\nNo charge means no go; no cigar.\n\nHe's the cat who would never demur\nWhen the baby would pull on his fur;\nHe'd alight in her lap,\nSettle down for a nap,\nClose his eyes and contentedly purr.\n\nThe Flemings (they're Belgians) speak Dutch,\nWhich is spoken in Flanders as such\n(Like in Antwerp or Ghent,\nWhere they may pay their rent,\nAnd where French isn't spoken that much).\n\nMy new co-star is sure to beguile:\nNatural equipoise, balance and style\u2014\nDebonair, even cool,\nTill that edge made me drool.\nHe'll stop hearts with that devilish smile.\n\nStout Lord Cardigan led the wild thrust\nTo attack Balaclava or bust.\nBut a great price was paid\nBy that brave Light Brigade,\nWith too many mowed down in the dust.\n\nThis activity's much to my liking,\nAnd it's easily better than hiking.\nI'm employing my feet\nYet enjoying a seat\nAs I glide down the street\u2014I am biking.\n\nI used to have money\u2014a barrelful.\nThings changed; now my world seems more peril-ful.\nAnd what's worse, I've got kids;\nSince I'm now on the skids,\nI've been wishing that I'd been more sterile-ful.\n\nEarly reading books; alphabet chart;\nPencils, paper, and paint-pots for art;\nTiny chairs, there's one each,\nPlus a teacher to teach:\nIt's the classroom where schooling will start.\n\nThe mild, tasty, white farmer's cheese,\nMade from curds of skim milk (if you please),\nWill be usually soured.\nAt our house it's devoured,\nThough an allergy makes us all wheeze.\n\nOur sports club would like to confer\nThis award, and our members concur\nThat whoever's the winner\nMust appear at our dinner\u2014\nThat's why all famous players demur.\n\nThis detainment is lawful, amigo.\nYou must show them you're legal, Rodrigo.\nYour complexion makes clear\nYou weren't born around here.\nStep aside. I'm a white guy, let me go.\n\nEmboldened, its greed never ceased;\nSo, this ogre continued to feast\nOn the small and the weak.\nWill the donkeys soon streak\nTo a win? (\"Grand Old PAChyderm\" beast!)\n\nNow and then, as I lie in my bed,\nHalf awake, I sense deep in my head\nRaucous noises and light,\nWith a feeling of fright;\nThat exploding head syndrome I dread.\n\nHear Fred Flintstone in Daba? Go to\nSouthern Chad (they speak Daba); then you\nMust engage in a search\nFor an abba in church,\nAnd say, \"Hey, abba, speak Daba\u2014do!\"\n\nWhen you say my career is a sham,\nIt's that Auto-Tune software you slam.\nFor this fame, I've no choice\nBut to upgrade my voice,\n'Cause I really can't sing worth a damn.\n\nOur town's been bedecked by the snow,\nAnd I love the white wintry tableau.\nBut enough is enough \u2014\nThere's too much of this stuff!\nI'll be first, when spring comes, to hello.\n\nThe cattle were tested, then scoured\nIn strong disinfectant and showered\nWith antibiotics\nTo calm one neurotic's\nConcerns. (He's their tender, the cowherd.)\n\nTwo structures are both called Eustachian\u2014\nOne, in mammals and creatures batrachian,\nIs a tube in their ears,\nWhile the other appears\nIn our hearts since, at least, times Noachian.\n\nThe lizard that's called callisaurus,\nIn the desert would never ignore us.\nHe would flee and he might\nShow his tail, black and white.\nHe'd amuse and delight\u2014never bore us.\n\nMy husband would give me no peace\nTill I bought him a pint of cassis,\nBut I knew what would follow:\nConsumed in one swallow!\nThen he grinned and flew south with the geese.\n\nIf a Mycobacterium bo-\nvis infection hits cows, they may show\nSigns of bovine TB.\nBuy a cure (it's not free)\nOr just cull, cut your losses, save dough.\n\nA best looker was Bess, yes, she was\nWith her shiny black fur, and because\nShe was slim, but not thin,\nA black panther's small kin,\nAnd had beautiful little white paws.\n\nThough her dealing was sloppy and artless,\nThis chicane would undoubtedly smart less\nIf some other chump\nHad declared hearts as trump.\nHell, my hand and my ex are both heartless!\n\nThe rest of our rhyme clearly shows,\nIn the garden, the Maid hanging clothes,\nWhen a blackbird (now free)\nFrom his perch in a tree\nSwiftly swept in and pecked off her nose.\n\nMany countries in Europe today\nKeep the hours of their clocks set one way.\nIn the winter, you see,\nThey all use CET;\nWhen it's warm, CEST holds sway.\n\nCytologic, this smear over here\nShows a red cell that looks like a sphere,\nAnd the white cells look queer.\nIt's a new disease, dear;\nI'll describe it and boost my career.\n\nNoisy neighbors upstairs play CDs\nOn their boombox. Lord, stifle it, please!\nCompact discs pound my head\nWith the music I dread.\nMy poor eardrums are pierced like Swiss cheese.\n\n\"Your apology's rather belated,\"\nSaid the gal to a fellow she hated.\n\"Your delay makes me fear\nThat it isn't sincere\u2014\nYou still had your hair when we dated!\"\n\nWe're flying at speeds supersonic\nBy means of machines avionic.\nIf they go on the fritz,\nIt spells trouble: our mitts\nAren't that fast without aid electronic.\n\n\"Lads, 'tis risky to sail this old ship!\nShe's a camberkeeled jinx!\" warned our skip.\n\"If the ship hogged and broke,\nWe'd be in for a soak.\nDown to Davy Jones' locker we'd slip.\"\n\n\"Dysaesthesia aethiopica!\" raves\nDoctor Cartwright. \"What's wrong with your slaves?\nThis mental disease\nMakes them not want to please.\nIt's no wonder a slave misbehaves.\"\n\nOur Arabian camel (one hump),\nSeeing poor punctuation, will grump.\nOur proofreading dromedary,\nIf we've not commaed re-\nsponsibly, spits like a pump.\n\nFrom the scaffolding ledge Bobby slipped,\nBut with harness and wire was equipped.\nDangling high in midair,\nHe kept cool, didn't swear;\n\"Look at that \u2014 he's Aplomb Bob!\" we quipped.\n\nI've got several ageable aunts\nAbsolutely addicted to dance.\nThough all long in the tooth,\nThey seem graceful with youth\nIn Terpsichore's magical trance.\n\nMy donk has a face sorta goaty.\nHis gait is more bumpy than floaty.\nHe attempts every day\nTo get grain stedda hay,\nAnd that's why he's called Donkey Oaty.\n\nA catechist opens a mission,\nBut generates fear and suspicion.\nHis lessons on Christ,\nWhich might once have sufficed,\nAre rebuffed by Islamic tradition.\n\nEvolution: I've got it down pat.\nIt created both us and the rat.\nIt doesn't take sides;\nIf it works, it abides.\nIt's the ultimate pragmatist, that!\n\nFar from home, on a holiday cruise,\nAnd emboldened by distance and booze,\nI had Gigi with Kat,\nThen androgynous Pat,\nAnd I won't have to hear my reviews.\n\nSomething crazy goes on when this weed\nIs mixed up in an animal's feed.\nCows may eat just un poco\nAnd still become loco,\nVaqueros and cowboys concede.\n\nNo, you cannot play hooky from school.\nNo, you cannot break every last rule.\nWell, you can, as you know,\nBut please don't, 'cause it's so\nSophomoric to act like a fool.\n\nVinicultural vying took shape.\nWelch's workers were watching, agape.\nThere, at last, was a truce\nBetween \"jelly\" and \"juice\"\u2014\nThey had found a concordable grape.\n\nThe appropriateness was in question:\nThe audience booed the suggestion\nThat the Lion King's roar\nWas a burp, nothing more,\nSince he suffered from bad indigestion.\n\nTo a shop in the mall I am heading\nFor the dress that I'll wear to my wedding.\nIt's a beaut, white as milk,\nMade of angel skin silk,\nWaistline pinched, with the skirt gently spreading.\n\nThe jailed gunslinger Billy the Kid\nSaid he'd robbed Sheriff West and then hid.\nHe relayed, with a sigh,\nThe bold sheriff's goodbye:\n\"Catch you later,\" he'd said. (And he did!)\n\nOther horses were clearly outclassed\nAs they turned and came thundering past.\nKelso surged to the lead,\nAnd kept laying on speed,\nLegs galloping blurringly fast.\n\n\"Well, now that's a coincidence!\" came\nHer response upon learning the same\nSpiny shrub that was worn\nAs a crown to adorn\nJesus Christ is a thorn with His name.\n\nIn Colossians, St. Paul the Apostle\nSaid that God is supreme and colossal.\nThose with different beliefs\nCaused a bunching of briefs\nFor the bald, apostolic old fossil.\n\nHad my buildings been built on a stilt\nFar above the alluvial silt\nOn those plots that I've gotten,\nThey'd stop going rotten,\nLike most other buildings I've built.\n\n'Cause of harsh puritanical views\nVia blue laws, we're down with the blues.\nI strongly object\nTo a Sabbath respect\nThat enforces a ban on all booze.\n\nYou started your life as a cell,\nAs an ovum (an egg with no shell),\nBut a sperm came along\nWith a smile and a song\u2014\nNow you're paying your taxes\u2014ah, well!\n\nThat empiric (unqualified hack\nWith no obvious curative knack)\nOn the hospital's roster\nIs just an imposter\nWhose license needs lifting, that quack.\n\n\"It's short, as such science terms go,\nBut it's show-offy. Use words we know.\nWhy not just call it thread?\"\n\"We say filum instead,\nBecause bug butt bits aren't used to sew.\"\n\nA man falls in love with a crab.\n\"You're so fabulous, Abby!\" he'll blab,\nBut his gab can't convince 'er;\nHe'll grab for her pincer.\nShe'll wince and cry, \"Call me a cab!\"\n\n\"You're aliterate\u2014never liked reading;\nAll your brain-furrows badly need seeding.\nYour books are all shut....\"\n\"I'm a literate what?\"\n(What remained of our chat involved bleeding.)\n\nThe galop from Orph\u00e9e aux enfers\nSets the cancan, a dance with French flair,\nFor a line of loose flirts,\nKicking high in loose skirts,\nWearing nothing but powder down there.\n\nAltitudinarians often have flights\nOf fancy: their names up in lights.\nThey're the types who aspire\nTo climb ever higher.\nTheir goals are the highest of heights.\n\nBought a lottery ticket with Fred.\n\"If we win, we'll go halfies,\" he said.\nNow he hands me this pottery,\nSays, \"Here's your allottery.\"\nSo I whomps him upside of the head.\n\nYou need to be bailed out? You oughter\nNot sail if your boat takes on water.\nI've got a tin can,\nBut if I was you, Dan,\nI would just take her back where I'd bought her.\n\nWhen great tennis star Margaret Court\nWon her first Aussie title, the sport\nChose to give her a brolly.\nThough she might have cried \"Golly!\",\nWill it rain on my reign? was her thought.\n\nIn this drawing I made of our sister,\nThe ink and its color are bistre,\nTransparent and brown\nFrom her eyes to her gown,\nWith a stain where the artisan kissed her.\n\nIn Montana, folks don't cry \"Hosanna!\"\nAt the sight of this fruit: dwarf banana.\nThey're not found there at all.\nGrown in China, they're small,\nBut to those who enjoy them, they're manna.\n\nAs we reach the extent of our age,\nShould we burn? Not go gentle, but rage?\nOr should we instead\nTake this chapter as read\nAnd turn over the welcoming page?\n\nIn the lounge, the convention begins:\nSlapping backs, swapping handshakes and grins.\nSeeking Babbitts? You got 'em.\nThe conventioneer: spot him?\nThere, festooned with his badges and pins.\n\nThe one missing from Grace, out of place?\nThe drunk sot with the beery-eyed face.\nHe is now not allowed\nTo hang out on our cloud.\nIt's the third time he's fallen from grace.\n\nGrowing older and older, I yearn\nTo hold on to the facts that I learn.\nAll the terms I forget,\nNames and places, are yet\nJust abeyant, until they return.\n\nWe were landlocked and dry as could be.\nWe decided to issue this plea:\n\"You're our last, best resort;\nWe need use of your port\nAnd a corridor through to the sea.\"\n\nPrivate Johnson was killed in the war,\nYet his pay still arrives as before.\nThis is dead-pay, a crime\u2014\nSomeone ought to do time!\nSuch corruption we ought to deplore.\n\nIf you want a great deal on some teal,\nThere's a deal to be had back in Deal.\nIf you deal with this trade,\nA steal can be made,\nIf you deal the cards right \u2014 spin the wheel.\n\nIt is hard to write verse on the pelican\nWith no belican rhyme, likewise helican.\n\"Who can make me,\" you cry,\n\"A nice sea bird on rye?\"\nI'd say maybe some strange Saint Kitts delican.\n\nCruciverbalists learn crosswordese,\nFilling puzzles with words such as these:\nDies irae and busto \u2014\nLess-used words that you must know\nTo solve crossword puzzles with ease.\n\nThis chain store's a 24/7\nConvenience for people\u2014it's heaven!\nBuy magazines, candy,\nOr Pampers\u2014it's handy\nTo shop at a 7-Eleven.\n\nAs a tot, I tooled 'round  on a trike;\nNow grown-up, I can zoom on my bike.\nThrough stalled traffic I zip\nAt a quick speedy clip\u2014\nNeed no gas and I don't have to hike.\n\nDiltiazem, AKA Dilzem\u2014\nFolk bring me prescriptions, I fills 'em.\nIf they ain't polite\nWell, then sometimes I might\nGive 'em strychnine instead, which just kills 'em.\n\nStress OEDILF as this dictionary's name\n(Please, no OEDILF: that's just not the same);\nThough it's counterintuitive,\nHere we must do it if\nEver we hope for acclaim.\n\nAt an arms trade I pulled off today,\nI sent shiploads of guns on their way.\nI got plenty of gold\nFor the weapons I sold;\nI'd sell bombs to small kids if they'd pay.",
-    "token_count": 11997
+    "limerick_list": [
+        {
+            "id": 75321,
+            "author": "Sussexdownsman",
+            "text": "Whilst Adam was praying in chapel,\nYoung Eve popped around with an apple.\n\"Dear,\" she said, \"take a bite!\"\nWhich he did, with delight;\nNow with knowledge of evil they grapple.",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 100898,
+            "author": "Kevin Lucas",
+            "text": "Our membership's starting to droop,\nAnd our losses we need to recoup.\nTo revitalize things\nWith the spirit that brings,\nLet's recruit some fresh blood to our group.",
+            "question": null,
+            "answer": null,
+            "token_count": 38,
+            "target_location": 0
+        },
+        {
+            "id": 85144,
+            "author": "SheilaB",
+            "text": "It sells playthings of marvelous sorts\nAnd equipment for little kids' sports.\nIt's a landmark; what's more,\nIt's my favorite store\u2014\nThe cool toyshop called FAO Schwarz.",
+            "question": null,
+            "answer": null,
+            "token_count": 41,
+            "target_location": 0
+        },
+        {
+            "id": 98591,
+            "author": "Chris J. Strolin",
+            "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+            "question": "Who do they blame in the blamestorming session after someone dies?",
+            "answer": "Jaun",
+            "token_count": 39,
+            "target_location": 100
+        },
+        {
+            "id": 59366,
+            "author": "AronKuppersmith",
+            "text": "If you're craving a snack with some zing,\nGrab a zesty, fried Buffalo wing.\nLay the bleu cheese on thick;\nAdd a celery stick.\nIt's a munchie that's fit for a king.",
+            "question": null,
+            "answer": null,
+            "token_count": 46,
+            "target_location": 0
+        },
+        {
+            "id": 57059,
+            "author": "proof",
+            "text": "If you use a medicinal tampon,\nJust which is the part it will clamp on?\nLater, if you feel pain\nThat makes you complain,\nIs it men that you blame the worst cramp on?",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 24459,
+            "author": "Chris Doyle",
+            "text": "A caudex, as botanists learn,\nIs the stem of a palm or a fern,\nOr the tangled wood base\nOf a plant I embrace\u2014\nThe perennial, oft to return.",
+            "question": null,
+            "answer": null,
+            "token_count": 41,
+            "target_location": 0
+        },
+        {
+            "id": 36330,
+            "author": "David Franks",
+            "text": "The Emperor, as everyone knows,\nEnds orations with terminal prose.\nWhere he once waxed devout,\nHe now hollers, \"Peace out!\"\nWe call it the Emperor's new close.",
+            "question": null,
+            "answer": null,
+            "token_count": 41,
+            "target_location": 0
+        },
+        {
+            "id": 110823,
+            "author": "Len Farano",
+            "text": "Dump the masks. This new \"flu\", it'll pass.\nDrink some bleach on the beach. Quaff a glass.\nIgnore  Fauci and Birx\u2014\nThat drug chlorophine works.\nOne more thing\u2014shine UV up your ass.",
+            "question": null,
+            "answer": null,
+            "token_count": 51,
+            "target_location": 0
+        },
+        {
+            "id": 56335,
+            "author": "JimInRoses",
+            "text": "I'm a green-hearted arbitrage planner,\nTaking cans from Fort Wayne, Indiana,\nTo Detroit, where they each\nYield a dime \u2014 what a peach! \u2014\nWhich explains my insouciant manner.",
+            "question": null,
+            "answer": null,
+            "token_count": 44,
+            "target_location": 0
+        },
+        {
+            "id": 80926,
+            "author": "Sussexdownsman",
+            "text": "When you're causing a liquid to flow\nThrough a porous material, so\nInduced by applying\nA current, you're trying\nElectro-osmosis you know.",
+            "question": null,
+            "answer": null,
+            "token_count": 36,
+            "target_location": 0
+        },
+        {
+            "id": 35795,
+            "author": "Mary",
+            "text": "As you wait, please take note of the comma:\nThough too short for the pearl-diving ama,\nIn a series, in clauses,\nWherever it pauses,\nIt modifies, keeping down drama.",
+            "question": null,
+            "answer": null,
+            "token_count": 40,
+            "target_location": 0
+        },
+        {
+            "id": 1602,
+            "author": "Tim Alborn",
+            "text": "The adverb's a versatile guy:\nIt modifies verbs, low and high,\nAnd all adjectives too;\nThen it adds to the brew\nWords like also, how, when, where, and why.",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 101369,
+            "author": "Janet McConnaughey",
+            "text": "What's a fundus (from Latin for bottom)?\nWell, some hollow organs have got 'em \u2014\nHave fundi, that is.\nSee, the bladder (gee whiz)\nHas just one, while the brain has a lot. Um,\n\nThe brain's many fundi are wee,\nOne in each tiny groove that you see\nAt dissection. The other,\nBe you kid, dad or mother,\nIs across from the hole for your pee.",
+            "question": null,
+            "answer": null,
+            "token_count": 93,
+            "target_location": 0
+        },
+        {
+            "id": 46302,
+            "author": "SheilaB",
+            "text": "She hails from across the Pacific,\nAnd her methods are quite scientific.\nAs a baker? Terrific!\nHer output's prolific;\nHer breads are all crisp and crustific.",
+            "question": null,
+            "answer": null,
+            "token_count": 37,
+            "target_location": 0
+        },
+        {
+            "id": 51615,
+            "author": "nevadaace",
+            "text": "In the lab, they looked far and looked wide\nFor this peptide! Oh my, how they tried!\nThey were all in a bind;\nTheir research could not find\nAASH.  It wounded their pride.",
+            "question": null,
+            "answer": null,
+            "token_count": 44,
+            "target_location": 0
+        },
+        {
+            "id": 93370,
+            "author": "Chris J. Strolin",
+            "text": "The word bed is a term that appeals\nTo those folks who like bivalve-y meals.\nIt means groups of, you know,\nClams and oysters, although\nIt can also denote snakes or eels.",
+            "question": null,
+            "answer": null,
+            "token_count": 45,
+            "target_location": 0
+        },
+        {
+            "id": 108668,
+            "author": "GalFisk",
+            "text": "We undo many copyright sins,\nAs we know all the law's outs and ins.\nWant your works to be free?\nUse our licenses. See,\n\"When we share,\" we say, \"everyone wins\".",
+            "question": null,
+            "answer": null,
+            "token_count": 41,
+            "target_location": 0
+        },
+        {
+            "id": 41603,
+            "author": "equinox",
+            "text": "He's a blogger, an Internet bore\nWith unwanted opinions galore.\nOnce you've read what he thinks,\nYou'll find dozens more links\nIn his blogroll. Feel free to explore!",
+            "question": null,
+            "answer": null,
+            "token_count": 40,
+            "target_location": 0
+        },
+        {
+            "id": 15712,
+            "author": "Chris Doyle",
+            "text": "In Beslan, the terrorist shows\nThe depths to which wickedness goes,\nHaving goons in his squad\nKilling children\u2014for God?\nDamn this scum to perpetual throes!",
+            "question": null,
+            "answer": null,
+            "token_count": 38,
+            "target_location": 0
+        },
+        {
+            "id": 72281,
+            "author": "Jason Talbott",
+            "text": "I am easing down into the pool\nJust a step at a time (it's too cool).\nThey're complaining that I'm\nTaking way too much time,\nAs if leaping in's some kind of rule.",
+            "question": null,
+            "answer": null,
+            "token_count": 44,
+            "target_location": 0
+        },
+        {
+            "id": 30400,
+            "author": "Chris J. Strolin",
+            "text": "He was typical TV news fare:\nPerfect teeth, perfect clothes, perfect hair.\nBut the things that he said?\nHe's a damn barking head!\nHe's aggressive, abusive, unfair.",
+            "question": null,
+            "answer": null,
+            "token_count": 39,
+            "target_location": 0
+        },
+        {
+            "id": 19366,
+            "author": "Chris Doyle",
+            "text": "The bunchberry creeps near a wall;\nIt's an herb, only three inches tall.\nThis perennial plant\nIs a dogwood that can't\nStand erect, so it chooses to crawl.",
+            "question": null,
+            "answer": null,
+            "token_count": 40,
+            "target_location": 0
+        },
+        {
+            "id": 73344,
+            "author": "Jeff Foster",
+            "text": "Says an actress of fading mystique:\n\"I despise this new camera technique!\nDeep focus draws eyes\nTo the background,\" she sighs,\n\"And away from my famous physique.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 37,
+            "target_location": 0
+        },
+        {
+            "id": 104407,
+            "author": "Len Farano",
+            "text": "U.S. women aren't flat-chested. See,\nThey're full-bodied, not A and not B.\nFrom Denver to Dover,\nTheir cups runneth over\u2014\nAverage bra: 34 Double-D.",
+            "question": null,
+            "answer": null,
+            "token_count": 44,
+            "target_location": 0
+        },
+        {
+            "id": 103892,
+            "author": "Giorgio Coniglio",
+            "text": "Poems are joys; you recite and repeat 'em,\nBut, while lovely, one thing sure can beat 'em:\nTrees, as Kilmer conceived,\nAnd good dryads believed.\nCheck that out at the right arboretum.",
+            "question": null,
+            "answer": null,
+            "token_count": 49,
+            "target_location": 0
+        },
+        {
+            "id": 1398,
+            "author": "Chris Doyle",
+            "text": "Alabama's a tolerant state:\nMost inhabitants harbor no hate\nFor outsiders and blacks,\nAs today they relax\nIn communities, locking the gate.",
+            "question": null,
+            "answer": null,
+            "token_count": 29,
+            "target_location": 0
+        },
+        {
+            "id": 1781,
+            "author": "Steve Ngai",
+            "text": "Fetoproteins, unseen since the womb,\nWhen they surge late in life, may spell doom.\nIf they're alpha, the answer\nMay be liver cancer \u2014\nMore tests may yet save you from gloom.",
+            "question": null,
+            "answer": null,
+            "token_count": 46,
+            "target_location": 0
+        },
+        {
+            "id": 99013,
+            "author": "Celia Warren",
+            "text": "Oh, don't throw your toys out your pram!\nYes, I treat all your emails as spam.\nHurt your feelings? Don't care;\nI don't like you, so there!\nJust accept that I don't give a damn!",
+            "question": "Why do I treat all your emails as spam?",
+            "answer": "I don't like you",
+            "token_count": 50,
+            "target_location": 1200
+        },
+        {
+            "id": 86668,
+            "author": "MikeAq",
+            "text": "That decitizenized rat's a state traitor.\nThose people who loved her now hate 'er.\nOf her country bereft,\nHer homeland she's left \u2014\nGlad it happened right now, and not later.",
+            "question": null,
+            "answer": null,
+            "token_count": 45,
+            "target_location": 0
+        },
+        {
+            "id": 103415,
+            "author": "Chris J. Strolin",
+            "text": "To the day that they knock on death's door,\nAll the rich receive blessings galore:\nMassive homes, fancy cars,\nTen-inch Cuban cigars,\nBut the poor just get kids, nothing more.",
+            "question": null,
+            "answer": null,
+            "token_count": 41,
+            "target_location": 0
+        },
+        {
+            "id": 59041,
+            "author": "SheilaB",
+            "text": "Said a wealthy young man from Bohemia,\n\"You'll stay poor if you choose academia.\nMy success\u2014I've no debts\u2014\nWith invertebrate pets\nIs with sea monkeys, genus Artemia.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 107212,
+            "author": "Chris J. Strolin",
+            "text": "At the peak of Mount Burton it's breezy.\nSome say gaining that point makes one queasy.\nClimbers claim for this test\nThat the north face is best,\nBut I just took the ski lift. It's easy!",
+            "question": null,
+            "answer": null,
+            "token_count": 48,
+            "target_location": 0
+        },
+        {
+            "id": 81859,
+            "author": "SheilaB",
+            "text": "\"This mixed-up, disorderly bar,\"\nI declare, \"is my favorite by far!\"\nAdds a Bronxite, disjointly,\nNot quite to-the-point-ly:\n\"Dis joint's an exploding cigar!\"",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 77385,
+            "author": "Jeff Foster",
+            "text": "The signs of entombment abound\nFor the critters that dig under ground:\nThus gophers will often\nRun into a coffin\nWith signs that read, \"Please go around!\"",
+            "question": null,
+            "answer": null,
+            "token_count": 39,
+            "target_location": 0
+        },
+        {
+            "id": 46763,
+            "author": "Mayra",
+            "text": "Before you have ice cream and pie,\nThese burgers and fries you must try.\nThen some pasta and bread\nWith some buttery spread.\nThis meal is calorically high!",
+            "question": null,
+            "answer": null,
+            "token_count": 35,
+            "target_location": 0
+        },
+        {
+            "id": 90189,
+            "author": "Celia Warren",
+            "text": "Who's caused famine and wide deprivation\nSince our forefathers founded our nation?\nTheir descendants (we knaves).\nThey would turn in their graves\nAt the errors of this generation.",
+            "question": null,
+            "answer": null,
+            "token_count": 38,
+            "target_location": 0
+        },
+        {
+            "id": 64062,
+            "author": "Ritepath",
+            "text": "Determined, persistent, and driven,\nThat hole that he digs he can live in.\n(It's really that big.)\nBut I don't give a fig \u2014\nThough he's dogged, my dog, he's forgiven.",
+            "question": null,
+            "answer": null,
+            "token_count": 46,
+            "target_location": 0
+        },
+        {
+            "id": 61428,
+            "author": "Chris J. Strolin",
+            "text": "I complained to the judge quite emphatically:\n\"No big screen? No fans screaming ecstatically?\nPaparazzi? Like hell!\nNo red carpet as well.\nThis is not what I'd call 'cinematically'!\"",
+            "question": null,
+            "answer": null,
+            "token_count": 46,
+            "target_location": 0
+        },
+        {
+            "id": 94007,
+            "author": "SheilaB",
+            "text": "Are these throw-away kids we can spare?\nIs their treatment humane? Is it fair?\nFor the children not blessed\nWith good homes, do your best\nTo provide them with good foster care.",
+            "question": null,
+            "answer": null,
+            "token_count": 40,
+            "target_location": 0
+        },
+        {
+            "id": 28458,
+            "author": "J. E. Pettit",
+            "text": "I'm a monk (that is, \"one who rejects\nAll his earthly, unseemly effects\").\nIf I'd known of the price,\nThough, I may have thought twice:\nTill the day that I die, no more sex?!",
+            "question": null,
+            "answer": null,
+            "token_count": 51,
+            "target_location": 0
+        },
+        {
+            "id": 26095,
+            "author": "TrossL",
+            "text": "The cedar has red-colored wood;\nIt's fragrant and smells rather good.\nDeterring the moths\nFrom my very fine cloths,\nMy cedar chest does what it should.",
+            "question": null,
+            "answer": null,
+            "token_count": 37,
+            "target_location": 0
+        },
+        {
+            "id": 111406,
+            "author": "John Critten",
+            "text": "The poet, he plays roles for real.\nHis emotions he needs not to steal.\nAlthough he's an actor,\nIt still is a factor,\nHis pain he pretends not to feel.",
+            "question": null,
+            "answer": null,
+            "token_count": 38,
+            "target_location": 0
+        },
+        {
+            "id": 14322,
+            "author": "Bob Colonna",
+            "text": "Consider  Sir Jagadis Bose,\nWho crowed in a moment jocose,\n\"Solari?  Marconi?\nA fake and a phony!\nThose guys didn't even come close!\"",
+            "question": null,
+            "answer": null,
+            "token_count": 41,
+            "target_location": 0
+        },
+        {
+            "id": 17673,
+            "author": "Jane Auerbach",
+            "text": "On the eve of Zev's wedding, the guys\nThrow his bachelor party: Surprise!\nThey drink beer, leer at strippers\n(Who unzip all Zev's zippers),\nAs his bachelorhood speeds toward demise.",
+            "question": null,
+            "answer": null,
+            "token_count": 46,
+            "target_location": 0
+        },
+        {
+            "id": 62791,
+            "author": "Roger Vick",
+            "text": "Martian features?  I'm hard to convince\nThat Cydonia is sculpted,  but since\nIt includes the odd shape,\nNot quite human or ape,\nAre you sure that it isn't a quince?",
+            "question": null,
+            "answer": null,
+            "token_count": 46,
+            "target_location": 0
+        },
+        {
+            "id": 85966,
+            "author": "SheilaB",
+            "text": "At first the poor victim can't sleep.\nThe descent to dementia is steep.\nThe genetics are dire:\nHalf his kids will expire\nOf the illness, so families weep.",
+            "question": null,
+            "answer": null,
+            "token_count": 36,
+            "target_location": 0
+        },
+        {
+            "id": 78662,
+            "author": "Atticus Vere",
+            "text": "Sabers drawn, flashing steel, row on row,\nIn the wars not all that long ago:\nThey'd engage, they'd connect,\nWith horrendous effect.\nEdged weapons would slice through a foe.",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 66579,
+            "author": "Ruchiccio",
+            "text": "As I flipped a few steaks on the grill,\nOne thick sirloin dropped in. (That takes skill!)\nSo I yelled, \"Sister, dear,\nFree this meat from down there.\"\n\"I am not your commis, Bossy Bill!\"",
+            "question": null,
+            "answer": null,
+            "token_count": 52,
+            "target_location": 0
+        },
+        {
+            "id": 84726,
+            "author": "Atticus Vere",
+            "text": "That's a first-day-of-issue cachet\nAnd it's postmarked, of course, the same day,\nConceived and designed\nWith this issue in mind.\nIs it rare? Don't get carried away.",
+            "question": null,
+            "answer": null,
+            "token_count": 44,
+            "target_location": 0
+        },
+        {
+            "id": 62751,
+            "author": "proof",
+            "text": "On a pole, it's a fuse and a switch\nThat will pop if there's ever a hitch.\nThis fuse cut-out falls free\nSo the lineman can see\nWhere the fuse is that's causing the glitch.",
+            "question": null,
+            "answer": null,
+            "token_count": 45,
+            "target_location": 0
+        },
+        {
+            "id": 60712,
+            "author": "Jeff Foster",
+            "text": "It's a less-than-desirable trait\nTo let biliousness show on a date.\nKeep your spleen, then, unvented\nTill the bond is cemented,\nAnd wait until marriage to grate.",
+            "question": null,
+            "answer": null,
+            "token_count": 44,
+            "target_location": 0
+        },
+        {
+            "id": 72253,
+            "author": "Kevin Lucas",
+            "text": "\"Dig up dirt on the guber affairs\nOf Ms. Palin; our readership cares,\"\nSays The Times, \"but don't try\nTo go after our guy,\nLike with Reverend Wright and Bill Ayers.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 47,
+            "target_location": 0
+        },
+        {
+            "id": 15793,
+            "author": "SheilaB",
+            "text": "I bought Auntie Maggie a fax\nIn one of those \"get money back\"s;\nBut the rebate upset her.\nTo make her feel better,\nI said, \"Auntie, kick back and relax!\"",
+            "question": null,
+            "answer": null,
+            "token_count": 43,
+            "target_location": 0
+        },
+        {
+            "id": 33259,
+            "author": "Kevin Dopart",
+            "text": "Learn aerodynamics and know\nHow the air round your glider will flow.\nYour reasoning's obtuse\nWith that friction excuse;\nIt's the pressure that drags when you go.",
+            "question": null,
+            "answer": null,
+            "token_count": 38,
+            "target_location": 0
+        },
+        {
+            "id": 99874,
+            "author": "Chris J. Strolin",
+            "text": "Your website I'm trying to hack\nBy employing a dictionary attack.\nWhat's your password? Don't know,\nSo instead I will go\nThrough an A to Z list front to back.",
+            "question": null,
+            "answer": null,
+            "token_count": 39,
+            "target_location": 0
+        },
+        {
+            "id": 66906,
+            "author": "proof",
+            "text": "\"Grab your shovel!\" my wife says to goad\nMe outside in the snow. There's a load\nIn the driveway. The car\nIsn't going too far\nTill I clear out a path to the road.",
+            "question": null,
+            "answer": null,
+            "token_count": 47,
+            "target_location": 0
+        },
+        {
+            "id": 43873,
+            "author": "Chris Doyle",
+            "text": "There's a nest holding eggs in the hutch,\nWhere a hen is abrood\u2014nothing much\nHas been happening here,\nBut if cracks should appear,\nThen some chick's coming through in the clutch.",
+            "question": null,
+            "answer": null,
+            "token_count": 43,
+            "target_location": 0
+        },
+        {
+            "id": 95947,
+            "author": "Atticus Vere",
+            "text": "While the horsy set may have the hots\nFor the nags, at some pleasure craft spots\u2014\nIn the boaty society\u2014\nAn odd sort of piety\nReveres the best clinker-built yachts.",
+            "question": null,
+            "answer": null,
+            "token_count": 48,
+            "target_location": 0
+        },
+        {
+            "id": 14860,
+            "author": "C. H. Carpenter",
+            "text": "With his financing out of control,\nHaving mortgaged both body and soul,\nEd turned to the Mob\nTo bankroll the job.\nTheir investment's his ace in the hole.",
+            "question": null,
+            "answer": null,
+            "token_count": 37,
+            "target_location": 0
+        },
+        {
+            "id": 52956,
+            "author": "Kevin Lucas",
+            "text": "The vagina may harbor a threat.\nCytological study will let\nWomen know \u2014 cell collection\nAids cancer detection\nWith help from a cytopipette.",
+            "question": null,
+            "answer": null,
+            "token_count": 34,
+            "target_location": 0
+        },
+        {
+            "id": 25535,
+            "author": "David",
+            "text": "In my fury, I carelessly choose\nPurveyors of death to abuse.\nThese monsters I slang\nNow behead, blast, and hang\nGuys like me on the ten o'clock news.",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 89337,
+            "author": "Atticus Vere",
+            "text": "Insignificant? Think of your skin,\nAnd the casings throughout your within.\nSo don't make it an issue:\nEpithelial tissue\nIs crucial for holding stuff in.",
+            "question": null,
+            "answer": null,
+            "token_count": 36,
+            "target_location": 0
+        },
+        {
+            "id": 83195,
+            "author": "MikeAq",
+            "text": "A blue-blooded Brahmin I found\nLooks so regal, her face pale and round.\nIn a pic on her table\nShe's dressed in lush sable\nAnd coroneted \u2014 royally crowned.",
+            "question": null,
+            "answer": null,
+            "token_count": 43,
+            "target_location": 0
+        },
+        {
+            "id": 38993,
+            "author": "Howard Spindel",
+            "text": "Divorces can prime anger's flow,\nAnd rudeness begets quid pro quo.\nThen a judge will impose,\nUpon crudeness, a close.\nWhy in civil court, I'll never know.",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 14008,
+            "author": "psheil",
+            "text": "Aberfan, Friday morn, people cried\nWhen the waste tip just started to slide;\nWith a rumble it came\nDown the hill. Now the name\nWill be known for the children that died.",
+            "question": null,
+            "answer": null,
+            "token_count": 44,
+            "target_location": 0
+        },
+        {
+            "id": 15249,
+            "author": "sallycello",
+            "text": "I know that the rumors are baseless,\nAnd the people who spread them are faceless,\nBut I heard on the wire\nWhere there's smoke, there's a fire.\nSo darling, I'm forced to be graceless.",
+            "question": null,
+            "answer": null,
+            "token_count": 47,
+            "target_location": 0
+        },
+        {
+            "id": 83165,
+            "author": "Chris J. Strolin",
+            "text": "When I execute stunts on trapeze,\nAll the crowd becomes weak at the knees.\nCertain death is a threat\nSince there isn't a net,\nWhich is why I collect hefty fees.",
+            "question": null,
+            "answer": null,
+            "token_count": 40,
+            "target_location": 0
+        },
+        {
+            "id": 13818,
+            "author": "Bill Cernansky",
+            "text": "In Jurassic days, huge allosaurs\nHad no hygiene; they lived out-of-doors.\nBut if they'd worn diapers\nAnd used windshield wipers,\nTheir eyes would be clean. Not their drawers.",
+            "question": null,
+            "answer": null,
+            "token_count": 44,
+            "target_location": 0
+        },
+        {
+            "id": 51885,
+            "author": "Partypoet",
+            "text": "Collaborators each take a part\n(Like songwriters Rogers & Hart,\nOr Lerner & Loewe)\nIn creating a show:\nThey both must be clever and smart.",
+            "question": null,
+            "answer": null,
+            "token_count": 36,
+            "target_location": 0
+        },
+        {
+            "id": 9744,
+            "author": "otherwisefine",
+            "text": "You're not such a bad sort of bloke,\nBut your cricketing skills are a joke.\nYou first lift up the bat\nBut then leave it at that.\nSuch a backlift should augur a stroke!",
+            "question": null,
+            "answer": null,
+            "token_count": 44,
+            "target_location": 0
+        },
+        {
+            "id": 48631,
+            "author": "suelin",
+            "text": "A blooper occurs, I daresay,\nWhen deportment turns quickly outr\u00e9.\nAn example I'll offer\nTo zealot or scoffer:\nShampooing inside a bidet.",
+            "question": null,
+            "answer": null,
+            "token_count": 39,
+            "target_location": 0
+        },
+        {
+            "id": 3642,
+            "author": "Chris J. Strolin",
+            "text": "The way my head shines is enraging!\nMy hair was once long and engaging.\nMy love life's the pits\nAnd my doctor says it's\nAll a part of the process of aging.",
+            "question": null,
+            "answer": null,
+            "token_count": 41,
+            "target_location": 0
+        },
+        {
+            "id": 78497,
+            "author": "SheilaB",
+            "text": "Said our teacher, \"Please do as you're bidden;\nReport on the meaning of midden.\"\n\"It's a dumpsite where\u2014crash!\u2014\nPeople toss all their trash\nIn broad daylight; they don't keep it hidden.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 51,
+            "target_location": 0
+        },
+        {
+            "id": 20040,
+            "author": "jexia",
+            "text": "A capital letter's not a,\nAnd not m, i, l, f,  o or k.\nIt's an upper-case Q,\nA, B, X, P or U,\nOr M, I, L, F, O or K.",
+            "question": null,
+            "answer": null,
+            "token_count": 52,
+            "target_location": 0
+        },
+        {
+            "id": 43369,
+            "author": "SheilaB",
+            "text": "The gorgeous tiara was coral,\nBut a gift she considered immoral:\n\"It's against my beliefs\nTo destroy Nature's reefs!\nWe should settle for wreaths made of laurel.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 37,
+            "target_location": 0
+        },
+        {
+            "id": 39497,
+            "author": "mrsrev",
+            "text": "She's tiny, and birdlike, and old,\nWith a heart that is spun of pure gold.\nAs homeward I skitter,\nGram will chirpily twitter,\n\"Zip your jacket! The weather is cold!\"",
+            "question": null,
+            "answer": null,
+            "token_count": 45,
+            "target_location": 0
+        },
+        {
+            "id": 71136,
+            "author": "bob killian",
+            "text": "Deviationism marks you a splitter;\nParty stalwart turned into a quitter.\nThe collective has voted\nTo have you demoted\nFrom the penthouse straight out to the shitter.",
+            "question": null,
+            "answer": null,
+            "token_count": 39,
+            "target_location": 0
+        },
+        {
+            "id": 63668,
+            "author": "timon",
+            "text": "Though cunjevoi may look salacious,\nIt means \"sea squirt\", or \"plant that's araceous\".\nWords that start C-U-N\nAre suggestive to men,\nBut in this case that notion's fallacious.",
+            "question": null,
+            "answer": null,
+            "token_count": 47,
+            "target_location": 0
+        },
+        {
+            "id": 96092,
+            "author": "Chris J. Strolin",
+            "text": "Dr. Anderson, first of her sex\nIn Great Britain in many respects,\nIs remembered today\nIn a medical way\nThat, I'm sorry, this author rejects.",
+            "question": null,
+            "answer": null,
+            "token_count": 35,
+            "target_location": 0
+        },
+        {
+            "id": 110915,
+            "author": "John Critten",
+            "text": "Do you see all this water that's rushing\nAway? I can't stop it from gushing.\nThis sure ain't no joke;\nMy W.C.'s broke\u2014\nAnd I just cannot stop it from flushing!",
+            "question": null,
+            "answer": null,
+            "token_count": 45,
+            "target_location": 0
+        },
+        {
+            "id": 79344,
+            "author": "Kevin Lucas",
+            "text": "I'm part of an atheist squad\nOf performers.  The concept is odd,\nAs revealed in the skit\nWhere we ponder a bit,\nEntertaining the notion of God.",
+            "question": null,
+            "answer": null,
+            "token_count": 38,
+            "target_location": 0
+        },
+        {
+            "id": 66104,
+            "author": "Ruchiccio",
+            "text": "Point your mobile to online dotcoms\nTo do business and shop from your palms.\nIt's become quite routine\nTo be glued to the screen\nDuring dinner \u2014 without any qualms!",
+            "question": null,
+            "answer": null,
+            "token_count": 39,
+            "target_location": 0
+        },
+        {
+            "id": 23307,
+            "author": "David",
+            "text": "\"Crazy cookie\" they call me. It's wrong.\n\"Flaky fruitcake\" as well. I am strong.\nI'm a cake and accept\nI've been raised quite inept,\nFor my mum was a wafer too long.",
+            "question": null,
+            "answer": null,
+            "token_count": 50,
+            "target_location": 0
+        },
+        {
+            "id": 28981,
+            "author": "Chris Doyle",
+            "text": "A calcifuge planted in lime\nWill be in for a difficult time.\nCamellias toil\nIn an alkaline soil,\nAs they do in a blistering clime.",
+            "question": null,
+            "answer": null,
+            "token_count": 38,
+            "target_location": 0
+        },
+        {
+            "id": 59018,
+            "author": "Ritepath",
+            "text": "Define cumulose thus: \"full of heaps\"  \u2014\nLike a cloud in the sky as it creeps\nAlong its slow course,\nOr what's left by a horse,\nWhich the stableboy grudgingly sweeps.",
+            "question": null,
+            "answer": null,
+            "token_count": 47,
+            "target_location": 0
+        },
+        {
+            "id": 18755,
+            "author": "jexia",
+            "text": "If a booklet's a book that's no biggie,\nAnd a piglet's a tiny wee piggy,\nThen a branchlet's a stick\nThat is not very thick\n(But it isn't as thin as a twiggy!).",
+            "question": null,
+            "answer": null,
+            "token_count": 49,
+            "target_location": 0
+        },
+        {
+            "id": 95880,
+            "author": "speedysnail",
+            "text": "The case neoliberals have made\nAbout why to engage in free trade\nHas held sway for some years;\nOld protectionist fears\nAre outmoded, although not allayed.",
+            "question": null,
+            "answer": null,
+            "token_count": 39,
+            "target_location": 0
+        },
+        {
+            "id": 109319,
+            "author": "Sussexdownsman",
+            "text": "If your home is designed just for show,\nBut the standard achieved is real low,\nAnd the knick-knacks you keep\nAre both pointless and cheap,\nThat's gimcrackery\u2014useless, you know!",
+            "question": null,
+            "answer": null,
+            "token_count": 46,
+            "target_location": 0
+        },
+        {
+            "id": 72634,
+            "author": "Atticus Vere",
+            "text": "First he stumbled, fell back at the gun,\nGot boxed in (he had no room to run),\nFound a gap and ran wide,\nHad to lengthen his stride:\nSo our boy came from nowhere and won.",
+            "question": null,
+            "answer": null,
+            "token_count": 44,
+            "target_location": 0
+        },
+        {
+            "id": 51534,
+            "author": "SheilaB",
+            "text": "Said two virgins called Linda and Lydia,\nInfected by many clostridia,\n\"The germ that's upsettin' us\u2014\nWe hope it ain't tetanus.\nAt least we don't think it's chlamydia.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 50,
+            "target_location": 0
+        },
+        {
+            "id": 42941,
+            "author": "Chris Doyle",
+            "text": "The adrenals are glands that produce\nNature's cortisol (athletes say \"juice\").\nIt can help to abate\nInflammation\u2014that's great,\nBut injecting too much is abuse.",
+            "question": null,
+            "answer": null,
+            "token_count": 41,
+            "target_location": 0
+        },
+        {
+            "id": 81220,
+            "author": "Atticus Vere",
+            "text": "Certain hosts one should not underrate.\nEver see William Buckley debate?\nHe'd be warm and polite\u2014\nAnd eternally right\u2014\nOnly victims stepped up to that plate.",
+            "question": null,
+            "answer": null,
+            "token_count": 38,
+            "target_location": 0
+        },
+        {
+            "id": 72832,
+            "author": "Jason Talbott",
+            "text": "I was shopping, comparing the prices\nOf five data input devices:\nTwo keyboards, a scanner\n(Not sure in which manner\nTo say this) and two cordless mices?",
+            "question": null,
+            "answer": null,
+            "token_count": 38,
+            "target_location": 0
+        },
+        {
+            "id": 89,
+            "author": "Bill Cernansky",
+            "text": "The birthstone of violet quartz\nKnown as amethyst, legend purports,\nProtects one from drinking,\nSo imbibe without thinking\nFrom cups made from gems of these sorts.",
+            "question": null,
+            "answer": null,
+            "token_count": 37,
+            "target_location": 0
+        },
+        {
+            "id": 86689,
+            "author": "Recumbentman",
+            "text": "Evangelistary: open to find\nGospel readings\u2014but some have opined\nIt means pulpit as well.\nAre they right? Who can tell?\nEven Oxford can't make up its mind.",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 107106,
+            "author": "p\u00f6t",
+            "text": "My graduateship started last year,\nWhen I passed my exams nice and clear.\nNow a graduate I am,\nAnd I hope Uncle Sam\nHas a job for me. (Look, Sir, I'm here!)",
+            "question": null,
+            "answer": null,
+            "token_count": 43,
+            "target_location": 0
+        },
+        {
+            "id": 41184,
+            "author": "Robert Holland",
+            "text": "Though I know they are far, far away,\nI can see them nearby hard at play.\nTheir joyful embrace,\nTheir tears on my face,\nSweep them home, in a flash: Father's Day.",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 31399,
+            "author": "LoudNotes",
+            "text": "When a substance with vinegar's mated,\nAn acidified mixture's created.\nWhen this case has occurred,\nThere's a chemical word\nThat describes it: it's then acetated.",
+            "question": null,
+            "answer": null,
+            "token_count": 38,
+            "target_location": 0
+        },
+        {
+            "id": 45061,
+            "author": "Kevin Lucas",
+            "text": "She sang country and crossover pop.\nRaw emotion led straight to the top.\nPatsy Cline would assert,\n\"I just sing like I hurt\nInside.\"  Truly, the cream of the crop.",
+            "question": null,
+            "answer": null,
+            "token_count": 41,
+            "target_location": 0
+        },
+        {
+            "id": 20684,
+            "author": "mephistopheles",
+            "text": "When the ghost (apparition) had neared,\nShe was nearly as weird as we feared.\nWe could scarcely detect her,\nAnd didn't expect her:\nA spectre who jeeringly sneered.",
+            "question": null,
+            "answer": null,
+            "token_count": 43,
+            "target_location": 0
+        },
+        {
+            "id": 104199,
+            "author": "Bill Cernansky",
+            "text": "He adventured by roving around.\nFor this errantry he was renowned,\nAs he was for the logs\nOf his journeys through bogs,\nWhich described errant trees he had found.",
+            "question": null,
+            "answer": null,
+            "token_count": 39,
+            "target_location": 0
+        },
+        {
+            "id": 82280,
+            "author": "MikeAq",
+            "text": "Blades of cut-grass are tapered and thin;\nTheir hooked edges can catch and slice skin.\nWhen I sat on it bare-assed\nI fled from it \u2014 tear-assed!\nSince some float in mats, don't fall in.",
+            "question": null,
+            "answer": null,
+            "token_count": 49,
+            "target_location": 0
+        },
+        {
+            "id": 60475,
+            "author": "Janet McConnaughey",
+            "text": "With my ski-mask, my cleats and thick gloves\nI creeps on the ice. I just loves\nWhen I robs an old bat:\nA mere touch and she's flat.\nI'm a crymophile, push comes to shoves.",
+            "question": null,
+            "answer": null,
+            "token_count": 52,
+            "target_location": 0
+        },
+        {
+            "id": 91690,
+            "author": "rusty",
+            "text": "This old shrine's fallen into decline,\nInfested with vermin and swine;\nOnce holy, now lowly.\nExaugurate wholly\nThis site (so, ordained \"not divine\").",
+            "question": null,
+            "answer": null,
+            "token_count": 39,
+            "target_location": 0
+        },
+        {
+            "id": 24189,
+            "author": "SheilaB",
+            "text": "The carrying capacity tells\nUs the number of hares or gazelles\n(Be they few or a lot)\nThat can live in a spot\nAnd inhabit its meadows and dells.",
+            "question": null,
+            "answer": null,
+            "token_count": 38,
+            "target_location": 0
+        },
+        {
+            "id": 96752,
+            "author": "Aliza",
+            "text": "Ancient iron, in odd aggregations,\nOccurs in red banded formations\nSpurred by algae (blue-green)'s\nMetabolic routines\nAnd their oxygen gas emanations.",
+            "question": null,
+            "answer": null,
+            "token_count": 37,
+            "target_location": 0
+        },
+        {
+            "id": 33955,
+            "author": "Chris Young",
+            "text": "Our Arabian camel (one hump),\nSeeing poor punctuation, will grump.\nOur proofreading dromedary,\nIf we've not commaed re-\nsponsibly, spits like a pump.",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 49320,
+            "author": "Chris Doyle",
+            "text": "A breakout of numbers provides\nAnalytical views from all sides.\nSince these data divisions\nInform our decisions,\nWe hope they're reliable guides.",
+            "question": null,
+            "answer": null,
+            "token_count": 29,
+            "target_location": 0
+        },
+        {
+            "id": 102402,
+            "author": "AndrewB",
+            "text": "Chinese drip drip drip drip drip drip drip\nDrip drip water drip drip drip drip drip\nDrip drip torture drip drip\nDrip drip drip drip drip drip\nDrip drip drip drip drip drip drip drip drip.",
+            "question": null,
+            "answer": null,
+            "token_count": 45,
+            "target_location": 0
+        },
+        {
+            "id": 104184,
+            "author": "Giorgio Coniglio",
+            "text": "Tineolas, we're not like the fruit fly\n(We concede, orange-eyed, they're a cute fly):\nWe can't stand foam or froth;\nFavorite fodder \u2014  'whole cloth',\nWe eat dry. Just ask any astute fly.",
+            "question": null,
+            "answer": null,
+            "token_count": 53,
+            "target_location": 0
+        },
+        {
+            "id": 81113,
+            "author": "SheilaB",
+            "text": "This great bagel is Maisie's creation.\nIt's a circle, precise in formation,\nWith a round space inside.\nMaisie's smiling with pride;\nShe's in charge of the dough's entortilation.",
+            "question": null,
+            "answer": null,
+            "token_count": 44,
+            "target_location": 0
+        },
+        {
+            "id": 35642,
+            "author": "jexia",
+            "text": "I know could not's contraction is couldn't;\nSome others are I'm, can't and shouldn't.\nChanging it is to it's?\nJoin it up, and lose bits.\n(Do you think that this limerick is goodn't?)",
+            "question": null,
+            "answer": null,
+            "token_count": 51,
+            "target_location": 0
+        },
+        {
+            "id": 109788,
+            "author": "rusty",
+            "text": "Dickie's dabbed it up (shacked up) with Liz,\nSo they're sleeping together. He is,\nI well know, a swell feller.\n'Bout us, should I tell 'er\n(Although it is none of her biz)?",
+            "question": null,
+            "answer": null,
+            "token_count": 52,
+            "target_location": 0
+        },
+        {
+            "id": 110028,
+            "author": "Kevin Lucas",
+            "text": "We elected a principled fellow\nTo Congress, who quickly turned yellow.\nWith his courage askew,\nI'm ashamed by this true\nGutless wonder whose spine is like jello.",
+            "question": null,
+            "answer": null,
+            "token_count": 39,
+            "target_location": 0
+        },
+        {
+            "id": 83228,
+            "author": "Atticus Vere",
+            "text": "\"Welcum, genmin,\" he said, with a drawl,\n\"Y'all needs no interduckshun at awl.\"\nThen, as though to confide,\nThe man gestured inside.\n\"An' there's wimmin enuff; have a bawl.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 58,
+            "target_location": 0
+        },
+        {
+            "id": 84509,
+            "author": "Chris J. Strolin",
+            "text": "I'd had every chance to succeed,\nWith all possible breaks guaranteed.\nNow full grown, I have failed.\nI'm despondent and jailed.\nI attribute my downfall to weed.",
+            "question": null,
+            "answer": null,
+            "token_count": 37,
+            "target_location": 0
+        },
+        {
+            "id": 81173,
+            "author": "GaZoom",
+            "text": "I'm a mite that you might call polite.\nMay I ride on your hide out of sight?\nEctozoic, that's me,\nParasitic and wee.\nPlease excuse me, I must have a bite.",
+            "question": null,
+            "answer": null,
+            "token_count": 46,
+            "target_location": 0
+        },
+        {
+            "id": 22405,
+            "author": "Chris J. Strolin",
+            "text": "As a teen, I was always complaining\nThat my life was so unentertaining.\nI craved parties instead.\n\"Join the service,\" they said.\n\"Right away you will get bacchic training.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 44,
+            "target_location": 0
+        },
+        {
+            "id": 69930,
+            "author": "Roger Vick",
+            "text": "\"The old rudder's outdated, dear feller,\"\nSaid the nautical power-plant seller.\n\"This swivels right 'round,\nAnd its force will astound.\nTry this azimuth thruster; it's stellar.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 46,
+            "target_location": 0
+        },
+        {
+            "id": 43699,
+            "author": "SheilaB",
+            "text": "This shrub to the West is a stranger,\nBut it transplants without any danger.\nIt's better at climbing\nThan its name is at rhyming\u2014\nWe call it the climbing hydrangea.",
+            "question": null,
+            "answer": null,
+            "token_count": 43,
+            "target_location": 0
+        },
+        {
+            "id": 30440,
+            "author": "mrsrev",
+            "text": "Alleghenies: the place I call home,\nWhere the forests are rich with dark loam;\nAnd the views here are pretty,\nNot like in the city.\nFrom this place I never shall roam.",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 67746,
+            "author": "Chris Doyle",
+            "text": "Alfred Wegener measures each rift\nAnd deduces that continents shift.\nThen he hatches a theory\nOn plates with a query:\n\"Tectonics? You catching my drift?\"",
+            "question": null,
+            "answer": null,
+            "token_count": 38,
+            "target_location": 0
+        },
+        {
+            "id": 85523,
+            "author": "Celia Warren",
+            "text": "As birds empty seeds from a pot\nOr Joe's finger removes nasal snot;\nLike a fire-bell's call:\nEvacuators all.\nCan you empty your mind and think squat?",
+            "question": null,
+            "answer": null,
+            "token_count": 40,
+            "target_location": 0
+        },
+        {
+            "id": 57359,
+            "author": "Shelby Forrest",
+            "text": "Pelosi still rules as the speaker,\nBut I wish that her powers were weaker.\nWhat she heard, she denied,\nBut I think that she lied.\nI disdainfully call her the \"squeaker.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 58691,
+            "author": "Ritepath",
+            "text": "We were \"married,\" but someone objects.\nThey've explained it; it's very complex.\nAn impediment ruled\nTo be diriment fooled\nUs; I guess that was null-nuptial sex.",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 109067,
+            "author": "Richard English",
+            "text": "A groper is not what you'd wish\nAs a person \u2014 but fine as a fish.\nIt's found in warm seas\nAnd its flavour will please;\nPan-fried it's a wonderful dish.",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 67400,
+            "author": "Aparna Ray",
+            "text": "In the monsoons, it sure would be folly\nStepping out-of-doors minus your brolly.\nGetting drenched in the rain,\nSoaking wet \u2014 that's a pain,\nThough the child in you might find it jolly.",
+            "question": null,
+            "answer": null,
+            "token_count": 51,
+            "target_location": 0
+        },
+        {
+            "id": 1732,
+            "author": "Meg Beagle",
+            "text": "Amadeus made famous a giggle\nSo infectious it caused me to wriggle.\nWhen laughed by Tom Hulce,\nIt made me convulse,\nThen roll on my back and just wiggle.",
+            "question": null,
+            "answer": null,
+            "token_count": 43,
+            "target_location": 0
+        },
+        {
+            "id": 33681,
+            "author": "Chris J. Strolin",
+            "text": "The Big Apple and Beantown are places\nThe average native embraces.\nThey are home, in large part,\nTo both commerce and art\nAnd, come winter, to frostbitten faces.",
+            "question": null,
+            "answer": null,
+            "token_count": 40,
+            "target_location": 0
+        },
+        {
+            "id": 86400,
+            "author": "Chris J. Strolin",
+            "text": "Being mere flesh and blood, and not steel,\nHe was broken, I read, on the wheel.\nAll the witnesses claimed\nHe'd been brutally maimed,\nThough that was, I suppose, the appeal.",
+            "question": null,
+            "answer": null,
+            "token_count": 44,
+            "target_location": 0
+        },
+        {
+            "id": 78146,
+            "author": "Celia Warren",
+            "text": "So the bulk of the text was like this,\nThe main content no reader could miss.\nBut the author then wrote\nAn explanatory note\nAt the end*.\n\n* Like a love-letter's X.",
+            "question": null,
+            "answer": null,
+            "token_count": 41,
+            "target_location": 0
+        },
+        {
+            "id": 55857,
+            "author": "a.groovymind",
+            "text": "If great palindromes happen to thrill ya,\nThen I'd say that you have ailihphilia.\nIt's not in the lexicon?\nNot even the Mexican?\nYou won't rule it out I hope, will ya?",
+            "question": null,
+            "answer": null,
+            "token_count": 48,
+            "target_location": 0
+        },
+        {
+            "id": 85401,
+            "author": "MikeAq",
+            "text": "To compose a morose epicedium\nCan brighten one's torpor and tedium.\nI myself have an urge\nTo create a sad dirge \u2014\nOne not overly mournful, just medium.",
+            "question": "How can one brighten one's torpor and tedium?",
+            "answer": "Compose a morose epicedium",
+            "token_count": 43,
+            "target_location": 5700
+        },
+        {
+            "id": 111017,
+            "author": "MikeAq",
+            "text": "\"We tried to traverse Logan's Lake \u2014\nGet across it \u2014  by raft.  Bad mistake.\nSo we stole your canoe\nAnd the paddles thereto;\nHeartfelt thanks go to you!\"\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0Jan 'n' Blake",
+            "question": null,
+            "answer": null,
+            "token_count": 50,
+            "target_location": 0
+        },
+        {
+            "id": 21909,
+            "author": "SheilaB",
+            "text": "My grandma was always afraid\nThat her fine reputation would fade\nIf she ever were caught in\nPresenting store-boughten\nLasagna, instead of home-made.",
+            "question": null,
+            "answer": null,
+            "token_count": 35,
+            "target_location": 0
+        },
+        {
+            "id": 61044,
+            "author": "Roger Vick",
+            "text": "With the sound of a freight train, or thunder,\nThe tornado descends, and we wonder\nFrom here, underground,\nIs our home safe and sound?\nOr completely destroyed, torn asunder?",
+            "question": null,
+            "answer": null,
+            "token_count": 40,
+            "target_location": 0
+        },
+        {
+            "id": 42614,
+            "author": "Carol June Hooker",
+            "text": "I attend a collegiate church\nWith six pastors, and now there's a search\nFor a new senior pastor\nWho quickly must master\nA college church study-fueled perch.",
+            "question": null,
+            "answer": null,
+            "token_count": 37,
+            "target_location": 0
+        },
+        {
+            "id": 21213,
+            "author": "SheilaB",
+            "text": "A Bernoulli trial only can go\nIn two ways\u2014it's a \"yes\" or a \"no.\"\nIts results, not elusive,\nAre mutually exclusive.\nIs that clear? Let's get on with the show!",
+            "question": null,
+            "answer": null,
+            "token_count": 45,
+            "target_location": 0
+        },
+        {
+            "id": 26359,
+            "author": "Carl Lands",
+            "text": "Jews and Gentiles united! A vision\nWe no longer greet with derision\u2014\nWe send Barsabas back,\nWho will cut you some slack:\nAbjure idols; forego circumcision.",
+            "question": null,
+            "answer": null,
+            "token_count": 41,
+            "target_location": 0
+        },
+        {
+            "id": 32946,
+            "author": "Bob Dvorak",
+            "text": "Close a loop.  It's designed to impart\nCirculation for pumps or a heart:\nFluid up, fluid down,\nFluid out and aroun',\nReappearing anon at the start.",
+            "question": null,
+            "answer": null,
+            "token_count": 40,
+            "target_location": 0
+        },
+        {
+            "id": 80108,
+            "author": "SheilaB",
+            "text": "On TV, these experienced actors\nPlay surgeons. Some relevant factors\nAre their talents with tools,\nSo they don't look like fools\nPulling tonsils or teeth with extractors.",
+            "question": null,
+            "answer": null,
+            "token_count": 38,
+            "target_location": 0
+        },
+        {
+            "id": 56241,
+            "author": "skipjordan",
+            "text": "A bright COBOL writer named Dunn,\nWho had worked on the UNIVAC I,\nSaid he thought it was fine\nTo have top-down design,\nBut, mostly, the program should run!",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 78898,
+            "author": "proof",
+            "text": "My new robot's a golfing machine.\nIt can drive balls the farthest I've seen.\nBut there's one minor kink\nThat I have to rethink:\nIt putts four hundred yards on each green.",
+            "question": null,
+            "answer": null,
+            "token_count": 44,
+            "target_location": 0
+        },
+        {
+            "id": 98443,
+            "author": "Janet McConnaughey",
+            "text": "\"It's just ignorant use. I reject\nAll this verbing of dull disrespect.\"\n\"Oh, Dad, don't be snide.\nAs a verb,\" I replied,\n\"It dates back to King James. I just checked.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 45,
+            "target_location": 0
+        },
+        {
+            "id": 87687,
+            "author": "Frank Luke",
+            "text": "The Chinese Revolution, game changer,\nBrought in Mao and the Communist danger.\nWhen Russia aligned\nWith China, that kind\nOf a deal then made danger no stranger.",
+            "question": null,
+            "answer": null,
+            "token_count": 35,
+            "target_location": 0
+        },
+        {
+            "id": 12529,
+            "author": "Tim Alborn",
+            "text": "The bout she envisioned was whirling\nAbout, with her petticoats swirling,\nAnd dancing till morn\u2014\nSo her husband was torn,\nSince the bout he envisioned was curling.",
+            "question": null,
+            "answer": null,
+            "token_count": 40,
+            "target_location": 0
+        },
+        {
+            "id": 72916,
+            "author": "SheilaB",
+            "text": "My new girlfriend's outstanding appeal\nIs her earthiness. Man, she's for real!\nShe'll be treating my folks\nTo some off-color jokes.\nDad will laugh till he chokes; Mom will squeal.",
+            "question": null,
+            "answer": null,
+            "token_count": 46,
+            "target_location": 0
+        },
+        {
+            "id": 84175,
+            "author": "Chris J. Strolin",
+            "text": "My complete lack of skills I take flak on,\nAnd to that \"old as dust\" you can tack on.\nAnd a college degree?\nI don't need one, you see,\nSince I still have my looks to fall back on.",
+            "question": null,
+            "answer": null,
+            "token_count": 49,
+            "target_location": 0
+        },
+        {
+            "id": 109165,
+            "author": "Sussexdownsman",
+            "text": "The ore copper pyrites: a swarm\nIn large outcrops we find is the norm.\nCuFeS2\nIs the way that we view\nIts tetragonal crystalline form.",
+            "question": null,
+            "answer": null,
+            "token_count": 40,
+            "target_location": 0
+        },
+        {
+            "id": 108008,
+            "author": "Atticus Vere",
+            "text": "A sweet maiden has come to some grief\nAt the hand of a Fieldingesque thief.\nUsing feasting and bawdry,\nThe scoundrel has Audrey\nTurning over a naughty new leaf.",
+            "question": null,
+            "answer": null,
+            "token_count": 41,
+            "target_location": 0
+        },
+        {
+            "id": 109840,
+            "author": "zqms",
+            "text": "\"Why won't overseas people agree\nTo use miles, pints, and pounds just like me?\"\nGlobaloney like this\nYou might lightly dismiss,\nBut it's rarely that easy to see.",
+            "question": null,
+            "answer": null,
+            "token_count": 39,
+            "target_location": 0
+        },
+        {
+            "id": 60644,
+            "author": "Bob Dvorak",
+            "text": "Very chic? I would never have guessed\nFaux-antique to be thought of as best.\nPristine lumber is marred,\nBurned, disfigured, and scarred,\nTo create the motif called distressed.",
+            "question": null,
+            "answer": null,
+            "token_count": 47,
+            "target_location": 0
+        },
+        {
+            "id": 93533,
+            "author": "SheilaB",
+            "text": "Having forethought means planning ahead,\nLike in making a hand-woven spread:\nI've got fibers spun tight.\nIf I don't prepare right,\nAll the threads on the bedspread may shred.",
+            "question": null,
+            "answer": null,
+            "token_count": 40,
+            "target_location": 0
+        },
+        {
+            "id": 796,
+            "author": "Snowy Owl",
+            "text": "There's many a sequence of three\nFrom the alphabet like ADC,\nBut I fear that without\nKnowing what they're about,\nThey're no more than linguistic debris.",
+            "question": null,
+            "answer": null,
+            "token_count": 34,
+            "target_location": 0
+        },
+        {
+            "id": 74784,
+            "author": "Kevin Lucas",
+            "text": "\"Your relationship's losing its fizz?\"\nAsked my mom, a buttinsky.   It is,\nBut she constantly peddles\nAdvice as she meddles.\nI told her, \"Mom, none of your biz.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 46,
+            "target_location": 0
+        },
+        {
+            "id": 10276,
+            "author": "mephistopheles",
+            "text": "Night oarsmen in water. A strand.\nAshore, ten, I'm warranting, stand.\nHere, they have no old rope,\nOr they'd leave her no hope:\nTheir anagram's written on sand.",
+            "question": null,
+            "answer": null,
+            "token_count": 46,
+            "target_location": 0
+        },
+        {
+            "id": 95002,
+            "author": "Ardub23",
+            "text": "He never shuts up\u2014I can't bear it!\nHis garrulity's lethal, I swear it.\nHe yaps on and on\n'Til my sanity's gone.\nI've had pleasanter chats with a parrot.",
+            "question": null,
+            "answer": null,
+            "token_count": 48,
+            "target_location": 0
+        },
+        {
+            "id": 10474,
+            "author": "Doug Smeath",
+            "text": "Aguascalientes, you say?\nThe wine-rich resort town? No way!\nYou may not take my daughter.\nThough its name means \"hot water,\"\nJust take a cold shower, okay?",
+            "question": null,
+            "answer": null,
+            "token_count": 40,
+            "target_location": 0
+        },
+        {
+            "id": 105266,
+            "author": "MikeAq",
+            "text": "We must get the job done by the end date,\nOr that date we will call \"lost-a-friend date\".\nNot a do-what-you-can date \u2014\nAn absolute mandate!\nIt's an end date our friend can't extend date.",
+            "question": null,
+            "answer": null,
+            "token_count": 50,
+            "target_location": 0
+        },
+        {
+            "id": 3465,
+            "author": "speedysnail",
+            "text": "The Arabic alphabet's read\nRight to left (Roman's left-right, instead).\nThe part I forget is\nIts actual letters\u2014\nTheir numerals, I have in my head.",
+            "question": null,
+            "answer": null,
+            "token_count": 38,
+            "target_location": 0
+        },
+        {
+            "id": 39901,
+            "author": "Chris J. Strolin",
+            "text": "\"For our lovemaking plans to succeed,\nInterference from punks we don't need.\nSuch an ill-mannered youth\nIs your son\u2014so uncouth!\nHe's a blot on the landscape, indeed.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 45,
+            "target_location": 0
+        },
+        {
+            "id": 52840,
+            "author": "Frank Luke",
+            "text": "There's my nuclear family, then cousins\nAnd aunties, then uncles. The buzzin's\nReal fierce when we meet\n(Grab a plate, find a seat!)\nAll my calabash folks, by the dozens!",
+            "question": null,
+            "answer": null,
+            "token_count": 48,
+            "target_location": 0
+        },
+        {
+            "id": 56237,
+            "author": "Kevin Lucas",
+            "text": "Last night, we'd a row.  Come the dawn,\nMy possessions, I noticed, were gone\nFrom the house.  Seems my wife\nWants me out of her life\nBag and baggage.  My stuff's on the lawn.",
+            "question": null,
+            "answer": null,
+            "token_count": 51,
+            "target_location": 0
+        },
+        {
+            "id": 104998,
+            "author": "MikeAq",
+            "text": "\"So you think Frank is funny,\" said Ma,\n\"Funny peculiar or funny ha-ha?\"\n\"He's got quirks \u2014 and they're numerous.\nJokes? Always humorous.\nBoth, I would say,\" answered Pa.",
+            "question": null,
+            "answer": null,
+            "token_count": 45,
+            "target_location": 0
+        },
+        {
+            "id": 106976,
+            "author": "Janet McConnaughey",
+            "text": "Do breeders feel dark-of-night guilts\nFor the feathery twists, twirls and tilts\nOn a pantomime goose?\nIt was bred for one use:\nAdding loft to fine pillows and quilts.",
+            "question": null,
+            "answer": null,
+            "token_count": 48,
+            "target_location": 0
+        },
+        {
+            "id": 15435,
+            "author": "Howard Spindel",
+            "text": "Proverbial phrases (called bywords)\nOverused may decay into dry words.\nBut a limerick can play\nAt the language buffet,\nWith an em dash of mustard on rye words.",
+            "question": null,
+            "answer": null,
+            "token_count": 41,
+            "target_location": 0
+        },
+        {
+            "id": 55069,
+            "author": "art bates",
+            "text": "It is written 'the end' (can't say when),\n'Will be here in a hundred or ten\nThousand years, thereabout'.\nAs I'm no way devout,\nArmageddon on out before then.",
+            "question": null,
+            "answer": null,
+            "token_count": 45,
+            "target_location": 0
+        },
+        {
+            "id": 60056,
+            "author": "SheilaB",
+            "text": "The subject I'm planning to write on\nIs the neuron's cell body\u2014the cyton.\nThink it's dull? That remark\nShows you're still in the dark,\nAs without it, we can't turn a light on.",
+            "question": null,
+            "answer": null,
+            "token_count": 47,
+            "target_location": 0
+        },
+        {
+            "id": 59964,
+            "author": "Kevin Lucas",
+            "text": "Pick the target; you'll want to select\nOne that's personal.  Then be direct\nAs you chide and deride.\nYou will win to your side\nMany people who want to defect.",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 43729,
+            "author": "Celia Warren",
+            "text": "Being tenderly young or quite old;\nLetting wind, rain or sleet take a hold:\nIn our lives, these detractors\nAre contributory factors\nIn catching a cough or a cold.",
+            "question": null,
+            "answer": null,
+            "token_count": 41,
+            "target_location": 0
+        },
+        {
+            "id": 96100,
+            "author": "Chris J. Strolin",
+            "text": "\"It is freedom,\" said Ben, \"that I want\nFrom my master,\" and so, nonchalant,\nHe strolled off the plantation\nAnd crossed our great nation.\nNow this contraband lives in Vermont.",
+            "question": null,
+            "answer": null,
+            "token_count": 45,
+            "target_location": 0
+        },
+        {
+            "id": 104840,
+            "author": "Chris J. Strolin",
+            "text": "With a neck not as long as a swan's,\nThese large birds often populate ponds.\nIf you're living nearby,\nYou'll have reason to cry\nWhen wild geese use your land for their johns.",
+            "question": null,
+            "answer": null,
+            "token_count": 44,
+            "target_location": 0
+        },
+        {
+            "id": 950,
+            "author": "David Bourke",
+            "text": "Would apnoea be repetition,\nAs we've apnea done, in this mission?\nSince it could lead to death,\nBetter not hold your breath\nWhile you wait for a new definition.",
+            "question": null,
+            "answer": null,
+            "token_count": 39,
+            "target_location": 0
+        },
+        {
+            "id": 75608,
+            "author": "mike scholtes",
+            "text": "When a journalist says he's embedded,\nYou're likely to know where he's headed:\nHe's looking for scoops\nAs he stays with the troops,\nSaying prayers that his unit's not shredded.",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 53092,
+            "author": "Chris Doyle",
+            "text": "Taking Caduet daily, I know\nMy cholesterol levels are low.\nMade by Pfizer, it's new\u2014\nNot just one drug, but two!\nIt's a modern-day medicine show.",
+            "question": null,
+            "answer": null,
+            "token_count": 39,
+            "target_location": 0
+        },
+        {
+            "id": 77233,
+            "author": "Kevin Lucas",
+            "text": "I testified one day in court,\nWhere I gave an earwitness report:\n\"What I heard weren't the cries\nRight before someone dies;\nThey were more of the sexual sort.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 37,
+            "target_location": 0
+        },
+        {
+            "id": 100720,
+            "author": "Sussexdownsman",
+            "text": "So you're suffering aches in your gut?\nWell, the cause may be hard to rebut.\nYour large appetite's blamed.\nWith gastralgia you're shamed.\n(Til it goes, maybe keep your mouth shut!)",
+            "question": null,
+            "answer": null,
+            "token_count": 46,
+            "target_location": 0
+        },
+        {
+            "id": 18176,
+            "author": "Mark Mironer",
+            "text": "The flight went according to plan:\nThe Eagle had landed on \"Tran\".\nWith the earth shining high\nIn the cold lunar sky,\nNeil Armstrong took \"One step for man\".",
+            "question": null,
+            "answer": null,
+            "token_count": 37,
+            "target_location": 0
+        },
+        {
+            "id": 17371,
+            "author": "David",
+            "text": "Because fellows at Ford, a fair company,\nReject many cars, but don't dump any,\nCrooks artfully lodge 'em\nAt fairgrounds (think \"dodgem\"),\nThen warn all the kids not to bump any.",
+            "question": null,
+            "answer": null,
+            "token_count": 47,
+            "target_location": 0
+        },
+        {
+            "id": 13300,
+            "author": "otherwisefine",
+            "text": "I've decided to fill up my Jag full\nOf petrol to go for a drag, full\nOf woe that the car\nDidn't get very far\nOn the coal I'd put in by the bagful.",
+            "question": null,
+            "answer": null,
+            "token_count": 45,
+            "target_location": 0
+        },
+        {
+            "id": 38088,
+            "author": "StephenGold",
+            "text": "Kevin Phelps plays in goal for United,\nBut each game he appears in is blighted.\nBe it cross, chip or shot,\nClueless Kev drops the lot\u2014\nLoves the game, but it's love unrequited.",
+            "question": null,
+            "answer": null,
+            "token_count": 49,
+            "target_location": 0
+        },
+        {
+            "id": 108209,
+            "author": "rusty",
+            "text": "In his charley-ken (watch-box), the sentry\nIs alert to each exit and entry,\nThe comings and goings\nAnd to-ings and fro-ings\nAlike, of both peasants and gentry.",
+            "question": null,
+            "answer": null,
+            "token_count": 48,
+            "target_location": 0
+        },
+        {
+            "id": 79291,
+            "author": "a.groovymind",
+            "text": "\"Thar she blows!\" Cap'n cried, with elation.\n\"Largest creature, bar none, in creation.\"\nAs the whalewatchers cheered,\nThe leviathan neared,\nAnd they heard Cap's cetacean citation.",
+            "question": null,
+            "answer": null,
+            "token_count": 48,
+            "target_location": 0
+        },
+        {
+            "id": 94014,
+            "author": "SheilaB",
+            "text": "\"Uncle Walt earned his salt selling bennies.\nNow rubbed out, the guy sleeps with the blennies.\"\n\"Did he leave a  bequest?\"\nAsked my mom. I confessed:\n\"He left fourpence\u2014that's four English pennies.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 53,
+            "target_location": 0
+        },
+        {
+            "id": 50225,
+            "author": "Janet McConnaughey",
+            "text": "I know I neglected to call yez,\nSo here is a heap of fine dahlias.\nSome are yellow, some red,\nSome as big as my head.\nCome on up! There are plenny for all yez.",
+            "question": null,
+            "answer": null,
+            "token_count": 46,
+            "target_location": 0
+        },
+        {
+            "id": 44258,
+            "author": "Mary",
+            "text": "Though the cold in his head made him blue,\nHe decided he knew what to do,\nAnd he blew his nose gently,\nObserving intently\nThe air as it cleared a way through.",
+            "question": null,
+            "answer": null,
+            "token_count": 39,
+            "target_location": 0
+        },
+        {
+            "id": 76019,
+            "author": "proof",
+            "text": "You'll find blockwork enclosing shop stalls\nAnd garages and buildings and malls.\nLeave it plain; face with brick \u2014\nIts construction is quick \u2014\nPre-cast concrete or cinderblock walls.",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 2457,
+            "author": "Tom Foolery",
+            "text": "Real essential (you bet!), an agenda\nLists the things that you gotta attend ta.\nYou can check one by one\nTo make sure they get done\u2014\nOr ignore 'em and go on a benda.",
+            "question": null,
+            "answer": null,
+            "token_count": 44,
+            "target_location": 0
+        },
+        {
+            "id": 93057,
+            "author": "Atticus Vere",
+            "text": "Certain mutts have perennial blues,\nSoulful bloodhounds with pendulous flews\nDrooping south from the lip\nIn perpetual drip,\nAnd sad eyes I could never refuse.",
+            "question": null,
+            "answer": null,
+            "token_count": 39,
+            "target_location": 0
+        },
+        {
+            "id": 34657,
+            "author": "mike scholtes",
+            "text": "In the universe, youthful locality\nServes us a puzzle: causality.\nGiven all that we know,\nNormal light is too slow\nTo explain our consistent reality.",
+            "question": null,
+            "answer": null,
+            "token_count": 34,
+            "target_location": 0
+        },
+        {
+            "id": 55655,
+            "author": "natelevin",
+            "text": "From the very beginning you've seen\nAb initio.  What does it mean?\nWhen you then reach the end\nYou may well comprehend\n\"At the start\" has been lodged in your bean.",
+            "question": null,
+            "answer": null,
+            "token_count": 41,
+            "target_location": 0
+        },
+        {
+            "id": 47442,
+            "author": "Len Farano",
+            "text": "\"Jumbo olives turn out to be small,\nWhile the short cup at Starbucks is tall.\nAnd those car rental deals\nDrive me mental,\" he squeals,\n\"'Cause the mid-size ain't mid-sized at all.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 46,
+            "target_location": 0
+        },
+        {
+            "id": 9652,
+            "author": "mephistopheles",
+            "text": "Owls' ears are designed to perfection\nFor the subtlest rustle's detection,\nAs the shapes 'round their eyes,\nAsymmetric in size,\nHave evolved parabolic reflection.",
+            "question": null,
+            "answer": null,
+            "token_count": 38,
+            "target_location": 0
+        },
+        {
+            "id": 27248,
+            "author": "SheilaB",
+            "text": "BHA in the food that we buy\nPreserves many a cookie and pie,\nOr we'll use BHT,\nBut beware BHC\u2014\nIt's insecticide; eat it\u2014you die.",
+            "question": null,
+            "answer": null,
+            "token_count": 40,
+            "target_location": 0
+        },
+        {
+            "id": 60483,
+            "author": "Bit",
+            "text": "A dicast would not have a grudge\nAbout letters that forced him to trudge\nTo a courthouse as juror.\nOur lot is much poorer:\nHe wasn't just jury, but judge.",
+            "question": null,
+            "answer": null,
+            "token_count": 41,
+            "target_location": 0
+        },
+        {
+            "id": 77522,
+            "author": "Roger Vick",
+            "text": "Said the peach to the almond, \"How come\nOur fine genus gets lumped with the plum?\nThe Prunus are plain,\nWhile Amygdalus reign\nAs superior. Why should we slum?\"",
+            "question": null,
+            "answer": null,
+            "token_count": 44,
+            "target_location": 0
+        },
+        {
+            "id": 96891,
+            "author": "rusty",
+            "text": "Should one wish to engallant a man,\nMake him chivalrous.  Here is the plan:\nTo become a gallant,\nAssist those \u2014 say, one's aunt \u2014\nWho are damsels distressed, when one can.",
+            "question": null,
+            "answer": null,
+            "token_count": 49,
+            "target_location": 0
+        },
+        {
+            "id": 30474,
+            "author": "Chris J. Strolin",
+            "text": "Our Mary writes briefs that are weighty,\nAnd with college professors she's matey.\nShe's been asked for advice\nBy the Pope once or twice.\nShe is quite able-minded for 80.",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 28155,
+            "author": "Chris Young",
+            "text": "Since my Labrador pup (twenty-ouncer)\nPut on weight, he's not much of a pouncer.\nIn the porch, he'll just sit,\nChoosing whom to admit:\n\"Labradoorman\", we call him, and \"Bouncer\".",
+            "question": null,
+            "answer": null,
+            "token_count": 50,
+            "target_location": 0
+        },
+        {
+            "id": 26615,
+            "author": "Comicoffee",
+            "text": "\"Where's your brother?\" Mom asked at the table.\n\"I dunno, Ma. You checked by the stable?\"\n\"Cain, account for his whereabouts!\"\n\"Try Egypt or thereabouts.\nThe exact place? Can't say\u2014I'm not Abel.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 51,
+            "target_location": 0
+        },
+        {
+            "id": 49303,
+            "author": "Chris Doyle",
+            "text": "Coprolitic remains undergird\nArchaeology\u2014much is inferred.\nFrom these fossils we know\nAbout man long ago.\nOh, the tales that are told by the turd!",
+            "question": null,
+            "answer": null,
+            "token_count": 39,
+            "target_location": 0
+        },
+        {
+            "id": 62501,
+            "author": "Val",
+            "text": "The old tramp looks away, but the pain\nOf rejection will stick, and remain\nWith him always. Unkempt,\nHe absorbs the contempt\nIn their glances of utter disdain.",
+            "question": null,
+            "answer": null,
+            "token_count": 40,
+            "target_location": 0
+        },
+        {
+            "id": 70043,
+            "author": "Chris J. Strolin",
+            "text": "You're a moron\u2014a nitwit\u2014a boob.\nAnd that question you asked? What a rube!\n\"What's Danubian?\" Gee,\nThat seems easy to me:\nIt means \"bordering on the Danube.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 46,
+            "target_location": 0
+        },
+        {
+            "id": 63172,
+            "author": "Bluebelle",
+            "text": "Dermovascular action's the flow\nOf the blood in the vessels that go\nOut to nourish the skin\nFrom deep pumping within,\nSo my toes warmly glow in the snow.",
+            "question": null,
+            "answer": null,
+            "token_count": 39,
+            "target_location": 0
+        },
+        {
+            "id": 3539,
+            "author": "Chuck Folkers",
+            "text": "As if using an adze were not pure enough,\nAnd spelling it adz weren't obscure enough,\nA fellow named Gaddis\nWould call it his addice.\nA triple archaism, sure enough.",
+            "question": null,
+            "answer": null,
+            "token_count": 44,
+            "target_location": 0
+        },
+        {
+            "id": 49386,
+            "author": "SheilaB",
+            "text": "I'm invited to dine with the Towles.\nAfter dinner, my abdomen growls.\nTheir intent, now I see,\nIs to constipate me\u2014\nThat means slowing or stopping my bowels.",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 69616,
+            "author": "skipjordan",
+            "text": "My command-driven program is cool\nAs it waits on response from a fool:\n\"Please provide SSN\nAnd your bank pin\" (and then\nI'll clean out  your accounts with this tool).",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 93586,
+            "author": "James Dobson",
+            "text": "The word fulminant (\"sudden, severe\")\nWell described the sharp pain in my ear\nWhen our darling, young Fred,\nWhile asleep in our bed,\nTurned and flailed with an elbow \u2014 the dear!",
+            "question": null,
+            "answer": null,
+            "token_count": 45,
+            "target_location": 0
+        },
+        {
+            "id": 35125,
+            "author": "Egbert",
+            "text": "This hombre's cool gaze knows no fear.\nHe lunges \u2014 a gasp, then a cheer.\nNow el toro's just meat\nAnd the crowd's on its feet\nFor the matador. And a loose ear.",
+            "question": null,
+            "answer": null,
+            "token_count": 47,
+            "target_location": 0
+        },
+        {
+            "id": 38682,
+            "author": "Frank Luke",
+            "text": "I've reached my old age when I find\nThat my body is creaking; my mind\nIs\u2014well\u2014absent. So, please\u2014\nIt's \"old-timer's disease\".\nShow some patience with me and my kind.",
+            "question": null,
+            "answer": null,
+            "token_count": 51,
+            "target_location": 0
+        },
+        {
+            "id": 45374,
+            "author": "fabricateddeath",
+            "text": "Arrhenius knew a reaction\nWould hasten if heated a fraction.\n\"I deduce some relation\nWith E-activation,\"\nHe said, with profound satisfaction.",
+            "question": null,
+            "answer": null,
+            "token_count": 33,
+            "target_location": 0
+        },
+        {
+            "id": 23250,
+            "author": "bearybp",
+            "text": "A hot Catalan gal named Louise\nWas so powerfully sprung 'twixt her knees\nThat one carnal convulsion\nContained such propulsion\nHer boyfriend was launched to C\u00e1diz.",
+            "question": null,
+            "answer": null,
+            "token_count": 40,
+            "target_location": 0
+        },
+        {
+            "id": 16351,
+            "author": "Wordmatic",
+            "text": "Acidimetric equipment can show\nUs the strength of an acid, just so,\nWith a measure exact\nThat is based on hard fact,\nSo we don't need no litmus no mo'.",
+            "question": null,
+            "answer": null,
+            "token_count": 41,
+            "target_location": 0
+        },
+        {
+            "id": 16594,
+            "author": "Chuck Folkers",
+            "text": "Between meals, there's a tedious span\nThat I shorten, according to plan,\nWith a bever (or snack)\nOf gazpacho or yak\nOr some cheese that I spray from a can.",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 28293,
+            "author": "Egbert",
+            "text": "The taxman delightedly gloats\nAs he scribbles down sums in his notes:\n\"Even Baywatch beach beauties\nStill have to pay duties.\nActive assets? Their costumes and floats.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 22481,
+            "author": "speedysnail",
+            "text": "The savage young Beatles could play\nA whole album of hits in a day.\nPlease Please Me still pleases\nThe lads and their squeezes\nIn Liverpool, oop round are way.",
+            "question": null,
+            "answer": null,
+            "token_count": 40,
+            "target_location": 0
+        },
+        {
+            "id": 23213,
+            "author": "Richard English",
+            "text": "Our wordsmith, Philology Pete,\nSold adjectives, too, for a treat.\nFrom calm to excited\nAnd bored to delighted,\nThese words help make writing complete.",
+            "question": null,
+            "answer": null,
+            "token_count": 35,
+            "target_location": 0
+        },
+        {
+            "id": 21595,
+            "author": "Howard Spindel",
+            "text": "In the Alps, lived a foundling so sad,\n'Til one day, came a woman, said, \"Lad,\nDon't you recognize me?\nI'm your ma, can't you see?\"\n\"Yodeladyhoo married my dad?\"",
+            "question": null,
+            "answer": null,
+            "token_count": 52,
+            "target_location": 0
+        },
+        {
+            "id": 67879,
+            "author": "JimInRoses",
+            "text": "Keeping rabbits for table's a lark,\nBut they nibble by day and by dark.\nI can never afford\nThat my deer share the sward,\nSo I'll send them abroad (disimpark).",
+            "question": null,
+            "answer": null,
+            "token_count": 43,
+            "target_location": 0
+        },
+        {
+            "id": 41756,
+            "author": "Michael Toalster and SusanL",
+            "text": "Millie Phelps loves champagne, and she's thrilled\nWhen her glass is both full and well chilled.\nIf the temperature's off,\nThe cool lady will scoff\u2014\nAnd she hates it when something gets spilled.",
+            "question": null,
+            "answer": null,
+            "token_count": 43,
+            "target_location": 0
+        },
+        {
+            "id": 96827,
+            "author": "Kevin Lucas",
+            "text": "You talk of my excess of mass\nUsing heavy or fat.  That's too crass.\nWhen discussing my weight,\nI'd prefer that you state\nI've great avoirdupois.  Show some class.",
+            "question": null,
+            "answer": null,
+            "token_count": 46,
+            "target_location": 0
+        },
+        {
+            "id": 67214,
+            "author": "mike scholtes",
+            "text": "Look at Vega or Deneb with care,\nAnd then Sirius. What do they share?\nThey're the same spectral class.\nIf you know it, you'll pass\nWith grade A like these stars, I declare!",
+            "question": null,
+            "answer": null,
+            "token_count": 45,
+            "target_location": 0
+        },
+        {
+            "id": 19595,
+            "author": "otherwisefine",
+            "text": "Barbados\u2014Caribbean isle!\nA place to vacation in style.\nIt's also a nation\n(For your information),\nAnd'll probably be for a while.",
+            "question": null,
+            "answer": null,
+            "token_count": 35,
+            "target_location": 0
+        },
+        {
+            "id": 91752,
+            "author": "Atticus Vere",
+            "text": "Her worn face told a punishing tale:\nAn absumed look, eroded and pale.\nShe'd held troubles inside,\nFirst consumed then denied,\nBut her eyes showed her hopelessly frail.",
+            "question": null,
+            "answer": null,
+            "token_count": 39,
+            "target_location": 0
+        },
+        {
+            "id": 1807,
+            "author": "lopey",
+            "text": "The antennule will flick to and fro\nOn a lobster, thus letting it know\nWhat's up in the water.\nThat aerial oughter\nGet channels like H2BO.",
+            "question": null,
+            "answer": null,
+            "token_count": 37,
+            "target_location": 0
+        },
+        {
+            "id": 69471,
+            "author": "SheilaB",
+            "text": "She kept moving around\u2014like a drifter;\nSam agreed from that lifestyle he'd lift her,\nBut her plan is a sham,\nAnd she's pulling a scam.\nSoon she'll scram; darling Pam is a grifter.",
+            "question": null,
+            "answer": null,
+            "token_count": 46,
+            "target_location": 0
+        },
+        {
+            "id": 65632,
+            "author": "Chris J. Strolin",
+            "text": "For his sexist remarks, Uncle Bert\nHas been ordered to work in a skirt.\nOf his penance, says he,\n\"It don't matter to me,\nBut the cut in my paycheck does hurt.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 41,
+            "target_location": 0
+        },
+        {
+            "id": 31851,
+            "author": "David Vestal",
+            "text": "My baccalaureate degree's what I prize,\nFor the knowledge and skill it implies.\nSo smart I seem alien,\nI'm sesquipedalian,\nAnd erudite, learned, and wise.",
+            "question": null,
+            "answer": null,
+            "token_count": 43,
+            "target_location": 0
+        },
+        {
+            "id": 71868,
+            "author": "Atticus Vere",
+            "text": "These \"boy singers\" have all looked the same:\nTousled hair, the right clothes \u2014 that's the game.\nNow he comes down the pike\nWith his pointy vandyke.\nOf course, he can't sing \u2014 what a shame!",
+            "question": null,
+            "answer": null,
+            "token_count": 53,
+            "target_location": 0
+        },
+        {
+            "id": 67176,
+            "author": "SheilaB",
+            "text": "\"When I nap after lunch,\" explained Rose,\n\"I don't sleep very deeply; I doze.\nI am easy to wake,\nSo shut up for God's sake,\nAnd keep still when you see my eyes close.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 44,
+            "target_location": 0
+        },
+        {
+            "id": 49605,
+            "author": "Charles Silliman",
+            "text": "Got a show business dream? Then determine\nIf your chest voice is strong; I'm affirmin'\nIf you belt high and long\nAnd can sell a show song,\nYou belong right along Ethel Merman.",
+            "question": null,
+            "answer": null,
+            "token_count": 45,
+            "target_location": 0
+        },
+        {
+            "id": 77458,
+            "author": "proof",
+            "text": "\"Take it easy, now, Skip. Keep it real.\nPlease don't vent the emotions you feel.\nJust calm down. Breathe out slow.\nLet disturbing thoughts go,\nAnd then go with the flow, even keel.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 48,
+            "target_location": 0
+        },
+        {
+            "id": 71437,
+            "author": "Kevin Lucas",
+            "text": "\"Where is Abel?\" God asks. \"I don't know.\nDo I need to keep track of my bro?\nIs his welfare,\" asks Cain,\n\"My concern?\" (He was slain\nBy Cain's hand, and God knew it. Uh-oh!)",
+            "question": null,
+            "answer": null,
+            "token_count": 53,
+            "target_location": 0
+        },
+        {
+            "id": 18077,
+            "author": "Jane Auerbach",
+            "text": "Not since great-grandpa Jack was last seen,\nWas a redhead with limbs long and lean\nRelated to us,\nAtavistically thus;\nMy brother has Jack's build and mien.",
+            "question": null,
+            "answer": null,
+            "token_count": 38,
+            "target_location": 0
+        },
+        {
+            "id": 12538,
+            "author": "Tim Alborn",
+            "text": "My blood sugar's high elevation\nReflected a bad situation.\nMy urine was sweet\nSince my pancreas, beat,\nHad decided to take a vacation.",
+            "question": null,
+            "answer": null,
+            "token_count": 32,
+            "target_location": 0
+        },
+        {
+            "id": 1314,
+            "author": "Chris Doyle",
+            "text": "Aphrodite's renowned sweet patootie\nWas Adonis, the symbol of beauty\nOf the masculine kind\n(I have rugged in mind):\nVery virile, not fruity, this cutie.",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 13313,
+            "author": "Jesse Frankovich",
+            "text": "Tipper rushed to the video store\nWith a deathly strong yearning to score\nSomething horribly thrilling\nWith torture and killing\nAnd bloodiness (plenty of gore).",
+            "question": null,
+            "answer": null,
+            "token_count": 36,
+            "target_location": 0
+        },
+        {
+            "id": 24435,
+            "author": "Chris Doyle",
+            "text": "In Beijing, people speak Pekingese\u2014\nTo the south, in Guangzhou, Cantonese.\nThough the difference is clear\nTo the Mandarin ear,\nFor all I know, they're both Siamese!",
+            "question": null,
+            "answer": null,
+            "token_count": 44,
+            "target_location": 0
+        },
+        {
+            "id": 83384,
+            "author": "Celia Warren",
+            "text": "Seems I'm shirking, so slow baling hay,\nBut the farmer says, \"No, that's fair play.\nIt's a back-breaking feat\nIn this terrible heat.\nAnd Rome wasn't built in a day.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 48,
+            "target_location": 0
+        },
+        {
+            "id": 77548,
+            "author": "JimInRoses",
+            "text": "I spend most of my birthdays abroad,\nSo that Time I can somehow defraud.\nFar from home, years don't mount,\nSo a birthday won't count...\nI suspect that this logic is flawed.",
+            "question": null,
+            "answer": null,
+            "token_count": 41,
+            "target_location": 0
+        },
+        {
+            "id": 35801,
+            "author": "mike scholtes",
+            "text": "Do our rulers have ethical health?\nNo, they're mostly old geezers with wealth.\nWas chrysocracy bred\nIn democracy's bed?\nWere we sleeping? Or did they use stealth?",
+            "question": null,
+            "answer": null,
+            "token_count": 39,
+            "target_location": 0
+        },
+        {
+            "id": 100259,
+            "author": "Chris J. Strolin",
+            "text": "This triple-cream cheese, I submit,\nWith its sweet, nutty taste, is a hit.\nThough the product's named Finn,\nSince it's wholly made in\nThe U.K. they should call this stuff Brit.",
+            "question": null,
+            "answer": null,
+            "token_count": 46,
+            "target_location": 0
+        },
+        {
+            "id": 2155,
+            "author": "Quickbeam",
+            "text": "Be it strongly or weakly anthropic,\nThis principle's quite a hot topic:\nAny great TOE\nThat negates you and me\n(Since we're here) clearly must be myopic.",
+            "question": null,
+            "answer": null,
+            "token_count": 41,
+            "target_location": 0
+        },
+        {
+            "id": 73800,
+            "author": "Ruchiccio",
+            "text": "My uncle got sick 'cause he smoked.\nEmphysemic, he gasped, wheezed and choked.\nStill, when crossing Death's door,\nHe looked sixty, no more.\n(He was forty years old when he croaked.)",
+            "question": null,
+            "answer": null,
+            "token_count": 50,
+            "target_location": 0
+        },
+        {
+            "id": 94443,
+            "author": "MikeAq",
+            "text": "You've a short (euryprosopic-type) face,\nWhile mine's long.  Let me cut to the chase:\nWith mine leptoprosopic,\nOsculation's my topic:\nWhose lips are the ones out of place?",
+            "question": null,
+            "answer": null,
+            "token_count": 51,
+            "target_location": 0
+        },
+        {
+            "id": 12341,
+            "author": "David",
+            "text": "A black swan ruled our waters today,\nHaving skied in on hisses of spray.\nBack and forth he swept by\nWith his regal head high,\nAntimonarchist me in his sway.",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 24786,
+            "author": "SusanL",
+            "text": "In a quest to become photogenic,\nShe's practicing moves calisthenic.\nBut jumping like Jack\nShe's twisted her back,\nAnd suffered a rupture that's splenic.",
+            "question": null,
+            "answer": null,
+            "token_count": 37,
+            "target_location": 0
+        },
+        {
+            "id": 68365,
+            "author": "Jdkbulus",
+            "text": "There was once a Greek geezer named Aesop\nWho loved talking the birds and the bees up.\nSaid a youth, \"Act your age!\"\n\"You mean senile, or sage?\nI will make all the fables I please up!\"",
+            "question": null,
+            "answer": null,
+            "token_count": 51,
+            "target_location": 0
+        },
+        {
+            "id": 69391,
+            "author": "Jdkbulus",
+            "text": "Norway's aphrizites \u2014 black tourmalines \u2014\n\"Frozen foam\" must be what the term means:\nScandinavian froth\nGoddess-pretty and goth,\nHard-to-score, yet attached to wild scenes.",
+            "question": null,
+            "answer": null,
+            "token_count": 49,
+            "target_location": 0
+        },
+        {
+            "id": 55428,
+            "author": "Shelby Forrest",
+            "text": "Eve's action appeared injudicious,\nConsidered by some as pernicious.\nWith guilt she was ridden;\nThe fruit was forbidden.\nThat apple, though\u2014oh, how delicious!",
+            "question": null,
+            "answer": null,
+            "token_count": 39,
+            "target_location": 0
+        },
+        {
+            "id": 43913,
+            "author": "Chris Doyle",
+            "text": "An intense theologian named Barth\nThought of God in the hush of a garth\u2014\nThis cortile, he'd say,\nGave him comfort by day\nSo at night he could pray by the hearth.",
+            "question": null,
+            "answer": null,
+            "token_count": 46,
+            "target_location": 0
+        },
+        {
+            "id": 105689,
+            "author": "Sussexdownsman",
+            "text": "A hot drink much desired by our vicar,\nBeing somewhat like cocoa but thicker,\nIs a dark chocolate brew,\nRather bittersweet too,\nBased on cocoa nib paste\u2014chocolate liquor.",
+            "question": null,
+            "answer": null,
+            "token_count": 39,
+            "target_location": 0
+        },
+        {
+            "id": 86079,
+            "author": "Roger Vick",
+            "text": "Some reforms cause political storms,\nThus upsetting free enterprise norms.\nCCF taught its group\nAll the socialist poop\u2014\nEducation takes multiple forms.",
+            "question": null,
+            "answer": null,
+            "token_count": 29,
+            "target_location": 0
+        },
+        {
+            "id": 22062,
+            "author": "John Critten",
+            "text": "Sympathetic accelerans nerve,\nIs my heart (and my blood) what you serve?\nOr are you my heart's master,\nGetting blood pumping faster\nWhenever I see a girl's curve?",
+            "question": null,
+            "answer": null,
+            "token_count": 41,
+            "target_location": 0
+        },
+        {
+            "id": 89267,
+            "author": "Goldie",
+            "text": "Tongue on fire, and it hurts me a lot!\nIt's all burning, so hot, what I got!\nKapow! SHUs!\nGot the chili pepper blues \u2014\nAll my nerves, all my taste buds are shot!",
+            "question": null,
+            "answer": null,
+            "token_count": 50,
+            "target_location": 0
+        },
+        {
+            "id": 30698,
+            "author": "S. A. McBurnie",
+            "text": "I'll admit I'm a poor lexicographer\nAnd I'm nobody's cinematographer;\nI'm content with my prints\nAnd their layers of tints.\nI'm your neighbourhood chromolithographer.",
+            "question": null,
+            "answer": null,
+            "token_count": 41,
+            "target_location": 0
+        },
+        {
+            "id": 33600,
+            "author": "Meps Schulte",
+            "text": "Said the millionaire, \"I'd never steal,\"\nBut I watched as he cadged a free meal.\nThen he took some gal's beer,\nSaying, \"Thanks, you're a dear.\"\nWhat a cheapskate! Is this guy for real?",
+            "question": null,
+            "answer": null,
+            "token_count": 54,
+            "target_location": 0
+        },
+        {
+            "id": 104999,
+            "author": "Celia Warren",
+            "text": "You're complaining from morning to night:\nFirst your room, now the food isn't right.\nYou sound quite beyond hope,\nBut the rest of us cope.\nJust get over yourself and your 'plight'.",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 41643,
+            "author": "Mary",
+            "text": "Cold water! That's what has been thrown\nOn my plans for a flat of my own\nWhen I summer downtown\nIn old London.  A frown\nFrom my papa: \"No living alone.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 44,
+            "target_location": 0
+        },
+        {
+            "id": 33238,
+            "author": "Chris J. Strolin",
+            "text": "An action game may feature fighting,\nOr the stealing of cars (how exciting!),\nOr war scenes chaotic,\nOr monsters psychotic.\nI don't find this B.S. inviting.",
+            "question": null,
+            "answer": null,
+            "token_count": 36,
+            "target_location": 0
+        },
+        {
+            "id": 91940,
+            "author": "Chris J. Strolin",
+            "text": "Of all of the job titles yet,\nWhat's the worst sounding? Cow leech, I'd bet.\nDid they suck blood from cattle?\nNo way. I'd say that'll\nBe just an old name for a vet.",
+            "question": null,
+            "answer": null,
+            "token_count": 47,
+            "target_location": 0
+        },
+        {
+            "id": 83383,
+            "author": "Celia Warren",
+            "text": "I should so like to give you a kiss.\nWould you kindly facilitate this?\nIt would be so much easier\n(Although you'd be freezier)\nIf that scarf round your face you'd dismiss.",
+            "question": null,
+            "answer": null,
+            "token_count": 41,
+            "target_location": 0
+        },
+        {
+            "id": 111146,
+            "author": "Atticus Vere",
+            "text": "Let's agree to this one truth, at least:\nIt was canicross slaughtered the beast.\nWith me harnessed behind,\nHis poor heart just resigned.\nNow my malamute's clearly deceased.",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 20270,
+            "author": "J. E. Pettit",
+            "text": "When the feverish dengue receiver\nDetached all his limbs with a cleaver,\nHe said, \"I've removed\nAll the pain, which has proved\nThat disarming relieves breakbone fever!\"",
+            "question": null,
+            "answer": null,
+            "token_count": 44,
+            "target_location": 0
+        },
+        {
+            "id": 47940,
+            "author": "speedysnail",
+            "text": "Winona the millipede knew\nThe quinone she'd secreted on you\nWould dissuade you from eating her:\nNothing was beating her\nMillipede kill-impede brew.",
+            "question": null,
+            "answer": null,
+            "token_count": 42,
+            "target_location": 0
+        },
+        {
+            "id": 15456,
+            "author": "sallycello",
+            "text": "He was cheerful and pleased with his life.\nShe was angry and pulled out a knife.\nThough the late aforementioned\nWas quite well intentioned;\nThat couldn't be said of his wife.",
+            "question": null,
+            "answer": null,
+            "token_count": 38,
+            "target_location": 0
+        },
+        {
+            "id": 83319,
+            "author": "Chris J. Strolin",
+            "text": "These everyday loafers of mine\nAre the kind I don't bother to shine.\nThey're for trips to the store\nAnd for walks on the shore.\nThough not fancy, I like 'em just fine.",
+            "question": null,
+            "answer": null,
+            "token_count": 43,
+            "target_location": 0
+        },
+        {
+            "id": 10043,
+            "author": "S. A. McBurnie",
+            "text": "Raise a glass to the hardy archaea.\nSome subsist (You ask how? No idea.)\nOn the sulfur that's sent\nThrough a hot deep-sea vent.\nFor myself, I prefer a tortilla.",
+            "question": null,
+            "answer": null,
+            "token_count": 45,
+            "target_location": 0
+        },
+        {
+            "id": 18384,
+            "author": "SheilaB",
+            "text": "I am bullheaded, biased\u2014what's worse\u2014\nI am wrongheaded, headstrong, perverse.\nI am pigheaded, mulish,\nSo dogged I'm foolish;\nI'm stubborn\u2014but not very terse.",
+            "question": null,
+            "answer": null,
+            "token_count": 45,
+            "target_location": 0
+        },
+        {
+            "id": 100807,
+            "author": "Len Farano",
+            "text": "The judgment against you was gross.\nYou were watchin' illegals, real close.\nGonna grant you a pardon\n'Fore your arteries harden.\nGood-bye Joe, you can go. Adios!",
+            "question": null,
+            "answer": null,
+            "token_count": 44,
+            "target_location": 0
+        },
+        {
+            "id": 63923,
+            "author": "proof",
+            "text": "When King Henry the Fifth learned to weave, he\nMade robes with a forty-inch sleeve. He\nWas warned by his man:\n\"When you're using the can,\nYour sleeve will be sloshing in pee, V.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 46,
+            "target_location": 0
+        },
+        {
+            "id": 61036,
+            "author": "Chris J. Strolin",
+            "text": "Though a full-blooded Cherokee brave,\nSoaring Eagle insists, \"Call me Dave.\"\nHe's an apple, all right,\nTrying hard to be white.\nHis proud father must spin in his grave.",
+            "question": null,
+            "answer": null,
+            "token_count": 41,
+            "target_location": 0
+        },
+        {
+            "id": 86941,
+            "author": "Janet McConnaughey",
+            "text": "\"Hey, Mom, I've a chance at my dream \u2014\nThe X-treme Harley Acrobats Team!\"\nShe frowned at me, scaring\nMe out of my daring:\nShe eyebrowed me out of my scheme.",
+            "question": "How did mom scare me out of joining the X-treme Harley Acrobats Team?",
+            "answer": "She frowned at me",
+            "token_count": 47,
+            "target_location": 11700
+        },
+        {
+            "id": 86735,
+            "author": "Goldie",
+            "text": "Why, you bloodthirsty beast, are you hopin'\nThat killin's a good way of copin'?\nThen eventerate me;\nCut me up and you'll see.\nCome eviscerate me, rip me open.",
+            "question": null,
+            "answer": null,
+            "token_count": 50,
+            "target_location": 0
+        },
+        {
+            "id": 82477,
+            "author": "SheilaB",
+            "text": "You declare that you'd like a critique\nOf your highly developed physique.\nWell, your buff, sculpted torso\nWould appear even more so\nWith a larger external oblique.",
+            "question": null,
+            "answer": null,
+            "token_count": 37,
+            "target_location": 0
+        },
+        {
+            "id": 92857,
+            "author": "Atticus Vere",
+            "text": "Are you down on your uppers of late?\nIs your piggy bank way underweight?\nAre you penniless, dragging?\n(Forgive me my nagging.)\nStill, there's hope for a lad of but eight.",
+            "question": null,
+            "answer": null,
+            "token_count": 46,
+            "target_location": 0
+        },
+        {
+            "id": 90125,
+            "author": "Chris J. Strolin",
+            "text": "Ping Bodie, now 50 years dead,\nIs recalled for just one thing he said:\n\"I do not room with Ruth,\"\nHe remarked. \"It's the truth.\nI just room with his suitcase instead.\"",
+            "question": null,
+            "answer": null,
+            "token_count": 43,
+            "target_location": 0
+        },
+        {
+            "id": 25840,
+            "author": "Dottie",
+            "text": "In the land of my ancestors' birth,\nWhere there's beauty and music and mirth,\nThere's a small sandy shore\nThat I'll always adore:\nAberdaron \u2014 the best place on Earth.",
+            "question": null,
+            "answer": null,
+            "token_count": 43,
+            "target_location": 0
+        },
+        {
+            "id": 63277,
+            "author": "Howard Spindel",
+            "text": "\u00a0",
+            "question": null,
+            "answer": null,
+            "token_count": 1,
+            "target_location": 0
+        }
+    ],
+    "text": "This is a test to see how well you are paying attention. This text is a series of limericks. At the end of the list of limericks, there will be a question. The question will be about one of the limericks. Please answer the question as concisely as possible.",
+    "token_count": 11998
 }

@@ -1,0 +1,72 @@
+---------------------------------
+Client: gpt-3.5-turbo-0125
+Prompt Size: 1499
+Location: 100
+Limerick: Dear fans, re the letters you write:
+Peace and love, but I'm losing the fight.
+From October, I'm sure,
+They'll be answered no more:
+I've no time. Peace and love, and goodnight.
+Question: From October, what will be answered no more?
+Good Answer: The letters fans write
+Generated Answer: The letters from fans will be answered no more.
+---------------------------------
+Client: gpt-3.5-turbo-0125
+Prompt Size: 1499
+Location: 1200
+Limerick: Oh, don't throw your toys out your pram!
+Yes, I treat all your emails as spam.
+Hurt your feelings? Don't care;
+I don't like you, so there!
+Just accept that I don't give a damn!
+Question: Why do I treat all your emails as spam?
+Good Answer: I don't like you
+Generated Answer: Because you don't like the sender.
+---------------------------------
+Client: gpt-3.5-turbo-0125
+Prompt Size: 11997
+Location: 100
+Limerick: To compose a morose epicedium
+Can brighten one's torpor and tedium.
+I myself have an urge
+To create a sad dirge —
+One not overly mournful, just medium.
+Question: How can one brighten one's torpor and tedium?
+Good Answer: Compose a morose epicedium
+Generated Answer: By engaging in activities that bring joy, excitement, and interest. This could include pursuing hobbies, spending time with loved ones, exploring new places, trying new experiences, or simply taking time to relax and unwind.
+---------------------------------
+Client: gpt-3.5-turbo-0125
+Prompt Size: 11997
+Location: 1200
+Limerick: Some folks might think cranberry glass
+Is for fruit of the cranberry class.
+But it's glass of deep red,
+With a gold sheen, and said
+To be sought by the English top brass.
+Question: What is sought by the English top brass?
+Good Answer: Cranberry glass
+Generated Answer: Bister, a pigment that is yellowish-brown.
+---------------------------------
+Client: gpt-3.5-turbo-0125
+Prompt Size: 11997
+Location: 5700
+Limerick: Oh, don't throw your toys out your pram!
+Yes, I treat all your emails as spam.
+Hurt your feelings? Don't care;
+I don't like you, so there!
+Just accept that I don't give a damn!
+Question: Why do I treat all your emails as spam?
+Good Answer: I don't like you
+Generated Answer: Because you don't like the sender.
+---------------------------------
+Client: gpt-3.5-turbo-0125
+Prompt Size: 11997
+Location: 11700
+Limerick: Cruciverbalists learn crosswordese,
+Filling puzzles with words such as these:
+Dies irae and busto —
+Less-used words that you must know
+To solve crossword puzzles with ease.
+Question: What do cruciverbalists learn?
+Good Answer: Crosswordese
+Generated Answer: Cruciverbalists learn crosswordese.
