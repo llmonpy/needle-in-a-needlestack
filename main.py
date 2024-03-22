@@ -12,7 +12,7 @@ ROUGH_QUESTION_LOCATIONS = [100, 1200, 5700, 11700, 80000, 99700]
 
 INTRO_TO_PROMPT = "This is a test to see how well you are paying attention. This text is a series of limericks. " \
     "At the end of the list of limericks, there will be a question. The question will be about one of the limericks. " \
-    "Please answer the question as concisely as possible."
+    "Please answer the question as concisely as possible. "
 
 
 class Limerick:
