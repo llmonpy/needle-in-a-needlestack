@@ -7,16 +7,17 @@
 > Unseen by me, focus led astray, I missed the play 
 
 Limerick park is a tool to test how well LLMs pay
-attention in specific parts of their context window. 
+attention in specific parts of their context window. It generates
+tests with a large list of limericks. It places
+a test limerick in a specified location in 
+the prompt and asks the LLM to answer a question about
+the test limerick.  A typical test might use 10 test
+limericks placed at 10-20 locations in the prompt.  
 It uses this database of limericks:
 
 > https://zenodo.org/records/5722527
 
-It will place a test limerick that a question/answer 
-pair has been generated for in a specified location in 
-the prompt and ask the LLM to answer the question about
-the test limerick.  A typical test might use 10 test
-limericks places at 10-20 locations in the prompt.  
+
 
 ## Using Limerick Park
 
