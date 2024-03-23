@@ -7,11 +7,17 @@ import tiktoken
 
 from llm_client import LLM_CLIENT_LIST
 
+NUMBER_OF_TEST_QUESTIONS_TO_GENERATE = 10
+
+GENERATED_QUESTION_FILE = "questions.json"
+
+FULL_QUESTION_FILE = "full_questions.json"
+
 PROMPT_SIZE_LIST = [ 1500, 6000, 12000, 100000]
 
 ROUGH_QUESTION_LOCATIONS = [100, 1200, 5700, 11700, 80000, 99700]
 
-NUMBER_OF_QUEStIONS_PER_PROMPT = 5
+NUMBER_OF_QUESTIONS_PER_PROMPT = 5
 
 INTRO_TO_PROMPT = "This is a test to see how well you are paying attention. This text is a series of limericks. " \
     "At the end of the list of limericks, there will be a question. The question will be about one of the limericks. " \
@@ -146,22 +152,6 @@ def read_and_init_limericks(file_path):
             result.append(limerick)
     return result
 
-
-def find_the_longest_limerick_in_tokens(limerick_list):
-    max_token_count = 0
-    max_limerick = None
-    for limerick in limerick_list:
-        if limerick.token_count > max_token_count:
-            max_token_count = limerick.token_count
-            max_limerick = limerick
-    print("Max length:", max_token_count)
-    print(max_limerick.text)
-    result_dict = { "max_token_count": max_token_count, "max_limerick": max_limerick.to_dict() }
-    with open("max_limerick.json", "w") as file:
-        json.dump(result_dict, file, indent=4)
-    return max_limerick
-
-
 def select_limericks_to_answer(limerick_list, number_of_answers):
     selected_limerick_dict = {}
     while len(selected_limerick_dict) < number_of_answers:
@@ -215,9 +205,9 @@ def select_limericks_for_prompt(limerick_list, question_dict, max_token_count):
     return result
 
 
-def generate_prompts(limerick_list, prompt_size_list, rough_question_location_list):
-    selected_question_list, selected_question_dict = select_questions_for_prompt("full_questions.json",
-                                                                                 NUMBER_OF_QUEStIONS_PER_PROMPT)
+def generate_tests(limerick_list, prompt_size_list):
+    selected_question_list, selected_question_dict = select_questions_for_prompt(FULL_QUESTION_FILE,
+                                                                                 NUMBER_OF_QUESTIONS_PER_PROMPT)
     max_token_count = prompt_size_list[-1]
     selected_limerick_list = select_limericks_for_prompt(limerick_list, selected_question_dict,
                                                          max_token_count)
@@ -230,8 +220,13 @@ def generate_prompts(limerick_list, prompt_size_list, rough_question_location_li
         for prompt in prompt_list:
             prompt.add_limerick(limerick)
     for prompt in prompt_list:
-        prompt.write_to_file("prompt_" + str(prompt.target_size) + ".json")
+        prompt.write_to_file("test_" + str(prompt.target_size) + ".json")
     return prompt_list
+
+
+def test_file_name(size):
+    result = "test_" + str(size) + ".json"
+    return result
 
 
 def print_result(prompt, client, question, location, result):
@@ -252,7 +247,7 @@ def write_prompt_text_to_file(prompt_text, prompt_file, client_name, location, q
         file.write(prompt_text)
 
 
-def run_prompts(prompt_file_list, client_list, question_location_list=ROUGH_QUESTION_LOCATIONS):
+def run_tests(prompt_file_list, client_list, question_location_list):
     for client in client_list:
         for prompt_file in prompt_file_list:
             with open(prompt_file, "r") as file:
@@ -271,15 +266,14 @@ def run_prompts(prompt_file_list, client_list, question_location_list=ROUGH_QUES
 
 
 if __name__ == '__main__':
-    # find_the_longest_limerick_in_tokens(read_and_init_limericks("limerick_dataset_oedilf_v3.json"))
-    print("Enter 1 to generate questions, 2 to generate prompts or 3 to run prompts:")
+    print("Enter 1 generate questions and answers for a limerick, 2 to generate tests or 3 to run tests:")
     user_input = input()
     user_input = user_input.strip()
     if user_input == "1":
-        generate_answers(read_and_init_limericks("limerick_dataset_oedilf_v3.json"), 7, "questions2.json")
+        generate_answers(read_and_init_limericks("limerick_dataset_oedilf_v3.json"), NUMBER_OF_TEST_QUESTIONS_TO_GENERATE, GENERATED_QUESTION_FILE)
     elif user_input == "2":
-        generate_prompts(read_and_init_limericks("limerick_dataset_oedilf_v3.json"), PROMPT_SIZE_LIST, ROUGH_QUESTION_LOCATIONS)
+        generate_tests(read_and_init_limericks("limerick_dataset_oedilf_v3.json"), PROMPT_SIZE_LIST)
     elif user_input == "3":
-        run_prompts(["prompt_12000.json", "prompt_6000.json"], LLM_CLIENT_LIST)
+        run_tests(["prompt_12000.json", "prompt_6000.json"], LLM_CLIENT_LIST, ROUGH_QUESTION_LOCATIONS)
     else:
         print("Invalid input")

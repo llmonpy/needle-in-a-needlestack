@@ -1,3 +1,4 @@
+# Copyright
 import os
 
 import anthropic
