@@ -1,10 +1,13 @@
+import concurrent
 import copy
 import json
 import os
 import random
 
+import openai
 import tiktoken
 
+from evaluator import DefaultEvaluator
 from llm_client import LLM_CLIENT_LIST
 
 NUMBER_OF_TEST_QUESTIONS_TO_GENERATE = 10
@@ -23,6 +26,9 @@ INTRO_TO_PROMPT = "This is a test to see how well you are paying attention. This
     "At the end of the list of limericks, there will be a question. The question will be about one of the limericks. " \
     "Please answer the question as concisely as possible. "
 
+
+EVALUATOR_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=4)
+TEST_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=4)
 
 class Limerick:
     def __init__(self, id, author, text, question=None, answer=None, tokens=None, token_count=None, target_location=0):
@@ -229,7 +235,7 @@ def test_file_name(size):
     return result
 
 
-def print_result(prompt, client, question, location, result):
+def print_result(prompt, client, question, location, result, score):
     print("---------------------------------")
     print("Client:", client.llm_name)
     print("Prompt Size:", prompt.token_count)
@@ -238,6 +244,7 @@ def print_result(prompt, client, question, location, result):
     print("Question:", question.question)
     print("Good Answer:", question.answer)
     print("Generated Answer:", result)
+    print("Score:", score)
 
 
 def write_prompt_text_to_file(prompt_text, prompt_file, client_name, location, question_id):
@@ -247,7 +254,7 @@ def write_prompt_text_to_file(prompt_text, prompt_file, client_name, location, q
         file.write(prompt_text)
 
 
-def run_tests(prompt_file_list, client_list, question_location_list):
+def run_tests(test_executor, evaluator_executor, prompt_file_list, client_list, question_location_list, evaluator):
     for client in client_list:
         for prompt_file in prompt_file_list:
             with open(prompt_file, "r") as file:
@@ -261,7 +268,8 @@ def run_tests(prompt_file_list, client_list, question_location_list):
                             if prompt_text is not None:
                                 prompt_text += "\n\n" + question.question
                                 result = client.prompt(prompt_text)
-                                print_result(prompt, client, question, location, result)
+                                score = evaluator.evaluate(evaluator_executor,question, result)
+                                print_result(prompt, client, question, location, result, score)
                                 write_prompt_text_to_file(prompt_text, prompt_file, client.llm_name, str(location), str(question.id))
 
 
@@ -274,6 +282,6 @@ if __name__ == '__main__':
     elif user_input == "2":
         generate_tests(read_and_init_limericks("limerick_dataset_oedilf_v3.json"), PROMPT_SIZE_LIST)
     elif user_input == "3":
-        run_tests(["prompt_12000.json", "prompt_6000.json"], LLM_CLIENT_LIST, ROUGH_QUESTION_LOCATIONS)
+        run_tests(["prompt_6000.json"], LLM_CLIENT_LIST, ROUGH_QUESTION_LOCATIONS, DefaultEvaluator())
     else:
         print("Invalid input")
