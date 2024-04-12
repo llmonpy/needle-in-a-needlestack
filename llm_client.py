@@ -66,4 +66,3 @@ ANTHROPIC_OPUS = AnthropicModel("claude-3-opus-20240229", 200000)
 ANTHROPIC_SONNET = AnthropicModel("claude-3-sonnet-20240229", 200000)
 ANTHROPIC_HAIKU = AnthropicModel("claude-3-haiku-20240307", 200000)
 
-LLM_CLIENT_LIST = [GPT3_5]
