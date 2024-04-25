@@ -78,5 +78,23 @@
         "question": "To what does the corticospinal pertain?",
         "answer": "The spine",
         "token_count": 42
+    },
+    {
+        "id": 84044,
+        "author": "SheilaB",
+        "text": "Uncle Wayne always gives me a pain.\nHis ideas are vain and inane.\nHe's both asinine (fatuous)\nAnd a gas bag who's flatuous.\nI treat the old fool with disdain.",
+        "question": "What is wrong with Uncle Waynes ideas?",
+        "answer": "Uncle Wayne's ideas are vain and inane.",
+        "token_count": 43,
+        "target_location": 0
+    },
+    {
+        "id": 99817,
+        "author": "Chris J. Strolin",
+        "text": "That damn call button jockey, room 9,\nIs a pain in the base of my spine.\nFor no reason he rings\nAbout minuscule things.\nHis sole purpose? To hear himself whine.",
+        "question": "What is the sole purpose of the button jockey in room 9?",
+        "answer": "To hear himself whine",
+        "token_count": 43,
+        "target_location": 0
     }
 ]

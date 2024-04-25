@@ -1,6 +1,8 @@
 import concurrent
 from string import Template
 
+# Using meaningless strings to avoid confusion.  Sometimes the correct answer to a question about a limerick is "No"
+# and the LLMs sometimes got confused and said that "No" was the incorrect answer when the correct answer was "No".
 PASS_ANSWER = "aaa"
 FAIL_ANSWER = "bbb"
 
@@ -52,7 +54,7 @@ def get_score_from_response(response_text):
 
 def evaluate_response(model, evaluation_prompt_text, system_prompt):
     response_text = model.prompt(evaluation_prompt_text, system_prompt)
-    print("response_text: ", response_text)
+    print("response_text: " + response_text + " model: " + model.llm_name)
     score = get_score_from_response(response_text)
     return score
 
