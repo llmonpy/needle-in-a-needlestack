@@ -6,6 +6,7 @@ import tiktoken
 NUMBER_OF_TEST_QUESTIONS_TO_GENERATE = 3
 GENERATED_QUESTION_FILE = "questions.json"
 FULL_QUESTION_FILE = "full_questions.json"
+LIMERICK_DATASET_FILE = "limerick_dataset_oedilf_v3.json"
 
 class Limerick:
     def __init__(self, id, author, text, question=None, answer=None, tokens=None, token_count=None, target_location=0):
@@ -79,5 +80,5 @@ def generate_answers(limerick_list, number_of_answers, file_path):
 
 
 if __name__ == '__main__':
-    generate_answers(read_and_init_limericks("limerick_dataset_oedilf_v3.json"), NUMBER_OF_TEST_QUESTIONS_TO_GENERATE, GENERATED_QUESTION_FILE)
+    generate_answers(read_and_init_limericks(LIMERICK_DATASET_FILE), NUMBER_OF_TEST_QUESTIONS_TO_GENERATE, GENERATED_QUESTION_FILE)
 

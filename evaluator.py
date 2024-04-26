@@ -60,7 +60,7 @@ def evaluate_response(model, evaluation_prompt_text, system_prompt):
 
 
 class EvaluatorInterface:
-    def evaluate(self, executor, evaluator_model_list, question, response):
+    def evaluate(self, evaluator_model_list, question, response):
         raise NotImplementedError
 
 
@@ -69,7 +69,7 @@ class DefaultEvaluator(EvaluatorInterface):
         self.evaluation_prompt = evaluation_prompt
         self.system_prompt = system_prompt
 
-    def evaluate(self, executor, evaluator_model_list, question, answer):
+    def evaluate(self, evaluator_model_list, question, answer):
         evaluation_prompt_template = Template(self.evaluation_prompt)
         evaluation_prompt_text = evaluation_prompt_template.substitute(limerick_text=question.text,
                                                                        question_text=question.question,
@@ -79,6 +79,7 @@ class DefaultEvaluator(EvaluatorInterface):
                                                                        fail_answer=FAIL_ANSWER)
         futures_list = []
         for model in evaluator_model_list:
+            executor = model.get_eval_executor()
             futures_list.append(executor.submit(evaluate_response, model, evaluation_prompt_text, self.system_prompt))
         yes_count = no_count = 0
         for future in concurrent.futures.as_completed(futures_list):
