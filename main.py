@@ -1,21 +1,12 @@
 import concurrent
-import copy
-import json
 import os
-import random
 from datetime import datetime
 
 from evaluator import DefaultEvaluator
-from limerick import Limerick, read_and_init_limericks, FULL_QUESTION_FILE
-from llm_client import GPT3_5
 from prompt import get_prompt
-from test_config import DEFAULT_TEST_CONFIG, TEST_MODEL_LIST, EVALUATOR_MODEL_LIST
+from test_config import DEFAULT_TEST_CONFIG
+from test_results import TestResults
 
-NUMBER_OF_QUESTIONS_PER_PROMPT = 5
-
-
-
-ROUGH_QUESTION_LOCATIONS = [100, 1200, 5700]
 
 def print_result(prompt, client, question, location, result, score):
     print("---------------------------------")
@@ -29,11 +20,12 @@ def print_result(prompt, client, question, location, result, score):
     print("Score:", score)
 
 
-def write_prompt_text_to_file(prompt_text, prompt_file, client_name, location, question_id):
-    file_name = prompt_file + "_" + client_name + "_" + location + "_" + question_id + ".txt"
-    file_path = os.path.join("full_prompts", file_name)
-    with open(file_path, "w") as file:
-        file.write(prompt_text)
+def write_prompt_text_to_file(prompt_text, model_results, config, location, question_id):
+    if config.write_prompt_text_to_file:
+        file_name = "p_" + location + "_" + question_id + ".txt"
+        file_path = os.path.join(model_results.directory, file_name)
+        with open(file_path, "w") as file:
+            file.write(prompt_text)
 
 
 def calculate_question_location_list(location_count, max_input):
@@ -48,33 +40,42 @@ def calculate_question_location_list(location_count, max_input):
     return result
 
 
-def test_model(prompt_text, model, config, evaluator, question):
-    result = model.prompt(prompt_text)
-    print("answered q " + str(question.id))
-    score = evaluator.evaluate(config.evaluator_model_list, question, result)
-    return result, score
+def test_model(results, prompt_text, model, config, evaluator, location, question, cycle_number):
+    try:
+        generated_answer = model.prompt(prompt_text)
+    except Exception as e:
+        raise e
+    results.set_test_result(model.llm_name, location, question.id, cycle_number, generated_answer)
+    score = evaluator.evaluate(results, config.evaluator_model_list, model.llm_name, location, question, cycle_number,
+                               generated_answer)
+    return generated_answer, score
 
-def run_tests_for_model(prompt, model, config, evaluator):
+
+def run_tests_for_model(results, prompt, model, config, evaluator):
     futures_list = []
     executor = concurrent.futures.ThreadPoolExecutor(max_workers=config.test_thread_count)
     question_list = prompt.question_list
     question_location_list = calculate_question_location_list(config.location_count, model.max_input)
+    model_results = results.add_model(model.llm_name, question_location_list, question_list, config.cycles, config.evaluator_model_list)
     for question in question_list:
         for location in question_location_list:
             prompt_text = prompt.build_text_from_limerick_list(question, location, 1)
             prompt_text += "\n\n" + question.question
-            print("asking question at location", location)
-            write_prompt_text_to_file(prompt_text, config.prompt_file_name, model.llm_name, str(location), str(question.id))
-            for i in range(config.cycles):
-                futures_list.append(executor.submit(test_model, prompt_text, model, config, evaluator, question))
-    for future in concurrent.futures.as_completed(futures_list):
-        result, score = future.result()
-        print("score: ", score)
+            write_prompt_text_to_file(prompt_text, model_results, config, str(location), str(question.id))
+            for cycle_number in range(config.cycles):
+                futures_list.append(executor.submit(test_model, results, prompt_text, model, config, evaluator,
+                                                    location, question, cycle_number))
+    return futures_list
 
 
-def run_tests(prompt, config, evaluator):
+def run_tests(results, prompt, config, evaluator):
+    futures_list = []
     for model in test_config.model_list:
-        run_tests_for_model(prompt, model, config, evaluator)
+        futures_list += run_tests_for_model(results, prompt, model, config, evaluator)
+    results.start()
+    for future in concurrent.futures.as_completed(futures_list):
+        generated_answer, score = future.result()
+        print("score: ", score)
 
 
 def calculate_max_token_count(model_list):
@@ -98,5 +99,6 @@ if __name__ == '__main__':
     max_prompt_size = calculate_max_token_count(test_config.model_list)
     test_directory = create_test_directory(test_config.result_directory)
     test_prompt = get_prompt(max_prompt_size, test_config)
-    run_tests( test_prompt, test_config, DefaultEvaluator())
+    test_results = TestResults(test_directory)
+    run_tests(test_results, test_prompt, test_config, DefaultEvaluator())
     print("Tests completed")

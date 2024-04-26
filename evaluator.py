@@ -53,14 +53,16 @@ def get_score_from_response(response_text):
 
 
 def evaluate_response(model, evaluation_prompt_text, system_prompt):
-    response_text = model.prompt(evaluation_prompt_text, system_prompt)
-    print("response_text: " + response_text + " model: " + model.llm_name)
+    try:
+        response_text = model.prompt(evaluation_prompt_text, system_prompt)
+    except Exception as e:
+        raise e
     score = get_score_from_response(response_text)
-    return score
+    return score, model.llm_name
 
 
 class EvaluatorInterface:
-    def evaluate(self, evaluator_model_list, question, response):
+    def evaluate(self, results, evaluator_model_list, model_name, location_name, question, cycle_number, answer):
         raise NotImplementedError
 
 
@@ -69,7 +71,7 @@ class DefaultEvaluator(EvaluatorInterface):
         self.evaluation_prompt = evaluation_prompt
         self.system_prompt = system_prompt
 
-    def evaluate(self, evaluator_model_list, question, answer):
+    def evaluate(self, results, evaluator_model_list, model_name, location_name, question, cycle_number, answer):
         evaluation_prompt_template = Template(self.evaluation_prompt)
         evaluation_prompt_text = evaluation_prompt_template.substitute(limerick_text=question.text,
                                                                        question_text=question.question,
@@ -83,11 +85,15 @@ class DefaultEvaluator(EvaluatorInterface):
             futures_list.append(executor.submit(evaluate_response, model, evaluation_prompt_text, self.system_prompt))
         yes_count = no_count = 0
         for future in concurrent.futures.as_completed(futures_list):
-            score = future.result()
+            score, evaluator_model_name = future.result()
             if score == 1:
                 yes_count += 1
+                passed = True
             elif score == 0:
                 no_count += 1
+                passed = False
+            results.set_evaluator_result(model_name, location_name, question.id, cycle_number, evaluator_model_name,
+                                         passed)
         if yes_count > no_count:
             result = 1
         else:

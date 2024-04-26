@@ -43,7 +43,7 @@ class RateLimiterTokenBucket:
 
     def get_token(self):
         try:
-            result = self.queue.get(timeout=(self.time_window * 2))
+            result = self.queue.get(timeout=(60*10))
         except Empty:
             print("could not get token " + self.name)
             raise Exception("Rate limit exceeded")
@@ -131,15 +131,15 @@ class MistralLlmClient(LlmClient):
         result = response.choices[0].message.content
         return result
 
-MISTRAL_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=90)
+MISTRAL_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 ANTHROPIC_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 OPENAI_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 
 MISTRAL_EVAL_RATE_LIMITER = RateLimiterTokenBucket("mistral_eval", 3, SECOND_TIME_WINDOW)
 MISTRAL_TEST_RATE_LIMITER = RateLimiterTokenBucket("mistral_test", 1, SECOND_TIME_WINDOW * 2)
 
-EVAL_MISTRAL_8X22B = MistralLlmClient("open-mixtral-8x22b", 32000, MISTRAL_EVAL_RATE_LIMITER, MISTRAL_EXECUTOR)
-MISTRAL_7B = MistralLlmClient("open-mistral-7b", 32000, MISTRAL_TEST_RATE_LIMITER, MISTRAL_EXECUTOR)
+EVAL_MISTRAL_8X22B = MistralLlmClient("open-mixtral-8x22b", 64000, MISTRAL_EVAL_RATE_LIMITER, MISTRAL_EXECUTOR)
+MISTRAL_7B = MistralLlmClient("open-mistral-7b", 16000, MISTRAL_TEST_RATE_LIMITER, MISTRAL_EXECUTOR)
 EVAL_GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 16000, RateLimiterTokenBucket("open_ai_35_eval",500, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
 EVAL_GPT4 = OpenAIModel('gpt-4-turbo', 128000, RateLimiterTokenBucket("open_ai_4_eval",500, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
 GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 16000, RateLimiterTokenBucket("open_ai_35_test", 50, MINUTE_TIME_WINDOW))
