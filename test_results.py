@@ -127,6 +127,14 @@ class LocationScore:
         self.score = score
         self.cycle_scores = cycle_scores
 
+    def get_cycle_score(self, cycle_number):
+        result = None
+        for cycle_score in self.cycle_scores:
+            if cycle_score.cycle_number == cycle_number:
+                result = cycle_score
+                break
+        return result
+
     def to_dict(self):
         result = copy.copy(vars(self))
         if self.cycle_scores is not None:
@@ -161,12 +169,25 @@ class ModelScore:
                 index += 1
         return result
 
+    def get_location_cycle_scores(self):
+        cycle_name_list = [cycle_score.cycle_number for cycle_score in self.location_scores[0].cycle_scores]
+        result = []
+        for cycle_name in cycle_name_list:
+            location_cycle_scores = []
+            for location_score in self.location_scores:
+                cycle_score = location_score.get_cycle_score(cycle_name)
+                location_cycle_scores.append(cycle_score.score * 100)
+            result.append(location_cycle_scores)
+        return result
+
     def write_plot(self, plot_file_name):
         labels = [location.location_token_position for location in self.location_scores]
         values = [round(location.score * 100) for location in self.location_scores]
-
+        get_location_cycle_scores = self.get_location_cycle_scores()
         plot.figure(figsize=(10, 10))
-        plot.plot(labels, values, marker='o')
+        for location_cycle_scores in get_location_cycle_scores:
+            plot.plot(labels, location_cycle_scores, linewidth=1, color="#b3d0fc", alpha=0.5)
+        plot.plot(labels, values, linewidth=3, color='black', label="Average", marker='o')
         plot.title('Limerick Question Answering')
         plot.xlabel('Location(tokens)')
         plot.ylabel('Percent Correct')
