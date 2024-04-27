@@ -1,8 +1,11 @@
 from llm_client import GPT3_5, EVAL_ANTHROPIC_HAIKU, EVAL_GPT3_5, \
-    EVAL_ANTHROPIC_SONNET, EVAL_MISTRAL_8X22B, MISTRAL_7B, MIXTRAL_8X7B, EVAL_GPT4
+    EVAL_ANTHROPIC_SONNET, EVAL_MISTRAL_8X22B, MISTRAL_7B, MIXTRAL_8X7B, EVAL_GPT4, MISTRAL_8X22B
 
-EVALUATOR_MODEL_LIST = [EVAL_ANTHROPIC_HAIKU, EVAL_GPT3_5, EVAL_GPT4, EVAL_MISTRAL_8X22B, EVAL_GPT4]
-TEST_MODEL_LIST = [GPT3_5, MISTRAL_7B, MIXTRAL_8X7B]
+
+EVALUATOR_MODEL_LIST = [EVAL_ANTHROPIC_HAIKU, EVAL_GPT3_5, EVAL_GPT3_5, EVAL_MISTRAL_8X22B, EVAL_GPT4]
+TEST_MODEL_LIST = [GPT3_5]
+
+
 class TestConfig:
     def __init__(self, prompt_file_name, model_list, test_thread_count, evaluator_model_list, number_of_questions_per_cycle,
                  cycles, location_count, result_directory, write_prompt_text_to_file):
@@ -18,5 +21,5 @@ class TestConfig:
 
 
 DEFAULT_TEST_CONFIG = TestConfig("test_prompt", TEST_MODEL_LIST, 100, EVALUATOR_MODEL_LIST,
-                                 5,5,
-                                 5, "tests", True)
+                                 10,10,
+                                 10, "tests", True)

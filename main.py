@@ -3,10 +3,12 @@ import os
 from datetime import datetime
 
 from evaluator import DefaultEvaluator
+from llm_client import backoff_after_exception, PROMPT_RETRIES
 from prompt import get_prompt
 from test_config import DEFAULT_TEST_CONFIG
 from test_results import TestResults
 
+NO_GENERATED_ANSWER = "ACEGIKMOQSUWY"
 
 def print_result(prompt, client, question, location, result, score):
     print("---------------------------------")
@@ -40,11 +42,19 @@ def calculate_question_location_list(location_count, max_input):
     return result
 
 
+
 def test_model(results, prompt_text, model, config, evaluator, location, question, cycle_number):
-    try:
-        generated_answer = model.prompt(prompt_text)
-    except Exception as e:
-        raise e
+    for attempt in range(PROMPT_RETRIES):
+        try:
+            generated_answer = model.prompt(prompt_text)
+            break
+        except Exception as e:
+            generated_answer = NO_GENERATED_ANSWER
+            results.add_test_exception(model.llm_name, location, question.id, cycle_number, attempt, e)
+            if attempt == 2:
+                print("Exception on attempt 3")
+            backoff_after_exception(attempt)
+            continue
     results.set_test_result(model.llm_name, location, question.id, cycle_number, generated_answer)
     score = evaluator.evaluate(results, config.evaluator_model_list, model.llm_name, location, question, cycle_number,
                                generated_answer)
@@ -52,6 +62,7 @@ def test_model(results, prompt_text, model, config, evaluator, location, questio
 
 
 def run_tests_for_model(results, prompt, model, config, evaluator):
+    print("starting tests for model: ", model.llm_name)
     futures_list = []
     executor = concurrent.futures.ThreadPoolExecutor(max_workers=config.test_thread_count)
     question_list = prompt.question_list
@@ -65,6 +76,7 @@ def run_tests_for_model(results, prompt, model, config, evaluator):
             for cycle_number in range(config.cycles):
                 futures_list.append(executor.submit(test_model, results, prompt_text, model, config, evaluator,
                                                     location, question, cycle_number))
+    print("Number of tests ", len(futures_list))
     return futures_list
 
 

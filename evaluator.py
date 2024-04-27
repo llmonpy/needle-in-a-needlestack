@@ -1,6 +1,9 @@
 import concurrent
 from string import Template
 
+from llm_client import backoff_after_exception
+from llm_client import PROMPT_RETRIES
+
 # Using meaningless strings to avoid confusion.  Sometimes the correct answer to a question about a limerick is "No"
 # and the LLMs sometimes got confused and said that "No" was the incorrect answer when the correct answer was "No".
 PASS_ANSWER = "aaa"
@@ -52,11 +55,18 @@ def get_score_from_response(response_text):
     return score
 
 
-def evaluate_response(model, evaluation_prompt_text, system_prompt):
-    try:
-        response_text = model.prompt(evaluation_prompt_text, system_prompt)
-    except Exception as e:
-        raise e
+def evaluate_response(model, evaluation_prompt_text, system_prompt, location_name, question, cycle_number, results):
+    for attempt in range(PROMPT_RETRIES):
+        try:
+            response_text = model.prompt(evaluation_prompt_text, system_prompt)
+            break
+        except Exception as e:
+            response_text = FAIL_ANSWER
+            results.add_test_exception(model.llm_name, location_name, question.id, cycle_number, attempt, e)
+            if attempt == 2:
+                print("Exception on attempt 3")
+            backoff_after_exception(attempt)
+            continue
     score = get_score_from_response(response_text)
     return score, model.llm_name
 
@@ -82,7 +92,8 @@ class DefaultEvaluator(EvaluatorInterface):
         futures_list = []
         for model in evaluator_model_list:
             executor = model.get_eval_executor()
-            futures_list.append(executor.submit(evaluate_response, model, evaluation_prompt_text, self.system_prompt))
+            futures_list.append(executor.submit(evaluate_response, model, evaluation_prompt_text, self.system_prompt,
+                                                location_name, question, cycle_number, results))
         yes_count = no_count = 0
         for future in concurrent.futures.as_completed(futures_list):
             score, evaluator_model_name = future.result()

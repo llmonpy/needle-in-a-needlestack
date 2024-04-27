@@ -5,18 +5,59 @@ import threading
 import matplotlib.pyplot as plot
 
 from limerick import Limerick
+from llm_client import PROMPT_RETRIES
 
 STATUS_REPORT_INTERVAL = 5 # seconds
 
 
+class TestResultExceptionReport:
+    def __init__(self, location_name, question_id, cycle_number, attempt, exception_message):
+        self.location_name = location_name
+        self.question_id = question_id
+        self.cycle_number = cycle_number
+        self.attempt = attempt
+        self.exception_message = exception_message
+
+    def to_dict(self):
+        result = copy.copy(vars(self))
+        return result
+
+    @staticmethod
+    def from_dict(dictionary):
+        result = TestResultExceptionReport(**dictionary)
+        return result
+
+
+class EvaluationExceptionReport:
+    def __init__(self, location_name, question_id, cycle_number, attempt, evaluation_model_name, exception_message):
+        self.location_name = location_name
+        self.question_id = question_id
+        self.cycle_number = cycle_number
+        self.attempt = attempt
+        self.evaluation_model_name = evaluation_model_name
+        self.exception_message = exception_message
+
+    def to_dict(self):
+        result = copy.copy(vars(self))
+        return result
+
+    @staticmethod
+    def from_dict(dictionary):
+        result = EvaluationExceptionReport(**dictionary)
+        return result
+
+
 class StatusReport:
-    def __init__(self, model_name):
+    def __init__(self, model_name, failed_test_count=0, failed_evaluation_count=0):
         self.model_name = model_name
+        self.failed_test_count = failed_test_count
+        self.failed_evaluation_count = failed_evaluation_count
         self.test_count = 0
         self.answered_test_count = 0
         self.finished_test_count = 0
         self.evaluator_count = 0
         self.finished_evaluator_count = 0
+        self.waiting_for_evaluator_count = {}
 
     def add_test(self, has_answer, is_finished):
         self.test_count += 1
@@ -25,10 +66,13 @@ class StatusReport:
         if is_finished:
             self.finished_test_count += 1
 
-    def add_evaluator_test(self, finished):
+    def add_evaluator_test(self, finished, evaluator_model_name):
         self.evaluator_count += 1
         if finished:
             self.finished_evaluator_count += 1
+        else:
+            current_count = self.waiting_for_evaluator_count.get(evaluator_model_name, 0)
+            self.waiting_for_evaluator_count[evaluator_model_name] = current_count + 1
 
     def is_finished(self):
         result = self.test_count == self.finished_test_count
@@ -38,12 +82,33 @@ class StatusReport:
         print("Model: ", self.model_name)
         print("Tests: ", self.test_count, " Answered: ", self.answered_test_count, " Finished: ", self.finished_test_count)
         print("Evaluators: ", self.evaluator_count, " Finished: ", self.finished_evaluator_count)
+        for evaluator_model_name in self.waiting_for_evaluator_count:
+            count = self.waiting_for_evaluator_count[evaluator_model_name]
+            print("Waiting for evaluator: ", evaluator_model_name, " Count: ", count)
+        print("Failed Tests: ", self.failed_test_count, " Failed Evaluations: ", self.failed_evaluation_count)
         print("--------------------")
 
 
-class LocationScore:
-    def __init__(self, location_token_position, score):
-        self.location_token_position = location_token_position
+class ScoreAccumulator:
+    def __init__(self):
+        self.cumulative_score = 0
+        self.count = 0
+
+    def add_score(self, score):
+        self.cumulative_score += score
+        self.count += 1
+
+    def get_score(self):
+        if self.count > 0:
+            result = self.cumulative_score / self.count
+        else:
+            result = 0
+        return result
+
+
+class CycleScore:
+    def __init__(self, cycle_number, score):
+        self.cycle_number = cycle_number
         self.score = score
 
     def to_dict(self):
@@ -52,6 +117,32 @@ class LocationScore:
 
     @staticmethod
     def from_dict(dictionary):
+        result = CycleScore(**dictionary)
+        return result
+
+
+class LocationScore:
+    def __init__(self, location_token_position, score, cycle_scores=None):
+        self.location_token_position = location_token_position
+        self.score = score
+        self.cycle_scores = cycle_scores
+
+    def to_dict(self):
+        result = copy.copy(vars(self))
+        if self.cycle_scores is not None:
+            index = 0
+            for cycle_score in self.cycle_scores:
+                result["cycle_scores"][index] = cycle_score.to_dict()
+                index += 1
+        return result
+
+    @staticmethod
+    def from_dict(dictionary):
+        cycle_scores = dictionary.get("cycle_scores", None)
+        if cycle_scores is not None:
+            dictionary.pop("cycle_scores", None)
+            cycle_scores = [CycleScore.from_dict(cycle) for cycle in cycle_scores]
+            dictionary["cycle_scores"] = cycle_scores
         result = LocationScore(**dictionary)
         return result
 
@@ -88,7 +179,7 @@ class ModelScore:
         location_scores = dictionary.get("location_scores", None)
         if location_scores is not None:
             dictionary.pop("location_scores", None)
-            location_scores = [LocationScore.from_dict(result) for result in location_scores]
+            location_scores = [LocationScore.from_dict(location) for location in location_scores]
             dictionary["location_scores"] = location_scores
         result = ModelScore(**dictionary)
         return result
@@ -170,7 +261,7 @@ class CycleResult:
         finished = True
         passed_count = 0
         for evaluator_result in self.evaluator_results:
-            status_report.add_evaluator_test(evaluator_result.is_finished())
+            status_report.add_evaluator_test(evaluator_result.is_finished(), evaluator_result.model_name)
             if evaluator_result.is_finished():
                 if evaluator_result.passed:
                     passed_count += 1
@@ -226,6 +317,16 @@ class QuestionResults:
     def get_cycle(self, cycle_number):
         result = self.cycle_results[cycle_number]
         return result
+
+    def get_cycle_names(self):
+        result = [cycle_result.cycle_number for cycle_result in self.cycle_results]
+        return result
+
+    def add_score_for_cycle(self, cycle_name, score_accumulator):
+        for cycle_result in self.cycle_results:
+            if cycle_result.cycle_number == cycle_name:
+                score_accumulator.add_score(cycle_result.passed)
+                break
 
     def calculate_scores(self, status_report):
         correct_results = 0
@@ -298,6 +399,17 @@ class LocationResults:
             self.score = cumulative_score / score_count
         return self.score
 
+    def get_cycle_scores(self):
+        result = []
+        cycle_name_list = self.question_result_list[0].get_cycle_names()
+        for cycle_name in cycle_name_list:
+            accumulated_score = ScoreAccumulator()
+            for question_result in self.question_result_list:
+                question_result.add_score_for_cycle(cycle_name, accumulated_score)
+            cycle_score = CycleScore(cycle_name, accumulated_score.get_score())
+            result.append(cycle_score)
+        return result
+
     def to_dict(self):
         result = copy.copy(vars(self))
         if self.question_result_list is not None:
@@ -320,10 +432,18 @@ class LocationResults:
 
 class ModelResults:
     def __init__(self, directory, model_name, location_token_index_list, question_list, cycles, evaluator_model_list,
-                 location_list=None):
+                 location_list=None, test_exception_list=None, evaluation_exception_list=None):
         self.directory = directory
         self.model_name = model_name
         self.location_list = location_list
+        self.test_exception_list = test_exception_list
+        if self.test_exception_list is None:
+            self.test_exception_list = []
+        self.failed_test_count = 0
+        self.evaluation_exception_list = evaluation_exception_list
+        if self.evaluation_exception_list is None:
+            self.evaluation_exception_list = []
+        self.failed_evaluation_count = 0
         if self.location_list is None:
             self.location_list = []
             for location in location_token_index_list:
@@ -340,7 +460,7 @@ class ModelResults:
         return result
 
     def calculate_scores(self):
-        status_report = StatusReport(self.model_name)
+        status_report = StatusReport(self.model_name, self.failed_test_count, self.failed_evaluation_count)
         for location in self.location_list:
             location.calculate_scores(status_report)
         status_report.print()
@@ -349,16 +469,45 @@ class ModelResults:
     def get_location_scores(self):
         result = []
         for location in self.location_list:
-            location_score = LocationScore(location.location_token_position, location.score)
+            cycle_scores = location.get_cycle_scores()
+            location_score = LocationScore(location.location_token_position, location.score, cycle_scores)
             result.append(location_score)
         return result
 
+    def add_test_exception(self, location_name, question_id, cycle_number, attempt, exception):
+        print("Test Exception: ", str(exception))
+        exception_report = TestResultExceptionReport(location_name, question_id, cycle_number, attempt,str(exception))
+        self.test_exception_list.append(exception_report)
+        if attempt == PROMPT_RETRIES - 1:
+            self.failed_test_count += 1
+            print("Failed Test Count: ", self.failed_test_count)
+
+    def add_evaluation_exception(self, location_name, question_id, cycle_number, attempt, evaluation_model_name,
+                                 exception):
+        print("Evaluation Exception: ", str(exception))
+        exception_report = EvaluationExceptionReport(location_name, question_id, cycle_number, attempt,
+                                                     evaluation_model_name, str(exception))
+        self.evaluation_exception_list.append(exception_report)
+        if attempt == PROMPT_RETRIES - 1:
+            self.failed_evaluation_count += 1
+            print("Failed Evaluation Count: ", self.failed_evaluation_count)
+
     def to_dict(self):
-        result = copy.copy(vars(self))
+        result = copy.deepcopy(vars(self))
         if self.location_list is not None:
             index = 0
             for location in self.location_list:
                 result["location_list"][index] = location.to_dict()
+                index += 1
+        if self.test_exception_list is not None:
+            index = 0
+            for exception_report in self.test_exception_list:
+                result["test_exception_list"][index] = exception_report.to_dict()
+                index += 1
+        if self.evaluation_exception_list is not None:
+            index = 0
+            for exception_report in self.evaluation_exception_list:
+                result["evaluation_exception_list"][index] = exception_report.to_dict()
                 index += 1
         result.pop("directory", None)
         return result
@@ -368,10 +517,81 @@ class ModelResults:
         location_list = dictionary.get("location_list", None)
         if location_list is not None:
             dictionary.pop("location_list", None)
-            location_list = [LocationResults.from_dict(result) for result in location_list]
+            location_list = [LocationResults.from_dict(location) for location in location_list]
             dictionary["location_list"] = location_list
+        test_exception_list = dictionary.get("test_exception_list", None)
+        if test_exception_list is not None:
+            dictionary.pop("test_exception_list", None)
+            test_exception_list = [TestResultExceptionReport.from_dict(report) for report in test_exception_list]
+            dictionary["test_exception_list"] = test_exception_list
+        evaluation_exception_list = dictionary.get("evaluation_exception_list", None)
+        if evaluation_exception_list is not None:
+            dictionary.pop("evaluation_exception_list", None)
+            evaluation_exception_list = [EvaluationExceptionReport.from_dict(report) for report in evaluation_exception_list]
+            dictionary["evaluation_exception_list"] = evaluation_exception_list
         result = ModelResults(**dictionary)
         return result
+
+
+class BaseTestResultAction:
+    def __init__(self, results, model_name, location_name, question_id, cycle_number):
+        self.results = results
+        self.model_name = model_name
+        self.location_name = location_name
+        self.question_id = question_id
+        self.cycle_number = cycle_number
+
+    def get_model_results(self):
+        result = self.results.get_model_results(self.model_name)
+        return result
+
+    def get_cycle(self):
+        result = self.get_model_results().get_cycle(self.location_name, self.question_id, self.cycle_number)
+        return result
+
+    def execute(self):
+        raise NotImplementedError
+
+
+class SetTestResultAction(BaseTestResultAction):
+    def __init__(self, results, model_name, location_name, question_id, cycle_number, generated_answer):
+        super().__init__(results, model_name, location_name, question_id, cycle_number)
+        self.generated_answer = generated_answer
+
+    def execute(self):
+        self.get_cycle().set_generated_answer(self.generated_answer)
+
+
+class SetEvaluatorResultAction(BaseTestResultAction):
+    def __init__(self, results, model_name, location_name, question_id, cycle_number, evaluator_model_name, passed):
+        super().__init__(results, model_name, location_name, question_id, cycle_number)
+        self.evaluator_model_name = evaluator_model_name
+        self.passed = passed
+
+    def execute(self):
+        self.get_cycle().set_evaluator_result(self.evaluator_model_name, self.passed)
+
+
+class AddTestExceptionAction(BaseTestResultAction):
+    def __init__(self, results, model_name, location_name, question_id, cycle_number, attempt, exception):
+        super().__init__(results, model_name, location_name, question_id, cycle_number)
+        self.attempt = attempt
+        self.exception = exception
+
+    def execute(self):
+        self.get_model_results().add_test_exception(self.location_name, self.question_id, self.cycle_number, self.attempt, self.exception)
+
+
+class AddEvaluationExceptionAction(BaseTestResultAction):
+    def __init__(self, results, model_name, location_name, question_id, cycle_number, evaluation_model_name, attempt, exception):
+        super().__init__(results, model_name, location_name, question_id, cycle_number)
+        self.evaluation_model_name = evaluation_model_name
+        self.attempt = attempt
+        self.exception = exception
+
+    def execute(self):
+        self.get_model_results().add_evaluation_exception(self.location_name, self.question_id, self.cycle_number,
+                                                          self.evaluation_model_name, self.attempt, self.exception)
 
 
 class TestResults:
@@ -380,22 +600,37 @@ class TestResults:
         self.model_results_list = model_results_list
         if self.model_results_list is None:
             self.model_results_list = []
-        self.results_list_lock = threading.Lock()
+        self.action_list = []
+        self.action_list_lock = threading.Lock()
         self.started = False
         self.timer = None
 
+    def add_action(self, action):
+        with self.action_list_lock:
+            self.action_list.append(action)
+
+    def reset_and_return_actions(self):
+        with self.action_list_lock:
+            result = self.action_list
+            self.action_list = []
+        return result
+
+    def execute_actions(self):
+        actions = self.reset_and_return_actions()
+        for action in actions:
+            action.execute()
+
     def start(self):
         self.started = True
-        self.timer = threading.Timer(interval=STATUS_REPORT_INTERVAL, function=self.report_status)
+        self.timer = threading.Timer(interval=STATUS_REPORT_INTERVAL, function=self.update_and_report_status)
         self.timer.start()
 
     def get_model_results(self, model_name):
         result = None
-        with self.results_list_lock:
-            for model_results in self.model_results_list:
-                if model_results.model_name == model_name:
-                    result = model_results
-                    break
+        for model_results in self.model_results_list:
+            if model_results.model_name == model_name:
+                result = model_results
+                break
         return result
 
     def get_model_results_directory(self, model_name):
@@ -405,8 +640,7 @@ class TestResults:
 
     def copy_model_results_list(self):
         result = None
-        with self.results_list_lock:
-            result = copy.deepcopy(self.model_results_list)
+        result = copy.deepcopy(self.model_results_list)
         return result
 
     def add_model(self, model_name, location_list, question_list, cycles, evaluator_model_list):
@@ -416,28 +650,33 @@ class TestResults:
         return model_results
 
     def set_test_result(self, model_name, location_name, question_id, cycle_number, generated_answer):
-        # this is thread safe because only one thread will set each test_result.  Need to use a lock to get model
-        # results because the status reporter copies the current results before processing for thread safety
-        model_result = self.get_model_results(model_name)
-        cycle = model_result.get_cycle(location_name, question_id, cycle_number)
-        cycle.set_generated_answer(generated_answer)
+        action = SetTestResultAction(self, model_name, location_name, question_id, cycle_number, generated_answer)
+        self.add_action(action)
 
     def set_evaluator_result(self, model_name, location_name, question_id, cycle_number, evaluator_model_name, passed):
-        # this is thread safe because only one thread will set each evaluator_result.  Need to use a lock to get model
-        # results because the status reporter copies the current results before processing for thread safety
-        model_result = self.get_model_results(model_name)
-        cycle = model_result.get_cycle(location_name, question_id, cycle_number)
-        cycle.set_evaluator_result(evaluator_model_name, passed)
+        action = SetEvaluatorResultAction(self, model_name, location_name, question_id, cycle_number,
+                                          evaluator_model_name, passed)
+        self.add_action(action)
+
+    def add_test_exception(self, model_name, location_name, question_id, cycle_number, attempt, exception):
+        action = AddTestExceptionAction(self, model_name, location_name, question_id, cycle_number, attempt, exception)
+        self.add_action(action)
+
+    def add_evaluation_exception(self, model_name, location_name, question_id, cycle_number, evaluation_model_name,
+                                 attempt, exception):
+        action = AddEvaluationExceptionAction(self, model_name, location_name, question_id, cycle_number,
+                                              evaluation_model_name, attempt, exception)
+        self.add_action(action)
 
     def calculate_scores(self):
-        # this is not thread safe, but is only called after all tests are finished
         for model_result in self.model_results_list:
             model_result.calculate_scores()
 
-    def report_status(self):
+    def update_and_report_status(self):
         if not self.started:
             return
-        current_results_list = self.copy_model_results_list()
+        self.execute_actions()
+        current_results_list = self.model_results_list
         model_status_list = []
         finished = True
         for model_results in current_results_list:
@@ -446,7 +685,8 @@ class TestResults:
                 finished = False
             model_status_list.append(status_report)
         if not finished:
-            self.timer = threading.Timer(interval=STATUS_REPORT_INTERVAL, function=self.report_status)
+            self.write_full_results(current_results_list)
+            self.timer = threading.Timer(interval=STATUS_REPORT_INTERVAL, function=self.update_and_report_status)
             self.timer.start()
         else:
             model_score_list = []
@@ -463,6 +703,7 @@ class TestResults:
             print("All tests are finished")
 
     def write_full_results(self, results_list):
+        results_list = copy.deepcopy(results_list)
         for model_results in results_list:
             full_results_name = model_results.model_name + "_full_results.json"
             file_name = os.path.join(self.test_result_directory, full_results_name)
@@ -470,3 +711,15 @@ class TestResults:
                 results_dict = model_results.to_dict()
                 json.dump(results_dict, file, indent=4)
 
+
+if __name__ == '__main__':
+    model_scores_path = os.environ.get("MODEL_SCORES")
+    with open(model_scores_path, "r") as file:
+        model_scores_dict = json.load(file)
+        test_model_scores = TestModelScores.from_dict(model_scores_dict)
+        for model_score in test_model_scores.model_scores:
+            print("Model: ", model_score.model_name)
+            plot_name = model_score.model_name + "_plot.png"
+            model_score.write_plot(plot_name)
+        print("done")
+        exit(0)
