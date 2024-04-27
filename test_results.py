@@ -2,6 +2,7 @@ import copy
 import json
 import os
 import threading
+import matplotlib.pyplot as plot
 
 from limerick import Limerick
 
@@ -68,6 +69,19 @@ class ModelScore:
                 result["location_scores"][index] = location_score.to_dict()
                 index += 1
         return result
+
+    def write_plot(self, plot_file_name):
+        labels = [location.location_token_position for location in self.location_scores]
+        values = [round(location.score * 100) for location in self.location_scores]
+
+        plot.figure(figsize=(10, 10))
+        plot.plot(labels, values, marker='o')
+        plot.title('Limerick Question Answering')
+        plot.xlabel('Location(tokens)')
+        plot.ylabel('Percent Correct')
+        plot.grid(True)
+        plot.ylim(0, 100)
+        plot.savefig(plot_file_name, dpi=300)
 
     @staticmethod
     def from_dict(dictionary):
@@ -164,7 +178,10 @@ class CycleResult:
                 finished = False
         if finished:
             self.passed = passed_count > (len(self.evaluator_results) / 2)
-            self.dissent_count = len(self.evaluator_results) - passed_count
+            self.dissent_count = 0
+            for evaluator_result in self.evaluator_results:
+                if evaluator_result.passed != self.passed:
+                    self.dissent_count += 1
 
     def set_generated_answer(self, generated_answer):
         self.generated_answer = generated_answer
@@ -436,16 +453,20 @@ class TestResults:
             for model_results in current_results_list:
                 location_scores = model_results.get_location_scores()
                 model_score = ModelScore(model_results.model_name, location_scores)
+                plot_name = model_results.model_name + "_plot.png"
+                plot_file_name = os.path.join(self.test_result_directory, plot_name)
+                model_score.write_plot(plot_file_name)
                 model_score_list.append(model_score)
             test_model_scores = TestModelScores(model_score_list)
             test_model_scores.write_to_file(os.path.join(self.test_result_directory, "model_scores.json"))
-            self.write_results(current_results_list)
+            self.write_full_results(current_results_list)
             print("All tests are finished")
 
-    def write_results(self, results_list):
+    def write_full_results(self, results_list):
         for model_results in results_list:
             full_results_name = model_results.model_name + "_full_results.json"
             file_name = os.path.join(self.test_result_directory, full_results_name)
             with open(file_name, "w") as file:
                 results_dict = model_results.to_dict()
                 json.dump(results_dict, file, indent=4)
+

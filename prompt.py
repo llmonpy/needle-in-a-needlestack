@@ -24,18 +24,22 @@ class LimerickPrompt:
             self.limerick_list.append(limerick)
             self.token_count += limerick.token_count
 
-    def build_text_from_limerick_list(self, question, location, repeat_count_for_questions=1):
+    def build_text_from_limerick_list(self, question, location, max_size):
         result = None
-        if location < self.token_count:
-            last_token_count = current_token_count = 0
-            result = self.text + "\n\n" # intro of prompt was added in the constructor
-            for limerick in self.limerick_list:
-                current_token_count += limerick.token_count
-                if last_token_count < location <= current_token_count:
-                    for i in range(repeat_count_for_questions):
-                        result = result + "\n\n" + question.text
-                result += "\n\n" + limerick.text
-                last_token_count = current_token_count
+        last_token_count = current_token_count = 0
+        result = self.text + "\n\n" # intro of prompt was added in the constructor
+        added_question = False
+        for limerick in self.limerick_list:
+            current_token_count += limerick.token_count
+            if current_token_count > max_size:
+                break
+            if last_token_count < location <= current_token_count:
+                result = result + "\n\n" + question.text
+                added_question = True
+            result += "\n\n" + limerick.text
+            last_token_count = current_token_count
+        if not added_question:
+            raise Exception("Question was not added to prompt")
         return result
 
     def write_to_file(self, file_path):
@@ -144,14 +148,20 @@ def generate_prompt(max_size, test_config):
     return result
 
 
+def read_prompt(file_name):
+    with open(file_name, "r") as file:
+        prompt_dict = json.load(file)
+        result = LimerickPrompt.from_dict(prompt_dict)
+    return result
+
+
 def get_prompt(max_size, test_config):
     file_name = prompt_file_name(test_config.prompt_file_name, test_config.number_of_questions_per_cycle, max_size)
     result = None
     if os.path.exists(file_name):
-        with open(file_name, "r") as file:
-            prompt_dict = json.load(file)
-            result = LimerickPrompt.from_dict(prompt_dict)
+        result = read_prompt(file_name)
     else:
-        result = generate_prompt(max_size, test_config)
+        generate_prompt(max_size, test_config)
+        result = read_prompt(file_name)
     return result
 

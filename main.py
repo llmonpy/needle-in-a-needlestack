@@ -59,7 +59,7 @@ def run_tests_for_model(results, prompt, model, config, evaluator):
     model_results = results.add_model(model.llm_name, question_location_list, question_list, config.cycles, config.evaluator_model_list)
     for question in question_list:
         for location in question_location_list:
-            prompt_text = prompt.build_text_from_limerick_list(question, location, 1)
+            prompt_text = prompt.build_text_from_limerick_list(question, location, model.max_input)
             prompt_text += "\n\n" + question.question
             write_prompt_text_to_file(prompt_text, model_results, config, str(location), str(question.id))
             for cycle_number in range(config.cycles):
