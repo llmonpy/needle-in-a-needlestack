@@ -32,8 +32,10 @@ def backoff_after_exception(attempt):
     time.sleep(delay_time)
 
 
+'''
 change rate limiter to just work on request limit, but if notified of rate exception, it will
 empty the queue to stop more requests
+'''
 class RateLimiterTokenBucket:
     def __init__(self, name, rate_limit, time_window):
         self.name = name

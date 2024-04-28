@@ -180,7 +180,7 @@ class ModelScore:
             result.append(location_cycle_scores)
         return result
 
-    def write_plot(self, plot_file_name):
+    def write_plot(self, plot_title, plot_file_name):
         labels = [location.location_token_position for location in self.location_scores]
         values = [round(location.score * 100) for location in self.location_scores]
         get_location_cycle_scores = self.get_location_cycle_scores()
@@ -188,7 +188,7 @@ class ModelScore:
         for location_cycle_scores in get_location_cycle_scores:
             plot.plot(labels, location_cycle_scores, linewidth=1, color="#b3d0fc", alpha=0.5)
         plot.plot(labels, values, linewidth=3, color='black', label="Average", marker='o')
-        plot.title('Limerick Question Answering')
+        plot.title(plot_title)
         plot.xlabel('Location(tokens)')
         plot.ylabel('Percent Correct')
         plot.grid(True)
@@ -639,7 +639,11 @@ class TestResults:
     def execute_actions(self):
         actions = self.reset_and_return_actions()
         for action in actions:
-            action.execute()
+            try:
+                action.execute()
+            except Exception as e:
+                print("Exception executing action: ", str(e))
+                pass
 
     def start(self):
         self.started = True
@@ -716,7 +720,7 @@ class TestResults:
                 model_score = ModelScore(model_results.model_name, location_scores)
                 plot_name = model_results.model_name + "_plot.png"
                 plot_file_name = os.path.join(self.test_result_directory, plot_name)
-                model_score.write_plot(plot_file_name)
+                model_score.write_plot(model_results.model_name, plot_file_name)
                 model_score_list.append(model_score)
             test_model_scores = TestModelScores(model_score_list)
             test_model_scores.write_to_file(os.path.join(self.test_result_directory, "model_scores.json"))
@@ -741,6 +745,6 @@ if __name__ == '__main__':
         for model_score in test_model_scores.model_scores:
             print("Model: ", model_score.model_name)
             plot_name = model_score.model_name + "_plot.png"
-            model_score.write_plot(plot_name)
+            model_score.write_plot(model_score.model_name, plot_name)
         print("done")
         exit(0)
