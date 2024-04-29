@@ -1,16 +1,17 @@
 import copy
 import json
+import math
 import os
 import threading
 import matplotlib.pyplot as plt
 from matplotlib import colors
-%config InlineBackend.figure_format = 'retina'
 import statsmodels.api as sm
 
 from limerick import Limerick
 from llm_client import PROMPT_RETRIES
 
 STATUS_REPORT_INTERVAL = 5 # seconds
+PLOT_FONT_SIZE = 8
 
 
 class TestResultExceptionReport:
@@ -124,17 +125,47 @@ class CycleScore:
         return result
 
 
+class QuestionScore:
+    def __init__(self, question, score):
+        self.question = question
+        self.score = score
+
+    def to_dict(self):
+        result = copy.copy(vars(self))
+        result["question"] = self.question.to_dict()
+        return result
+
+    @staticmethod
+    def from_dict(dictionary):
+        question = dictionary.get("question", None)
+        if question is not None:
+            dictionary.pop("question", None)
+            question = Limerick.from_dict(question)
+            dictionary["question"] = question
+        result = QuestionScore(**dictionary)
+        return result
+
+
 class LocationScore:
-    def __init__(self, location_token_position, score, cycle_scores=None):
+    def __init__(self, location_token_position, score, cycle_scores=None, question_scores=None):
         self.location_token_position = location_token_position
         self.score = score
         self.cycle_scores = cycle_scores
+        self.question_scores = question_scores
 
     def get_cycle_score(self, cycle_number):
         result = None
         for cycle_score in self.cycle_scores:
             if cycle_score.cycle_number == cycle_number:
                 result = cycle_score
+                break
+        return result
+
+    def get_question_score(self, question_id):
+        result = None
+        for question_score in self.question_scores:
+            if question_score.question.id == question_id:
+                result = question_score
                 break
         return result
 
@@ -145,6 +176,11 @@ class LocationScore:
             for cycle_score in self.cycle_scores:
                 result["cycle_scores"][index] = cycle_score.to_dict()
                 index += 1
+        if self.question_scores is not None:
+            index = 0
+            for question_score in self.question_scores:
+                result["question_scores"][index] = question_score.to_dict()
+                index += 1
         return result
 
     @staticmethod
@@ -154,6 +190,11 @@ class LocationScore:
             dictionary.pop("cycle_scores", None)
             cycle_scores = [CycleScore.from_dict(cycle) for cycle in cycle_scores]
             dictionary["cycle_scores"] = cycle_scores
+        question_scores = dictionary.get("question_scores", None)
+        if question_scores is not None:
+            dictionary.pop("question_scores", None)
+            question_scores = [QuestionScore.from_dict(question) for question in question_scores]
+            dictionary["question_scores"] = question_scores
         result = LocationScore(**dictionary)
         return result
 
@@ -183,20 +224,91 @@ class ModelScore:
             result.append(location_cycle_scores)
         return result
 
-    def write_plot(self, plot_title, plot_file_name):
+    def get_location_question_scores(self):
+        question_id_list = [question_score.question.id for question_score in self.location_scores[0].question_scores]
+        result = []
+        for question_id in question_id_list:
+            location_question_scores = []
+            for location_score in self.location_scores:
+                question_score = location_score.get_question_score(question_id)
+                location_question_scores.append(question_score.score * 100)
+            result.append(location_question_scores)
+        return result
+
+    def write_cycle_plot(self, plot_file_name):
+        location_cycle_score_list = self.get_location_cycle_scores()
+        self.write_plot(plot_file_name, location_cycle_score_list)
+
+    def write_question_plot(self, plot_file_name):
+        if self.location_scores[0].question_scores is None:
+            print("No question scores")
+            return
+        location_question_score_list = self.get_location_question_scores()
+        self.write_plot(plot_file_name, location_question_score_list)
+
+    def write_plot(self, plot_file_name, subplot_data_list):
+        figure, axes = plt.subplots(figsize=(7, 5))
         labels = [location.location_token_position for location in self.location_scores]
         values = [round(location.score * 100) for location in self.location_scores]
-        get_location_cycle_scores = self.get_location_cycle_scores()
-        plot.figure(figsize=(10, 10))
-        for location_cycle_scores in get_location_cycle_scores:
-            plot.plot(labels, location_cycle_scores, linewidth=1, color="#b3d0fc", alpha=0.5)
-        plot.plot(labels, values, linewidth=3, color='black', label="Average", marker='o')
-        plot.title(plot_title)
-        plot.xlabel('Location(tokens)')
-        plot.ylabel('Percent Correct')
-        plot.grid(True)
-        plot.ylim(0, 100)
-        plot.savefig(plot_file_name, dpi=300)
+        number_of_locations = len(values)
+        number_of_cycles = len(subplot_data_list)
+        plot_title = f'{self.model_name}\n{number_of_cycles} trials at {number_of_locations} token positions'
+
+        for subplot_data in subplot_data_list:
+            axes.scatter(labels, subplot_data, linewidth=.3, edgecolor='grey', color="#b3d0fc",
+                       s=20, alpha=0.3)
+        axes.plot(labels, values, linewidth=1, color='darkblue', label="Average", marker='.')
+
+        axes.set_title(plot_title, fontsize=PLOT_FONT_SIZE)
+        axes.set_xticks(labels)
+        x_labels = self.generate_x_labels(labels)
+        axes.set_xticklabels(x_labels)
+        axes.set_xlabel('Token Position', fontsize=PLOT_FONT_SIZE)
+        axes.set_yticks(range(0, 100 + 1, 20))
+        axes.set_yticklabels([f'{p}%' for p in range(0, 100 + 1, 20)])
+        axes.set_ylabel('Percent Correct', fontsize=PLOT_FONT_SIZE)
+        axes.spines['top'].set_visible(False)  # turns off the top "spine" completely
+        axes.spines['right'].set_visible(False)
+        axes.spines['left'].set_linewidth(.5)
+        axes.spines['bottom'].set_linewidth(.5)
+        axes.grid(False)
+        axes.set_ylim(0, 100)
+        #plt.legend()
+        plt.tight_layout()
+        plt.savefig(plot_file_name, dpi=300)
+
+    def generate_x_labels(self, labels):
+        result = []
+        labels_length = len(labels)
+        end = labels_length - 1
+        if len(labels) <= 5:
+            result = [f'{round(label/1000, 1)}k' for label in labels]
+        elif len(labels) == 10:
+            for index, label in enumerate(labels):
+                if index in (0, 3, 6, 9):
+                    result.append(f'{round(label / 1000, 1)}k')
+                else:
+                    result.append('')
+        elif len(labels) == 20:
+            for index, label in enumerate(labels):
+                if index in (0, 6, 13, 19):
+                    result.append(f'{round(label / 1000, 1)}k')
+                else:
+                    result.append('')
+        elif len(labels) % 2 != 0:  # odd number of labels
+            for index, label in enumerate(labels):
+                if index in (0, labels_length/2, end):
+                    result.append(f'{round(label / 1000, 1)}k')
+                else:
+                    result.append('')
+        else:
+            gap = math.floor(labels_length / 3)
+            for index, label in enumerate(labels):
+                if index in (0, gap, end-gap, end):
+                    result.append(f'{round(label / 1000, 1)}k')
+                else:
+                    result.append('')
+        return result
 
     @staticmethod
     def from_dict(dictionary):
@@ -443,6 +555,13 @@ class LocationResults:
             result.append(cycle_score)
         return result
 
+    def get_question_scores(self):
+        result = []
+        for question_result in self.question_result_list:
+            question_score = QuestionScore(question_result.question, question_result.score)
+            result.append(question_score)
+        return result
+
     def to_dict(self):
         result = copy.copy(vars(self))
         if self.question_result_list is not None:
@@ -506,7 +625,9 @@ class ModelResults:
         result = []
         for location in self.location_list:
             cycle_scores = location.get_cycle_scores()
-            location_score = LocationScore(location.location_token_position, location.score, cycle_scores)
+            question_scores = location.get_question_scores()
+            location_score = LocationScore(location.location_token_position, location.score, cycle_scores,
+                                           question_scores)
             result.append(location_score)
         return result
 
@@ -751,9 +872,11 @@ class TestResults:
             for model_results in current_results_list:
                 location_scores = model_results.get_location_scores()
                 model_score = ModelScore(model_results.model_name, location_scores)
-                plot_name = model_results.model_name + "_plot.png"
+                plot_name = model_results.model_name + "_cycle_plot.png"
                 plot_file_name = os.path.join(self.test_result_directory, plot_name)
-                model_score.write_plot(model_results.model_name, plot_file_name)
+                model_score.write_cycle_plot(plot_file_name)
+                plot_name = model_results.model_name + "question_plot.png"
+                model_score.write_question_plot(plot_name)
                 model_score_list.append(model_score)
             test_model_scores = TestModelScores(model_score_list)
             test_model_scores.write_to_file(os.path.join(self.test_result_directory, "model_scores.json"))
@@ -777,7 +900,9 @@ if __name__ == '__main__':
         test_model_scores = TestModelScores.from_dict(model_scores_dict)
         for model_score in test_model_scores.model_scores:
             print("Model: ", model_score.model_name)
-            plot_name = model_score.model_name + "_plot.png"
-            model_score.write_plot(model_score.model_name, plot_name)
+            plot_name = "test_cycle_plot.png"
+            model_score.write_cycle_plot(plot_name)
+            plot_name = "test_question_plot.png"
+            model_score.write_question_plot(plot_name)
         print("done")
         exit(0)
