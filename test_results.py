@@ -2,7 +2,10 @@ import copy
 import json
 import os
 import threading
-import matplotlib.pyplot as plot
+import matplotlib.pyplot as plt
+from matplotlib import colors
+%config InlineBackend.figure_format = 'retina'
+import statsmodels.api as sm
 
 from limerick import Limerick
 from llm_client import PROMPT_RETRIES
