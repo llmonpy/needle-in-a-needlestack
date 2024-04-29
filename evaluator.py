@@ -55,14 +55,16 @@ def get_score_from_response(response_text):
     return score
 
 
-def evaluate_response(model, evaluation_prompt_text, system_prompt, location_name, question, cycle_number, results):
+def evaluate_response(model, evaluation_prompt_text, system_prompt, model_name_being_tested, location_name, question,
+                      cycle_number, results):
     for attempt in range(PROMPT_RETRIES):
         try:
             response_text = model.prompt(evaluation_prompt_text, system_prompt)
             break
         except Exception as e:
             response_text = FAIL_ANSWER
-            results.add_test_exception(model.llm_name, location_name, question.id, cycle_number, attempt, e)
+            results.add_evaluation_exception(model_name_being_tested, location_name, question.id, cycle_number,
+                                             model.llm_name, attempt, e)
             if attempt == 2:
                 print("Exception on attempt 3")
             backoff_after_exception(attempt)
@@ -93,7 +95,7 @@ class DefaultEvaluator(EvaluatorInterface):
         for model in evaluator_model_list:
             executor = model.get_eval_executor()
             futures_list.append(executor.submit(evaluate_response, model, evaluation_prompt_text, self.system_prompt,
-                                                location_name, question, cycle_number, results))
+                                                model_name, location_name, question, cycle_number, results))
         yes_count = no_count = 0
         for future in concurrent.futures.as_completed(futures_list):
             score, evaluator_model_name = future.result()

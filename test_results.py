@@ -258,13 +258,13 @@ class EvaluatorResult:
 
 
 class CycleResult:
-    def __init__(self, cycle_number, evaluator_model_list, good_answer, passed=None, dissent_count=None,
+    def __init__(self, cycle_number, good_answer, evaluator_model_list=None, passed=None, dissent_count=None,
                  generated_answer=None, evaluator_results=None):
         self.cycle_number = cycle_number
         self.good_answer = good_answer
-        self.passed = None
-        self.dissent_count = None
-        self.generated_answer = None
+        self.passed = passed
+        self.dissent_count = dissent_count
+        self.generated_answer = generated_answer
         self.evaluator_results = evaluator_results
         if evaluator_results is None:
             self.evaluator_results = []
@@ -277,6 +277,14 @@ class CycleResult:
 
     def has_answer(self):
         return self.generated_answer is not None
+
+    def has_dissent(self):
+        return self.dissent_count > 0
+
+    def has_concerning_dissent(self):
+        concerning_dissent_count = round(len(self.evaluator_results) / 2)
+        result = self.dissent_count >= concerning_dissent_count
+        return result
 
     def calculate_scores(self, status_report):
         finished = True
@@ -325,15 +333,15 @@ class CycleResult:
 
 
 class QuestionResults:
-    def __init__(self, question, cycles, evaluator_model_list, cycle_results=None):
+    def __init__(self, question, cycles=None, evaluator_model_list=None, cycle_results=None, score=None):
         self.question = question
         self.cycle_results = cycle_results
         if cycle_results is None:
             self.cycle_results = []
             for cycle in range(cycles):
-                cycle_result = CycleResult(cycle, evaluator_model_list, question.answer)
+                cycle_result = CycleResult(cycle, question.answer, evaluator_model_list)
                 self.cycle_results.append(cycle_result)
-        self.score = None
+        self.score = score
 
     def get_cycle(self, cycle_number):
         result = self.cycle_results[cycle_number]
@@ -390,7 +398,8 @@ class QuestionResults:
 
 
 class LocationResults:
-    def __init__(self, location_token_position, question_list, cycles, evaluator_model_list, question_result_list=None):
+    def __init__(self, location_token_position=None, question_list=None, cycles=None, evaluator_model_list=None,
+                 question_result_list=None, score=None):
         self.location_token_position = location_token_position
         self.question_result_list = question_result_list
         if self.question_result_list is None:
@@ -398,7 +407,7 @@ class LocationResults:
             for question in question_list:
                 question_result = QuestionResults(question, cycles, evaluator_model_list)
                 self.question_result_list.append(question_result)
-        self.score = None
+        self.score = score
 
     def get_cycle(self, question_id, cycle_number):
         result = None
@@ -452,25 +461,28 @@ class LocationResults:
 
 
 class ModelResults:
-    def __init__(self, directory, model_name, location_token_index_list, question_list, cycles, evaluator_model_list,
-                 location_list=None, test_exception_list=None, evaluation_exception_list=None):
+    def __init__(self, directory, model_name, location_token_index_list=None, question_list=None,
+                 cycles=None, evaluator_model_list=None,
+                 location_list=None, test_exception_list=None, evaluation_exception_list=None, failed_test_count=0,
+                 failed_evaluation_count=0):
         self.directory = directory
         self.model_name = model_name
         self.location_list = location_list
         self.test_exception_list = test_exception_list
         if self.test_exception_list is None:
             self.test_exception_list = []
-        self.failed_test_count = 0
+        self.failed_test_count = failed_test_count
         self.evaluation_exception_list = evaluation_exception_list
         if self.evaluation_exception_list is None:
             self.evaluation_exception_list = []
-        self.failed_evaluation_count = 0
+        self.failed_evaluation_count = failed_evaluation_count
         if self.location_list is None:
             self.location_list = []
             for location in location_token_index_list:
                 location_result = LocationResults(location, question_list, cycles, evaluator_model_list)
                 self.location_list.append(location_result)
-        os.makedirs(directory, exist_ok=True)
+        if directory is not None and len(directory) > 0:
+            os.makedirs(directory, exist_ok=True)
 
     def get_cycle(self, location_name, question_id, cycle_number):
         result = None
@@ -513,6 +525,14 @@ class ModelResults:
             self.failed_evaluation_count += 1
             print("Failed Evaluation Count: ", self.failed_evaluation_count)
 
+    def get_all_cycle_results(self):
+        result = []
+        for location in self.location_list:
+            for question_result in location.question_result_list:
+                for cycle_result in question_result.cycle_results:
+                    result.append(cycle_result)
+        return result
+
     def to_dict(self):
         result = copy.deepcopy(vars(self))
         if self.location_list is not None:
@@ -550,7 +570,17 @@ class ModelResults:
             dictionary.pop("evaluation_exception_list", None)
             evaluation_exception_list = [EvaluationExceptionReport.from_dict(report) for report in evaluation_exception_list]
             dictionary["evaluation_exception_list"] = evaluation_exception_list
+        if "directory" not in dictionary:
+            dictionary["directory"] = ""
         result = ModelResults(**dictionary)
+        return result
+
+    @staticmethod
+    def from_file(file_path):
+        result = None
+        with open(file_path, "r") as file:
+            results_dict = json.load(file)
+            result = ModelResults.from_dict(results_dict)
         return result
 
 
