@@ -1,0 +1,1269 @@
+{
+    "model_scores": [
+        {
+            "model_name": "gpt-3.5-turbo-0125",
+            "location_scores": [
+                {
+                    "location_token_position": 135,
+                    "score": 0.8866666666666667,
+                    "cycle_scores": [
+                        {
+                            "cycle_number": 0,
+                            "score": 0.9
+                        },
+                        {
+                            "cycle_number": 1,
+                            "score": 0.8
+                        },
+                        {
+                            "cycle_number": 2,
+                            "score": 1.0
+                        },
+                        {
+                            "cycle_number": 3,
+                            "score": 0.9
+                        },
+                        {
+                            "cycle_number": 4,
+                            "score": 0.9
+                        },
+                        {
+                            "cycle_number": 5,
+                            "score": 0.8
+                        },
+                        {
+                            "cycle_number": 6,
+                            "score": 0.8
+                        },
+                        {
+                            "cycle_number": 7,
+                            "score": 0.8
+                        },
+                        {
+                            "cycle_number": 8,
+                            "score": 0.9
+                        },
+                        {
+                            "cycle_number": 9,
+                            "score": 0.9
+                        },
+                        {
+                            "cycle_number": 10,
+                            "score": 0.9
+                        },
+                        {
+                            "cycle_number": 11,
+                            "score": 0.8
+                        },
+                        {
+                            "cycle_number": 12,
+                            "score": 1.0
+                        },
+                        {
+                            "cycle_number": 13,
+                            "score": 0.8
+                        },
+                        {
+                            "cycle_number": 14,
+                            "score": 0.9
+                        },
+                        {
+                            "cycle_number": 15,
+                            "score": 0.9
+                        },
+                        {
+                            "cycle_number": 16,
+                            "score": 1.0
+                        },
+                        {
+                            "cycle_number": 17,
+                            "score": 0.8
+                        },
+                        {
+                            "cycle_number": 18,
+                            "score": 1.0
+                        },
+                        {
+                            "cycle_number": 19,
+                            "score": 0.9
+                        },
+                        {
+                            "cycle_number": 20,
+                            "score": 1.0
+                        },
+                        {
+                            "cycle_number": 21,
+                            "score": 0.9
+                        },
+                        {
+                            "cycle_number": 22,
+                            "score": 0.9
+                        },
+                        {
+                            "cycle_number": 23,
+                            "score": 0.9
+                        },
+                        {
+                            "cycle_number": 24,
+                            "score": 0.9
+                        },
+                        {
+                            "cycle_number": 25,
+                            "score": 0.8
+                        },
+                        {
+                            "cycle_number": 26,
+                            "score": 0.8
+                        },
+                        {
+                            "cycle_number": 27,
+                            "score": 0.9
+                        },
+                        {
+                            "cycle_number": 28,
+                            "score": 0.9
+                        },
+                        {
+                            "cycle_number": 29,
+                            "score": 0.9
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 1635,
+                    "score": 0.7266666666666666,
+                    "cycle_scores": [
+                        {
+                            "cycle_number": 0,
+                            "score": 0.8
+                        },
+                        {
+                            "cycle_number": 1,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 2,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 3,
+                            "score": 0.6
+                        },
+                        {
+                            "cycle_number": 4,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 5,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 6,
+                            "score": 0.8
+                        },
+                        {
+                            "cycle_number": 7,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 8,
+                            "score": 0.6
+                        },
+                        {
+                            "cycle_number": 9,
+                            "score": 0.8
+                        },
+                        {
+                            "cycle_number": 10,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 11,
+                            "score": 0.6
+                        },
+                        {
+                            "cycle_number": 12,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 13,
+                            "score": 0.8
+                        },
+                        {
+                            "cycle_number": 14,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 15,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 16,
+                            "score": 0.6
+                        },
+                        {
+                            "cycle_number": 17,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 18,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 19,
+                            "score": 0.8
+                        },
+                        {
+                            "cycle_number": 20,
+                            "score": 0.9
+                        },
+                        {
+                            "cycle_number": 21,
+                            "score": 0.6
+                        },
+                        {
+                            "cycle_number": 22,
+                            "score": 0.8
+                        },
+                        {
+                            "cycle_number": 23,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 24,
+                            "score": 0.9
+                        },
+                        {
+                            "cycle_number": 25,
+                            "score": 0.6
+                        },
+                        {
+                            "cycle_number": 26,
+                            "score": 0.6
+                        },
+                        {
+                            "cycle_number": 27,
+                            "score": 0.8
+                        },
+                        {
+                            "cycle_number": 28,
+                            "score": 0.9
+                        },
+                        {
+                            "cycle_number": 29,
+                            "score": 0.9
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 3135,
+                    "score": 0.71,
+                    "cycle_scores": [
+                        {
+                            "cycle_number": 0,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 1,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 2,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 3,
+                            "score": 0.6
+                        },
+                        {
+                            "cycle_number": 4,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 5,
+                            "score": 0.8
+                        },
+                        {
+                            "cycle_number": 6,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 7,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 8,
+                            "score": 0.6
+                        },
+                        {
+                            "cycle_number": 9,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 10,
+                            "score": 0.8
+                        },
+                        {
+                            "cycle_number": 11,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 12,
+                            "score": 0.8
+                        },
+                        {
+                            "cycle_number": 13,
+                            "score": 0.8
+                        },
+                        {
+                            "cycle_number": 14,
+                            "score": 0.5
+                        },
+                        {
+                            "cycle_number": 15,
+                            "score": 0.6
+                        },
+                        {
+                            "cycle_number": 16,
+                            "score": 0.9
+                        },
+                        {
+                            "cycle_number": 17,
+                            "score": 0.9
+                        },
+                        {
+                            "cycle_number": 18,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 19,
+                            "score": 0.8
+                        },
+                        {
+                            "cycle_number": 20,
+                            "score": 0.6
+                        },
+                        {
+                            "cycle_number": 21,
+                            "score": 0.8
+                        },
+                        {
+                            "cycle_number": 22,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 23,
+                            "score": 0.5
+                        },
+                        {
+                            "cycle_number": 24,
+                            "score": 0.9
+                        },
+                        {
+                            "cycle_number": 25,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 26,
+                            "score": 0.9
+                        },
+                        {
+                            "cycle_number": 27,
+                            "score": 0.6
+                        },
+                        {
+                            "cycle_number": 28,
+                            "score": 0.5
+                        },
+                        {
+                            "cycle_number": 29,
+                            "score": 0.7
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 4635,
+                    "score": 0.2966666666666667,
+                    "cycle_scores": [
+                        {
+                            "cycle_number": 0,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 1,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 2,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 3,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 4,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 5,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 6,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 7,
+                            "score": 0.5
+                        },
+                        {
+                            "cycle_number": 8,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 9,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 10,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 11,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 12,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 13,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 14,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 15,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 16,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 17,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 18,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 19,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 20,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 21,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 22,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 23,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 24,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 25,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 26,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 27,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 28,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 29,
+                            "score": 0.4
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 6135,
+                    "score": 0.25333333333333335,
+                    "cycle_scores": [
+                        {
+                            "cycle_number": 0,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 1,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 2,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 3,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 4,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 5,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 6,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 7,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 8,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 9,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 10,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 11,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 12,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 13,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 14,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 15,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 16,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 17,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 18,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 19,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 20,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 21,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 22,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 23,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 24,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 25,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 26,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 27,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 28,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 29,
+                            "score": 0.3
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 7635,
+                    "score": 0.30666666666666664,
+                    "cycle_scores": [
+                        {
+                            "cycle_number": 0,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 1,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 2,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 3,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 4,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 5,
+                            "score": 0.5
+                        },
+                        {
+                            "cycle_number": 6,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 7,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 8,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 9,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 10,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 11,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 12,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 13,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 14,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 15,
+                            "score": 0.1
+                        },
+                        {
+                            "cycle_number": 16,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 17,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 18,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 19,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 20,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 21,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 22,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 23,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 24,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 25,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 26,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 27,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 28,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 29,
+                            "score": 0.3
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 9135,
+                    "score": 0.29666666666666675,
+                    "cycle_scores": [
+                        {
+                            "cycle_number": 0,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 1,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 2,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 3,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 4,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 5,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 6,
+                            "score": 0.1
+                        },
+                        {
+                            "cycle_number": 7,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 8,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 9,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 10,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 11,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 12,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 13,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 14,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 15,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 16,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 17,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 18,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 19,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 20,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 21,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 22,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 23,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 24,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 25,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 26,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 27,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 28,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 29,
+                            "score": 0.3
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 10635,
+                    "score": 0.34666666666666673,
+                    "cycle_scores": [
+                        {
+                            "cycle_number": 0,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 1,
+                            "score": 0.6
+                        },
+                        {
+                            "cycle_number": 2,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 3,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 4,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 5,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 6,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 7,
+                            "score": 0.5
+                        },
+                        {
+                            "cycle_number": 8,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 9,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 10,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 11,
+                            "score": 0.5
+                        },
+                        {
+                            "cycle_number": 12,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 13,
+                            "score": 0.5
+                        },
+                        {
+                            "cycle_number": 14,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 15,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 16,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 17,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 18,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 19,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 20,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 21,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 22,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 23,
+                            "score": 0.1
+                        },
+                        {
+                            "cycle_number": 24,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 25,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 26,
+                            "score": 0.5
+                        },
+                        {
+                            "cycle_number": 27,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 28,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 29,
+                            "score": 0.3
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 12135,
+                    "score": 0.42000000000000004,
+                    "cycle_scores": [
+                        {
+                            "cycle_number": 0,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 1,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 2,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 3,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 4,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 5,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 6,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 7,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 8,
+                            "score": 0.5
+                        },
+                        {
+                            "cycle_number": 9,
+                            "score": 0.5
+                        },
+                        {
+                            "cycle_number": 10,
+                            "score": 0.5
+                        },
+                        {
+                            "cycle_number": 11,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 12,
+                            "score": 0.6
+                        },
+                        {
+                            "cycle_number": 13,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 14,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 15,
+                            "score": 0.5
+                        },
+                        {
+                            "cycle_number": 16,
+                            "score": 0.5
+                        },
+                        {
+                            "cycle_number": 17,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 18,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 19,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 20,
+                            "score": 0.5
+                        },
+                        {
+                            "cycle_number": 21,
+                            "score": 0.5
+                        },
+                        {
+                            "cycle_number": 22,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 23,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 24,
+                            "score": 0.5
+                        },
+                        {
+                            "cycle_number": 25,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 26,
+                            "score": 0.5
+                        },
+                        {
+                            "cycle_number": 27,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 28,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 29,
+                            "score": 0.3
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 13635,
+                    "score": 0.47000000000000003,
+                    "cycle_scores": [
+                        {
+                            "cycle_number": 0,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 1,
+                            "score": 0.6
+                        },
+                        {
+                            "cycle_number": 2,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 3,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 4,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 5,
+                            "score": 0.5
+                        },
+                        {
+                            "cycle_number": 6,
+                            "score": 0.5
+                        },
+                        {
+                            "cycle_number": 7,
+                            "score": 0.6
+                        },
+                        {
+                            "cycle_number": 8,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 9,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 10,
+                            "score": 0.5
+                        },
+                        {
+                            "cycle_number": 11,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 12,
+                            "score": 0.5
+                        },
+                        {
+                            "cycle_number": 13,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 14,
+                            "score": 0.6
+                        },
+                        {
+                            "cycle_number": 15,
+                            "score": 0.2
+                        },
+                        {
+                            "cycle_number": 16,
+                            "score": 0.6
+                        },
+                        {
+                            "cycle_number": 17,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 18,
+                            "score": 0.6
+                        },
+                        {
+                            "cycle_number": 19,
+                            "score": 0.5
+                        },
+                        {
+                            "cycle_number": 20,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 21,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 22,
+                            "score": 0.7
+                        },
+                        {
+                            "cycle_number": 23,
+                            "score": 0.3
+                        },
+                        {
+                            "cycle_number": 24,
+                            "score": 0.6
+                        },
+                        {
+                            "cycle_number": 25,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 26,
+                            "score": 0.5
+                        },
+                        {
+                            "cycle_number": 27,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 28,
+                            "score": 0.4
+                        },
+                        {
+                            "cycle_number": 29,
+                            "score": 0.4
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

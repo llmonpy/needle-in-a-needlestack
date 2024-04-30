@@ -79,11 +79,13 @@ class EvaluatorInterface:
 
 
 class DefaultEvaluator(EvaluatorInterface):
-    def __init__(self, evaluation_prompt=EVALUATION_PROMPT, system_prompt=SYSTEM_PROMPT):
+    def __init__(self, results, evaluator_model_list, evaluation_prompt=EVALUATION_PROMPT, system_prompt=SYSTEM_PROMPT):
         self.evaluation_prompt = evaluation_prompt
         self.system_prompt = system_prompt
+        self.results = results
+        self.evaluator_model_list = evaluator_model_list
 
-    def evaluate(self, results, evaluator_model_list, model_name, location_name, question, cycle_number, answer):
+    def evaluate(self, model_name, location_name, question, cycle_number, answer):
         evaluation_prompt_template = Template(self.evaluation_prompt)
         evaluation_prompt_text = evaluation_prompt_template.substitute(limerick_text=question.text,
                                                                        question_text=question.question,
@@ -92,10 +94,10 @@ class DefaultEvaluator(EvaluatorInterface):
                                                                        pass_answer=PASS_ANSWER,
                                                                        fail_answer=FAIL_ANSWER)
         futures_list = []
-        for model in evaluator_model_list:
+        for model in self.evaluator_model_list:
             executor = model.get_eval_executor()
             futures_list.append(executor.submit(evaluate_response, model, evaluation_prompt_text, self.system_prompt,
-                                                model_name, location_name, question, cycle_number, results))
+                                                model_name, location_name, question, cycle_number, self.results))
         yes_count = no_count = 0
         for future in concurrent.futures.as_completed(futures_list):
             score, evaluator_model_name = future.result()
@@ -105,7 +107,7 @@ class DefaultEvaluator(EvaluatorInterface):
             elif score == 0:
                 no_count += 1
                 passed = False
-            results.set_evaluator_result(model_name, location_name, question.id, cycle_number, evaluator_model_name,
+            self.results.set_evaluator_result(model_name, location_name, question.id, cycle_number, evaluator_model_name,
                                          passed)
         if yes_count > no_count:
             result = 1

@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 from matplotlib import colors
 import statsmodels.api as sm
 
+from base_test_results import BaseTestResults, BaseStatusReport
 from limerick import Limerick
 from llm_client import PROMPT_RETRIES
 
@@ -51,36 +52,10 @@ class EvaluationExceptionReport:
         return result
 
 
-class StatusReport:
+class StatusReport(BaseStatusReport):
     def __init__(self, model_name, failed_test_count=0, failed_evaluation_count=0):
+        super().__init__(failed_test_count, failed_evaluation_count)
         self.model_name = model_name
-        self.failed_test_count = failed_test_count
-        self.failed_evaluation_count = failed_evaluation_count
-        self.test_count = 0
-        self.answered_test_count = 0
-        self.finished_test_count = 0
-        self.evaluator_count = 0
-        self.finished_evaluator_count = 0
-        self.waiting_for_evaluator_count = {}
-
-    def add_test(self, has_answer, is_finished):
-        self.test_count += 1
-        if has_answer:
-            self.answered_test_count += 1
-        if is_finished:
-            self.finished_test_count += 1
-
-    def add_evaluator_test(self, finished, evaluator_model_name):
-        self.evaluator_count += 1
-        if finished:
-            self.finished_evaluator_count += 1
-        else:
-            current_count = self.waiting_for_evaluator_count.get(evaluator_model_name, 0)
-            self.waiting_for_evaluator_count[evaluator_model_name] = current_count + 1
-
-    def is_finished(self):
-        result = self.test_count == self.finished_test_count
-        return result
 
     def print(self):
         print("Model: ", self.model_name)
@@ -244,7 +219,38 @@ class ModelScore:
             print("No question scores")
             return
         location_question_score_list = self.get_location_question_scores()
-        self.write_plot(plot_file_name, location_question_score_list)
+        self.write_line_plot(plot_file_name, location_question_score_list)
+
+    def write_line_plot(self, plot_file_name, subplot_data_list):
+        figure, axes = plt.subplots(figsize=(7, 5))
+        labels = [location.location_token_position for location in self.location_scores]
+        values = [round(location.score * 100) for location in self.location_scores]
+        number_of_locations = len(values)
+        number_of_cycles = len(subplot_data_list)
+        plot_title = f'{self.model_name}\n{number_of_cycles} trials at {number_of_locations} token positions'
+
+        for subplot_data in subplot_data_list:
+            axes.plot(labels, subplot_data, linewidth=.75,  color="#5f9afa", alpha=0.3)
+        axes.plot(labels, values, linewidth=1, color='darkblue', label="Average", marker='.')
+
+        axes.set_title(plot_title, fontsize=PLOT_FONT_SIZE)
+        axes.set_xticks(labels)
+        x_labels = self.generate_x_labels(labels)
+        axes.set_xticklabels(x_labels)
+        axes.set_xlabel('Token Position', fontsize=PLOT_FONT_SIZE)
+        axes.set_yticks(range(0, 100 + 1, 20))
+        axes.set_yticklabels([f'{p}%' for p in range(0, 100 + 1, 20)])
+        axes.set_ylabel('Percent Correct', fontsize=PLOT_FONT_SIZE)
+        axes.spines['top'].set_visible(False)  # turns off the top "spine" completely
+        axes.spines['right'].set_visible(False)
+        axes.spines['left'].set_linewidth(.5)
+        axes.spines['bottom'].set_linewidth(.5)
+        axes.grid(False)
+        axes.set_ylim(-3, 103)
+        #plt.legend()
+        plt.tight_layout()
+        plt.savefig(plot_file_name, dpi=300)
+
 
     def write_plot(self, plot_file_name, subplot_data_list):
         figure, axes = plt.subplots(figsize=(7, 5))
@@ -417,6 +423,7 @@ class CycleResult:
             for evaluator_result in self.evaluator_results:
                 if evaluator_result.passed != self.passed:
                     self.dissent_count += 1
+        status_report.add_test(self.has_answer(), self.is_finished())
 
     def set_generated_answer(self, generated_answer):
         self.generated_answer = generated_answer
@@ -477,7 +484,6 @@ class QuestionResults:
         finished_cycles = 0
         for cycle_result in self.cycle_results:
             cycle_result.calculate_scores(status_report)
-            status_report.add_test(cycle_result.has_answer(), cycle_result.is_finished())
             if cycle_result.is_finished():
                 finished_cycles += 1
                 if cycle_result.passed:
@@ -769,7 +775,7 @@ class AddEvaluationExceptionAction(BaseTestResultAction):
                                                           self.evaluation_model_name, self.attempt, self.exception)
 
 
-class TestResults:
+class TestResults(BaseTestResults):
     def __init__(self, test_result_directory, model_results_list=None):
         self.test_result_directory = test_result_directory
         self.model_results_list = model_results_list

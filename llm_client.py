@@ -6,6 +6,7 @@ import time
 from queue import Queue, Empty
 
 import anthropic
+import ollama
 import openai
 from mistralai.client import MistralClient
 from mistralai.models.chat_completion import ChatMessage
@@ -32,10 +33,6 @@ def backoff_after_exception(attempt):
     time.sleep(delay_time)
 
 
-'''
-change rate limiter to just work on request limit, but if notified of rate exception, it will
-empty the queue to stop more requests
-'''
 class RateLimiterTokenBucket:
     def __init__(self, name, rate_limit, time_window):
         self.name = name
@@ -87,6 +84,7 @@ class OpenAIModel(LlmClient):
         self.rate_limiter.get_token()
         completion = self.client.chat.completions.create(
             model=self.llm_name,
+
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": prompt_text}
@@ -110,6 +108,7 @@ class AnthropicModel(LlmClient):
             model=self.llm_name,
             max_tokens=1024,
             temperature=0.0,
+            top_k=1,
             system=system_prompt,
             messages=[
                 {
@@ -145,6 +144,24 @@ class MistralLlmClient(LlmClient):
         return result
 
 
+class OllamaModel(LlmClient):
+    def __init__(self, llm_name, max_input, rate_limiter, eval_executor=None):
+        super().__init__(llm_name, max_input, eval_executor)
+        self.rate_limiter = rate_limiter
+
+    def prompt(self, prompt_text, system_prompt="You are an expert at analyzing text."):
+        self.rate_limiter.get_token()
+        response = ollama.generate(
+            model=self.llm_name,
+            stream=False,
+            system_prompt=system_prompt,
+            prompt=prompt_text,
+            temperature=0.0
+        )
+        result = response.choices[0].message.content
+        return result
+
+OLLAMA_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=1)
 MISTRAL_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 ANTHROPIC_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 OPENAI_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
@@ -162,8 +179,8 @@ MISTRAL_7B = MistralLlmClient("open-mistral-7b", 12000, MISTRAL_TEST_RATE_LIMITE
 MIXTRAL_8X7B = MistralLlmClient("open-mixtral-8x7b", 25000, MISTRAL_TEST_RATE_LIMITER, MISTRAL_EXECUTOR)
 EVAL_GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 15000, RateLimiterTokenBucket("open_ai_35_eval",150, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
 EVAL_GPT4 = OpenAIModel('gpt-4-turbo', 127000, RateLimiterTokenBucket("open_ai_4_eval",150, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
-GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 15000, RateLimiterTokenBucket("open_ai_35_test", 40, MINUTE_TIME_WINDOW))
-GPT4 = OpenAIModel('gpt-4-turbo', 127000, RateLimiterTokenBucket("open_ai_4_test",5, MINUTE_TIME_WINDOW))
+GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 15000, RateLimiterTokenBucket("open_ai_35_test", 40, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
+GPT4 = OpenAIModel('gpt-4-turbo', 127000, RateLimiterTokenBucket("open_ai_4_test",5, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
 EVAL_ANTHROPIC_OPUS = AnthropicModel("claude-3-opus-20240229", 199000, RateLimiterTokenBucket("ant_o_eval",100, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
 EVAL_ANTHROPIC_SONNET = AnthropicModel("claude-3-sonnet-20240229", 199000, RateLimiterTokenBucket("ant_s_eval",100, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
 EVAL_ANTHROPIC_HAIKU = AnthropicModel("claude-3-haiku-20240307", 199000, RateLimiterTokenBucket("ant_h_eval",100, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)

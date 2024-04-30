@@ -9,7 +9,8 @@ FULL_QUESTION_FILE = "full_questions.json"
 LIMERICK_DATASET_FILE = "limerick_dataset_oedilf_v3.json"
 
 class Limerick:
-    def __init__(self, id, author, text, question=None, answer=None, tokens=None, token_count=None, target_location=0):
+    def __init__(self, id, author, text, question=None, answer=None, tokens=None, token_count=None, target_location=0,
+                 question_vetted=False):
         self.id = id
         self.author = author
         self.text = text
@@ -18,6 +19,7 @@ class Limerick:
         self.tokens = tokens
         self.token_count = token_count
         self.target_location = target_location
+        self.question_vetted = question_vetted
 
     def generate_tokens(self, encoder):
         self.tokens = encoder.encode(self.text)

@@ -41,9 +41,7 @@ def calculate_question_location_list(location_count, max_input):
         last_location = result[-1]
     return result
 
-
-
-def test_model(results, prompt_text, model, config, evaluator, location, question, cycle_number):
+def test_model(results, prompt_text, model, evaluator, location, question, cycle_number):
     for attempt in range(PROMPT_RETRIES):
         try:
             generated_answer = model.prompt(prompt_text)
@@ -56,8 +54,7 @@ def test_model(results, prompt_text, model, config, evaluator, location, questio
             backoff_after_exception(attempt)
             continue
     results.set_test_result(model.llm_name, location, question.id, cycle_number, generated_answer)
-    score = evaluator.evaluate(results, config.evaluator_model_list, model.llm_name, location, question, cycle_number,
-                               generated_answer)
+    score = evaluator.evaluate(model.llm_name, location, question, cycle_number, generated_answer)
     return generated_answer, score
 
 
@@ -74,7 +71,7 @@ def run_tests_for_model(results, prompt, model, config, evaluator):
             prompt_text += "\n\n" + question.question
             write_prompt_text_to_file(prompt_text, model_results, config, str(location), str(question.id))
             for cycle_number in range(config.cycles):
-                futures_list.append(executor.submit(test_model, results, prompt_text, model, config, evaluator,
+                futures_list.append(executor.submit(test_model, results, prompt_text, model, evaluator,
                                                     location, question, cycle_number))
     print("Number of tests ", len(futures_list))
     return futures_list
@@ -112,5 +109,5 @@ if __name__ == '__main__':
     test_directory = create_test_directory(test_config.result_directory)
     test_prompt = get_prompt(max_prompt_size, test_config)
     test_results = TestResults(test_directory)
-    run_tests(test_results, test_prompt, test_config, DefaultEvaluator())
+    run_tests(test_results, test_prompt, test_config, DefaultEvaluator(test_results, test_config.evaluator_model_list))
     print("Tests completed")
