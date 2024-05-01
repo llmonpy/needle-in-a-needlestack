@@ -261,7 +261,7 @@ class ModelQuestionVetterResult:
     def create(model_name, question, number_of_trials, evaluator_model_names):
         result = ModelQuestionVetterResult(model_name, question)
         for trial_number in range(number_of_trials):
-            result.add_trial(trial_number, evaluator_model_names)
+            result.add_trial(question, trial_number, evaluator_model_names)
         return result
 
 
@@ -269,6 +269,7 @@ class QuestionVetterResult:
     def __init__(self, question, model_question_list=None):
         self.question = question
         self.model_question_list = model_question_list if model_question_list else []
+        self.failed_models = []
 
     def add_model_question(self, model_name, question, number_of_trials, evaluator_model_names):
         model_question = ModelQuestionVetterResult.create(model_name, question, number_of_trials, evaluator_model_names)
@@ -292,13 +293,15 @@ class QuestionVetterResult:
             model_question.calculate_scores(status_report)
 
     def record_results(self):
+        self.failed_models = []
         passed = True
         for model_question in self.model_question_list:
             if not model_question.passed_tests():
                 passed = False
+                self.failed_models.append(model_question.model_name)
                 print("Question failed: ", self.question.id, self.question.text)
-                break
         self.question.question_vetted = passed
+        return passed
 
     def to_dict(self):
         result = copy.copy(vars(self))
@@ -342,6 +345,7 @@ class QuestionListVetterResult:
         if self.evaluation_exception_list is None:
             self.evaluation_exception_list = []
         self.failed_evaluation_count = failed_evaluation_count
+        self.failed_questions = []
 
     def get_trial(self, question_id,  model_name, trial_number):
         for question_vetter_result in self.question_list:
@@ -388,8 +392,10 @@ class QuestionListVetterResult:
             question_vetter_result.calculate_scores(status_report)
 
     def record_results(self):
+        self.failed_questions = []
         for question_vetter_result in self.question_list:
-            question_vetter_result.record_results()
+            if not question_vetter_result.record_results():
+                self.failed_questions.append(question_vetter_result.question.id)
 
     def write_to_file(self):
         with open(self.file_path, "w") as file:
