@@ -16,10 +16,10 @@ PLOT_FONT_SIZE = 8
 
 
 class TestResultExceptionReport:
-    def __init__(self, location_name, question_id, cycle_number, attempt, exception_message):
+    def __init__(self, location_name, question_id, trial_number, attempt, exception_message):
         self.location_name = location_name
         self.question_id = question_id
-        self.cycle_number = cycle_number
+        self.trial_number = trial_number
         self.attempt = attempt
         self.exception_message = exception_message
 
@@ -34,10 +34,10 @@ class TestResultExceptionReport:
 
 
 class EvaluationExceptionReport:
-    def __init__(self, location_name, question_id, cycle_number, attempt, evaluation_model_name, exception_message):
+    def __init__(self, location_name, question_id, trial_number, attempt, evaluation_model_name, exception_message):
         self.location_name = location_name
         self.question_id = question_id
-        self.cycle_number = cycle_number
+        self.trial_number = trial_number
         self.attempt = attempt
         self.evaluation_model_name = evaluation_model_name
         self.exception_message = exception_message
@@ -85,9 +85,9 @@ class ScoreAccumulator:
         return result
 
 
-class CycleScore:
-    def __init__(self, cycle_number, score):
-        self.cycle_number = cycle_number
+class trialScore:
+    def __init__(self, trial_number, score):
+        self.trial_number = trial_number
         self.score = score
 
     def to_dict(self):
@@ -96,7 +96,7 @@ class CycleScore:
 
     @staticmethod
     def from_dict(dictionary):
-        result = CycleScore(**dictionary)
+        result = trialScore(**dictionary)
         return result
 
 
@@ -122,17 +122,17 @@ class QuestionScore:
 
 
 class LocationScore:
-    def __init__(self, location_token_position, score, cycle_scores=None, question_scores=None):
+    def __init__(self, location_token_position, score, trial_scores=None, question_scores=None):
         self.location_token_position = location_token_position
         self.score = score
-        self.cycle_scores = cycle_scores
+        self.trial_scores = trial_scores
         self.question_scores = question_scores
 
-    def get_cycle_score(self, cycle_number):
+    def get_trial_score(self, trial_number):
         result = None
-        for cycle_score in self.cycle_scores:
-            if cycle_score.cycle_number == cycle_number:
-                result = cycle_score
+        for trial_score in self.trial_scores:
+            if trial_score.trial_number == trial_number:
+                result = trial_score
                 break
         return result
 
@@ -146,10 +146,10 @@ class LocationScore:
 
     def to_dict(self):
         result = copy.copy(vars(self))
-        if self.cycle_scores is not None:
+        if self.trial_scores is not None:
             index = 0
-            for cycle_score in self.cycle_scores:
-                result["cycle_scores"][index] = cycle_score.to_dict()
+            for trial_score in self.trial_scores:
+                result["trial_scores"][index] = trial_score.to_dict()
                 index += 1
         if self.question_scores is not None:
             index = 0
@@ -160,11 +160,11 @@ class LocationScore:
 
     @staticmethod
     def from_dict(dictionary):
-        cycle_scores = dictionary.get("cycle_scores", None)
-        if cycle_scores is not None:
-            dictionary.pop("cycle_scores", None)
-            cycle_scores = [CycleScore.from_dict(cycle) for cycle in cycle_scores]
-            dictionary["cycle_scores"] = cycle_scores
+        trial_scores = dictionary.get("trial_scores", None)
+        if trial_scores is not None:
+            dictionary.pop("trial_scores", None)
+            trial_scores = [trialScore.from_dict(trial) for trial in trial_scores]
+            dictionary["trial_scores"] = trial_scores
         question_scores = dictionary.get("question_scores", None)
         if question_scores is not None:
             dictionary.pop("question_scores", None)
@@ -188,15 +188,15 @@ class ModelScore:
                 index += 1
         return result
 
-    def get_location_cycle_scores(self):
-        cycle_name_list = [cycle_score.cycle_number for cycle_score in self.location_scores[0].cycle_scores]
+    def get_location_trial_scores(self):
+        trial_name_list = [trial_score.trial_number for trial_score in self.location_scores[0].trial_scores]
         result = []
-        for cycle_name in cycle_name_list:
-            location_cycle_scores = []
+        for trial_name in trial_name_list:
+            location_trial_scores = []
             for location_score in self.location_scores:
-                cycle_score = location_score.get_cycle_score(cycle_name)
-                location_cycle_scores.append(cycle_score.score * 100)
-            result.append(location_cycle_scores)
+                trial_score = location_score.get_trial_score(trial_name)
+                location_trial_scores.append(trial_score.score * 100)
+            result.append(location_trial_scores)
         return result
 
     def get_location_question_scores(self):
@@ -210,9 +210,9 @@ class ModelScore:
             result.append(location_question_scores)
         return result
 
-    def write_cycle_plot(self, plot_file_name):
-        location_cycle_score_list = self.get_location_cycle_scores()
-        self.write_plot(plot_file_name, location_cycle_score_list)
+    def write_trial_plot(self, plot_file_name):
+        location_trial_score_list = self.get_location_trial_scores()
+        self.write_plot(plot_file_name, location_trial_score_list)
 
     def write_question_plot(self, plot_file_name):
         if self.location_scores[0].question_scores is None:
@@ -226,8 +226,8 @@ class ModelScore:
         labels = [location.location_token_position for location in self.location_scores]
         values = [round(location.score * 100) for location in self.location_scores]
         number_of_locations = len(values)
-        number_of_cycles = len(subplot_data_list)
-        plot_title = f'{self.model_name}\n{number_of_cycles} trials at {number_of_locations} token positions'
+        number_of_trials = len(subplot_data_list)
+        plot_title = f'{self.model_name}\n{number_of_trials} trials at {number_of_locations} token positions'
 
         for subplot_data in subplot_data_list:
             axes.plot(labels, subplot_data, linewidth=.75,  color="#5f9afa", alpha=0.3)
@@ -257,8 +257,8 @@ class ModelScore:
         labels = [location.location_token_position for location in self.location_scores]
         values = [round(location.score * 100) for location in self.location_scores]
         number_of_locations = len(values)
-        number_of_cycles = len(subplot_data_list)
-        plot_title = f'{self.model_name}\n{number_of_cycles} trials at {number_of_locations} token positions'
+        number_of_trials = len(subplot_data_list)
+        plot_title = f'{self.model_name}\n{number_of_trials} trials at {number_of_locations} token positions'
 
         for subplot_data in subplot_data_list:
             axes.scatter(labels, subplot_data, linewidth=.3, edgecolor='grey', color="#b3d0fc",
@@ -378,10 +378,10 @@ class EvaluatorResult:
         return result
 
 
-class CycleResult:
-    def __init__(self, cycle_number, good_answer, evaluator_model_list=None, passed=None, dissent_count=None,
+class trialResult:
+    def __init__(self, trial_number, good_answer, evaluator_model_list=None, passed=None, dissent_count=None,
                  generated_answer=None, evaluator_results=None):
-        self.cycle_number = cycle_number
+        self.trial_number = trial_number
         self.good_answer = good_answer
         self.passed = passed
         self.dissent_count = dissent_count
@@ -450,55 +450,55 @@ class CycleResult:
             dictionary.pop("evaluator_results", None)
             evaluator_results = [EvaluatorResult.from_dict(result) for result in evaluator_results]
             dictionary["evaluator_results"] = evaluator_results
-        result = CycleResult(**dictionary)
+        result = trialResult(**dictionary)
         return result
 
 
 class QuestionResults:
-    def __init__(self, question, cycles=None, evaluator_model_list=None, cycle_results=None, score=None):
+    def __init__(self, question, trials=None, evaluator_model_list=None, trial_results=None, score=None):
         self.question = question
-        self.cycle_results = cycle_results
-        if cycle_results is None:
-            self.cycle_results = []
-            for cycle in range(cycles):
-                cycle_result = CycleResult(cycle, question.answer, evaluator_model_list)
-                self.cycle_results.append(cycle_result)
+        self.trial_results = trial_results
+        if trial_results is None:
+            self.trial_results = []
+            for trial in range(trials):
+                trial_result = trialResult(trial, question.answer, evaluator_model_list)
+                self.trial_results.append(trial_result)
         self.score = score
 
-    def get_cycle(self, cycle_number):
-        result = self.cycle_results[cycle_number]
+    def get_trial(self, trial_number):
+        result = self.trial_results[trial_number]
         return result
 
-    def get_cycle_names(self):
-        result = [cycle_result.cycle_number for cycle_result in self.cycle_results]
+    def get_trial_names(self):
+        result = [trial_result.trial_number for trial_result in self.trial_results]
         return result
 
-    def add_score_for_cycle(self, cycle_name, score_accumulator):
-        for cycle_result in self.cycle_results:
-            if cycle_result.cycle_number == cycle_name:
-                score_accumulator.add_score(cycle_result.passed)
+    def add_score_for_trial(self, trial_name, score_accumulator):
+        for trial_result in self.trial_results:
+            if trial_result.trial_number == trial_name:
+                score_accumulator.add_score(trial_result.passed)
                 break
 
     def calculate_scores(self, status_report):
         correct_results = 0
-        finished_cycles = 0
-        for cycle_result in self.cycle_results:
-            cycle_result.calculate_scores(status_report)
-            if cycle_result.is_finished():
-                finished_cycles += 1
-                if cycle_result.passed:
+        finished_trials = 0
+        for trial_result in self.trial_results:
+            trial_result.calculate_scores(status_report)
+            if trial_result.is_finished():
+                finished_trials += 1
+                if trial_result.passed:
                     correct_results += 1
-        if finished_cycles > 0:
-            self.score = correct_results / finished_cycles
+        if finished_trials > 0:
+            self.score = correct_results / finished_trials
         return self.score
 
     def to_dict(self):
         result = copy.copy(vars(self))
         result["question"] = self.question.to_dict()
-        if self.cycle_results is not None:
+        if self.trial_results is not None:
             index = 0
-            for cycle_result in self.cycle_results:
-                result["cycle_results"][index] = cycle_result.to_dict()
+            for trial_result in self.trial_results:
+                result["trial_results"][index] = trial_result.to_dict()
                 index += 1
         return result
 
@@ -509,32 +509,32 @@ class QuestionResults:
             dictionary.pop("question", None)
             question = Limerick.from_dict(question)
             dictionary["question"] = question
-        cycle_results = dictionary.get("cycle_results", None)
-        if cycle_results is not None:
-            dictionary.pop("cycle_results", None)
-            cycle_results = [CycleResult.from_dict(result) for result in cycle_results]
-            dictionary["cycle_results"] = cycle_results
+        trial_results = dictionary.get("trial_results", None)
+        if trial_results is not None:
+            dictionary.pop("trial_results", None)
+            trial_results = [trialResult.from_dict(result) for result in trial_results]
+            dictionary["trial_results"] = trial_results
         result = QuestionResults(**dictionary)
         return result
 
 
 class LocationResults:
-    def __init__(self, location_token_position=None, question_list=None, cycles=None, evaluator_model_list=None,
+    def __init__(self, location_token_position=None, question_list=None, trials=None, evaluator_model_list=None,
                  question_result_list=None, score=None):
         self.location_token_position = location_token_position
         self.question_result_list = question_result_list
         if self.question_result_list is None:
             self.question_result_list = []
             for question in question_list:
-                question_result = QuestionResults(question, cycles, evaluator_model_list)
+                question_result = QuestionResults(question, trials, evaluator_model_list)
                 self.question_result_list.append(question_result)
         self.score = score
 
-    def get_cycle(self, question_id, cycle_number):
+    def get_trial(self, question_id, trial_number):
         result = None
         for question_result in self.question_result_list:
             if question_result.question.id == question_id:
-                result = question_result.get_cycle(cycle_number)
+                result = question_result.get_trial(trial_number)
                 break
         return result
 
@@ -550,15 +550,15 @@ class LocationResults:
             self.score = cumulative_score / score_count
         return self.score
 
-    def get_cycle_scores(self):
+    def get_trial_scores(self):
         result = []
-        cycle_name_list = self.question_result_list[0].get_cycle_names()
-        for cycle_name in cycle_name_list:
+        trial_name_list = self.question_result_list[0].get_trial_names()
+        for trial_name in trial_name_list:
             accumulated_score = ScoreAccumulator()
             for question_result in self.question_result_list:
-                question_result.add_score_for_cycle(cycle_name, accumulated_score)
-            cycle_score = CycleScore(cycle_name, accumulated_score.get_score())
-            result.append(cycle_score)
+                question_result.add_score_for_trial(trial_name, accumulated_score)
+            trial_score = trialScore(trial_name, accumulated_score.get_score())
+            result.append(trial_score)
         return result
 
     def get_question_scores(self):
@@ -590,7 +590,7 @@ class LocationResults:
 
 class ModelResults:
     def __init__(self, directory, model_name, location_token_index_list=None, question_list=None,
-                 cycles=None, evaluator_model_list=None,
+                 trials=None, evaluator_model_list=None,
                  location_list=None, test_exception_list=None, evaluation_exception_list=None, failed_test_count=0,
                  failed_evaluation_count=0):
         self.directory = directory
@@ -607,16 +607,16 @@ class ModelResults:
         if self.location_list is None:
             self.location_list = []
             for location in location_token_index_list:
-                location_result = LocationResults(location, question_list, cycles, evaluator_model_list)
+                location_result = LocationResults(location, question_list, trials, evaluator_model_list)
                 self.location_list.append(location_result)
         if directory is not None and len(directory) > 0:
             os.makedirs(directory, exist_ok=True)
 
-    def get_cycle(self, location_name, question_id, cycle_number):
+    def get_trial(self, location_name, question_id, trial_number):
         result = None
         for location in self.location_list:
             if location.location_token_position == location_name:
-                result = location.get_cycle(question_id, cycle_number)
+                result = location.get_trial(question_id, trial_number)
                 break
         return result
 
@@ -630,37 +630,37 @@ class ModelResults:
     def get_location_scores(self):
         result = []
         for location in self.location_list:
-            cycle_scores = location.get_cycle_scores()
+            trial_scores = location.get_trial_scores()
             question_scores = location.get_question_scores()
-            location_score = LocationScore(location.location_token_position, location.score, cycle_scores,
+            location_score = LocationScore(location.location_token_position, location.score, trial_scores,
                                            question_scores)
             result.append(location_score)
         return result
 
-    def add_test_exception(self, location_name, question_id, cycle_number, attempt, exception):
+    def add_test_exception(self, location_name, question_id, trial_number, attempt, exception):
         print("Test Exception: ", str(exception))
-        exception_report = TestResultExceptionReport(location_name, question_id, cycle_number, attempt,str(exception))
+        exception_report = TestResultExceptionReport(location_name, question_id, trial_number, attempt,str(exception))
         self.test_exception_list.append(exception_report)
         if attempt == PROMPT_RETRIES - 1:
             self.failed_test_count += 1
             print("Failed Test Count: ", self.failed_test_count)
 
-    def add_evaluation_exception(self, location_name, question_id, cycle_number, attempt, evaluation_model_name,
+    def add_evaluation_exception(self, location_name, question_id, trial_number, attempt, evaluation_model_name,
                                  exception):
         print("Evaluation Exception: ", str(exception))
-        exception_report = EvaluationExceptionReport(location_name, question_id, cycle_number, attempt,
+        exception_report = EvaluationExceptionReport(location_name, question_id, trial_number, attempt,
                                                      evaluation_model_name, str(exception))
         self.evaluation_exception_list.append(exception_report)
         if attempt == PROMPT_RETRIES - 1:
             self.failed_evaluation_count += 1
             print("Failed Evaluation Count: ", self.failed_evaluation_count)
 
-    def get_all_cycle_results(self):
+    def get_all_trial_results(self):
         result = []
         for location in self.location_list:
             for question_result in location.question_result_list:
-                for cycle_result in question_result.cycle_results:
-                    result.append(cycle_result)
+                for trial_result in question_result.trial_results:
+                    result.append(trial_result)
         return result
 
     def to_dict(self):
@@ -715,19 +715,19 @@ class ModelResults:
 
 
 class BaseTestResultAction:
-    def __init__(self, results, model_name, location_name, question_id, cycle_number):
+    def __init__(self, results, model_name, location_name, question_id, trial_number):
         self.results = results
         self.model_name = model_name
         self.location_name = location_name
         self.question_id = question_id
-        self.cycle_number = cycle_number
+        self.trial_number = trial_number
 
     def get_model_results(self):
         result = self.results.get_model_results(self.model_name)
         return result
 
-    def get_cycle(self):
-        result = self.get_model_results().get_cycle(self.location_name, self.question_id, self.cycle_number)
+    def get_trial(self):
+        result = self.get_model_results().get_trial(self.location_name, self.question_id, self.trial_number)
         return result
 
     def execute(self):
@@ -735,43 +735,43 @@ class BaseTestResultAction:
 
 
 class SetTestResultAction(BaseTestResultAction):
-    def __init__(self, results, model_name, location_name, question_id, cycle_number, generated_answer):
-        super().__init__(results, model_name, location_name, question_id, cycle_number)
+    def __init__(self, results, model_name, location_name, question_id, trial_number, generated_answer):
+        super().__init__(results, model_name, location_name, question_id, trial_number)
         self.generated_answer = generated_answer
 
     def execute(self):
-        self.get_cycle().set_generated_answer(self.generated_answer)
+        self.get_trial().set_generated_answer(self.generated_answer)
 
 
 class SetEvaluatorResultAction(BaseTestResultAction):
-    def __init__(self, results, model_name, location_name, question_id, cycle_number, evaluator_model_name, passed):
-        super().__init__(results, model_name, location_name, question_id, cycle_number)
+    def __init__(self, results, model_name, location_name, question_id, trial_number, evaluator_model_name, passed):
+        super().__init__(results, model_name, location_name, question_id, trial_number)
         self.evaluator_model_name = evaluator_model_name
         self.passed = passed
 
     def execute(self):
-        self.get_cycle().set_evaluator_result(self.evaluator_model_name, self.passed)
+        self.get_trial().set_evaluator_result(self.evaluator_model_name, self.passed)
 
 
 class AddTestExceptionAction(BaseTestResultAction):
-    def __init__(self, results, model_name, location_name, question_id, cycle_number, attempt, exception):
-        super().__init__(results, model_name, location_name, question_id, cycle_number)
+    def __init__(self, results, model_name, location_name, question_id, trial_number, attempt, exception):
+        super().__init__(results, model_name, location_name, question_id, trial_number)
         self.attempt = attempt
         self.exception = exception
 
     def execute(self):
-        self.get_model_results().add_test_exception(self.location_name, self.question_id, self.cycle_number, self.attempt, self.exception)
+        self.get_model_results().add_test_exception(self.location_name, self.question_id, self.trial_number, self.attempt, self.exception)
 
 
 class AddEvaluationExceptionAction(BaseTestResultAction):
-    def __init__(self, results, model_name, location_name, question_id, cycle_number, evaluation_model_name, attempt, exception):
-        super().__init__(results, model_name, location_name, question_id, cycle_number)
+    def __init__(self, results, model_name, location_name, question_id, trial_number, evaluation_model_name, attempt, exception):
+        super().__init__(results, model_name, location_name, question_id, trial_number)
         self.evaluation_model_name = evaluation_model_name
         self.attempt = attempt
         self.exception = exception
 
     def execute(self):
-        self.get_model_results().add_evaluation_exception(self.location_name, self.question_id, self.cycle_number,
+        self.get_model_results().add_evaluation_exception(self.location_name, self.question_id, self.trial_number,
                                                           self.evaluation_model_name, self.attempt, self.exception)
 
 
@@ -828,28 +828,28 @@ class TestResults(BaseTestResults):
         result = copy.deepcopy(self.model_results_list)
         return result
 
-    def add_model(self, model_name, location_list, question_list, cycles, evaluator_model_list):
+    def add_model(self, model_name, location_list, question_list, trials, evaluator_model_list):
         directory = os.path.join(self.test_result_directory, model_name)
-        model_results = ModelResults(directory, model_name, location_list, question_list, cycles, evaluator_model_list)
+        model_results = ModelResults(directory, model_name, location_list, question_list, trials, evaluator_model_list)
         self.model_results_list.append(model_results)
         return model_results
 
-    def set_test_result(self, model_name, location_name, question_id, cycle_number, generated_answer):
-        action = SetTestResultAction(self, model_name, location_name, question_id, cycle_number, generated_answer)
+    def set_test_result(self, model_name, location_name, question_id, trial_number, generated_answer):
+        action = SetTestResultAction(self, model_name, location_name, question_id, trial_number, generated_answer)
         self.add_action(action)
 
-    def set_evaluator_result(self, model_name, location_name, question_id, cycle_number, evaluator_model_name, passed):
-        action = SetEvaluatorResultAction(self, model_name, location_name, question_id, cycle_number,
+    def set_evaluator_result(self, model_name, location_name, question_id, trial_number, evaluator_model_name, passed):
+        action = SetEvaluatorResultAction(self, model_name, location_name, question_id, trial_number,
                                           evaluator_model_name, passed)
         self.add_action(action)
 
-    def add_test_exception(self, model_name, location_name, question_id, cycle_number, attempt, exception):
-        action = AddTestExceptionAction(self, model_name, location_name, question_id, cycle_number, attempt, exception)
+    def add_test_exception(self, model_name, location_name, question_id, trial_number, attempt, exception):
+        action = AddTestExceptionAction(self, model_name, location_name, question_id, trial_number, attempt, exception)
         self.add_action(action)
 
-    def add_evaluation_exception(self, model_name, location_name, question_id, cycle_number, evaluation_model_name,
+    def add_evaluation_exception(self, model_name, location_name, question_id, trial_number, evaluation_model_name,
                                  attempt, exception):
-        action = AddEvaluationExceptionAction(self, model_name, location_name, question_id, cycle_number,
+        action = AddEvaluationExceptionAction(self, model_name, location_name, question_id, trial_number,
                                               evaluation_model_name, attempt, exception)
         self.add_action(action)
 
@@ -878,9 +878,9 @@ class TestResults(BaseTestResults):
             for model_results in current_results_list:
                 location_scores = model_results.get_location_scores()
                 model_score = ModelScore(model_results.model_name, location_scores)
-                plot_name = model_results.model_name + "_cycle_plot.png"
+                plot_name = model_results.model_name + "_trial_plot.png"
                 plot_file_name = os.path.join(self.test_result_directory, plot_name)
-                model_score.write_cycle_plot(plot_file_name)
+                model_score.write_trial_plot(plot_file_name)
                 plot_name = model_results.model_name + "question_plot.png"
                 model_score.write_question_plot(plot_name)
                 model_score_list.append(model_score)
@@ -906,8 +906,8 @@ if __name__ == '__main__':
         test_model_scores = TestModelScores.from_dict(model_scores_dict)
         for model_score in test_model_scores.model_scores:
             print("Model: ", model_score.model_name)
-            plot_name = "test_cycle_plot.png"
-            model_score.write_cycle_plot(plot_name)
+            plot_name = "test_trial_plot.png"
+            model_score.write_trial_plot(plot_name)
             plot_name = "test_question_plot.png"
             model_score.write_question_plot(plot_name)
         print("done")

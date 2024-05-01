@@ -11,9 +11,9 @@ class EvaluatorReport:
         self.agreed_test_count = agreed_test_count
         self.disagreed_test_count = disagreed_test_count
 
-    def add_test(self, cycle_answer, evaluator_answer):
+    def add_test(self, trial_answer, evaluator_answer):
         self.test_count += 1
-        if cycle_answer == evaluator_answer:
+        if trial_answer == evaluator_answer:
             self.agreed_test_count += 1
         else:
             self.disagreed_test_count += 1
@@ -31,25 +31,25 @@ class DissentReport:
     def __init__(self, file_path):
         self.file_path = file_path
         self.model_results = ModelResults.from_file(self.file_path)
-        self.cycle_list = self.model_results.get_all_cycle_results()
-        self.cycles_with_dissent_list = []
-        self.cycles_with_concerning_dissent_list = []
-        for cycle in self.cycle_list:
-            if cycle.has_dissent():
-                self.cycles_with_dissent_list.append(cycle)
-            if cycle.has_concerning_dissent():
-                self.cycles_with_concerning_dissent_list.append(cycle)
+        self.trial_list = self.model_results.get_all_trial_results()
+        self.trials_with_dissent_list = []
+        self.trials_with_concerning_dissent_list = []
+        for trial in self.trial_list:
+            if trial.has_dissent():
+                self.trials_with_dissent_list.append(trial)
+            if trial.has_concerning_dissent():
+                self.trials_with_concerning_dissent_list.append(trial)
         self.dissenting_evaluator_report = {}
 
     def process(self):
         print("Processing results")
-        for cycle in self.cycles_with_dissent_list:
-            for evaluator in cycle.evaluator_results:
+        for trial in self.trials_with_dissent_list:
+            for evaluator in trial.evaluator_results:
                 evaluator_report = self.dissenting_evaluator_report.get(evaluator.model_name, None)
                 if evaluator_report is None:
-                    evaluator_report = EvaluatorReport(evaluator.model_name, len(self.cycle_list))
+                    evaluator_report = EvaluatorReport(evaluator.model_name, len(self.trial_list))
                     self.dissenting_evaluator_report[evaluator.model_name] = evaluator_report
-                evaluator_report.add_test(cycle.passed, evaluator.passed)
+                evaluator_report.add_test(trial.passed, evaluator.passed)
         self.print_dissenting_evaluator_report()
 
     def print_dissenting_evaluator_report(self):

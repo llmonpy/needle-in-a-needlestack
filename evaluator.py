@@ -56,14 +56,14 @@ def get_score_from_response(response_text):
 
 
 def evaluate_response(model, evaluation_prompt_text, system_prompt, model_name_being_tested, location_name, question,
-                      cycle_number, results):
+                      trial_number, results):
     for attempt in range(PROMPT_RETRIES):
         try:
             response_text = model.prompt(evaluation_prompt_text, system_prompt)
             break
         except Exception as e:
             response_text = FAIL_ANSWER
-            results.add_evaluation_exception(model_name_being_tested, location_name, question.id, cycle_number,
+            results.add_evaluation_exception(model_name_being_tested, location_name, question.id, trial_number,
                                              model.llm_name, attempt, e)
             if attempt == 2:
                 print("Exception on attempt 3")
@@ -74,7 +74,7 @@ def evaluate_response(model, evaluation_prompt_text, system_prompt, model_name_b
 
 
 class EvaluatorInterface:
-    def evaluate(self, results, evaluator_model_list, model_name, location_name, question, cycle_number, answer):
+    def evaluate(self, results, evaluator_model_list, model_name, location_name, question, trial_number, answer):
         raise NotImplementedError
 
 
@@ -85,7 +85,7 @@ class DefaultEvaluator(EvaluatorInterface):
         self.results = results
         self.evaluator_model_list = evaluator_model_list
 
-    def evaluate(self, model_name, location_name, question, cycle_number, answer):
+    def evaluate(self, model_name, location_name, question, trial_number, answer):
         evaluation_prompt_template = Template(self.evaluation_prompt)
         evaluation_prompt_text = evaluation_prompt_template.substitute(limerick_text=question.text,
                                                                        question_text=question.question,
@@ -97,7 +97,7 @@ class DefaultEvaluator(EvaluatorInterface):
         for model in self.evaluator_model_list:
             executor = model.get_eval_executor()
             futures_list.append(executor.submit(evaluate_response, model, evaluation_prompt_text, self.system_prompt,
-                                                model_name, location_name, question, cycle_number, self.results))
+                                                model_name, location_name, question, trial_number, self.results))
         yes_count = no_count = 0
         for future in concurrent.futures.as_completed(futures_list):
             score, evaluator_model_name = future.result()
@@ -107,7 +107,7 @@ class DefaultEvaluator(EvaluatorInterface):
             elif score == 0:
                 no_count += 1
                 passed = False
-            self.results.set_evaluator_result(model_name, location_name, question.id, cycle_number, evaluator_model_name,
+            self.results.set_evaluator_result(model_name, location_name, question.id, trial_number, evaluator_model_name,
                                          passed)
         if yes_count > no_count:
             result = 1

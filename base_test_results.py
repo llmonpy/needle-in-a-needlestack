@@ -38,15 +38,15 @@ class BaseTestResults:
     def __init__(self):
         pass
 
-    def set_test_result(self, model_name, location_name, question_id, cycle_number, generated_answer):
+    def set_test_result(self, model_name, location_name, question_id, trial_number, generated_answer):
         raise NotImplementedError
 
-    def set_evaluator_result(self, model_name, location_name, question_id, cycle_number, evaluator_model_name, passed):
+    def set_evaluator_result(self, model_name, location_name, question_id, trial_number, evaluator_model_name, passed):
         raise NotImplementedError
 
-    def add_test_exception(self, model_name, location_name, question_id, cycle_number, attempt, exception):
+    def add_test_exception(self, model_name, location_name, question_id, trial_number, attempt, exception):
         raise NotImplementedError
 
-    def add_evaluation_exception(self, model_name, location_name, question_id, cycle_number, evaluation_model_name,
+    def add_evaluation_exception(self, model_name, location_name, question_id, trial_number, evaluation_model_name,
                                  attempt, exception):
         raise NotImplementedError

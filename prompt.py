@@ -133,7 +133,7 @@ def prompt_file_name(base_name, number_of_questions, size):
 def generate_prompt(max_size, test_config):
     limerick_list = read_and_init_limericks(LIMERICK_DATASET_FILE)
     selected_question_list, selected_question_dict = select_questions_for_prompt(FULL_QUESTION_FILE,
-                                                                                 test_config.number_of_questions_per_cycle)
+                                                                                 test_config.number_of_questions_per_trial)
     selected_limerick_list = select_limericks_for_prompt(limerick_list, selected_question_dict,
                                                          max_size)
     result = LimerickPrompt.for_target_size(max_size, selected_question_list)
@@ -144,7 +144,7 @@ def generate_prompt(max_size, test_config):
         if index % 10 == 0:
             print(".")
         result.add_limerick(limerick)
-    result.write_to_file(prompt_file_name(test_config.prompt_file_name, test_config.number_of_questions_per_cycle, max_size))
+    result.write_to_file(prompt_file_name(test_config.prompt_file_name, test_config.number_of_questions_per_trial, max_size))
     return result
 
 
@@ -156,7 +156,7 @@ def read_prompt(file_name):
 
 
 def get_prompt(max_size, test_config):
-    file_name = prompt_file_name(test_config.prompt_file_name, test_config.number_of_questions_per_cycle, max_size)
+    file_name = prompt_file_name(test_config.prompt_file_name, test_config.number_of_questions_per_trial, max_size)
     result = None
     if os.path.exists(file_name):
         result = read_prompt(file_name)

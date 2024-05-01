@@ -41,20 +41,20 @@ def calculate_question_location_list(location_count, max_input):
         last_location = result[-1]
     return result
 
-def test_model(results, prompt_text, model, evaluator, location, question, cycle_number):
+def test_model(results, prompt_text, model, evaluator, location, question, trial_number):
     for attempt in range(PROMPT_RETRIES):
         try:
             generated_answer = model.prompt(prompt_text)
             break
         except Exception as e:
             generated_answer = NO_GENERATED_ANSWER
-            results.add_test_exception(model.llm_name, location, question.id, cycle_number, attempt, e)
+            results.add_test_exception(model.llm_name, location, question.id, trial_number, attempt, e)
             if attempt == 2:
                 print("Exception on attempt 3")
             backoff_after_exception(attempt)
             continue
-    results.set_test_result(model.llm_name, location, question.id, cycle_number, generated_answer)
-    score = evaluator.evaluate(model.llm_name, location, question, cycle_number, generated_answer)
+    results.set_test_result(model.llm_name, location, question.id, trial_number, generated_answer)
+    score = evaluator.evaluate(model.llm_name, location, question, trial_number, generated_answer)
     return generated_answer, score
 
 
@@ -64,15 +64,15 @@ def run_tests_for_model(results, prompt, model, config, evaluator):
     executor = concurrent.futures.ThreadPoolExecutor(max_workers=config.test_thread_count)
     question_list = prompt.question_list
     question_location_list = calculate_question_location_list(config.location_count, model.max_input)
-    model_results = results.add_model(model.llm_name, question_location_list, question_list, config.cycles, config.evaluator_model_list)
+    model_results = results.add_model(model.llm_name, question_location_list, question_list, config.trials, config.evaluator_model_list)
     for question in question_list:
         for location in question_location_list:
             prompt_text = prompt.build_text_from_limerick_list(question, location, model.max_input)
             prompt_text += "\n\n" + question.question
             write_prompt_text_to_file(prompt_text, model_results, config, str(location), str(question.id))
-            for cycle_number in range(config.cycles):
+            for trial_number in range(config.trials):
                 futures_list.append(executor.submit(test_model, results, prompt_text, model, evaluator,
-                                                    location, question, cycle_number))
+                                                    location, question, trial_number))
     print("Number of tests ", len(futures_list))
     return futures_list
 
