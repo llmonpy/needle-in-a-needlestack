@@ -269,6 +269,7 @@ class QuestionVetterResult:
     def __init__(self, question, model_question_list=None):
         self.question = question
         self.model_question_list = model_question_list if model_question_list else []
+        self.question_prompt_text = None
         self.failed_models = []
 
     def add_model_question(self, model_name, question, number_of_trials, evaluator_model_names):
@@ -278,14 +279,14 @@ class QuestionVetterResult:
     def start_tests(self, result, model_list, evaluator):
         futures_list = []
         question_prompt_template = Template(QUESTION_PROMPT)
-        question_prompt_text = question_prompt_template.substitute(limerick_text=self.question.text,
+        self.question_prompt_text = question_prompt_template.substitute(limerick_text=self.question.text,
                                                                    question_text=self.question.question)
         for model_question in self.model_question_list:
             model_name = model_question.model_name
             model = next(model for model in model_list if model.llm_name == model_name)
             if model is None:
                 raise Exception("Model not found: " + model_name)
-            futures_list += model_question.start_tests(result, model, self.question, question_prompt_text, evaluator)
+            futures_list += model_question.start_tests(result, model, self.question, self.question_prompt_text, evaluator)
         return futures_list
 
     def calculate_scores(self, status_report):

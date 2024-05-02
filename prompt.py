@@ -24,7 +24,7 @@ class LimerickPrompt:
             self.limerick_list.append(limerick)
             self.token_count += limerick.token_count
 
-    def build_text_from_limerick_list(self, question, location, max_size):
+    def build_text_from_limerick_list(self, question, location, max_size, repeat_question_count=1):
         result = None
         last_token_count = current_token_count = 0
         result = self.text + "\n\n" # intro of prompt was added in the constructor
@@ -34,7 +34,9 @@ class LimerickPrompt:
             if current_token_count > max_size:
                 break
             if last_token_count < location <= current_token_count:
-                result = result + "\n\n" + question.text
+                for i in range(repeat_question_count):
+                    result += "\n\n" + question.text
+                    current_token_count += question.token_count
                 added_question = True
             result += "\n\n" + limerick.text
             last_token_count = current_token_count
@@ -144,7 +146,9 @@ def generate_prompt(max_size, test_config):
         if index % 10 == 0:
             print(".")
         result.add_limerick(limerick)
-    result.write_to_file(prompt_file_name(test_config.prompt_file_name, test_config.number_of_questions_per_trial, max_size))
+    prompt_file_path = os.path.join(test_config.result_directory,
+                                    prompt_file_name(test_config.prompt_file_name, test_config.number_of_questions_per_trial, max_size))
+    result.write_to_file(prompt_file_path)
     return result
 
 
@@ -157,11 +161,12 @@ def read_prompt(file_name):
 
 def get_prompt(max_size, test_config):
     file_name = prompt_file_name(test_config.prompt_file_name, test_config.number_of_questions_per_trial, max_size)
+    prompt_file_path = os.path.join(test_config.result_directory, file_name)
     result = None
-    if os.path.exists(file_name):
-        result = read_prompt(file_name)
+    if os.path.exists(prompt_file_path):
+        result = read_prompt(prompt_file_path)
     else:
         generate_prompt(max_size, test_config)
-        result = read_prompt(file_name)
+        result = read_prompt(prompt_file_path)
     return result
 

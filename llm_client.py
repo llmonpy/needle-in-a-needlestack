@@ -7,7 +7,6 @@ from queue import Queue, Empty
 
 import anthropic
 import ollama
-import openai
 from mistralai.client import MistralClient
 from mistralai.models.chat_completion import ChatMessage
 from openai import OpenAI
@@ -84,7 +83,6 @@ class OpenAIModel(LlmClient):
         self.rate_limiter.get_token()
         completion = self.client.chat.completions.create(
             model=self.llm_name,
-
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": prompt_text}
@@ -183,5 +181,5 @@ GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 15000, RateLimiterTokenBucket("open_a
 GPT4 = OpenAIModel('gpt-4-turbo', 127000, RateLimiterTokenBucket("open_ai_4_test",5, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
 EVAL_ANTHROPIC_OPUS = AnthropicModel("claude-3-opus-20240229", 199000, RateLimiterTokenBucket("ant_o_eval",100, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
 EVAL_ANTHROPIC_SONNET = AnthropicModel("claude-3-sonnet-20240229", 199000, RateLimiterTokenBucket("ant_s_eval",100, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
-EVAL_ANTHROPIC_HAIKU = AnthropicModel("claude-3-haiku-20240307", 199000, RateLimiterTokenBucket("ant_h_eval",100, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
+EVAL_ANTHROPIC_HAIKU = AnthropicModel("claude-3-haiku-20240307", 199000, RateLimiterTokenBucket("ant_h_eval",200, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
 

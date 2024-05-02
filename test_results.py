@@ -85,7 +85,7 @@ class ScoreAccumulator:
         return result
 
 
-class trialScore:
+class TrialScore:
     def __init__(self, trial_number, score):
         self.trial_number = trial_number
         self.score = score
@@ -96,7 +96,7 @@ class trialScore:
 
     @staticmethod
     def from_dict(dictionary):
-        result = trialScore(**dictionary)
+        result = TrialScore(**dictionary)
         return result
 
 
@@ -163,7 +163,7 @@ class LocationScore:
         trial_scores = dictionary.get("trial_scores", None)
         if trial_scores is not None:
             dictionary.pop("trial_scores", None)
-            trial_scores = [trialScore.from_dict(trial) for trial in trial_scores]
+            trial_scores = [TrialScore.from_dict(trial) for trial in trial_scores]
             dictionary["trial_scores"] = trial_scores
         question_scores = dictionary.get("question_scores", None)
         if question_scores is not None:
@@ -175,9 +175,10 @@ class LocationScore:
 
 
 class ModelScore:
-    def __init__(self, model_name, location_scores=None):
+    def __init__(self, model_name, location_scores=None, number_of_trials_per_location=None):
         self.model_name = model_name
         self.location_scores = location_scores
+        self.number_of_trials_per_location = number_of_trials_per_location
 
     def to_dict(self):
         result = copy.copy(vars(self))
@@ -226,7 +227,7 @@ class ModelScore:
         labels = [location.location_token_position for location in self.location_scores]
         values = [round(location.score * 100) for location in self.location_scores]
         number_of_locations = len(values)
-        number_of_trials = len(subplot_data_list)
+        number_of_trials = self.number_of_trials_per_location
         plot_title = f'{self.model_name}\n{number_of_trials} trials at {number_of_locations} token positions'
 
         for subplot_data in subplot_data_list:
@@ -251,13 +252,12 @@ class ModelScore:
         plt.tight_layout()
         plt.savefig(plot_file_name, dpi=300)
 
-
     def write_plot(self, plot_file_name, subplot_data_list):
         figure, axes = plt.subplots(figsize=(7, 5))
         labels = [location.location_token_position for location in self.location_scores]
         values = [round(location.score * 100) for location in self.location_scores]
         number_of_locations = len(values)
-        number_of_trials = len(subplot_data_list)
+        number_of_trials = self.number_of_trials_per_location
         plot_title = f'{self.model_name}\n{number_of_trials} trials at {number_of_locations} token positions'
 
         for subplot_data in subplot_data_list:
@@ -278,7 +278,7 @@ class ModelScore:
         axes.spines['left'].set_linewidth(.5)
         axes.spines['bottom'].set_linewidth(.5)
         axes.grid(False)
-        axes.set_ylim(0, 100)
+        axes.set_ylim(-3, 103)
         #plt.legend()
         plt.tight_layout()
         plt.savefig(plot_file_name, dpi=300)
@@ -557,7 +557,7 @@ class LocationResults:
             accumulated_score = ScoreAccumulator()
             for question_result in self.question_result_list:
                 question_result.add_score_for_trial(trial_name, accumulated_score)
-            trial_score = trialScore(trial_name, accumulated_score.get_score())
+            trial_score = TrialScore(trial_name, accumulated_score.get_score())
             result.append(trial_score)
         return result
 
@@ -596,6 +596,7 @@ class ModelResults:
         self.directory = directory
         self.model_name = model_name
         self.location_list = location_list
+        self.number_of_trials_per_location = len(question_list) * trials
         self.test_exception_list = test_exception_list
         if self.test_exception_list is None:
             self.test_exception_list = []
@@ -877,12 +878,10 @@ class TestResults(BaseTestResults):
             model_score_list = []
             for model_results in current_results_list:
                 location_scores = model_results.get_location_scores()
-                model_score = ModelScore(model_results.model_name, location_scores)
+                model_score = ModelScore(model_results.model_name, location_scores, model_results.number_of_trials_per_location)
                 plot_name = model_results.model_name + "_trial_plot.png"
                 plot_file_name = os.path.join(self.test_result_directory, plot_name)
                 model_score.write_trial_plot(plot_file_name)
-                plot_name = model_results.model_name + "question_plot.png"
-                model_score.write_question_plot(plot_name)
                 model_score_list.append(model_score)
             test_model_scores = TestModelScores(model_score_list)
             test_model_scores.write_to_file(os.path.join(self.test_result_directory, "model_scores.json"))
@@ -906,9 +905,7 @@ if __name__ == '__main__':
         test_model_scores = TestModelScores.from_dict(model_scores_dict)
         for model_score in test_model_scores.model_scores:
             print("Model: ", model_score.model_name)
-            plot_name = "test_trial_plot.png"
+            plot_name = "test_trial_plot_" + model_score.model_name + ".png"
             model_score.write_trial_plot(plot_name)
-            plot_name = "test_question_plot.png"
-            model_score.write_question_plot(plot_name)
         print("done")
         exit(0)

@@ -53,10 +53,15 @@ class DissentReport:
         self.print_dissenting_evaluator_report()
 
     def print_dissenting_evaluator_report(self):
-        print("Dissenting Evaluator Report")
-        for evaluator_report in self.dissenting_evaluator_report.values():
-            score = evaluator_report.get_percent_wrong()
-            print(evaluator_report.model_name + " % wrong: " + str(score) + "%")
+        result_directory = os.path.dirname(self.file_path)
+        output_file_path = os.path.join(result_directory, "evaluator_grades.txt")
+        with open(output_file_path, "w") as file:
+            print("Dissenting Evaluator Report\n")
+            for evaluator_report in self.dissenting_evaluator_report.values():
+                score = evaluator_report.get_percent_wrong()
+                message = evaluator_report.model_name + " % wrong: " + str(score) + "%\n"
+                file.write(message)
+                print(message)
 
 
 if __name__ == '__main__':
