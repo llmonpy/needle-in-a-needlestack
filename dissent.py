@@ -11,7 +11,7 @@ class EvaluatorReport:
         self.agreed_test_count = agreed_test_count
         self.disagreed_test_count = disagreed_test_count
 
-    def add_test(self, trial_answer, evaluator_answer):
+    def add_trial(self, trial_answer, evaluator_answer):
         self.test_count += 1
         if trial_answer == evaluator_answer:
             self.agreed_test_count += 1
@@ -27,7 +27,7 @@ class EvaluatorReport:
         return result
 
 
-class DissentReport:
+class ModelDissentReport:
     def __init__(self, file_path):
         self.file_path = file_path
         self.model_results = ModelResults.from_file(self.file_path)
@@ -39,33 +39,59 @@ class DissentReport:
                 self.trials_with_dissent_list.append(trial)
             if trial.has_concerning_dissent():
                 self.trials_with_concerning_dissent_list.append(trial)
-        self.dissenting_evaluator_report = {}
 
-    def process(self):
-        print("Processing results")
+    def get_model_name(self):
+        return self.model_results.model_name
+
+    def get_trial_count(self):
+        return len(self.trial_list)
+
+    def process(self, dissent_report):
+        print("Processing results for " + self.file_path)
         for trial in self.trials_with_dissent_list:
             for evaluator in trial.evaluator_results:
-                evaluator_report = self.dissenting_evaluator_report.get(evaluator.model_name, None)
-                if evaluator_report is None:
-                    evaluator_report = EvaluatorReport(evaluator.model_name, len(self.trial_list))
-                    self.dissenting_evaluator_report[evaluator.model_name] = evaluator_report
-                evaluator_report.add_test(trial.passed, evaluator.passed)
-        self.print_dissenting_evaluator_report()
+                dissent_report.add_trial(evaluator.model_name, self.get_trial_count(), trial.passed, evaluator.passed)
 
-    def print_dissenting_evaluator_report(self):
-        result_directory = os.path.dirname(self.file_path)
-        output_file_path = os.path.join(result_directory, "evaluator_grades.txt")
+
+class DissentReport:
+    def __init__(self, directory):
+        self.directory = directory
+        self.model_dissent_reports = []
+        all_files = os.listdir(full_results_path)
+        model_full_results_file_list = [file for file in all_files if file.endswith("full_results.json")]
+        self.evaluator_grades = {}
+        for file_name in model_full_results_file_list:
+            file_path = os.path.join(full_results_path, file_name)
+            model_dissent_report = ModelDissentReport(file_path)
+            self.model_dissent_reports.append(model_dissent_report)
+
+    def add_trial(self, model_name, trial_count, trial_passed, evaluator_passed):
+        evaluator_report = self.evaluator_grades.get(model_name, None)
+        if evaluator_report is None:
+            evaluator_report = EvaluatorReport(model_name, trial_count)
+            self.evaluator_grades[model_name] = evaluator_report
+        evaluator_report.add_trial(trial_passed, evaluator_passed)
+
+    def process(self):
+        for model_dissent_report in self.model_dissent_reports:
+            model_dissent_report.process(self)
+        self.print_evaluator_grade_report()
+
+    def print_evaluator_grade_report(self):
+        output_file_path = os.path.join(self.directory, "evaluator_grades.txt")
         with open(output_file_path, "w") as file:
             print("Dissenting Evaluator Report\n")
-            for evaluator_report in self.dissenting_evaluator_report.values():
+            for evaluator_report in self.evaluator_grades.values():
                 score = evaluator_report.get_percent_wrong()
                 message = evaluator_report.model_name + " % wrong: " + str(score) + "%\n"
                 file.write(message)
                 print(message)
 
-
 if __name__ == '__main__':
-    full_results_path = os.environ.get("FULL_RESULTS_PATH", "gpt-3.5-turbo-0125_full_results.json")
+    full_results_path = os.environ.get("FULL_RESULTS_PATH")
+    all_files = os.listdir(full_results_path)
+    full_results_file_list = [file for file in all_files if file.endswith("full_results.json")]
+    dissent_reports = []
     report = DissentReport(full_results_path)
     report.process()
     print("done")

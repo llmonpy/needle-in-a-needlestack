@@ -378,7 +378,7 @@ class EvaluatorResult:
         return result
 
 
-class trialResult:
+class TrialResult:
     def __init__(self, trial_number, good_answer, evaluator_model_list=None, passed=None, dissent_count=None,
                  generated_answer=None, evaluator_results=None):
         self.trial_number = trial_number
@@ -450,7 +450,7 @@ class trialResult:
             dictionary.pop("evaluator_results", None)
             evaluator_results = [EvaluatorResult.from_dict(result) for result in evaluator_results]
             dictionary["evaluator_results"] = evaluator_results
-        result = trialResult(**dictionary)
+        result = TrialResult(**dictionary)
         return result
 
 
@@ -461,7 +461,7 @@ class QuestionResults:
         if trial_results is None:
             self.trial_results = []
             for trial in range(trials):
-                trial_result = trialResult(trial, question.answer, evaluator_model_list)
+                trial_result = TrialResult(trial, question.answer, evaluator_model_list)
                 self.trial_results.append(trial_result)
         self.score = score
 
@@ -512,7 +512,7 @@ class QuestionResults:
         trial_results = dictionary.get("trial_results", None)
         if trial_results is not None:
             dictionary.pop("trial_results", None)
-            trial_results = [trialResult.from_dict(result) for result in trial_results]
+            trial_results = [TrialResult.from_dict(result) for result in trial_results]
             dictionary["trial_results"] = trial_results
         result = QuestionResults(**dictionary)
         return result
@@ -592,11 +592,13 @@ class ModelResults:
     def __init__(self, directory, model_name, location_token_index_list=None, question_list=None,
                  trials=None, evaluator_model_list=None,
                  location_list=None, test_exception_list=None, evaluation_exception_list=None, failed_test_count=0,
-                 failed_evaluation_count=0):
+                 failed_evaluation_count=0, number_of_trials_per_location=None):
         self.directory = directory
         self.model_name = model_name
         self.location_list = location_list
-        self.number_of_trials_per_location = len(question_list) * trials
+        self.number_of_trials_per_location = number_of_trials_per_location
+        if self.number_of_trials_per_location is None:
+            self.number_of_trials_per_location = len(question_list) * trials
         self.test_exception_list = test_exception_list
         if self.test_exception_list is None:
             self.test_exception_list = []

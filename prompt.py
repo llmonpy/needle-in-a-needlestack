@@ -26,10 +26,12 @@ class LimerickPrompt:
 
     def build_text_from_limerick_list(self, question, location, max_size, repeat_question_count=1):
         result = None
+        limerick_used_count = 0
         last_token_count = current_token_count = 0
         result = self.text + "\n\n" # intro of prompt was added in the constructor
         added_question = False
         for limerick in self.limerick_list:
+            limerick_used_count += 1
             current_token_count += limerick.token_count
             if current_token_count > max_size:
                 break
@@ -42,6 +44,7 @@ class LimerickPrompt:
             last_token_count = current_token_count
         if not added_question:
             raise Exception("Question was not added to prompt")
+        print("limerick_used_count: ", limerick_used_count)
         return result
 
     def write_to_file(self, file_path):
