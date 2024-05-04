@@ -29,7 +29,7 @@ class TestConfig:
 
 
 DEFAULT_TEST_CONFIG = TestConfig("test_prompt", [GPT3_5], 100, EVALUATOR_MODEL_LIST,
-                                 5, 10, 10,
+                                 10, 10, 10,
                                  10, "tests", True)
 
 

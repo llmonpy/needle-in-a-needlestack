@@ -240,11 +240,13 @@ class ModelScore:
         values = [round(location.score * 100) for location in self.location_scores]
         number_of_locations = len(values)
         number_of_trials = self.number_of_trials_per_location
-        percent = round(self.repeat_question_limerick_count / self.limerick_count_in_prompt, 3) * 100
+        percent = round((self.repeat_question_limerick_count / self.limerick_count_in_prompt) * 100, 1)
         plot_title = f'{self.model_name} on {self.date_string}\nAsk question about {percent}% of {self.limerick_count_in_prompt} limericks in {number_of_trials} trials at {number_of_locations} token positions'
-
-        for subplot_data in subplot_data_list:
-            axes.plot(labels, subplot_data, linewidth=.75, color="#5f9afa", alpha=0.3)
+        #color_list = ['#9D6200',"#DC8900", "#FFAA1D", "#FFC25D", "#FFDA9D", "#807000", "#BFA700", "#FFDF00", "#FFE740","#FFEF80"]
+        color_list = list(colors.TABLEAU_COLORS.values())
+        for index, subplot_data in enumerate(subplot_data_list):
+            color = color_list[index % len(color_list)]
+            axes.plot(labels, subplot_data, linewidth=.75, color=color, alpha=0.8)
         axes.plot(labels, values, linewidth=1, color='darkblue', label="Average", marker='.')
 
         axes.set_title(plot_title, fontsize=PLOT_FONT_SIZE)
@@ -1051,6 +1053,9 @@ class TestResults(BaseTestResults):
                 plot_name = model_results.model_name + "_trial_plot.png"
                 plot_file_name = os.path.join(self.test_result_directory, plot_name)
                 model_score.write_trial_plot(plot_file_name)
+                plot_name = model_results.model_name + "_question_plot.png"
+                plot_file_name = os.path.join(self.test_result_directory, plot_name)
+                model_score.write_question_plot(plot_file_name)
                 model_score_list.append(model_score)
             test_model_scores = TestModelScores(model_score_list)
             test_model_scores.write_to_file(os.path.join(self.test_result_directory, "model_scores.json"))
@@ -1076,5 +1081,7 @@ if __name__ == '__main__':
             print("Model: ", model_score.model_name)
             plot_name = "test_trial_plot_" + model_score.model_name + ".png"
             model_score.write_trial_plot(plot_name)
+            plot_name = "test_question_plot_" + model_score.model_name + ".png"
+            model_score.write_question_plot(plot_name)
         print("done")
         exit(0)

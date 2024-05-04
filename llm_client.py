@@ -32,7 +32,7 @@ def backoff_after_exception(attempt):
     time.sleep(delay_time)
 
 
-class RateLimiterTokenBucket:
+class RateLimiterRequestBucket:
     def __init__(self, name, rate_limit, time_window):
         self.name = name
         self.rate_limit = rate_limit
@@ -164,8 +164,8 @@ MISTRAL_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 ANTHROPIC_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 OPENAI_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 
-MISTRAL_EVAL_RATE_LIMITER = RateLimiterTokenBucket("mistral_eval", 10, SECOND_TIME_WINDOW)
-MISTRAL_TEST_RATE_LIMITER = RateLimiterTokenBucket("mistral_test", 8, SECOND_TIME_WINDOW)
+MISTRAL_EVAL_RATE_LIMITER = RateLimiterRequestBucket("mistral_eval", 10, SECOND_TIME_WINDOW)
+MISTRAL_TEST_RATE_LIMITER = RateLimiterRequestBucket("mistral_test", 8, SECOND_TIME_WINDOW)
 
 EVAL_MISTRAL_8X22B = MistralLlmClient("open-mixtral-8x22b", 63000, MISTRAL_EVAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 EVAL_MISTRAL_SMALL = MistralLlmClient("mistral-small", 25000, MISTRAL_EVAL_RATE_LIMITER, MISTRAL_EXECUTOR)
@@ -175,11 +175,11 @@ MISTRAL_8X22B = MistralLlmClient("open-mixtral-8x22b", 51000, MISTRAL_EVAL_RATE_
 MISTRAL_7B = MistralLlmClient("open-mistral-7b", 12000, MISTRAL_TEST_RATE_LIMITER, MISTRAL_EXECUTOR)
 #MIXTRAL tokenizer seems to generate a lot more tokens than openai
 MIXTRAL_8X7B = MistralLlmClient("open-mixtral-8x7b", 25000, MISTRAL_TEST_RATE_LIMITER, MISTRAL_EXECUTOR)
-EVAL_GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 15000, RateLimiterTokenBucket("open_ai_35_eval",150, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
-EVAL_GPT4 = OpenAIModel('gpt-4-turbo', 127000, RateLimiterTokenBucket("open_ai_4_eval",150, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
-GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 15000, RateLimiterTokenBucket("open_ai_35_test", 40, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
-GPT4 = OpenAIModel('gpt-4-turbo', 127000, RateLimiterTokenBucket("open_ai_4_test",5, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
-EVAL_ANTHROPIC_OPUS = AnthropicModel("claude-3-opus-20240229", 199000, RateLimiterTokenBucket("ant_o_eval",100, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
-EVAL_ANTHROPIC_SONNET = AnthropicModel("claude-3-sonnet-20240229", 199000, RateLimiterTokenBucket("ant_s_eval",100, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
-EVAL_ANTHROPIC_HAIKU = AnthropicModel("claude-3-haiku-20240307", 199000, RateLimiterTokenBucket("ant_h_eval",200, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
+EVAL_GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 15000, RateLimiterRequestBucket("open_ai_35_eval", 150, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
+EVAL_GPT4 = OpenAIModel('gpt-4-turbo', 127000, RateLimiterRequestBucket("open_ai_4_eval", 150, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
+GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 15000, RateLimiterRequestBucket("open_ai_35_test", 40, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
+GPT4 = OpenAIModel('gpt-4-turbo', 127000, RateLimiterRequestBucket("open_ai_4_test", 5, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
+EVAL_ANTHROPIC_OPUS = AnthropicModel("claude-3-opus-20240229", 199000, RateLimiterRequestBucket("ant_o_eval", 100, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
+EVAL_ANTHROPIC_SONNET = AnthropicModel("claude-3-sonnet-20240229", 199000, RateLimiterRequestBucket("ant_s_eval", 100, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
+EVAL_ANTHROPIC_HAIKU = AnthropicModel("claude-3-haiku-20240307", 199000, RateLimiterRequestBucket("ant_h_eval", 200, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
 
