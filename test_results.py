@@ -1,18 +1,24 @@
+import concurrent
 import copy
 import json
 import math
 import os
 import threading
+from datetime import datetime
+
 import matplotlib.pyplot as plt
 from matplotlib import colors
 import statsmodels.api as sm
 
 from base_test_results import BaseTestResults, BaseStatusReport
+from evaluator import DefaultEvaluator
 from limerick import Limerick
-from llm_client import PROMPT_RETRIES
+from llm_client import PROMPT_RETRIES, backoff_after_exception
+from prompt import get_prompt
 
-STATUS_REPORT_INTERVAL = 5 # seconds
+STATUS_REPORT_INTERVAL = 5  # seconds
 PLOT_FONT_SIZE = 8
+NO_GENERATED_ANSWER = "ACEGIKMOQSUWY"
 
 
 class TestResultExceptionReport:
@@ -59,7 +65,8 @@ class StatusReport(BaseStatusReport):
 
     def print(self):
         print("Model: ", self.model_name)
-        print("Tests: ", self.test_count, " Answered: ", self.answered_test_count, " Finished: ", self.finished_test_count)
+        print("Tests: ", self.test_count, " Answered: ", self.answered_test_count, " Finished: ",
+              self.finished_test_count)
         print("Evaluators: ", self.evaluator_count, " Finished: ", self.finished_evaluator_count)
         for evaluator_model_name in self.waiting_for_evaluator_count:
             count = self.waiting_for_evaluator_count[evaluator_model_name]
@@ -175,8 +182,13 @@ class LocationScore:
 
 
 class ModelScore:
-    def __init__(self, model_name, location_scores=None, number_of_trials_per_location=None):
+    def __init__(self, model_name, date_string="No date", repeat_question_limerick_count=1,
+                 limerick_count_in_prompt=300,
+                 location_scores=None, number_of_trials_per_location=None):
         self.model_name = model_name
+        self.date_string = date_string
+        self.repeat_question_limerick_count = repeat_question_limerick_count
+        self.limerick_count_in_prompt = limerick_count_in_prompt
         self.location_scores = location_scores
         self.number_of_trials_per_location = number_of_trials_per_location
 
@@ -228,10 +240,11 @@ class ModelScore:
         values = [round(location.score * 100) for location in self.location_scores]
         number_of_locations = len(values)
         number_of_trials = self.number_of_trials_per_location
-        plot_title = f'{self.model_name}\n{number_of_trials} trials at {number_of_locations} token positions'
+        percent = round(self.repeat_question_limerick_count / self.limerick_count_in_prompt, 3) * 100
+        plot_title = f'{self.model_name} on {self.date_string}\nAsk question about {percent}% of {self.limerick_count_in_prompt} limericks in {number_of_trials} trials at {number_of_locations} token positions'
 
         for subplot_data in subplot_data_list:
-            axes.plot(labels, subplot_data, linewidth=.75,  color="#5f9afa", alpha=0.3)
+            axes.plot(labels, subplot_data, linewidth=.75, color="#5f9afa", alpha=0.3)
         axes.plot(labels, values, linewidth=1, color='darkblue', label="Average", marker='.')
 
         axes.set_title(plot_title, fontsize=PLOT_FONT_SIZE)
@@ -248,7 +261,7 @@ class ModelScore:
         axes.spines['bottom'].set_linewidth(.5)
         axes.grid(False)
         axes.set_ylim(-3, 103)
-        #plt.legend()
+        # plt.legend()
         plt.tight_layout()
         plt.savefig(plot_file_name, dpi=300)
 
@@ -258,11 +271,11 @@ class ModelScore:
         values = [round(location.score * 100) for location in self.location_scores]
         number_of_locations = len(values)
         number_of_trials = self.number_of_trials_per_location
-        plot_title = f'{self.model_name}\n{number_of_trials} trials at {number_of_locations} token positions'
-
+        percent = round((self.repeat_question_limerick_count / self.limerick_count_in_prompt) * 100, 1)
+        plot_title = f'Tested {self.model_name} on {self.date_string}\nAsk question about {percent}% of {self.limerick_count_in_prompt} limericks in {number_of_trials} trials at {number_of_locations} token positions'
         for subplot_data in subplot_data_list:
             axes.scatter(labels, subplot_data, linewidth=.3, edgecolor='grey', color="#b3d0fc",
-                       s=20, alpha=0.3)
+                         s=20, alpha=0.3)
         axes.plot(labels, values, linewidth=1, color='darkblue', label="Average", marker='.')
 
         axes.set_title(plot_title, fontsize=PLOT_FONT_SIZE)
@@ -279,7 +292,7 @@ class ModelScore:
         axes.spines['bottom'].set_linewidth(.5)
         axes.grid(False)
         axes.set_ylim(-3, 103)
-        #plt.legend()
+        # plt.legend()
         plt.tight_layout()
         plt.savefig(plot_file_name, dpi=300)
 
@@ -288,7 +301,7 @@ class ModelScore:
         labels_length = len(labels)
         end = labels_length - 1
         if len(labels) <= 5:
-            result = [f'{round(label/1000, 1)}k' for label in labels]
+            result = [f'{round(label / 1000, 1)}k' for label in labels]
         elif len(labels) == 10:
             for index, label in enumerate(labels):
                 if index in (0, 3, 6, 9):
@@ -303,14 +316,14 @@ class ModelScore:
                     result.append('')
         elif len(labels) % 2 != 0:  # odd number of labels
             for index, label in enumerate(labels):
-                if index in (0, labels_length/2, end):
+                if index in (0, labels_length / 2, end):
                     result.append(f'{round(label / 1000, 1)}k')
                 else:
                     result.append('')
         else:
             gap = math.floor(labels_length / 3)
             for index, label in enumerate(labels):
-                if index in (0, gap, end-gap, end):
+                if index in (0, gap, end - gap, end):
                     result.append(f'{round(label / 1000, 1)}k')
                 else:
                     result.append('')
@@ -356,7 +369,6 @@ class TestModelScores:
         return result
 
 
-
 class EvaluatorResult:
     def __init__(self, model_name, passed=None):
         self.model_name = model_name
@@ -379,7 +391,7 @@ class EvaluatorResult:
 
 
 class TrialResult:
-    def __init__(self, trial_number, good_answer, evaluator_model_list=None, passed=None, dissent_count=None,
+    def __init__(self, trial_number, good_answer, passed=None, dissent_count=None,
                  generated_answer=None, evaluator_results=None):
         self.trial_number = trial_number
         self.good_answer = good_answer
@@ -389,9 +401,26 @@ class TrialResult:
         self.evaluator_results = evaluator_results
         if evaluator_results is None:
             self.evaluator_results = []
-            for model in evaluator_model_list:
-                evaluator_results = EvaluatorResult(model.llm_name)
-                self.evaluator_results.append(evaluator_results)
+
+    def add_evaluator(self, model_name):
+        evaluator_result = EvaluatorResult(model_name)
+        self.evaluator_results.append(evaluator_result)
+
+    def run_trial(self, results, prompt_text, model, evaluator, location, question):
+        for attempt in range(PROMPT_RETRIES):
+            try:
+                tmp_generated_answer = model.prompt(prompt_text)
+                break
+            except Exception as e:
+                tmp_generated_answer = NO_GENERATED_ANSWER
+                results.add_test_exception(model.llm_name, location, question.id, self.trial_number, attempt, e)
+                if attempt == 2:
+                    print("Exception on attempt 3")
+                backoff_after_exception(attempt)
+                continue
+        results.set_test_result(model.llm_name, location, question.id, self.trial_number, tmp_generated_answer)
+        score = evaluator.evaluate(model.llm_name, location, question, self.trial_number, tmp_generated_answer)
+        return tmp_generated_answer, score
 
     def is_finished(self):
         return self.passed is not None
@@ -453,17 +482,30 @@ class TrialResult:
         result = TrialResult(**dictionary)
         return result
 
+    @staticmethod
+    def create(trial_number, good_answer, evaluator_model_list):
+        result = TrialResult(trial_number, good_answer)
+        for model in evaluator_model_list:
+            result.add_evaluator(model.llm_name)
+        return result
+
 
 class QuestionResults:
-    def __init__(self, question, trials=None, evaluator_model_list=None, trial_results=None, score=None):
+    def __init__(self, question, trial_results=None, score=None):
         self.question = question
-        self.trial_results = trial_results
-        if trial_results is None:
-            self.trial_results = []
-            for trial in range(trials):
-                trial_result = TrialResult(trial, question.answer, evaluator_model_list)
-                self.trial_results.append(trial_result)
+        self.trial_results = trial_results if trial_results is not None else []
         self.score = score
+
+    def add_trial(self, trial_number, evaluator_model_list):
+        trial_result = TrialResult.create(trial_number, self.question.answer, evaluator_model_list)
+        self.trial_results.append(trial_result)
+
+    def run_trials(self, thread_pool, results, prompt_text, model, evaluator, location):
+        futures_list = []
+        for trial_result in self.trial_results:
+            futures_list.append(thread_pool.submit(trial_result.run_trial, results, prompt_text, model, evaluator,
+                                                   location, self.question))
+        return futures_list
 
     def get_trial(self, trial_number):
         result = self.trial_results[trial_number]
@@ -517,18 +559,31 @@ class QuestionResults:
         result = QuestionResults(**dictionary)
         return result
 
+    @staticmethod
+    def create(question, trial_count, evaluator_model_list):
+        result = QuestionResults(question)
+        for trial_number in range(trial_count):
+            result.add_trial(trial_number, evaluator_model_list)
+        return result
+
 
 class LocationResults:
-    def __init__(self, location_token_position=None, question_list=None, trials=None, evaluator_model_list=None,
-                 question_result_list=None, score=None):
+    def __init__(self, location_token_position, question_result_list=None, score=None):
         self.location_token_position = location_token_position
-        self.question_result_list = question_result_list
-        if self.question_result_list is None:
-            self.question_result_list = []
-            for question in question_list:
-                question_result = QuestionResults(question, trials, evaluator_model_list)
-                self.question_result_list.append(question_result)
+        self.question_result_list = question_result_list if question_result_list is not None else []
         self.score = score
+
+    def add_question(self, question, trial_count, evaluator_model_list):
+        question_result = QuestionResults.create(question, trial_count, evaluator_model_list)
+        self.question_result_list.append(question_result)
+
+    def run_trials(self, thread_pool, results, model, evaluator):
+        futures_list = []
+        for question_result in self.question_result_list:
+            prompt_text = results.get_prompt(model.llm_name, self.location_token_position, question_result.question.id)
+            futures_list += question_result.run_trials(thread_pool, results, prompt_text, model, evaluator,
+                                                       self.location_token_position)
+        return futures_list
 
     def get_trial(self, question_id, trial_number):
         result = None
@@ -587,18 +642,26 @@ class LocationResults:
         result = LocationResults(**dictionary)
         return result
 
+    @staticmethod
+    def create(location_token_position, question_list, trials, evaluator_model_list):
+        result = LocationResults(location_token_position)
+        for question in question_list:
+            result.add_question(question, trials, evaluator_model_list)
+        return result
+
 
 class ModelResults:
-    def __init__(self, directory, model_name, location_token_index_list=None, question_list=None,
-                 trials=None, evaluator_model_list=None,
-                 location_list=None, test_exception_list=None, evaluation_exception_list=None, failed_test_count=0,
-                 failed_evaluation_count=0, number_of_trials_per_location=None):
+    def __init__(self, date_string, directory, model_name, number_of_trials_per_location,
+                 repeat_question_limerick_count, location_list=None,
+                 test_exception_list=None, evaluation_exception_list=None, failed_test_count=0,
+                 failed_evaluation_count=0, limerick_count_in_prompt=None):
+        self.date_string = date_string
         self.directory = directory
         self.model_name = model_name
         self.location_list = location_list
         self.number_of_trials_per_location = number_of_trials_per_location
-        if self.number_of_trials_per_location is None:
-            self.number_of_trials_per_location = len(question_list) * trials
+        self.repeat_question_limerick_count = repeat_question_limerick_count
+        self.limerick_count_in_prompt = limerick_count_in_prompt
         self.test_exception_list = test_exception_list
         if self.test_exception_list is None:
             self.test_exception_list = []
@@ -607,13 +670,24 @@ class ModelResults:
         if self.evaluation_exception_list is None:
             self.evaluation_exception_list = []
         self.failed_evaluation_count = failed_evaluation_count
+        self.location_list = location_list
         if self.location_list is None:
             self.location_list = []
-            for location in location_token_index_list:
-                location_result = LocationResults(location, question_list, trials, evaluator_model_list)
-                self.location_list.append(location_result)
         if directory is not None and len(directory) > 0:
             os.makedirs(directory, exist_ok=True)
+
+    def set_limerick_count_in_prompt(self, limerick_count_in_prompt):
+        self.limerick_count_in_prompt = limerick_count_in_prompt
+
+    def add_location(self, location_token_position, question_list, trials, evaluator_model_list):
+        location = LocationResults.create(location_token_position, question_list, trials, evaluator_model_list)
+        self.location_list.append(location)
+
+    def run_trials(self, thread_pool, results, model, evaluator):
+        futures_list = []
+        for location in self.location_list:
+            futures_list += location.run_trials(thread_pool, results, model, evaluator)
+        return futures_list
 
     def get_trial(self, location_name, question_id, trial_number):
         result = None
@@ -642,7 +716,7 @@ class ModelResults:
 
     def add_test_exception(self, location_name, question_id, trial_number, attempt, exception):
         print("Test Exception: ", str(exception))
-        exception_report = TestResultExceptionReport(location_name, question_id, trial_number, attempt,str(exception))
+        exception_report = TestResultExceptionReport(location_name, question_id, trial_number, attempt, str(exception))
         self.test_exception_list.append(exception_report)
         if attempt == PROMPT_RETRIES - 1:
             self.failed_test_count += 1
@@ -701,11 +775,23 @@ class ModelResults:
         evaluation_exception_list = dictionary.get("evaluation_exception_list", None)
         if evaluation_exception_list is not None:
             dictionary.pop("evaluation_exception_list", None)
-            evaluation_exception_list = [EvaluationExceptionReport.from_dict(report) for report in evaluation_exception_list]
+            evaluation_exception_list = [EvaluationExceptionReport.from_dict(report) for report in
+                                         evaluation_exception_list]
             dictionary["evaluation_exception_list"] = evaluation_exception_list
         if "directory" not in dictionary:
             dictionary["directory"] = ""
         result = ModelResults(**dictionary)
+        return result
+
+    @staticmethod
+    def create(date_string, directory, model_name, location_token_index_list, question_list,
+               repeat_question_limerick_count,
+               trial_count, evaluator_model_list):
+        number_of_trials_per_location = trial_count * len(question_list)
+        result = ModelResults(date_string, directory, model_name, number_of_trials_per_location,
+                              repeat_question_limerick_count)
+        for location_token_index in location_token_index_list:
+            result.add_location(location_token_index, question_list, trial_count, evaluator_model_list)
         return result
 
     @staticmethod
@@ -763,11 +849,13 @@ class AddTestExceptionAction(BaseTestResultAction):
         self.exception = exception
 
     def execute(self):
-        self.get_model_results().add_test_exception(self.location_name, self.question_id, self.trial_number, self.attempt, self.exception)
+        self.get_model_results().add_test_exception(self.location_name, self.question_id, self.trial_number,
+                                                    self.attempt, self.exception)
 
 
 class AddEvaluationExceptionAction(BaseTestResultAction):
-    def __init__(self, results, model_name, location_name, question_id, trial_number, evaluation_model_name, attempt, exception):
+    def __init__(self, results, model_name, location_name, question_id, trial_number, evaluation_model_name, attempt,
+                 exception):
         super().__init__(results, model_name, location_name, question_id, trial_number)
         self.evaluation_model_name = evaluation_model_name
         self.attempt = attempt
@@ -779,15 +867,84 @@ class AddEvaluationExceptionAction(BaseTestResultAction):
 
 
 class TestResults(BaseTestResults):
-    def __init__(self, test_result_directory, model_results_list=None):
-        self.test_result_directory = test_result_directory
-        self.model_results_list = model_results_list
-        if self.model_results_list is None:
-            self.model_results_list = []
+    def __init__(self, config):
+        self.config = config
+        self.date_string = None
+        self.thread_pool = concurrent.futures.ThreadPoolExecutor(max_workers=config.test_thread_count)
+        self.test_result_directory = None
+        self.prompt = None
+        self.evaluator = DefaultEvaluator(self, self.config.evaluator_model_list)
+        self.model_results_list = []
         self.action_list = []
         self.action_list_lock = threading.Lock()
         self.started = False
         self.timer = None
+        self.prompt_dict = {}
+        self.create_tests()
+        print("Test Results Initialized")
+
+    def get_prompt_key(self, model_name, location_name, question_id):
+        result = f"{model_name}_{location_name}_{question_id}"
+        return result
+
+    def get_prompt(self, model_name, location_name, question_id):
+        result = self.get_prompt_key(model_name, location_name, question_id)
+        return self.prompt_dict[result]
+
+    def calculate_max_token_count(self):
+        result = 0
+        for model in self.config.model_list:
+            if model.max_input > result:
+                result = model.max_input
+        return result
+
+    def create_test_directory(self):
+        now = datetime.now()
+        self.date_string = now.strftime("%Y-%m-%d-%H-%M-%S")
+        self.test_result_directory = os.path.join(self.config.result_directory, self.date_string)
+        os.makedirs(self.test_result_directory, exist_ok=True)
+
+    def create_tests(self):
+        max_prompt_size = self.calculate_max_token_count()
+        self.create_test_directory()
+        self.prompt = get_prompt(max_prompt_size, self.config)
+        for model in self.config.model_list:
+            self.create_tests_for_model(model)
+
+    def create_tests_for_model(self, model):
+        print("creating tests for model: ", model.llm_name)
+        question_list = self.prompt.question_list
+        question_location_list = self.calculate_question_location_list(model.max_input)
+        model_results = self.add_model(model.llm_name, question_location_list, question_list,
+                                       self.config.repeat_question_limerick_count)
+        for question in question_list:
+            for location in question_location_list:
+                prompt_text, limericks_used_count = self.prompt.build_text_from_limerick_list(question, location,
+                                                                                              model.max_input,
+                                                                                              self.config.repeat_question_limerick_count)
+                prompt_text += "\n\n" + question.question
+                model_results.set_limerick_count_in_prompt(
+                    limericks_used_count + self.config.repeat_question_limerick_count)
+                self.prompt_dict[self.get_prompt_key(model.llm_name, location, question.id)] = prompt_text
+                self.write_prompt_text_to_file(model_results, prompt_text, str(location), str(question.id))
+
+    def write_prompt_text_to_file(self, model_results, prompt_text, location, question_id):
+        if self.config.write_prompt_text_to_file:
+            file_name = "p_" + location + "_" + question_id + ".txt"
+            file_path = os.path.join(model_results.directory, file_name)
+            with open(file_path, "w") as file:
+                file.write(prompt_text)
+
+    def calculate_question_location_list(self, max_input):
+        result = []
+        increment = round(max_input / self.config.location_count)
+        max_input = round(max_input * 0.90)
+        initial_location = last_location = round(max_input * 0.01)
+        result.append(initial_location)
+        for i in range(1, self.config.location_count):
+            result.append(last_location + increment)
+            last_location = result[-1]
+        return result
 
     def add_action(self, action):
         with self.action_list_lock:
@@ -809,9 +966,14 @@ class TestResults(BaseTestResults):
                 pass
 
     def start(self):
+        futures_list = []
+        for model_results in self.model_results_list:
+            futures_list += model_results.run_trials(self.thread_pool, self,
+                                                     self.config.get_model(model_results.model_name), self.evaluator)
         self.started = True
         self.timer = threading.Timer(interval=STATUS_REPORT_INTERVAL, function=self.update_and_report_status)
         self.timer.start()
+        return futures_list
 
     def get_model_results(self, model_name):
         result = None
@@ -831,9 +993,11 @@ class TestResults(BaseTestResults):
         result = copy.deepcopy(self.model_results_list)
         return result
 
-    def add_model(self, model_name, location_list, question_list, trials, evaluator_model_list):
+    def add_model(self, model_name, location_list, question_list, repeat_question_limerick_count):
         directory = os.path.join(self.test_result_directory, model_name)
-        model_results = ModelResults(directory, model_name, location_list, question_list, trials, evaluator_model_list)
+        model_results = ModelResults.create(self.date_string, directory, model_name, location_list, question_list,
+                                            repeat_question_limerick_count, self.config.trials,
+                                            self.config.evaluator_model_list)
         self.model_results_list.append(model_results)
         return model_results
 
@@ -880,7 +1044,10 @@ class TestResults(BaseTestResults):
             model_score_list = []
             for model_results in current_results_list:
                 location_scores = model_results.get_location_scores()
-                model_score = ModelScore(model_results.model_name, location_scores, model_results.number_of_trials_per_location)
+                model_score = ModelScore(model_results.model_name, model_results.date_string,
+                                         model_results.repeat_question_limerick_count,
+                                         model_results.limerick_count_in_prompt, location_scores,
+                                         model_results.number_of_trials_per_location)
                 plot_name = model_results.model_name + "_trial_plot.png"
                 plot_file_name = os.path.join(self.test_result_directory, plot_name)
                 model_score.write_trial_plot(plot_file_name)

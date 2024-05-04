@@ -5,10 +5,9 @@ from datetime import datetime
 from evaluator import DefaultEvaluator
 from llm_client import backoff_after_exception, PROMPT_RETRIES
 from prompt import get_prompt
-from test_config import DEFAULT_TEST_CONFIG
-from test_results import TestResults
+from test_config import DEFAULT_TEST_CONFIG, CURRENT_TEST_CONFIG
+from test_results import TestResults, NO_GENERATED_ANSWER
 
-NO_GENERATED_ANSWER = "ACEGIKMOQSUWY"
 
 def print_result(prompt, client, question, location, result, score):
     print("---------------------------------")
@@ -40,6 +39,7 @@ def calculate_question_location_list(location_count, max_input):
         result.append(last_location + increment)
         last_location = result[-1]
     return result
+
 
 def test_model(results, prompt_text, model, evaluator, location, question, trial_number):
     for attempt in range(PROMPT_RETRIES):
@@ -80,7 +80,7 @@ def run_tests_for_model(results, prompt, model, config, evaluator):
 
 def run_tests(results, prompt, config, evaluator):
     futures_list = []
-    for model in test_config.model_list:
+    for model in config.model_list:
         futures_list += run_tests_for_model(results, prompt, model, config, evaluator)
     results.start()
     for future in concurrent.futures.as_completed(futures_list):
@@ -105,10 +105,9 @@ def create_test_directory(test_parent_directory):
 
 
 if __name__ == '__main__':
-    test_config = DEFAULT_TEST_CONFIG
-    max_prompt_size = calculate_max_token_count(test_config.model_list)
-    test_directory = create_test_directory(test_config.result_directory)
-    test_prompt = get_prompt(max_prompt_size, test_config)
-    test_results = TestResults(test_directory)
-    run_tests(test_results, test_prompt, test_config, DefaultEvaluator(test_results, test_config.evaluator_model_list))
+    test_results = TestResults(CURRENT_TEST_CONFIG)
+    futures_list = test_results.start()
+    for future in concurrent.futures.as_completed(futures_list):
+        generated_answer, score = future.result()
+        print("score: ", score)
     print("Tests completed")

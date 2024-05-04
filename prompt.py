@@ -45,7 +45,7 @@ class LimerickPrompt:
         if not added_question:
             raise Exception("Question was not added to prompt")
         print("limerick_used_count: ", limerick_used_count)
-        return result
+        return result, limerick_used_count
 
     def write_to_file(self, file_path):
         with open(file_path, "w") as file:
