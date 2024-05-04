@@ -1,4 +1,4 @@
-# Limerick Park
+# Needle in a Needlestack
 
 > In Dolores Park, 'neath the sun's bright array,  
 > I feasted on a sandwich, in the midday.  
@@ -6,7 +6,7 @@
 > Like a needle in a haystack, out of the light,  
 > Unseen by me, focus led astray, I missed the play 
 
-Limerick park is a tool to test how well LLMs pay
+NIAN is a tool to test how well LLMs pay
 attention in specific parts of their context window. It generates
 tests with a large list of limericks. It places
 a test limerick in a specified location in 
@@ -19,7 +19,7 @@ It uses this database of limericks:
 
 
 
-## Using Limerick Park
+## Using NIAN
 
 When you run the tool, it will give you a menu of 3
 options:

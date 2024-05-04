@@ -107,6 +107,15 @@ class TrialScore:
         return result
 
 
+class QuestionPlotLine:
+    def __init__(self, question):
+        self.question = question
+        self.scores = []
+
+    def add_score(self, score):
+        self.scores.append(score)
+
+
 class QuestionScore:
     def __init__(self, question, score):
         self.question = question
@@ -213,41 +222,37 @@ class ModelScore:
         return result
 
     def get_location_question_scores(self):
-        question_id_list = [question_score.question.id for question_score in self.location_scores[0].question_scores]
-        result = []
-        for question_id in question_id_list:
-            location_question_scores = []
+        question_plot_list = [QuestionPlotLine(question_score.question) for question_score in self.location_scores[0].question_scores]
+        for question_plot in question_plot_list:
             for location_score in self.location_scores:
-                question_score = location_score.get_question_score(question_id)
-                location_question_scores.append(question_score.score * 100)
-            result.append(location_question_scores)
-        return result
+                question_score = location_score.get_question_score(question_plot.question.id)
+                question_plot.add_score(question_score.score * 100)
+        return question_plot_list
 
     def write_trial_plot(self, plot_file_name):
         location_trial_score_list = self.get_location_trial_scores()
         self.write_plot(plot_file_name, location_trial_score_list)
 
-    def write_question_plot(self, plot_file_name):
+    def write_question_plot(self, base_plot_file_name):
         if self.location_scores[0].question_scores is None:
             print("No question scores")
             return
         location_question_score_list = self.get_location_question_scores()
-        self.write_line_plot(plot_file_name, location_question_score_list)
+        for question_plot in location_question_score_list:
+            plot_file_name = base_plot_file_name + str(question_plot.question.id) + ".png"
+            self.write_line_plot(plot_file_name, question_plot.question.text, question_plot.question.question,
+                                    question_plot.scores)
 
-    def write_line_plot(self, plot_file_name, subplot_data_list):
-        figure, axes = plt.subplots(figsize=(7, 5))
+    def write_line_plot(self, plot_file_name, limerick, question_text, question_score_list):
+        figure, axes = plt.subplots(figsize=(6, 4))
         labels = [location.location_token_position for location in self.location_scores]
-        values = [round(location.score * 100) for location in self.location_scores]
-        number_of_locations = len(values)
+        average_values = [round(location.score * 100) for location in self.location_scores]
+        number_of_locations = len(average_values)
         number_of_trials = self.number_of_trials_per_location
         percent = round((self.repeat_question_limerick_count / self.limerick_count_in_prompt) * 100, 1)
         plot_title = f'{self.model_name} on {self.date_string}\nAsk question about {percent}% of {self.limerick_count_in_prompt} limericks in {number_of_trials} trials at {number_of_locations} token positions'
-        #color_list = ['#9D6200',"#DC8900", "#FFAA1D", "#FFC25D", "#FFDA9D", "#807000", "#BFA700", "#FFDF00", "#FFE740","#FFEF80"]
-        color_list = list(colors.TABLEAU_COLORS.values())
-        for index, subplot_data in enumerate(subplot_data_list):
-            color = color_list[index % len(color_list)]
-            axes.plot(labels, subplot_data, linewidth=.75, color=color, alpha=0.8)
-        axes.plot(labels, values, linewidth=1, color='darkblue', label="Average", marker='.')
+        axes.plot(labels, question_score_list, linewidth=2, color='#b3d0fc', label="Question", marker='.')
+        axes.plot(labels, average_values, linewidth=1, color='darkblue', label="Average", marker='.')
 
         axes.set_title(plot_title, fontsize=PLOT_FONT_SIZE)
         axes.set_xticks(labels)
@@ -263,8 +268,12 @@ class ModelScore:
         axes.spines['bottom'].set_linewidth(.5)
         axes.grid(False)
         axes.set_ylim(-3, 103)
-        # plt.legend()
-        plt.tight_layout()
+        plt.legend()
+        plt.subplots_adjust(bottom=0.4)
+        plt.figtext(0.5, 0.04, f"{limerick}\n{question_text}", ha="center", fontsize=8,
+                    bbox={"facecolor": "lightgrey", "alpha": 0.5, "pad": 5})
+
+        #plt.tight_layout()
         plt.savefig(plot_file_name, dpi=300)
 
     def write_plot(self, plot_file_name, subplot_data_list):
@@ -1081,7 +1090,7 @@ if __name__ == '__main__':
             print("Model: ", model_score.model_name)
             plot_name = "test_trial_plot_" + model_score.model_name + ".png"
             model_score.write_trial_plot(plot_name)
-            plot_name = "test_question_plot_" + model_score.model_name + ".png"
+            plot_name = "test_question_plot_" + model_score.model_name + "_"
             model_score.write_question_plot(plot_name)
         print("done")
         exit(0)
