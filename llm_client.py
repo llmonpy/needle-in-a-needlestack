@@ -176,10 +176,11 @@ MISTRAL_7B = MistralLlmClient("open-mistral-7b", 12000, MISTRAL_TEST_RATE_LIMITE
 #MIXTRAL tokenizer seems to generate a lot more tokens than openai
 MIXTRAL_8X7B = MistralLlmClient("open-mixtral-8x7b", 25000, MISTRAL_TEST_RATE_LIMITER, MISTRAL_EXECUTOR)
 EVAL_GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 15000, RateLimiterRequestBucket("open_ai_35_eval", 150, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
-EVAL_GPT4 = OpenAIModel('gpt-4-turbo', 127000, RateLimiterRequestBucket("open_ai_4_eval", 150, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
+EVAL_GPT4 = OpenAIModel('gpt-4-turbo-2024-04-09', 127000, RateLimiterRequestBucket("open_ai_4_eval", 150, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
 GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 15000, RateLimiterRequestBucket("open_ai_35_test", 40, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
-GPT4 = OpenAIModel('gpt-4-turbo', 127000, RateLimiterRequestBucket("open_ai_4_test", 5, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
+GPT4 = OpenAIModel('gpt-4-turbo-2024-04-09', 15000, RateLimiterRequestBucket("open_ai_4_test", 40, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
 EVAL_ANTHROPIC_OPUS = AnthropicModel("claude-3-opus-20240229", 199000, RateLimiterRequestBucket("ant_o_eval", 100, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
 EVAL_ANTHROPIC_SONNET = AnthropicModel("claude-3-sonnet-20240229", 199000, RateLimiterRequestBucket("ant_s_eval", 100, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
 EVAL_ANTHROPIC_HAIKU = AnthropicModel("claude-3-haiku-20240307", 199000, RateLimiterRequestBucket("ant_h_eval", 200, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
+ANTHROPIC_HAIKU = AnthropicModel("claude-3-haiku-20240307", 16000, RateLimiterRequestBucket("ant_h_eval", 20, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
 

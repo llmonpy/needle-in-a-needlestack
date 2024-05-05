@@ -89,9 +89,6 @@ class DissentReport:
 
 if __name__ == '__main__':
     full_results_path = os.environ.get("FULL_RESULTS_PATH")
-    all_files = os.listdir(full_results_path)
-    full_results_file_list = [file for file in all_files if file.endswith("full_results.json")]
-    dissent_reports = []
     report = DissentReport(full_results_path)
     report.process()
     print("done")

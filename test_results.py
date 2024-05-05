@@ -21,6 +21,11 @@ PLOT_FONT_SIZE = 8
 NO_GENERATED_ANSWER = "ACEGIKMOQSUWY"
 
 
+class QuestionAnswerCollector:
+    def add_answer(self, question_id, answer, passed):
+        raise NotImplementedError
+
+
 class TestResultExceptionReport:
     def __init__(self, location_name, question_id, trial_number, attempt, exception_message):
         self.location_name = location_name
@@ -275,6 +280,7 @@ class ModelScore:
 
         #plt.tight_layout()
         plt.savefig(plot_file_name, dpi=300)
+        plt.close()
 
     def write_plot(self, plot_file_name, subplot_data_list):
         figure, axes = plt.subplots(figsize=(7, 5))
@@ -306,6 +312,7 @@ class ModelScore:
         # plt.legend()
         plt.tight_layout()
         plt.savefig(plot_file_name, dpi=300)
+        plt.close()
 
     def generate_x_labels(self, labels):
         result = []
@@ -751,6 +758,14 @@ class ModelResults:
                     result.append(trial_result)
         return result
 
+    def collect_question_answers(self, question_answer_collector: QuestionAnswerCollector):
+        for location in self.location_list:
+            for question_result in location.question_result_list:
+                for trial_result in question_result.trial_results:
+                    if trial_result.has_answer():
+                        question_answer_collector.add_answer(question_result.question.id, trial_result.generated_answer,
+                                                             trial_result.passed)
+
     def to_dict(self):
         result = copy.deepcopy(vars(self))
         if self.location_list is not None:
@@ -881,7 +896,6 @@ class TestResults(BaseTestResults):
     def __init__(self, config):
         self.config = config
         self.date_string = None
-        self.thread_pool = concurrent.futures.ThreadPoolExecutor(max_workers=config.test_thread_count)
         self.test_result_directory = None
         self.prompt = None
         self.evaluator = DefaultEvaluator(self, self.config.evaluator_model_list)
@@ -979,7 +993,9 @@ class TestResults(BaseTestResults):
     def start(self):
         futures_list = []
         for model_results in self.model_results_list:
-            futures_list += model_results.run_trials(self.thread_pool, self,
+            #need a thread pool for each model to keep one model from blocking another
+            thread_pool = concurrent.futures.ThreadPoolExecutor(max_workers=self.config.test_thread_count)
+            futures_list += model_results.run_trials(thread_pool, self,
                                                      self.config.get_model(model_results.model_name), self.evaluator)
         self.started = True
         self.timer = threading.Timer(interval=STATUS_REPORT_INTERVAL, function=self.update_and_report_status)
