@@ -11,7 +11,7 @@ from test_results import TestResults, NO_GENERATED_ANSWER
 
 def print_result(prompt, client, question, location, result, score):
     print("---------------------------------")
-    print("Client:", client.llm_name)
+    print("Client:", client.model_name)
     print("Prompt Size:", prompt.token_count)
     print("Location:", location)
     print("Limerick:", question.text)
@@ -48,23 +48,23 @@ def test_model(results, prompt_text, model, evaluator, location, question, trial
             break
         except Exception as e:
             generated_answer = NO_GENERATED_ANSWER
-            results.add_test_exception(model.llm_name, location, question.id, trial_number, attempt, e)
+            results.add_test_exception(model.model_name, location, question.id, trial_number, attempt, e)
             if attempt == 2:
                 print("Exception on attempt 3")
             backoff_after_exception(attempt)
             continue
-    results.set_test_result(model.llm_name, location, question.id, trial_number, generated_answer)
-    score = evaluator.evaluate(model.llm_name, location, question, trial_number, generated_answer)
+    results.set_test_result(model.model_name, location, question.id, trial_number, generated_answer)
+    score = evaluator.evaluate(model.model_name, location, question, trial_number, generated_answer)
     return generated_answer, score
 
 
 def run_tests_for_model(results, prompt, model, config, evaluator):
-    print("starting tests for model: ", model.llm_name)
+    print("starting tests for model: ", model.model_name)
     futures_list = []
     executor = concurrent.futures.ThreadPoolExecutor(max_workers=config.test_thread_count)
     question_list = prompt.question_list
     question_location_list = calculate_question_location_list(config.location_count, model.max_input)
-    model_results = results.add_model(model.llm_name, question_location_list, question_list, config.trials, config.evaluator_model_list)
+    model_results = results.add_model(model.model_name, question_location_list, question_list, config.trials, config.evaluator_model_list)
     for question in question_list:
         for location in question_location_list:
             prompt_text = prompt.build_text_from_limerick_list(question, location, model.max_input,

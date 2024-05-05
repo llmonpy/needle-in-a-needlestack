@@ -21,6 +21,8 @@ PLOT_FONT_SIZE = 8
 NO_GENERATED_ANSWER = "ACEGIKMOQSUWY"
 
 
+SYSTEM_PROMPT = "You are an expert at understanding limericks and answering questions based on the limericks you read."
+
 class QuestionAnswerCollector:
     def add_answer(self, question_id, answer, passed):
         raise NotImplementedError
@@ -427,17 +429,17 @@ class TrialResult:
     def run_trial(self, results, prompt_text, model, evaluator, location, question):
         for attempt in range(PROMPT_RETRIES):
             try:
-                tmp_generated_answer = model.prompt(prompt_text)
+                tmp_generated_answer = model.prompt(prompt_text, SYSTEM_PROMPT)
                 break
             except Exception as e:
                 tmp_generated_answer = NO_GENERATED_ANSWER
-                results.add_test_exception(model.llm_name, location, question.id, self.trial_number, attempt, e)
+                results.add_test_exception(model.model_name, location, question.id, self.trial_number, attempt, e)
                 if attempt == 2:
                     print("Exception on attempt 3")
                 backoff_after_exception(attempt)
                 continue
-        results.set_test_result(model.llm_name, location, question.id, self.trial_number, tmp_generated_answer)
-        score = evaluator.evaluate(model.llm_name, location, question, self.trial_number, tmp_generated_answer)
+        results.set_test_result(model.model_name, location, question.id, self.trial_number, tmp_generated_answer)
+        score = evaluator.evaluate(model.model_name, location, question, self.trial_number, tmp_generated_answer)
         return tmp_generated_answer, score
 
     def is_finished(self):
@@ -504,7 +506,7 @@ class TrialResult:
     def create(trial_number, good_answer, evaluator_model_list):
         result = TrialResult(trial_number, good_answer)
         for model in evaluator_model_list:
-            result.add_evaluator(model.llm_name)
+            result.add_evaluator(model.model_name)
         return result
 
 
@@ -598,7 +600,7 @@ class LocationResults:
     def run_trials(self, thread_pool, results, model, evaluator):
         futures_list = []
         for question_result in self.question_result_list:
-            prompt_text = results.get_prompt(model.llm_name, self.location_token_position, question_result.question.id)
+            prompt_text = results.get_prompt(model.model_name, self.location_token_position, question_result.question.id)
             futures_list += question_result.run_trials(thread_pool, results, prompt_text, model, evaluator,
                                                        self.location_token_position)
         return futures_list
@@ -937,10 +939,10 @@ class TestResults(BaseTestResults):
             self.create_tests_for_model(model)
 
     def create_tests_for_model(self, model):
-        print("creating tests for model: ", model.llm_name)
+        print("creating tests for model: ", model.model_name)
         question_list = self.prompt.question_list
         question_location_list = self.calculate_question_location_list(model.max_input)
-        model_results = self.add_model(model.llm_name, question_location_list, question_list,
+        model_results = self.add_model(model.model_name, question_location_list, question_list,
                                        self.config.repeat_question_limerick_count)
         for question in question_list:
             for location in question_location_list:
@@ -950,7 +952,7 @@ class TestResults(BaseTestResults):
                 prompt_text += "\n\n" + question.question
                 model_results.set_limerick_count_in_prompt(
                     limericks_used_count + self.config.repeat_question_limerick_count)
-                self.prompt_dict[self.get_prompt_key(model.llm_name, location, question.id)] = prompt_text
+                self.prompt_dict[self.get_prompt_key(model.model_name, location, question.id)] = prompt_text
                 self.write_prompt_text_to_file(model_results, prompt_text, str(location), str(question.id))
 
     def write_prompt_text_to_file(self, model_results, prompt_text, location, question_id):

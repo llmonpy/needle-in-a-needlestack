@@ -64,13 +64,13 @@ def evaluate_response(model, evaluation_prompt_text, system_prompt, model_name_b
         except Exception as e:
             response_text = FAIL_ANSWER
             results.add_evaluation_exception(model_name_being_tested, location_name, question.id, trial_number,
-                                             model.llm_name, attempt, e)
+                                             model.model_name, attempt, e)
             if attempt == 2:
                 print("Exception on attempt 3")
             backoff_after_exception(attempt)
             continue
     score = get_score_from_response(response_text)
-    return score, model.llm_name
+    return score, model.model_name
 
 
 class EvaluatorInterface:

@@ -4,6 +4,18 @@ import threading
 import time
 from queue import Queue, Empty
 
+MINUTE_TIME_WINDOW = 60
+SECOND_TIME_WINDOW = 1
+
+
+'''
+This function takes in the number of requests per minute and returns the number of requests per second.  This spreads
+the requests out over the minute time window rather than allowing them all to be made at once.
+'''
+def spread_requests(requests_per_minute):
+    requests_per_second = round(requests_per_minute / 60)
+    return requests_per_second, SECOND_TIME_WINDOW
+
 
 class RateLlmiter:
     def __init__(self, request_limit, time_window, timeout=None):

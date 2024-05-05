@@ -144,13 +144,13 @@ class VetterTrialResult:
                 break
             except Exception as e:
                 generated_answer = NO_GENERATED_ANSWER
-                results.add_test_exception(model.llm_name, None, question.id, self.trial_number, attempt, e)
+                results.add_test_exception(model.model_name, None, question.id, self.trial_number, attempt, e)
                 if attempt == 2:
                     print("Exception on attempt 3")
                 backoff_after_exception(attempt)
                 continue
-        results.set_test_result(model.llm_name, None, question.id, self.trial_number, generated_answer)
-        score = evaluator.evaluate(model.llm_name, None, question, self.trial_number, generated_answer)
+        results.set_test_result(model.model_name, None, question.id, self.trial_number, generated_answer)
+        score = evaluator.evaluate(model.model_name, None, question, self.trial_number, generated_answer)
         return generated_answer, score
 
     def calculate_scores(self, status_report):
@@ -283,7 +283,7 @@ class QuestionVetterResult:
                                                                    question_text=self.question.question)
         for model_question in self.model_question_list:
             model_name = model_question.model_name
-            model = next(model for model in model_list if model.llm_name == model_name)
+            model = next(model for model in model_list if model.model_name == model_name)
             if model is None:
                 raise Exception("Model not found: " + model_name)
             futures_list += model_question.start_tests(result, model, self.question, self.question_prompt_text, evaluator)
@@ -435,8 +435,8 @@ class QuestionListVetterResult:
     @staticmethod
     def create(file_path, question_list, model_list, number_of_trials, evaluator_model_list):
         result = QuestionListVetterResult(file_path)
-        model_name_list = [model.llm_name for model in model_list]
-        evaluator_model_names = [model.llm_name for model in evaluator_model_list]
+        model_name_list = [model.model_name for model in model_list]
+        evaluator_model_names = [model.model_name for model in evaluator_model_list]
         for question in question_list:
             result.add_question(question, model_name_list, number_of_trials, evaluator_model_names)
         return result
@@ -598,3 +598,5 @@ if __name__ == '__main__':
         generated_answer, score = future.result()
         print("score: ", score)
     print("Tests completed")
+    exit(0)
+

@@ -105,5 +105,7 @@ if __name__ == '__main__':
     results_path = os.path.join(full_results_path, "answer_analysis.json")
     analyzer.write_to_file(results_path)
     print("Finished")
+    exit(0)
+
 
 
