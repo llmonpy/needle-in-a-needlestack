@@ -954,21 +954,21 @@ class TestResults(BaseTestResults):
                 self.write_prompt_text_to_file(model_results, prompt_text, str(location), str(question.id))
 
     def write_prompt_text_to_file(self, model_results, prompt_text, location, question_id):
-        if self.config.write_prompt_text_to_file:
-            file_name = "p_" + location + "_" + question_id + ".txt"
-            file_path = os.path.join(model_results.directory, file_name)
-            with open(file_path, "w") as file:
-                file.write(prompt_text)
+        file_name = "p_" + location + "_" + question_id + ".txt"
+        file_path = os.path.join(model_results.directory, file_name)
+        with open(file_path, "w") as file:
+            file.write(prompt_text)
 
     def calculate_question_location_list(self, max_input):
         result = []
-        increment = round(max_input / self.config.location_count)
-        max_input = round(max_input * 0.90)
-        initial_location = last_location = round(max_input * 0.01)
+        initial_location = previous_location = round(max_input * 0.01)
+        max_input = last_location = round(max_input * 0.98)
+        increment = round( (max_input - initial_location) / self.config.location_count)
         result.append(initial_location)
-        for i in range(1, self.config.location_count):
-            result.append(last_location + increment)
-            last_location = result[-1]
+        for i in range(1, (self.config.location_count - 1)):
+            result.append(previous_location + increment)
+            previous_location = result[-1]
+        result.append(last_location)
         return result
 
     def add_action(self, action):
