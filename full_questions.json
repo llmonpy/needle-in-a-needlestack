@@ -24,12 +24,12 @@
         "token_count": 43
     },
     {
-        "id": 105797,
-        "author": "MikeAq",
-        "text": "Cruciverbalists learn crosswordese,\nFilling puzzles with words such as these:\nDies irae and busto \u2014\nLess-used words that you must know\nTo solve crossword puzzles with ease.",
-        "question": "What do cruciverbalists learn?",
-        "answer": "Crosswordese",
-        "token_count": 41
+        "id": 99730,
+        "author": "Chris J. Strolin",
+        "text": "For me, this is clearly the right shift,\nThe boredom-slash-wild-drunken-fight shift.\nIt's been called D&D\n(\"Death and donuts,\" you see).\nYes, there's nothing like working the night shift.",
+        "question": "What is the nickname for the night shift in a store?",
+        "answer": "Death and donuts or D&D",
+        "token_count": 50
     },
     {
         "id": 54553,
@@ -40,12 +40,12 @@
         "token_count": 43
     },
     {
-        "id": 85456,
-        "author": "neilski",
-        "text": "Dear fans, re the letters you write:\nPeace and love, but I'm losing the fight.\nFrom October, I'm sure,\nThey'll be answered no more:\nI've no time. Peace and love, and goodnight.",
-        "question": "From October, what will be answered no more?",
-        "answer": "The letters fans write",
-        "token_count": 47
+        "id": 90715,
+        "author": "proof",
+        "text": "Have a car and my clothes without fail\nOutside of this old county jail.\nIt has only one fence,\n Which does not make much sense,\nSo tomorrow I'll scale it and bail.",
+        "question": "what about the county jail does not make much sense?",
+        "answer": "It has only one fence",
+        "token_count": 38
     },
     {
         "id": 99013,
@@ -54,6 +54,16 @@
         "question": "Why do I treat all your emails as spam?",
         "answer": "I don't like you",
         "token_count": 50
+    },
+    {
+        "id": 87737,
+        "author": "Joanna Keene",
+        "text": "Joey fingered Big Lou as the one\nWho shot Johnny six times with his gun.\nSnitched him out: \"Louie did it;\nThe goon never hid it.\"\nNow Joey lives life on the run.",
+        "question": "Who did Joey finger for shooting Johnny?",
+        "answer": "Big Lou",
+        "token_count": 45,
+        "target_location": 0,
+        "question_vetted": false
     },
     {
         "id": 86941,

@@ -12,6 +12,8 @@ from limerick import Limerick, FULL_QUESTION_FILE
 from llm_client import PROMPT_RETRIES, backoff_after_exception
 from main import NO_GENERATED_ANSWER
 from test_config import DEFAULT_TEST_CONFIG
+from test_results import SYSTEM_PROMPT
+from test_status import TestStatus
 
 VETTER_STATUS_REPORT_INTERVAL = 5
 
@@ -130,28 +132,25 @@ class VetterTrialResult:
         result = self.dissent_count >= concerning_dissent_count
         return result
 
-    '''
-        You might wonder why this doesn't just set the generated_answer directly, rather than going
-        through results.set_test_result.  The reasons are: 1) to keep the code consistent with the
-        way the evaluator results are set, and 2) need "results" to record exceptions and 3) generate_answer
-        would need a lock to safely set the value (because it is accessed by the update status thread). It's
-        still weird though.
-    '''
     def run_test(self, results, model, question, question_prompt_text, evaluator):
         for attempt in range(PROMPT_RETRIES):
             try:
-                generated_answer = model.prompt(question_prompt_text)
+                self.generated_answer = model.prompt(question_prompt_text, SYSTEM_PROMPT)
                 break
             except Exception as e:
-                generated_answer = NO_GENERATED_ANSWER
-                results.add_test_exception(model.model_name, None, question.id, self.trial_number, attempt, e)
+                self.generated_answer = NO_GENERATED_ANSWER
+                results.test_status.add_test_exception(model.model_name, e)
                 if attempt == 2:
+                    results.test_status.add_answer_generation_failure(model.model_name)
                     print("Exception on attempt 3")
                 backoff_after_exception(attempt)
                 continue
-        results.set_test_result(model.model_name, None, question.id, self.trial_number, generated_answer)
-        score = evaluator.evaluate(model.model_name, None, question, self.trial_number, generated_answer)
-        return generated_answer, score
+        results.test_status.record_test_answer_generated(model.model_name)
+        self.passed, evaluator_model_result_list = evaluator.evaluate(model.model_name, question, self.generated_answer)
+        for evaluator_model_result in evaluator_model_result_list:
+            self.set_evaluator_result(evaluator_model_result.model_name, evaluator_model_result.passed)
+        results.test_status.record_test_finished(model.model_name)
+        return self.generated_answer, self.passed
 
     def calculate_scores(self, status_report):
         finished = True
@@ -261,7 +260,7 @@ class ModelQuestionVetterResult:
     def create(model_name, question, number_of_trials, evaluator_model_names):
         result = ModelQuestionVetterResult(model_name, question)
         for trial_number in range(number_of_trials):
-            result.add_trial(question, trial_number, evaluator_model_names)
+            result.add_trial(trial_number, evaluator_model_names)
         return result
 
 
@@ -421,6 +420,14 @@ class QuestionListVetterResult:
                 index += 1
         return result
 
+    def update_test_status(self, test_status):
+        for question_vetter_result in self.question_list:
+            for model_question in question_vetter_result.model_question_list:
+                for trial in model_question.trails:
+                    test_status.add_test(model_question.model_name)
+                    for evaluator_result in trial.evaluator_results:
+                        test_status.add_evaluation(evaluator_result.model_name)
+
     @staticmethod
     def from_dict(dictionary):
         question_list = dictionary.get("question_list", None)
@@ -442,65 +449,7 @@ class QuestionListVetterResult:
         return result
 
 
-class BaseVetterTestResultAction:
-    def __init__(self, results, model_name, question_id, trial_number):
-        self.results = results
-        self.model_name = model_name
-        self.question_id = question_id
-        self.trial_number = trial_number
-
-    def get_trial(self):
-        result = self.results.get_trial(self.question_id, self.model_name, self.trial_number)
-        return result
-
-    def execute(self):
-        raise NotImplementedError
-
-
-class SetVetterTestResultAction(BaseVetterTestResultAction):
-    def __init__(self, results, model_name, question_id, trial_number, generated_answer):
-        super().__init__(results, model_name, question_id, trial_number)
-        self.generated_answer = generated_answer
-
-    def execute(self):
-        self.get_trial().set_generated_answer(self.generated_answer)
-
-
-class SetVetterEvaluatorResultAction(BaseVetterTestResultAction):
-    def __init__(self, results, model_name, question_id, trial_number, evaluator_model_name, passed):
-        super().__init__(results, model_name, question_id, trial_number)
-        self.evaluator_model_name = evaluator_model_name
-        self.passed = passed
-
-    def execute(self):
-        self.get_trial().set_evaluator_result(self.evaluator_model_name, self.passed)
-
-
-class AddVetterTestExceptionAction(BaseVetterTestResultAction):
-    def __init__(self, results, model_name, question_id, trial_number, attempt, exception):
-        super().__init__(results, model_name, question_id, trial_number)
-        self.attempt = attempt
-        self.exception = exception
-
-    def execute(self):
-        self.results.add_test_exception(self.model_name, self.question_id, self.trial_number, self.attempt,
-                                        self.exception)
-
-
-class AddVetterEvaluationExceptionAction(BaseVetterTestResultAction):
-    def __init__(self, results, model_name, question_id, trial_number, evaluation_model_name, attempt,
-                 exception):
-        super().__init__(results, model_name, question_id, trial_number)
-        self.evaluation_model_name = evaluation_model_name
-        self.attempt = attempt
-        self.exception = exception
-
-    def execute(self):
-        self.results.add_evaluation_exception(self.model_name, self.question_id, self.trial_number,
-                                              self.evaluation_model_name, self.attempt, self.exception)
-
-
-class QuestionListVetter(BaseTestResults):
+class QuestionListVetter:
     def __init__(self, directory, question_list, model_list, number_of_trials, evaluator_model_list):
         self.directory = directory
         self.question_list = question_list
@@ -510,73 +459,24 @@ class QuestionListVetter(BaseTestResults):
         now = datetime.now()
         date_time_str = now.strftime("%Y-%m-%d-%H-%M-%S")
         full_path = os.path.join(directory, date_time_str + ".json")
+        self.test_status = TestStatus(model_list, evaluator_model_list)
         self.result = QuestionListVetterResult.create(full_path, question_list, model_list, number_of_trials,
                                                       evaluator_model_list)
-        self.action_list = []
-        self.action_list_lock = threading.Lock()
-        self.started = False
-        self.timer = None
-
-    def add_action(self, action):
-        with self.action_list_lock:
-            self.action_list.append(action)
-
-    def reset_and_return_actions(self):
-        with self.action_list_lock:
-            result = self.action_list
-            self.action_list = []
-        return result
-
-    def execute_actions(self):
-        actions = self.reset_and_return_actions()
-        for action in actions:
-            try:
-                action.execute()
-            except Exception as e:
-                print("Exception executing action: ", str(e))
-                pass
+        self.result.update_test_status(self.test_status)
 
     def start(self):
         evaluator = DefaultEvaluator(self, self.evaluator_model_list)
         futures_list = self.result.start_tests(self, self.model_list, evaluator)
-        self.started = True
-        self.timer = threading.Timer(interval=VETTER_STATUS_REPORT_INTERVAL, function=self.update_and_report_status)
-        self.timer.start()
+        self.test_status.start(self)
         return futures_list
 
-    def set_test_result(self, model_name, location_name, question_id, trial_number, generated_answer):
-        action = SetVetterTestResultAction(self.result, model_name, question_id, trial_number, generated_answer)
-        self.add_action(action)
-
-    def set_evaluator_result(self, model_name, location_name, question_id, trial_number, evaluator_model_name, passed):
-        action = SetVetterEvaluatorResultAction(self.result, model_name, question_id, trial_number,
-                                                evaluator_model_name, passed)
-        self.add_action(action)
-
-    def add_test_exception(self, model_name, location_name, question_id, trial_number, attempt, exception):
-        action = AddVetterTestExceptionAction(self.result, model_name, question_id, trial_number, attempt, exception)
-        self.add_action(action)
-
-    def add_evaluation_exception(self, model_name, location_name, question_id, trial_number, evaluation_model_name,
-                                 attempt, exception):
-        action = AddVetterEvaluationExceptionAction(self.result, model_name, question_id, trial_number,
-                                                    evaluation_model_name, attempt, exception)
-        self.add_action(action)
-
-    def update_and_report_status(self):
-        if not self.started:
-            return
-        self.execute_actions()
+    def all_tests_finished(self):
         status_report = VetterStatusReport()
         self.result.calculate_scores(status_report)
-        if not status_report.is_finished():
-            status_report.print()
-            self.timer = threading.Timer(interval=VETTER_STATUS_REPORT_INTERVAL, function=self.update_and_report_status)
-            self.timer.start()
-        else:
-            self.result.record_results()
-            self.result.write_to_file()
-            print("All tests are finished")
+        self.result.record_results()
+        self.result.write_to_file()
+        print("All tests are finished")
+        exit(0)
 
     @staticmethod
     def from_file(question_file_path, result_directory, model_list, number_of_trials, evaluator_model_list):
@@ -598,5 +498,5 @@ if __name__ == '__main__':
         generated_answer, score = future.result()
         print("score: ", score)
     print("Tests completed")
-    exit(0)
+
 

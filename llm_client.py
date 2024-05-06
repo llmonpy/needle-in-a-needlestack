@@ -47,7 +47,7 @@ class LlmClient:
 
     def prompt(self, prompt_text, system_prompt=None):
         result = None
-        self.rate_limiter.get_token()
+        self.rate_limiter.get_ticket()
         for attempt in range(RATE_LIMIT_RETRIES):
             try:
                 result = self.do_prompt(prompt_text, system_prompt)
@@ -58,7 +58,7 @@ class LlmClient:
                     break
             except Exception as e:
                 if getattr(e,"status_code", None) is not None and e.status_code == 429:
-                    self.rate_limiter.wait_for_token_after_rate_limit_exceeded()
+                    self.rate_limiter.wait_for_ticket_after_rate_limit_exceeded()
                     continue
                 else:
                     raise e
@@ -157,7 +157,7 @@ MISTRAL_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 ANTHROPIC_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 OPENAI_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 
-MISTRAL_RATE_LIMITER = RateLlmiter(100, SECOND_TIME_WINDOW)
+MISTRAL_RATE_LIMITER = RateLlmiter(*spread_requests(1000)) #used minute spread to seconds because tokens are TPM not TPS
 
 #MIXTRAL tokenizer generates 20% more tokens than openai, so after reduce max_input to 80% of openai
 MISTRAL_8X22B = MistralLlmClient("open-mixtral-8x22b", 50000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)

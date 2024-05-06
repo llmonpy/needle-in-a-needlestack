@@ -47,7 +47,7 @@ def get_score_from_response(response_text):
         is_pass = PASS_ANSWER in response_text
         is_fail = FAIL_ANSWER in response_text
     if is_pass == is_fail:
-        score = 0  # means the LLM did not give answer the question as asked
+        score = 0  # means the LLM did not answer the question as asked
     elif is_pass:
         score = 1
     elif is_fail:
@@ -55,27 +55,33 @@ def get_score_from_response(response_text):
     return score
 
 
-def evaluate_response(model, evaluation_prompt_text, system_prompt, model_name_being_tested, location_name, question,
-                      trial_number, results):
+def evaluate_response(model, evaluation_prompt_text, system_prompt, model_name_being_tested, results):
     for attempt in range(PROMPT_RETRIES):
         try:
             response_text = model.prompt(evaluation_prompt_text, system_prompt)
             break
         except Exception as e:
             response_text = FAIL_ANSWER
-            results.add_evaluation_exception(model_name_being_tested, location_name, question.id, trial_number,
-                                             model.model_name, attempt, e)
+            results.test_status.add_evaluation_exception(model.model_name, e)
             if attempt == 2:
+                results.test_status.add_evaluation_failure(model_name_being_tested, model.model_name)
                 print("Exception on attempt 3")
-            backoff_after_exception(attempt)
+            else:
+                backoff_after_exception(attempt)
             continue
     score = get_score_from_response(response_text)
     return score, model.model_name
 
 
 class EvaluatorInterface:
-    def evaluate(self, results, evaluator_model_list, model_name, location_name, question, trial_number, answer):
+    def evaluate(self, model_name, question, answer):
         raise NotImplementedError
+
+
+class EvaluatorResult:
+    def __init__(self, model_name, passed):
+        self.model_name = model_name
+        self.passed = passed
 
 
 class DefaultEvaluator(EvaluatorInterface):
@@ -85,7 +91,8 @@ class DefaultEvaluator(EvaluatorInterface):
         self.results = results
         self.evaluator_model_list = evaluator_model_list
 
-    def evaluate(self, model_name, location_name, question, trial_number, answer):
+    def evaluate(self, model_name, question, answer):
+        model_results = []
         evaluation_prompt_template = Template(self.evaluation_prompt)
         evaluation_prompt_text = evaluation_prompt_template.substitute(limerick_text=question.text,
                                                                        question_text=question.question,
@@ -97,22 +104,22 @@ class DefaultEvaluator(EvaluatorInterface):
         for model in self.evaluator_model_list:
             executor = model.get_eval_executor()
             futures_list.append(executor.submit(evaluate_response, model, evaluation_prompt_text, self.system_prompt,
-                                                model_name, location_name, question, trial_number, self.results))
+                                                model_name, self.results))
         yes_count = no_count = 0
         for future in concurrent.futures.as_completed(futures_list):
             score, evaluator_model_name = future.result()
             if score == 1:
                 yes_count += 1
                 passed = True
-            elif score == 0:
+            else:
                 no_count += 1
                 passed = False
-            self.results.set_evaluator_result(model_name, location_name, question.id, trial_number, evaluator_model_name,
-                                         passed)
+            model_results.append(EvaluatorResult(evaluator_model_name, passed))
+            self.results.test_status.record_evaluation_finished(evaluator_model_name)
         if yes_count > no_count:
-            result = 1
+            final_result = True
         else:
-            result = 0
-        return result
+            final_result = False
+        return final_result, model_results
 
 

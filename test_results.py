@@ -15,6 +15,7 @@ from evaluator import DefaultEvaluator
 from limerick import Limerick
 from llm_client import PROMPT_RETRIES, backoff_after_exception
 from prompt import get_prompt
+from test_status import TestStatus
 
 STATUS_REPORT_INTERVAL = 5  # seconds
 PLOT_FONT_SIZE = 8
@@ -426,21 +427,25 @@ class TrialResult:
         evaluator_result = EvaluatorResult(model_name)
         self.evaluator_results.append(evaluator_result)
 
-    def run_trial(self, results, prompt_text, model, evaluator, location, question):
+    def run_trial(self, results, prompt_text, model, evaluator, question):
         for attempt in range(PROMPT_RETRIES):
             try:
-                tmp_generated_answer = model.prompt(prompt_text, SYSTEM_PROMPT)
+                self.generated_answer = model.prompt(prompt_text, SYSTEM_PROMPT)
                 break
             except Exception as e:
-                tmp_generated_answer = NO_GENERATED_ANSWER
-                results.add_test_exception(model.model_name, location, question.id, self.trial_number, attempt, e)
+                self.generated_answer = NO_GENERATED_ANSWER
+                results.test_status.add_test_exception(model.model_name, e)
                 if attempt == 2:
                     print("Exception on attempt 3")
+                    results.test_status.add_answer_generation_failure(model.model_name)
                 backoff_after_exception(attempt)
                 continue
-        results.set_test_result(model.model_name, location, question.id, self.trial_number, tmp_generated_answer)
-        score = evaluator.evaluate(model.model_name, location, question, self.trial_number, tmp_generated_answer)
-        return tmp_generated_answer, score
+        results.test_status.record_test_answer_generated(model.model_name)
+        self.passed, evaluator_model_result_list = evaluator.evaluate(model.model_name, question, self.generated_answer)
+        for evaluator_model_result in evaluator_model_result_list:
+            self.set_evaluator_result(evaluator_model_result.model_name, evaluator_model_result.passed)
+        results.test_status.record_test_finished(model.model_name)
+        return self.generated_answer, self.passed
 
     def is_finished(self):
         return self.passed is not None
@@ -524,7 +529,7 @@ class QuestionResults:
         futures_list = []
         for trial_result in self.trial_results:
             futures_list.append(thread_pool.submit(trial_result.run_trial, results, prompt_text, model, evaluator,
-                                                   location, self.question))
+                                                   self.question))
         return futures_list
 
     def get_trial(self, trial_number):
@@ -721,7 +726,6 @@ class ModelResults:
         status_report = StatusReport(self.model_name, self.failed_test_count, self.failed_evaluation_count)
         for location in self.location_list:
             location.calculate_scores(status_report)
-        status_report.print()
         return status_report
 
     def get_location_scores(self):
@@ -813,8 +817,7 @@ class ModelResults:
 
     @staticmethod
     def create(date_string, directory, model_name, location_token_index_list, question_list,
-               repeat_question_limerick_count,
-               trial_count, evaluator_model_list):
+               repeat_question_limerick_count, trial_count, evaluator_model_list):
         number_of_trials_per_location = trial_count * len(question_list)
         result = ModelResults(date_string, directory, model_name, number_of_trials_per_location,
                               repeat_question_limerick_count)
@@ -831,69 +834,6 @@ class ModelResults:
         return result
 
 
-class BaseTestResultAction:
-    def __init__(self, results, model_name, location_name, question_id, trial_number):
-        self.results = results
-        self.model_name = model_name
-        self.location_name = location_name
-        self.question_id = question_id
-        self.trial_number = trial_number
-
-    def get_model_results(self):
-        result = self.results.get_model_results(self.model_name)
-        return result
-
-    def get_trial(self):
-        result = self.get_model_results().get_trial(self.location_name, self.question_id, self.trial_number)
-        return result
-
-    def execute(self):
-        raise NotImplementedError
-
-
-class SetTestResultAction(BaseTestResultAction):
-    def __init__(self, results, model_name, location_name, question_id, trial_number, generated_answer):
-        super().__init__(results, model_name, location_name, question_id, trial_number)
-        self.generated_answer = generated_answer
-
-    def execute(self):
-        self.get_trial().set_generated_answer(self.generated_answer)
-
-
-class SetEvaluatorResultAction(BaseTestResultAction):
-    def __init__(self, results, model_name, location_name, question_id, trial_number, evaluator_model_name, passed):
-        super().__init__(results, model_name, location_name, question_id, trial_number)
-        self.evaluator_model_name = evaluator_model_name
-        self.passed = passed
-
-    def execute(self):
-        self.get_trial().set_evaluator_result(self.evaluator_model_name, self.passed)
-
-
-class AddTestExceptionAction(BaseTestResultAction):
-    def __init__(self, results, model_name, location_name, question_id, trial_number, attempt, exception):
-        super().__init__(results, model_name, location_name, question_id, trial_number)
-        self.attempt = attempt
-        self.exception = exception
-
-    def execute(self):
-        self.get_model_results().add_test_exception(self.location_name, self.question_id, self.trial_number,
-                                                    self.attempt, self.exception)
-
-
-class AddEvaluationExceptionAction(BaseTestResultAction):
-    def __init__(self, results, model_name, location_name, question_id, trial_number, evaluation_model_name, attempt,
-                 exception):
-        super().__init__(results, model_name, location_name, question_id, trial_number)
-        self.evaluation_model_name = evaluation_model_name
-        self.attempt = attempt
-        self.exception = exception
-
-    def execute(self):
-        self.get_model_results().add_evaluation_exception(self.location_name, self.question_id, self.trial_number,
-                                                          self.evaluation_model_name, self.attempt, self.exception)
-
-
 class TestResults(BaseTestResults):
     def __init__(self, config):
         self.config = config
@@ -902,11 +842,9 @@ class TestResults(BaseTestResults):
         self.prompt = None
         self.evaluator = DefaultEvaluator(self, self.config.evaluator_model_list)
         self.model_results_list = []
-        self.action_list = []
-        self.action_list_lock = threading.Lock()
         self.started = False
-        self.timer = None
         self.prompt_dict = {}
+        self.test_status = TestStatus(config.model_list, config.evaluator_model_list)
         self.create_tests()
         print("Test Results Initialized")
 
@@ -937,6 +875,15 @@ class TestResults(BaseTestResults):
         self.prompt = get_prompt(max_prompt_size, self.config)
         for model in self.config.model_list:
             self.create_tests_for_model(model)
+        self.update_test_status()
+
+    def update_test_status(self):
+        for model_results in self.model_results_list:
+            trial_list = model_results.get_all_trial_results()
+            for trial in trial_list:
+                self.test_status.add_test(model_results.model_name)
+                for evaluator_result in trial.evaluator_results:
+                    self.test_status.add_evaluation(evaluator_result.model_name)
 
     def create_tests_for_model(self, model):
         print("creating tests for model: ", model.model_name)
@@ -973,25 +920,6 @@ class TestResults(BaseTestResults):
         result.append(last_location)
         return result
 
-    def add_action(self, action):
-        with self.action_list_lock:
-            self.action_list.append(action)
-
-    def reset_and_return_actions(self):
-        with self.action_list_lock:
-            result = self.action_list
-            self.action_list = []
-        return result
-
-    def execute_actions(self):
-        actions = self.reset_and_return_actions()
-        for action in actions:
-            try:
-                action.execute()
-            except Exception as e:
-                print("Exception executing action: ", str(e))
-                pass
-
     def start(self):
         futures_list = []
         for model_results in self.model_results_list:
@@ -999,9 +927,7 @@ class TestResults(BaseTestResults):
             thread_pool = concurrent.futures.ThreadPoolExecutor(max_workers=self.config.test_thread_count)
             futures_list += model_results.run_trials(thread_pool, self,
                                                      self.config.get_model(model_results.model_name), self.evaluator)
-        self.started = True
-        self.timer = threading.Timer(interval=STATUS_REPORT_INTERVAL, function=self.update_and_report_status)
-        self.timer.start()
+        self.test_status.start(self)
         return futures_list
 
     def get_model_results(self, model_name):
@@ -1017,11 +943,6 @@ class TestResults(BaseTestResults):
         result = model_result.directory
         return result
 
-    def copy_model_results_list(self):
-        result = None
-        result = copy.deepcopy(self.model_results_list)
-        return result
-
     def add_model(self, model_name, location_list, question_list, repeat_question_limerick_count):
         directory = os.path.join(self.test_result_directory, model_name)
         model_results = ModelResults.create(self.date_string, directory, model_name, location_list, question_list,
@@ -1029,25 +950,6 @@ class TestResults(BaseTestResults):
                                             self.config.evaluator_model_list)
         self.model_results_list.append(model_results)
         return model_results
-
-    def set_test_result(self, model_name, location_name, question_id, trial_number, generated_answer):
-        action = SetTestResultAction(self, model_name, location_name, question_id, trial_number, generated_answer)
-        self.add_action(action)
-
-    def set_evaluator_result(self, model_name, location_name, question_id, trial_number, evaluator_model_name, passed):
-        action = SetEvaluatorResultAction(self, model_name, location_name, question_id, trial_number,
-                                          evaluator_model_name, passed)
-        self.add_action(action)
-
-    def add_test_exception(self, model_name, location_name, question_id, trial_number, attempt, exception):
-        action = AddTestExceptionAction(self, model_name, location_name, question_id, trial_number, attempt, exception)
-        self.add_action(action)
-
-    def add_evaluation_exception(self, model_name, location_name, question_id, trial_number, evaluation_model_name,
-                                 attempt, exception):
-        action = AddEvaluationExceptionAction(self, model_name, location_name, question_id, trial_number,
-                                              evaluation_model_name, attempt, exception)
-        self.add_action(action)
 
     def calculate_scores(self):
         for model_result in self.model_results_list:
@@ -1088,6 +990,29 @@ class TestResults(BaseTestResults):
             test_model_scores.write_to_file(os.path.join(self.test_result_directory, "model_scores.json"))
             self.write_full_results(current_results_list)
             print("All tests are finished")
+
+    def all_tests_finished(self):
+        current_results_list = self.model_results_list
+        model_score_list = []
+        for model_results in current_results_list:
+            model_results.calculate_scores()
+            location_scores = model_results.get_location_scores()
+            model_score = ModelScore(model_results.model_name, model_results.date_string,
+                                     model_results.repeat_question_limerick_count,
+                                     model_results.limerick_count_in_prompt, location_scores,
+                                     model_results.number_of_trials_per_location)
+            plot_name = model_results.model_name + "_trial_plot.png"
+            plot_file_name = os.path.join(self.test_result_directory, plot_name)
+            model_score.write_trial_plot(plot_file_name)
+            plot_name = model_results.model_name + "_question_plot.png"
+            plot_file_name = os.path.join(self.test_result_directory, plot_name)
+            model_score.write_question_plot(plot_file_name)
+            model_score_list.append(model_score)
+        test_model_scores = TestModelScores(model_score_list)
+        test_model_scores.write_to_file(os.path.join(self.test_result_directory, "model_scores.json"))
+        self.write_full_results(current_results_list)
+        print("All tests are finished")
+        exit(0)
 
     def write_full_results(self, results_list):
         results_list = copy.deepcopy(results_list)
