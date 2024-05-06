@@ -30,8 +30,8 @@ class TestConfig:
         return result
 
 
-DEFAULT_TEST_CONFIG = TestConfig("test_prompt", [GPT3_5, MISTRAL_7B, ANTHROPIC_HAIKU], 100, EVALUATOR_MODEL_LIST,
-                                 5, 1, 5,
+DEFAULT_TEST_CONFIG = TestConfig("test_prompt", [GPT3_5, GPT4, MISTRAL_7B, ANTHROPIC_HAIKU], 100, EVALUATOR_MODEL_LIST,
+                                 12, 1, 5,
                                  5, "tests")
 
 
