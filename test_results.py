@@ -35,50 +35,16 @@ from test_status import TestStatus
 STATUS_REPORT_INTERVAL = 5  # seconds
 PLOT_FONT_SIZE = 8
 NO_GENERATED_ANSWER = "ACEGIKMOQSUWY"
-
+ORIGINAL_MODEL_NAME = "original"
+REPLACEMENT_MODEL_NAME = "replacement"
+REEVALUATION_FILE_PREFIX = "reeval_"
 
 SYSTEM_PROMPT = "You are an expert at understanding limericks and answering questions based on the limericks you read."
+
 
 class QuestionAnswerCollector:
     def add_answer(self, question_id, answer, passed):
         raise NotImplementedError
-
-
-class TestResultExceptionReport:
-    def __init__(self, location_name, question_id, trial_number, attempt, exception_message):
-        self.location_name = location_name
-        self.question_id = question_id
-        self.trial_number = trial_number
-        self.attempt = attempt
-        self.exception_message = exception_message
-
-    def to_dict(self):
-        result = copy.copy(vars(self))
-        return result
-
-    @staticmethod
-    def from_dict(dictionary):
-        result = TestResultExceptionReport(**dictionary)
-        return result
-
-
-class EvaluationExceptionReport:
-    def __init__(self, location_name, question_id, trial_number, attempt, evaluation_model_name, exception_message):
-        self.location_name = location_name
-        self.question_id = question_id
-        self.trial_number = trial_number
-        self.attempt = attempt
-        self.evaluation_model_name = evaluation_model_name
-        self.exception_message = exception_message
-
-    def to_dict(self):
-        result = copy.copy(vars(self))
-        return result
-
-    @staticmethod
-    def from_dict(dictionary):
-        result = EvaluationExceptionReport(**dictionary)
-        return result
 
 
 class StatusReport(BaseStatusReport):
@@ -732,6 +698,23 @@ class ModelResults:
         if directory is not None and len(directory) > 0:
             os.makedirs(directory, exist_ok=True)
 
+    def update_questions(self, current_question_list):
+        for location in self.location_list:
+            for question_result in location.question_result_list:
+                for question in current_question_list:
+                    if question.id == question_result.question.id:
+                        question_result.question = question
+                        break
+
+    def update_evaluator_models(self, replacement_dict):
+        for location in self.location_list:
+            for question_result in location.question_result_list:
+                for trial_result in question_result.trial_results:
+                    for evaluator_result in trial_result.evaluator_results:
+                        if evaluator_result.model_name == replacement_dict[ORIGINAL_MODEL_NAME]:
+                            evaluator_result.model_name = replacement_dict[REPLACEMENT_MODEL_NAME]
+                            print("updated evaluator model name")
+
     def set_limerick_count_in_prompt(self, limerick_count_in_prompt):
         self.limerick_count_in_prompt = limerick_count_in_prompt
 
@@ -783,24 +766,6 @@ class ModelResults:
                                            question_scores)
             result.append(location_score)
         return result
-
-    def add_test_exception(self, location_name, question_id, trial_number, attempt, exception):
-        print("Test Exception: ", str(exception))
-        exception_report = TestResultExceptionReport(location_name, question_id, trial_number, attempt, str(exception))
-        self.test_exception_list.append(exception_report)
-        if attempt == PROMPT_RETRIES - 1:
-            self.failed_test_count += 1
-            print("Failed Test Count: ", self.failed_test_count)
-
-    def add_evaluation_exception(self, location_name, question_id, trial_number, attempt, evaluation_model_name,
-                                 exception):
-        print("Evaluation Exception: ", str(exception))
-        exception_report = EvaluationExceptionReport(location_name, question_id, trial_number, attempt,
-                                                     evaluation_model_name, str(exception))
-        self.evaluation_exception_list.append(exception_report)
-        if attempt == PROMPT_RETRIES - 1:
-            self.failed_evaluation_count += 1
-            print("Failed Evaluation Count: ", self.failed_evaluation_count)
 
     def get_all_trial_results(self):
         result = []

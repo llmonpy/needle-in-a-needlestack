@@ -24,12 +24,13 @@ LIMERICK_DATASET_FILE = "limerick_dataset_oedilf_v3.json"
 
 class Limerick:
     def __init__(self, id, author, text, question=None, answer=None, tokens=None, token_count=None, target_location=0,
-                 question_vetted=False):
+                 question_vetted=False, alternate_answers=None):
         self.id = id
         self.author = author
         self.text = text
         self.question = question
         self.answer = answer
+        self.alternate_answers = alternate_answers
         self.tokens = tokens
         self.token_count = token_count
         self.target_location = target_location
@@ -38,6 +39,16 @@ class Limerick:
     def generate_tokens(self, encoder):
         self.tokens = encoder.encode(self.text)
         self.token_count = len(self.tokens)
+
+    def has_alternate_answers(self):
+        result = self.alternate_answers is not None and len(self.alternate_answers) > 0
+        return result
+
+    def get_all_answers(self):
+        result = [self.answer]
+        if self.has_alternate_answers():
+            result.extend(self.alternate_answers)
+        return result
 
     def to_dict(self):
         result = copy.copy(vars(self))

@@ -34,10 +34,13 @@ BASE_RETRY_DELAY = 30 # seconds
 LIMERICK_PART_API_PREFIX = "LIMERICK_PARK_"
 
 
-def get_api_key(api_name):
+def get_api_key(api_name, exit_on_error=True):
     key = os.environ.get(LIMERICK_PART_API_PREFIX + api_name)
     if key is None:
         key = os.environ.get(api_name)
+    if key is None and exit_on_error:
+        print("API key not found for " + api_name)
+        exit(1)
     return key
 
 

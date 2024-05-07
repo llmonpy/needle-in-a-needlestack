@@ -28,6 +28,15 @@ You are an expert at evaluating the answers to questions based on the text of a 
 sure of yourself and always answer with an "$pass_answer" or "$fail_answer" without explanation.""").substitute(pass_answer=PASS_ANSWER,
                                                                                                fail_answer=FAIL_ANSWER)
 
+ONE_SHOT_SNIPPET = '''An example of a good answer to this question is:
+
+$good_answer_text
+'''
+
+FEW_SHOT_SNIPPET = '''Examples of good answers to this question are: 
+$good_answer_text
+'''
+
 EVALUATION_PROMPT = """
 I would like you to evaluate the answer to a question about a limerick.  The limerick is:
 
@@ -37,9 +46,7 @@ The question is:
 
 $question_text
 
-An example of a good answer to this question is:
-
-$good_answer_text
+$icl_text
 
 And this is the generated answer to the question:
 
@@ -107,10 +114,18 @@ class DefaultEvaluator(EvaluatorInterface):
 
     def evaluate(self, model_name, question, answer):
         model_results = []
+        if question.has_alternate_answers():
+            answer_list = question.get_all_answers()
+            answer_string = ', '.join(["'{}'".format(answer) for answer in answer_list])
+            icl_template = Template(FEW_SHOT_SNIPPET)
+            icl_text = icl_template.substitute(good_answer_text=answer_string)
+        else:
+            icl_template = Template(ONE_SHOT_SNIPPET)
+            icl_text = icl_template.substitute(good_answer_text=question.answer)
         evaluation_prompt_template = Template(self.evaluation_prompt)
         evaluation_prompt_text = evaluation_prompt_template.substitute(limerick_text=question.text,
                                                                        question_text=question.question,
-                                                                       good_answer_text=question.answer,
+                                                                       icl_text=icl_text,
                                                                        generated_answer_text=answer,
                                                                        pass_answer=PASS_ANSWER,
                                                                        fail_answer=FAIL_ANSWER)

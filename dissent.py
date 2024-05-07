@@ -13,31 +13,27 @@
 #  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 #  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 import os
+import sys
 
-from test_results import ModelResults
+from test_results import ModelResults, REEVALUATION_FILE_PREFIX
 
 
 class EvaluatorReport:
-    def __init__(self, model_name, total_score_count, test_count=0, agreed_test_count=0, disagreed_test_count=0):
+    def __init__(self, model_name, evaluation_count=0, agreed_count=0, disagreed_count=0):
         self.model_name = model_name
-        self.total_score_count = total_score_count
-        self.test_count = test_count
-        self.agreed_test_count = agreed_test_count
-        self.disagreed_test_count = disagreed_test_count
+        self.evaluation_count = evaluation_count
+        self.agreed_count = agreed_count
+        self.disagreed_count = disagreed_count
 
-    def add_trial(self, trial_answer, evaluator_answer):
-        self.test_count += 1
+    def add_evaluation(self, trial_answer, evaluator_answer):
+        self.evaluation_count += 1
         if trial_answer == evaluator_answer:
-            self.agreed_test_count += 1
+            self.agreed_count += 1
         else:
-            self.disagreed_test_count += 1
-
-    def get_percent_wrong_when_there_is_dissent(self):
-        result = round((self.disagreed_test_count / self.test_count) * 100)
-        return result
+            self.disagreed_count += 1
 
     def get_percent_wrong(self):
-        result = round((self.disagreed_test_count / self.total_score_count) * 100)
+        result = round((self.disagreed_count / self.evaluation_count) * 100)
         return result
 
 
@@ -46,13 +42,6 @@ class ModelDissentReport:
         self.file_path = file_path
         self.model_results = ModelResults.from_file(self.file_path)
         self.trial_list = self.model_results.get_all_trial_results()
-        self.trials_with_dissent_list = []
-        self.trials_with_concerning_dissent_list = []
-        for trial in self.trial_list:
-            if trial.has_dissent():
-                self.trials_with_dissent_list.append(trial)
-            if trial.has_concerning_dissent():
-                self.trials_with_concerning_dissent_list.append(trial)
 
     def get_model_name(self):
         return self.model_results.model_name
@@ -62,29 +51,27 @@ class ModelDissentReport:
 
     def process(self, dissent_report):
         print("Processing results for " + self.file_path)
-        for trial in self.trials_with_dissent_list:
+        for trial in self.trial_list:
             for evaluator in trial.evaluator_results:
-                dissent_report.add_trial(evaluator.model_name, self.get_trial_count(), trial.passed, evaluator.passed)
+                dissent_report.add_evaluation(evaluator.model_name, trial.passed, evaluator.passed)
 
 
 class DissentReport:
-    def __init__(self, directory):
+    def __init__(self, directory, model_full_results_file_list):
         self.directory = directory
         self.model_dissent_reports = []
-        all_files = os.listdir(full_results_path)
-        model_full_results_file_list = [file for file in all_files if file.endswith("full_results.json")]
         self.evaluator_grades = {}
         for file_name in model_full_results_file_list:
-            file_path = os.path.join(full_results_path, file_name)
+            file_path = os.path.join(directory, file_name)
             model_dissent_report = ModelDissentReport(file_path)
             self.model_dissent_reports.append(model_dissent_report)
 
-    def add_trial(self, model_name, trial_count, trial_passed, evaluator_passed):
+    def add_evaluation(self, model_name, trial_passed, evaluator_passed):
         evaluator_report = self.evaluator_grades.get(model_name, None)
         if evaluator_report is None:
-            evaluator_report = EvaluatorReport(model_name, trial_count)
+            evaluator_report = EvaluatorReport(model_name)
             self.evaluator_grades[model_name] = evaluator_report
-        evaluator_report.add_trial(trial_passed, evaluator_passed)
+        evaluator_report.add_evaluation(trial_passed, evaluator_passed)
 
     def process(self):
         for model_dissent_report in self.model_dissent_reports:
@@ -100,11 +87,31 @@ class DissentReport:
                 message = evaluator_report.model_name + " % wrong: " + str(score) + "%\n"
                 file.write(message)
                 print(message)
+        print("done")
+        exit(0)
+
+    @staticmethod
+    def create_from_original_results(directory):
+        all_files = os.listdir(directory)
+        model_full_results_file_list = [file for file in all_files if not file.startswith(REEVALUATION_FILE_PREFIX) and
+                                        file.endswith("full_results.json")]
+        result = DissentReport(directory, model_full_results_file_list)
+        return result
+
+    @staticmethod
+    def create_from_revaluator_results(directory, prefix):
+        all_files = os.listdir(directory)
+        model_full_results_file_list = [file for file in all_files if file.startswith(prefix)
+                                        and file.endswith("full_results.json")]
+        result = DissentReport(directory, model_full_results_file_list)
+        return result
 
 if __name__ == '__main__':
-    full_results_path = os.environ.get("FULL_RESULTS_PATH")
-    report = DissentReport(full_results_path)
+    if len(sys.argv) >= 2:
+        full_results_path = sys.argv[1]
+    else:
+        full_results_path = "answer_examples"
+    report = DissentReport.create_from_revaluator_results(full_results_path, REEVALUATION_FILE_PREFIX)
+    #report = DissentReport.create_from_original_results(full_results_path)
     report.process()
-    print("done")
-    exit(0)
 

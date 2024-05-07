@@ -124,6 +124,9 @@ class TestStatus:
             if model_status.evaluator_model_name == model_name:
                 result = model_status
                 break
+        if result is None: # needed for reevaluator when evaluator model is not in current list
+            result = EvaluatorStatus(model_name)
+            self.evaluator_model_status_list.append(result)
         return result
 
     def add_test(self, model_name):
@@ -155,16 +158,18 @@ class TestStatus:
             self.test_completed += 1
 
     def add_test_exception(self, model_name, exception):
+        print("test exception")
         with STATUS_LOCK:
             model_status = self.get_test_model_status(model_name)
             model_status.add_test_exception()
-            self.test_exception_list.append(exception)
+            self.test_exception_list.append(str(exception))
 
     def add_evaluation_exception(self, evaluator_model_name, exception):
+        print("eval exception")
         with STATUS_LOCK:
             model_status = self.get_evaluator_model_status(evaluator_model_name)
             model_status.add_evaluation_exception()
-            self.evaluation_exception_list.append(exception)
+            self.evaluation_exception_list.append(str(exception))
 
     def add_answer_generation_failure(self, model_name):
         with STATUS_LOCK:
