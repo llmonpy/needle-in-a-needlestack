@@ -28,5 +28,4 @@ if __name__ == '__main__':
     futures_list = test_results.start()
     for future in concurrent.futures.as_completed(futures_list):
         generated_answer, score = future.result()
-        print("score: ", score)
     print("Tests completed")

@@ -510,7 +510,6 @@ if __name__ == '__main__':
     vetter_futures_list = vetter.start()
     for future in concurrent.futures.as_completed(vetter_futures_list):
         generated_answer, score = future.result()
-        print("score: ", score)
     print("Tests completed")
 
 

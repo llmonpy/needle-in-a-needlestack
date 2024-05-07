@@ -55,7 +55,6 @@ class AnswerReevaluator:
         for future in concurrent.futures.as_completed(futures_list):
             trial, changed_result = future.result()
             if changed_result:
-                print("evaluation changed")
                 trial = copy.deepcopy(trial)
                 self.changed_evaluation_list.append(trial)
         return futures_list
