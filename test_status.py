@@ -1,3 +1,17 @@
+#  Copyright © 2024 Thomas Edward Burns
+#
+#  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+#  documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
+#  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+#  permit persons to whom the Software is furnished to do so, subject to the following conditions:
+#
+#  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+#  Software.
+#
+#  THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+#  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+#  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+#  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 import copy
 import threading
 
@@ -66,15 +80,19 @@ class ModelTestStatus:
 
 
 class TestStatus:
-    def __init__(self, test_model_list, evaluator_model_list):
+    def __init__(self, test_model_list, evaluator_model_list, model_name_list=None):
         self.test_count = 0
         self.answers_generated = 0
         self.test_completed = 0
         self.evaluations_required = 0
         self.evaluations_completed = 0
         self.test_model_status_list = []
-        for model in test_model_list:
-            self.test_model_status_list.append(ModelTestStatus(model.model_name))
+        if model_name_list is not None:
+            for model_name in model_name_list:
+                self.test_model_status_list.append(ModelTestStatus(model_name))
+        else:
+            for model in test_model_list:
+                self.test_model_status_list.append(ModelTestStatus(model.model_name))
         self.evaluator_model_status_list = []
         for model in evaluator_model_list:
             if self.get_evaluator_model_status(model.model_name) is None:  # avoid duplicates
@@ -185,7 +203,11 @@ class StatusMonitor:
 
     def print_status(self):
         with STATUS_LOCK:
-            current_status = copy.deepcopy(self.test_status)
+            try:
+                current_status = copy.deepcopy(self.test_status)
+            except Exception as exception:
+                print("Exception in status monitor", str(exception))
+                return
         current_status.print_status()
         if not self.test_status.is_finished():
             self.timer = threading.Timer(interval=REPORT_INTERVAL, function=self.print_status)

@@ -1,3 +1,17 @@
+#  Copyright © 2024 Thomas Edward Burns
+#
+#  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+#  documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
+#  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+#  permit persons to whom the Software is furnished to do so, subject to the following conditions:
+#
+#  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+#  Software.
+#
+#  THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+#  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+#  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+#  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 import concurrent
 from string import Template
 
@@ -55,16 +69,16 @@ def get_score_from_response(response_text):
     return score
 
 
-def evaluate_response(model, evaluation_prompt_text, system_prompt, model_name_being_tested, results):
+def evaluate_response(model, evaluation_prompt_text, system_prompt, model_name_being_tested, test_status):
     for attempt in range(PROMPT_RETRIES):
         try:
             response_text = model.prompt(evaluation_prompt_text, system_prompt)
             break
         except Exception as e:
             response_text = FAIL_ANSWER
-            results.test_status.add_evaluation_exception(model.model_name, e)
+            test_status.add_evaluation_exception(model.model_name, e)
             if attempt == 2:
-                results.test_status.add_evaluation_failure(model_name_being_tested, model.model_name)
+                test_status.add_evaluation_failure(model_name_being_tested, model.model_name)
                 print("Exception on attempt 3")
             else:
                 backoff_after_exception(attempt)
@@ -85,10 +99,10 @@ class EvaluatorResult:
 
 
 class DefaultEvaluator(EvaluatorInterface):
-    def __init__(self, results, evaluator_model_list, evaluation_prompt=EVALUATION_PROMPT, system_prompt=SYSTEM_PROMPT):
+    def __init__(self, test_status, evaluator_model_list, evaluation_prompt=EVALUATION_PROMPT, system_prompt=SYSTEM_PROMPT):
         self.evaluation_prompt = evaluation_prompt
         self.system_prompt = system_prompt
-        self.results = results
+        self.test_status = test_status
         self.evaluator_model_list = evaluator_model_list
 
     def evaluate(self, model_name, question, answer):
@@ -104,7 +118,7 @@ class DefaultEvaluator(EvaluatorInterface):
         for model in self.evaluator_model_list:
             executor = model.get_eval_executor()
             futures_list.append(executor.submit(evaluate_response, model, evaluation_prompt_text, self.system_prompt,
-                                                model_name, self.results))
+                                                model_name, self.test_status))
         yes_count = no_count = 0
         for future in concurrent.futures.as_completed(futures_list):
             score, evaluator_model_name = future.result()
@@ -115,7 +129,7 @@ class DefaultEvaluator(EvaluatorInterface):
                 no_count += 1
                 passed = False
             model_results.append(EvaluatorResult(evaluator_model_name, passed))
-            self.results.test_status.record_evaluation_finished(evaluator_model_name)
+            self.test_status.record_evaluation_finished(evaluator_model_name)
         if yes_count > no_count:
             final_result = True
         else:

@@ -1,17 +1,28 @@
-
+#  Copyright © 2024 Thomas Edward Burns
+#
+#  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+#  documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
+#  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+#  permit persons to whom the Software is furnished to do so, subject to the following conditions:
+#
+#  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+#  Software.
+#
+#  THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+#  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+#  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+#  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 from llm_client import GPT3_5, \
     ANTHROPIC_SONNET, MISTRAL_7B,  MISTRAL_8X22B, MISTRAL_SMALL, \
     GPT4, ANTHROPIC_HAIKU
 
 EVALUATOR_MODEL_LIST = [ANTHROPIC_HAIKU, MISTRAL_SMALL, GPT3_5, MISTRAL_8X22B,
                         MISTRAL_SMALL]
-
+TEST_DIRECTORY = "tests"
 
 class TestConfig:
-    def __init__(self, prompt_file_name, model_list, test_thread_count, evaluator_model_list,
-                 number_of_questions_per_trial, repeat_question_limerick_count, trials, location_count,
-                 result_directory):
-        self.prompt_file_name = prompt_file_name
+    def __init__(self, model_list, test_thread_count, evaluator_model_list,
+                 number_of_questions_per_trial, repeat_question_limerick_count, trials, location_count):
         self.model_list = model_list
         self.test_thread_count = test_thread_count
         self.evaluator_model_list = evaluator_model_list
@@ -19,7 +30,6 @@ class TestConfig:
         self.repeat_question_limerick_count = repeat_question_limerick_count
         self.trials = trials
         self.location_count = location_count
-        self.result_directory = result_directory
 
     def get_model(self, model_name):
         result = None
@@ -30,9 +40,9 @@ class TestConfig:
         return result
 
 
-DEFAULT_TEST_CONFIG = TestConfig("test_prompt", [GPT3_5, GPT4, MISTRAL_7B, ANTHROPIC_HAIKU], 100, EVALUATOR_MODEL_LIST,
-                                 12, 1, 5,
-                                 5, "tests")
+DEFAULT_TEST_CONFIG = TestConfig([MISTRAL_7B], 100, EVALUATOR_MODEL_LIST,
+                                 5, 1, 5,
+                                 5)
 
 
 CURRENT_TEST_CONFIG = DEFAULT_TEST_CONFIG

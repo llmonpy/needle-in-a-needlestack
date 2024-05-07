@@ -1,9 +1,26 @@
+#  Copyright © 2024 Thomas Edward Burns
+#
+#  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+#  documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
+#  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+#  permit persons to whom the Software is furnished to do so, subject to the following conditions:
+#
+#  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+#  Software.
+#
+#  THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+#  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+#  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+#  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 import copy
 import json
 import os
 import random
 
 from limerick import Limerick, FULL_QUESTION_FILE, read_and_init_limericks, LIMERICK_DATASET_FILE
+from test_config import TEST_DIRECTORY
+
+PROMPT_FILE_NAME = "test_prompt"
 
 INTRO_TO_PROMPT = "This is a test to see how well you are paying attention. This text is a series of limericks. " \
     "At the end of the list of limericks, there will be a question. The question will be about one of the limericks. " \
@@ -148,8 +165,8 @@ def generate_prompt(max_size, test_config):
         if index % 10 == 0:
             print(".")
         result.add_limerick(limerick)
-    prompt_file_path = os.path.join(test_config.result_directory,
-                                    prompt_file_name(test_config.prompt_file_name, test_config.number_of_questions_per_trial, max_size))
+    prompt_file_path = os.path.join(TEST_DIRECTORY,
+                                    prompt_file_name(PROMPT_FILE_NAME, test_config.number_of_questions_per_trial, max_size))
     result.write_to_file(prompt_file_path)
     return result
 
@@ -162,8 +179,8 @@ def read_prompt(file_name):
 
 
 def get_prompt(max_size, test_config):
-    file_name = prompt_file_name(test_config.prompt_file_name, test_config.number_of_questions_per_trial, max_size)
-    prompt_file_path = os.path.join(test_config.result_directory, file_name)
+    file_name = prompt_file_name(PROMPT_FILE_NAME, test_config.number_of_questions_per_trial, max_size)
+    prompt_file_path = os.path.join(TEST_DIRECTORY, file_name)
     result = None
     if os.path.exists(prompt_file_path):
         result = read_prompt(prompt_file_path)

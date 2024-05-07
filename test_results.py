@@ -1,3 +1,17 @@
+#  Copyright © 2024 Thomas Edward Burns
+#
+#  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+#  documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
+#  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+#  permit persons to whom the Software is furnished to do so, subject to the following conditions:
+#
+#  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+#  Software.
+#
+#  THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+#  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+#  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+#  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 import concurrent
 import copy
 import json
@@ -15,6 +29,7 @@ from evaluator import DefaultEvaluator
 from limerick import Limerick
 from llm_client import PROMPT_RETRIES, backoff_after_exception
 from prompt import get_prompt
+from test_config import TEST_DIRECTORY
 from test_status import TestStatus
 
 STATUS_REPORT_INTERVAL = 5  # seconds
@@ -395,6 +410,10 @@ class EvaluatorResult:
         self.model_name = model_name
         self.passed = passed
 
+    def reset_for_reevaluation(self, test_status):
+        self.passed = None
+        test_status.add_evaluation(self.model_name)
+
     def set_passed(self, passed):
         self.passed = passed
 
@@ -427,25 +446,38 @@ class TrialResult:
         evaluator_result = EvaluatorResult(model_name)
         self.evaluator_results.append(evaluator_result)
 
-    def run_trial(self, results, prompt_text, model, evaluator, question):
+    def run_trial(self, test_status, prompt_text, model, evaluator, question):
         for attempt in range(PROMPT_RETRIES):
             try:
                 self.generated_answer = model.prompt(prompt_text, SYSTEM_PROMPT)
                 break
             except Exception as e:
                 self.generated_answer = NO_GENERATED_ANSWER
-                results.test_status.add_test_exception(model.model_name, e)
+                test_status.add_test_exception(model.model_name, e)
                 if attempt == 2:
                     print("Exception on attempt 3")
-                    results.test_status.add_answer_generation_failure(model.model_name)
+                    test_status.add_answer_generation_failure(model.model_name)
                 backoff_after_exception(attempt)
                 continue
-        results.test_status.record_test_answer_generated(model.model_name)
+        test_status.record_test_answer_generated(model.model_name)
         self.passed, evaluator_model_result_list = evaluator.evaluate(model.model_name, question, self.generated_answer)
         for evaluator_model_result in evaluator_model_result_list:
             self.set_evaluator_result(evaluator_model_result.model_name, evaluator_model_result.passed)
-        results.test_status.record_test_finished(model.model_name)
+        test_status.record_test_finished(model.model_name)
         return self.generated_answer, self.passed
+
+    def reevaluate_generated_answer(self, test_status, model_name, evaluator, question):
+        new_evaluation, evaluator_model_result_list = evaluator.evaluate(model_name, question, self.generated_answer)
+        for evaluator_model_result in evaluator_model_result_list:
+            self.set_evaluator_result(evaluator_model_result.model_name, evaluator_model_result.passed)
+        changed_result = new_evaluation != self.passed
+        self.passed = new_evaluation
+        self.dissent_count = 0
+        for evaluator_result in self.evaluator_results:
+            if evaluator_result.passed != self.passed:
+                self.dissent_count += 1
+        test_status.record_test_finished(model_name)
+        return self, changed_result
 
     def is_finished(self):
         return self.passed is not None
@@ -525,10 +557,10 @@ class QuestionResults:
         trial_result = TrialResult.create(trial_number, self.question.answer, evaluator_model_list)
         self.trial_results.append(trial_result)
 
-    def run_trials(self, thread_pool, results, prompt_text, model, evaluator, location):
+    def run_trials(self, thread_pool, test_status, prompt_text, model, evaluator):
         futures_list = []
         for trial_result in self.trial_results:
-            futures_list.append(thread_pool.submit(trial_result.run_trial, results, prompt_text, model, evaluator,
+            futures_list.append(thread_pool.submit(trial_result.run_trial, test_status, prompt_text, model, evaluator,
                                                    self.question))
         return futures_list
 
@@ -606,8 +638,7 @@ class LocationResults:
         futures_list = []
         for question_result in self.question_result_list:
             prompt_text = results.get_prompt(model.model_name, self.location_token_position, question_result.question.id)
-            futures_list += question_result.run_trials(thread_pool, results, prompt_text, model, evaluator,
-                                                       self.location_token_position)
+            futures_list += question_result.run_trials(thread_pool, results.test_status, prompt_text, model, evaluator)
         return futures_list
 
     def get_trial(self, question_id, trial_number):
@@ -708,10 +739,25 @@ class ModelResults:
         location = LocationResults.create(location_token_position, question_list, trials, evaluator_model_list)
         self.location_list.append(location)
 
-    def run_trials(self, thread_pool, results, model, evaluator):
+    def run_trials(self, thread_pool, result, model, evaluator):
         futures_list = []
         for location in self.location_list:
-            futures_list += location.run_trials(thread_pool, results, model, evaluator)
+            futures_list += location.run_trials(thread_pool, result, model, evaluator)
+        return futures_list
+
+    def reevaluate_generated_answers(self, thread_pool, test_status, evaluator):
+        futures_list = []
+        for location in self.location_list:
+            for question_result in location.question_result_list:
+                for trial_result in question_result.trial_results:
+                    test_status.add_test(self.model_name)
+                    for evaluator_result in trial_result.evaluator_results:
+                        evaluator_result.reset_for_reevaluation(test_status)
+        for location in self.location_list:
+            for question_result in location.question_result_list:
+                for trial_result in question_result.trial_results:
+                    futures_list.append(thread_pool.submit(trial_result.reevaluate_generated_answer, test_status,
+                                                           self.model_name, evaluator, question_result.question))
         return futures_list
 
     def get_trial(self, location_name, question_id, trial_number):
@@ -840,11 +886,11 @@ class TestResults(BaseTestResults):
         self.date_string = None
         self.test_result_directory = None
         self.prompt = None
-        self.evaluator = DefaultEvaluator(self, self.config.evaluator_model_list)
+        self.test_status = TestStatus(config.model_list, config.evaluator_model_list)
+        self.evaluator = DefaultEvaluator(self.test_status, self.config.evaluator_model_list)
         self.model_results_list = []
         self.started = False
         self.prompt_dict = {}
-        self.test_status = TestStatus(config.model_list, config.evaluator_model_list)
         self.create_tests()
         print("Test Results Initialized")
 
@@ -866,7 +912,7 @@ class TestResults(BaseTestResults):
     def create_test_directory(self):
         now = datetime.now()
         self.date_string = now.strftime("%Y-%m-%d-%H-%M-%S")
-        self.test_result_directory = os.path.join(self.config.result_directory, self.date_string)
+        self.test_result_directory = os.path.join(TEST_DIRECTORY, self.date_string)
         os.makedirs(self.test_result_directory, exist_ok=True)
 
     def create_tests(self):

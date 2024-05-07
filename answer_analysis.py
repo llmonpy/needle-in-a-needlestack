@@ -1,6 +1,22 @@
+#  Copyright © 2024 Thomas Edward Burns
+#
+#  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+#  documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
+#  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+#  permit persons to whom the Software is furnished to do so, subject to the following conditions:
+#
+#  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+#  Software.
+#
+#  THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+#  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+#  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+#  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 import copy
 import json
 import os
+import sys
 
 from limerick import Limerick, FULL_QUESTION_FILE
 from test_results import ModelResults, QuestionAnswerCollector
@@ -82,15 +98,28 @@ class AnswerAnalysis(QuestionAnswerCollector):
         return result
 
     @staticmethod
-    def create(directory):
+    def create_from_test_runs(directory):
+        all_files = os.listdir(directory)
+        model_full_results_file_list = [file for file in all_files if file.endswith("full_results.json")]
+        result = AnswerAnalysis.create(directory, model_full_results_file_list)
+        return result
+
+    @staticmethod
+    def create_from_revaluator_results(directory, prefix):
+        all_files = os.listdir(directory)
+        model_full_results_file_list = [file for file in all_files if file.startswith(prefix)
+                                        and file.endswith("full_results.json")]
+        result = AnswerAnalysis.create(directory, model_full_results_file_list)
+        return result
+
+    @staticmethod
+    def create(full_results_path, model_full_results_file_list):
         result = AnswerAnalysis()
         with open(FULL_QUESTION_FILE, "r") as file:
             question_dict_list = json.load(file)
         question_list = [Limerick.from_dict(question_dict) for question_dict in question_dict_list]
         for question in question_list:
             result.add_question(question)
-        all_files = os.listdir(directory)
-        model_full_results_file_list = [file for file in all_files if file.endswith("full_results.json")]
         for file_name in model_full_results_file_list:
             results_file_path = os.path.join(full_results_path, file_name)
             model_results = ModelResults.from_file(results_file_path)
@@ -99,8 +128,11 @@ class AnswerAnalysis(QuestionAnswerCollector):
 
 
 if __name__ == '__main__':
-    full_results_path = os.environ.get("FULL_RESULTS_PATH")
-    analyzer = AnswerAnalysis.create(full_results_path)
+    if len(sys.argv) >= 2:
+        full_results_path = sys.argv[1]
+    else:
+        full_results_path = "answer_examples"
+    analyzer = AnswerAnalysis.create_from_test_runs(full_results_path)
     analyzer.finish()
     results_path = os.path.join(full_results_path, "answer_analysis.json")
     analyzer.write_to_file(results_path)
