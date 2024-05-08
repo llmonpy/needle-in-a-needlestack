@@ -20,15 +20,16 @@ EVALUATOR_MODEL_LIST = [ANTHROPIC_HAIKU, MISTRAL_SMALL, MISTRAL_8X22B, MISTRAL_8
                         MISTRAL_SMALL]
 TEST_DIRECTORY = "tests"
 
+
 class TestConfig:
-    def __init__(self, model_list, test_thread_count, evaluator_model_list,
-                 number_of_questions_per_trial, repeat_question_limerick_count, trials, location_count):
+    def __init__(self, model_list, evaluator_model_list, test_thread_count,
+                 number_of_questions_per_trial, repeat_question_limerick_count, trial_count, location_count):
         self.model_list = model_list
-        self.test_thread_count = test_thread_count
         self.evaluator_model_list = evaluator_model_list
+        self.test_thread_count = test_thread_count
         self.number_of_questions_per_trial = number_of_questions_per_trial
         self.repeat_question_limerick_count = repeat_question_limerick_count
-        self.trials = trials
+        self.trial_count = trial_count
         self.location_count = location_count
 
     def get_model(self, model_name):
@@ -40,9 +41,13 @@ class TestConfig:
         return result
 
 
-DEFAULT_TEST_CONFIG = TestConfig([MISTRAL_7B], 100, EVALUATOR_MODEL_LIST,
-                                 5, 1, 5,
-                                 5)
+DEFAULT_TEST_CONFIG = TestConfig(model_list=[MISTRAL_7B],
+                                 test_thread_count=100,
+                                 evaluator_model_list=EVALUATOR_MODEL_LIST,
+                                 number_of_questions_per_trial=5,
+                                 repeat_question_limerick_count=1,
+                                 trial_count=5,
+                                 location_count=5)
 
 
 CURRENT_TEST_CONFIG = DEFAULT_TEST_CONFIG

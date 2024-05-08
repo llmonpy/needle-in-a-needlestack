@@ -20,7 +20,6 @@ import threading
 from datetime import datetime
 from string import Template
 
-from base_test_results import BaseStatusReport, BaseTestResults
 from evaluator import DefaultEvaluator
 from limerick import Limerick, FULL_QUESTION_FILE
 from llm_client import PROMPT_RETRIES, backoff_after_exception
@@ -43,58 +42,6 @@ $question_text
 Please answer the question as concisely as possible. Do not explain your answer.
 
 """
-
-
-class VetterTestResultExceptionReport:
-    def __init__(self, model_name, question_id, trial_number, attempt, exception_message):
-        self.model_name = model_name
-        self.question_id = question_id
-        self.trial_number = trial_number
-        self.attempt = attempt
-        self.exception_message = exception_message
-
-    def to_dict(self):
-        result = copy.copy(vars(self))
-        return result
-
-    @staticmethod
-    def from_dict(dictionary):
-        result = VetterTestResultExceptionReport(**dictionary)
-        return result
-
-
-class VetterEvaluationExceptionReport:
-    def __init__(self, model_name, question_id, trial_number, attempt, evaluation_model_name, exception_message):
-        self.model_name = model_name
-        self.question_id = question_id
-        self.trial_number = trial_number
-        self.attempt = attempt
-        self.evaluation_model_name = evaluation_model_name
-        self.exception_message = exception_message
-
-    def to_dict(self):
-        result = copy.copy(vars(self))
-        return result
-
-    @staticmethod
-    def from_dict(dictionary):
-        result = VetterEvaluationExceptionReport(**dictionary)
-        return result
-
-
-class VetterStatusReport(BaseStatusReport):
-    def __init__(self, failed_test_count=0, failed_evaluation_count=0):
-        super().__init__(failed_test_count, failed_evaluation_count)
-
-    def print(self):
-        print("Tests: ", self.test_count, " Answered: ", self.answered_test_count, " Finished: ",
-              self.finished_test_count)
-        print("Evaluators: ", self.evaluator_count, " Finished: ", self.finished_evaluator_count)
-        for evaluator_model_name in self.waiting_for_evaluator_count:
-            count = self.waiting_for_evaluator_count[evaluator_model_name]
-            print("Waiting for evaluator: ", evaluator_model_name, " Count: ", count)
-        print("Failed Tests: ", self.failed_test_count, " Failed Evaluations: ", self.failed_evaluation_count)
-        print("--------------------")
 
 
 class VetterEvaluatorResult:
@@ -166,11 +113,10 @@ class VetterTrialResult:
         results.test_status.record_test_finished(model.model_name)
         return self.generated_answer, self.passed
 
-    def calculate_scores(self, status_report):
+    def calculate_scores(self):
         finished = True
         passed_count = 0
         for evaluator_result in self.evaluator_results:
-            status_report.add_evaluator_test(evaluator_result.is_finished(), evaluator_result.model_name)
             if evaluator_result.is_finished():
                 if evaluator_result.passed:
                     passed_count += 1
@@ -182,7 +128,6 @@ class VetterTrialResult:
             for evaluator_result in self.evaluator_results:
                 if evaluator_result.passed != self.passed:
                     self.dissent_count += 1
-        status_report.add_test(self.has_answer(), self.is_finished())
 
     def set_generated_answer(self, generated_answer):
         self.generated_answer = generated_answer
@@ -238,9 +183,9 @@ class ModelQuestionVetterResult:
                                                 evaluator))
         return futures_list
 
-    def calculate_scores(self, status_report):
+    def calculate_scores(self):
         for trail in self.trails:
-            trail.calculate_scores(status_report)
+            trail.calculate_scores()
 
     def passed_tests(self):
         passed = True
@@ -302,9 +247,9 @@ class QuestionVetterResult:
             futures_list += model_question.start_tests(result, model, self.question, self.question_prompt_text, evaluator)
         return futures_list
 
-    def calculate_scores(self, status_report):
+    def calculate_scores(self):
         for model_question in self.model_question_list:
-            model_question.calculate_scores(status_report)
+            model_question.calculate_scores()
 
     def record_results(self):
         self.failed_models = []
@@ -377,33 +322,14 @@ class QuestionListVetterResult:
             futures_list += question_vetter_result.start_tests(results, model_list, evaluator)
         return futures_list
 
-    def add_test_exception(self, model_name, question_id, trial_number, attempt, exception):
-        print("Test Exception: ", str(exception))
-        exception_report = VetterTestResultExceptionReport(model_name, question_id, trial_number, attempt,
-                                                           str(exception))
-        self.test_exception_list.append(exception_report)
-        if attempt == PROMPT_RETRIES - 1:
-            self.failed_test_count += 1
-            print("Failed Test Count: ", self.failed_test_count)
-
-    def add_evaluation_exception(self, model_name, question_id, trial_number, attempt, evaluation_model_name,
-                                 exception):
-        print("Evaluation Exception: ", str(exception))
-        exception_report = VetterEvaluationExceptionReport(model_name, question_id, trial_number, attempt,
-                                                           evaluation_model_name, str(exception))
-        self.evaluation_exception_list.append(exception_report)
-        if attempt == PROMPT_RETRIES - 1:
-            self.failed_evaluation_count += 1
-            print("Failed Evaluation Count: ", self.failed_evaluation_count)
-
     def add_question(self, question, model_name_list, number_of_trials, evaluator_model_names):
         question_vetter_result = QuestionVetterResult.create(model_name_list, question, number_of_trials,
                                                              evaluator_model_names)
         self.question_list.append(question_vetter_result)
 
-    def calculate_scores(self, status_report):
+    def calculate_scores(self):
         for question_vetter_result in self.question_list:
-            question_vetter_result.calculate_scores(status_report)
+            question_vetter_result.calculate_scores()
 
     def record_results(self):
         self.failed_questions = []
@@ -421,16 +347,6 @@ class QuestionListVetterResult:
             index = 0
             for question_vetter_result in self.question_list:
                 result["question_list"][index] = question_vetter_result.to_dict()
-                index += 1
-        if self.test_exception_list is not None:
-            index = 0
-            for test_exception in self.test_exception_list:
-                result["test_exception_list"][index] = test_exception.to_dict()
-                index += 1
-        if self.evaluation_exception_list is not None:
-            index = 0
-            for evaluation_exception in self.evaluation_exception_list:
-                result["evaluation_exception_list"][index] = evaluation_exception.to_dict()
                 index += 1
         return result
 
@@ -485,8 +401,7 @@ class QuestionListVetter:
         return futures_list
 
     def all_tests_finished(self):
-        status_report = VetterStatusReport()
-        self.result.calculate_scores(status_report)
+        self.result.calculate_scores()
         self.result.record_results()
         self.result.write_to_file()
         print("All tests are finished")

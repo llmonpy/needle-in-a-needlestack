@@ -21,10 +21,7 @@ import threading
 from datetime import datetime
 
 import matplotlib.pyplot as plt
-from matplotlib import colors
-import statsmodels.api as sm
 
-from base_test_results import BaseTestResults, BaseStatusReport
 from evaluator import DefaultEvaluator
 from limerick import Limerick
 from llm_client import PROMPT_RETRIES, backoff_after_exception
@@ -45,23 +42,6 @@ SYSTEM_PROMPT = "You are an expert at understanding limericks and answering ques
 class QuestionAnswerCollector:
     def add_answer(self, question_id, answer, passed):
         raise NotImplementedError
-
-
-class StatusReport(BaseStatusReport):
-    def __init__(self, model_name, failed_test_count=0, failed_evaluation_count=0):
-        super().__init__(failed_test_count, failed_evaluation_count)
-        self.model_name = model_name
-
-    def print(self):
-        print("Model: ", self.model_name)
-        print("Tests: ", self.test_count, " Answered: ", self.answered_test_count, " Finished: ",
-              self.finished_test_count)
-        print("Evaluators: ", self.evaluator_count, " Finished: ", self.finished_evaluator_count)
-        for evaluator_model_name in self.waiting_for_evaluator_count:
-            count = self.waiting_for_evaluator_count[evaluator_model_name]
-            print("Waiting for evaluator: ", evaluator_model_name, " Count: ", count)
-        print("Failed Tests: ", self.failed_test_count, " Failed Evaluations: ", self.failed_evaluation_count)
-        print("--------------------")
 
 
 class ScoreAccumulator:
@@ -459,11 +439,10 @@ class TrialResult:
         result = self.dissent_count >= concerning_dissent_count
         return result
 
-    def calculate_scores(self, status_report):
+    def calculate_scores(self):
         finished = True
         passed_count = 0
         for evaluator_result in self.evaluator_results:
-            status_report.add_evaluator_test(evaluator_result.is_finished(), evaluator_result.model_name)
             if evaluator_result.is_finished():
                 if evaluator_result.passed:
                     passed_count += 1
@@ -475,7 +454,6 @@ class TrialResult:
             for evaluator_result in self.evaluator_results:
                 if evaluator_result.passed != self.passed:
                     self.dissent_count += 1
-        status_report.add_test(self.has_answer(), self.is_finished())
 
     def set_generated_answer(self, generated_answer):
         self.generated_answer = generated_answer
@@ -544,11 +522,11 @@ class QuestionResults:
                 score_accumulator.add_score(trial_result.passed)
                 break
 
-    def calculate_scores(self, status_report):
+    def calculate_scores(self):
         correct_results = 0
         finished_trials = 0
         for trial_result in self.trial_results:
-            trial_result.calculate_scores(status_report)
+            trial_result.calculate_scores()
             if trial_result.is_finished():
                 finished_trials += 1
                 if trial_result.passed:
@@ -615,11 +593,11 @@ class LocationResults:
                 break
         return result
 
-    def calculate_scores(self, status_report):
+    def calculate_scores(self):
         cumulative_score = 0.0
         score_count = 0
         for question_result in self.question_result_list:
-            question_score = question_result.calculate_scores(status_report)
+            question_score = question_result.calculate_scores()
             if question_score is not None:
                 cumulative_score += question_score
                 score_count += 1
@@ -752,10 +730,8 @@ class ModelResults:
         return result
 
     def calculate_scores(self):
-        status_report = StatusReport(self.model_name, self.failed_test_count, self.failed_evaluation_count)
         for location in self.location_list:
-            location.calculate_scores(status_report)
-        return status_report
+            location.calculate_scores()
 
     def get_location_scores(self):
         result = []
@@ -810,17 +786,6 @@ class ModelResults:
             dictionary.pop("location_list", None)
             location_list = [LocationResults.from_dict(location) for location in location_list]
             dictionary["location_list"] = location_list
-        test_exception_list = dictionary.get("test_exception_list", None)
-        if test_exception_list is not None:
-            dictionary.pop("test_exception_list", None)
-            test_exception_list = [TestResultExceptionReport.from_dict(report) for report in test_exception_list]
-            dictionary["test_exception_list"] = test_exception_list
-        evaluation_exception_list = dictionary.get("evaluation_exception_list", None)
-        if evaluation_exception_list is not None:
-            dictionary.pop("evaluation_exception_list", None)
-            evaluation_exception_list = [EvaluationExceptionReport.from_dict(report) for report in
-                                         evaluation_exception_list]
-            dictionary["evaluation_exception_list"] = evaluation_exception_list
         if "directory" not in dictionary:
             dictionary["directory"] = ""
         result = ModelResults(**dictionary)
@@ -845,7 +810,7 @@ class ModelResults:
         return result
 
 
-class TestResults(BaseTestResults):
+class TestResults:
     def __init__(self, config):
         self.config = config
         self.date_string = None
@@ -957,7 +922,7 @@ class TestResults(BaseTestResults):
     def add_model(self, model_name, location_list, question_list, repeat_question_limerick_count):
         directory = os.path.join(self.test_result_directory, model_name)
         model_results = ModelResults.create(self.date_string, directory, model_name, location_list, question_list,
-                                            repeat_question_limerick_count, self.config.trials,
+                                            repeat_question_limerick_count, self.config.trial_count,
                                             self.config.evaluator_model_list)
         self.model_results_list.append(model_results)
         return model_results
@@ -965,42 +930,6 @@ class TestResults(BaseTestResults):
     def calculate_scores(self):
         for model_result in self.model_results_list:
             model_result.calculate_scores()
-
-    def update_and_report_status(self):
-        if not self.started:
-            return
-        self.execute_actions()
-        current_results_list = self.model_results_list
-        model_status_list = []
-        finished = True
-        for model_results in current_results_list:
-            status_report = model_results.calculate_scores()
-            if not status_report.is_finished():
-                finished = False
-            model_status_list.append(status_report)
-        if not finished:
-            self.write_full_results(current_results_list)
-            self.timer = threading.Timer(interval=STATUS_REPORT_INTERVAL, function=self.update_and_report_status)
-            self.timer.start()
-        else:
-            model_score_list = []
-            for model_results in current_results_list:
-                location_scores = model_results.get_location_scores()
-                model_score = ModelScore(model_results.model_name, model_results.date_string,
-                                         model_results.repeat_question_limerick_count,
-                                         model_results.limerick_count_in_prompt, location_scores,
-                                         model_results.number_of_trials_per_location)
-                plot_name = model_results.model_name + "_trial_plot.png"
-                plot_file_name = os.path.join(self.test_result_directory, plot_name)
-                model_score.write_trial_plot(plot_file_name)
-                plot_name = model_results.model_name + "_question_plot.png"
-                plot_file_name = os.path.join(self.test_result_directory, plot_name)
-                model_score.write_question_plot(plot_file_name)
-                model_score_list.append(model_score)
-            test_model_scores = TestModelScores(model_score_list)
-            test_model_scores.write_to_file(os.path.join(self.test_result_directory, "model_scores.json"))
-            self.write_full_results(current_results_list)
-            print("All tests are finished")
 
     def all_tests_finished(self):
         current_results_list = self.model_results_list

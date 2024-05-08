@@ -71,15 +71,6 @@
         "question_vetted": false
     },
     {
-        "id": 86941,
-        "author": "Janet McConnaughey",
-        "text": "\"Hey, Mom, I've a chance at my dream \u2014\nThe X-treme Harley Acrobats Team!\"\nShe frowned at me, scaring\nMe out of my daring:\nShe eyebrowed me out of my scheme.",
-        "question": "How did mom scare me out of joining the X-treme Harley Acrobats Team?",
-        "answer": "She frowned at me",
-        "alternate_answers": ["She eyebrowed me out of my scheme.", "Based on the limerick, it seems your mother scared you out of joining the X-treme Harley Acrobats Team by frowning at you and eyebrowing you out of your daring scheme. " ],
-        "token_count": 47
-    },
-    {
         "id": 98591,
         "author": "Chris J. Strolin",
         "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",

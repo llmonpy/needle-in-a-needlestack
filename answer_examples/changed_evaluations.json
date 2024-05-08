@@ -1,0 +1,1365 @@
+[
+    {
+        "trial_number": 0,
+        "good_answer": "To hear himself whine",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "The sole purpose of the occupant of room 9 is to ring the call button repeatedly and unnecessarily.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 4,
+        "good_answer": "To hear himself whine",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "The sole purpose of the occupant of room 9 is to ring the call button repeatedly and unnecessarily.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 1,
+        "good_answer": "To hear himself whine",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "The person in room 9 is a pain in the base of my spine and constantly rings the call button for minuscule things.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 4,
+        "good_answer": "To hear himself whine",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "The person in room 9 is a pain in the base of my spine and constantly rings the call button for minuscule things.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 2,
+        "good_answer": "To hear himself whine",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "The sole purpose of the occupant of room 9 is to ring the call button repeatedly and unnecessarily.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 0,
+        "good_answer": "No ",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "Mr. Thistle does not follow the rules consistently. He often disregards them without explanation or justification.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 2,
+        "good_answer": "No ",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "Mr. Thistle does not follow the rules consistently. He often disregards them without explanation or justification.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 1,
+        "good_answer": "To hear himself whine",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "The sole purpose of the occupant of room 9 is to ring the call button repeatedly and unnecessarily.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 4,
+        "good_answer": "To hear himself whine",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "The sole purpose of the occupant of room 9 is to repeatedly press the call button, which can be quite frustrating for others.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 4,
+        "good_answer": "No ",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "Mr. Thistle does not follow the rules consistently. He often disregards them without explanation or justification.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 1,
+        "good_answer": "She frowned at me",
+        "passed": true,
+        "dissent_count": 1,
+        "generated_answer": "Mom frowned at the idea of you joining the X-treme Harley Acrobats Team due to safety concerns.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 2,
+        "good_answer": "She frowned at me",
+        "passed": true,
+        "dissent_count": 1,
+        "generated_answer": "Mom frowned at the idea of you joining the X-treme Harley Acrobats Team due to safety concerns.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 0,
+        "good_answer": "To hear himself whine",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "The sole purpose of the occupant of room 9 is to repeatedly press the call button for no reason.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 2,
+        "good_answer": "To hear himself whine",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "The person in room 9 is a pain in the base of my spine and constantly rings the call button for minuscule things.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 3,
+        "good_answer": "She frowned at me",
+        "passed": true,
+        "dissent_count": 1,
+        "generated_answer": "Mom frowned at the idea of you joining the X-treme Harley Acrobats Team due to safety concerns.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 0,
+        "good_answer": "To hear himself whine",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "The sole purpose of the occupant of room 9 is to repeatedly press the call button, which can be quite frustrating for others.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 4,
+        "good_answer": "To hear himself whine",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "The occupant of room 9 is a call button jockey who constantly rings about minuscule things.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 3,
+        "good_answer": "It has only one fence",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "The limerick about the county jail mentions a person who plans to scale the fence to escape the jail, which is not a typical or sensible way to leave a jail.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 3,
+        "good_answer": "Compose a morose epicedium",
+        "passed": false,
+        "dissent_count": 0,
+        "generated_answer": "By creating a limerick that's medium.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": false
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": false
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": false
+            }
+        ]
+    },
+    {
+        "trial_number": 1,
+        "good_answer": "Compose a morose epicedium",
+        "passed": false,
+        "dissent_count": 0,
+        "generated_answer": "By creating a limerick with wit and medium.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": false
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": false
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": false
+            }
+        ]
+    },
+    {
+        "trial_number": 3,
+        "good_answer": "To hear himself whine",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "The sole purpose of the occupant of room 9 is to ring the call button repeatedly and unnecessarily.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 4,
+        "good_answer": "To hear himself whine",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "The sole purpose of the occupant of room 9 is to repeatedly press the call button for no reason.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 3,
+        "good_answer": "No ",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "Mr. Thistle does not follow the rules consistently. He often disregards them without explanation or justification.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 1,
+        "good_answer": "To hear himself whine",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "The occupant of room 9 is a \"call button jockey\" who constantly rings about minor things, causing frustration to others.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 4,
+        "good_answer": "Compose a morose epicedium",
+        "passed": false,
+        "dissent_count": 0,
+        "generated_answer": "By creating a limerick that's medium.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": false
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": false
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": false
+            }
+        ]
+    },
+    {
+        "trial_number": 1,
+        "good_answer": "Compose a morose epicedium",
+        "passed": false,
+        "dissent_count": 0,
+        "generated_answer": "By creating a limerick with wit and medium!",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": false
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": false
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": false
+            }
+        ]
+    },
+    {
+        "trial_number": 3,
+        "good_answer": "Compose a morose epicedium",
+        "passed": false,
+        "dissent_count": 0,
+        "generated_answer": "Here is a possible limerick that could brighten one's torpor and tedium:\n\nTo compose a joyful epithalamium \nCan lift one's spirits from tedium.\nI myself have an urge\nTo create a glad dirge -\nA celebratory, upbeat hymenium!\n\nThe key is to contrast the \"morose epicedium\" (a sad funeral song) with a \"joyful epithalamium\" (a celebratory wedding song). This provides a more uplifting and cheerful alternative to overcome torpor and tedium.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": false
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": false
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": false
+            }
+        ]
+    },
+    {
+        "trial_number": 1,
+        "good_answer": "No ",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "Mr. Thistle does not follow the rules consistently. He often disregards them without explanation or justification.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 2,
+        "good_answer": "To hear himself whine",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "The sole purpose of the occupant of room 9 is to repeatedly press the call button for no reason.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 4,
+        "good_answer": "She frowned at me",
+        "passed": true,
+        "dissent_count": 1,
+        "generated_answer": "Mom frowned at the idea of you joining the X-treme Harley Acrobats Team due to safety concerns.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 0,
+        "good_answer": "To hear himself whine",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "The person in room 9 is a pain in the base of my spine and constantly rings the call button for minuscule things.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 3,
+        "good_answer": "To hear himself whine",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "The person in room 9 is a pain in the base of my spine and constantly rings the call button for minuscule things.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 2,
+        "good_answer": "Compose a morose epicedium",
+        "passed": false,
+        "dissent_count": 0,
+        "generated_answer": "By creating a limerick that's medium.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": false
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": false
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": false
+            }
+        ]
+    },
+    {
+        "trial_number": 3,
+        "good_answer": "To hear himself whine",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "The sole purpose of the occupant of room 9 is to repeatedly press the call button, which can be quite frustrating for others.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 1,
+        "good_answer": "It has only one fence",
+        "passed": false,
+        "dissent_count": 0,
+        "generated_answer": "The limerick about the county jail mentions a person who plans to scale the fence and bail out of the jail. The humor in the limerick comes from the person's nonchalant attitude towards escaping from the jail by climbing over the fence. The mention of the person scaling the fence and bailing out of the jail adds a humorous twist to the situation.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": false
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": false
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": false
+            }
+        ]
+    },
+    {
+        "trial_number": 2,
+        "good_answer": "I don't like you",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "Because I don't like you, so there!\nYour feelings? I don't really care.\nJust accept that I'm cold,\nAnd your messages, old,\nAre as welcome as a grizzly bear.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 3,
+        "good_answer": "I don't like you",
+        "passed": false,
+        "dissent_count": 2,
+        "generated_answer": "The question at the end of the list of limericks is:\n\nWhy do I treat all your emails as spam?\n\nThis limerick suggests that the speaker is dismissive or unresponsive to the emails they receive, treating them all as spam rather than reading or engaging with them. The reason for this is not explicitly stated, but it implies a sense of frustration, annoyance or disinterest on the part of the speaker towards the emails they are receiving.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": false
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 0,
+        "good_answer": "It has only one fence",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "The limerick about the county jail mentions a person who plans to scale the fence to escape the jail, which is not a typical or sensible way to leave a jail.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 2,
+        "good_answer": "To hear himself whine",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "The sole purpose of the occupant of room 9 is to repeatedly press the call button, which can be quite frustrating for others.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 0,
+        "good_answer": "She frowned at me",
+        "passed": true,
+        "dissent_count": 1,
+        "generated_answer": "Mom frowned at the idea of you joining the X-treme Harley Acrobats Team due to safety concerns.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 3,
+        "good_answer": "To hear himself whine",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "The sole purpose of the occupant of room 9 is to repeatedly press the call button for no reason.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 1,
+        "good_answer": "To hear himself whine",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "The sole purpose of the occupant of room 9 is to repeatedly press the call button, which can be quite frustrating for others.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 1,
+        "good_answer": "It has only one fence",
+        "passed": false,
+        "dissent_count": 0,
+        "generated_answer": "The line \"What about the county jail does not make much sense?\" is a limerick prompt, inviting the reader to come up with a humorous response in the form of a limerick.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": false
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": false
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": false
+            }
+        ]
+    },
+    {
+        "trial_number": 4,
+        "good_answer": "Compose a morose epicedium",
+        "passed": false,
+        "dissent_count": 0,
+        "generated_answer": "By creating a limerick that's medium.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": false
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": false
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": false
+            }
+        ]
+    },
+    {
+        "trial_number": 1,
+        "good_answer": "Uncle Wayne's ideas are vain and inane.",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "Uncle Wayne's ideas are vain and inane,\nHe's both asinine and a gas bag who's flatuous,\nAnd he treats the old fool with disdain.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    },
+    {
+        "trial_number": 3,
+        "good_answer": "It has only one fence",
+        "passed": false,
+        "dissent_count": 0,
+        "generated_answer": "The line \"What about the county jail does not make much sense?\" is a limerick prompt, inviting the reader to come up with a humorous limerick in response.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": false
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": false
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": false
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": false
+            }
+        ]
+    },
+    {
+        "trial_number": 1,
+        "good_answer": "To hear himself whine",
+        "passed": true,
+        "dissent_count": 0,
+        "generated_answer": "The sole purpose of the occupant of room 9 is to repeatedly press the call button for no reason.",
+        "evaluator_results": [
+            {
+                "model_name": "claude-3-haiku-20240307",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "open-mixtral-8x22b",
+                "passed": true
+            },
+            {
+                "model_name": "mistral-small",
+                "passed": true
+            }
+        ]
+    }
+]
