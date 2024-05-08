@@ -12,21 +12,17 @@
 #  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 #  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 #  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-import concurrent
 import copy
 import json
 import os
 import queue
-import threading
 from datetime import datetime
 from string import Template
 
-from evaluator import DefaultEvaluator
 from limerick import Limerick, FULL_QUESTION_FILE
 from llm_client import PROMPT_RETRIES, backoff_after_exception
-from main import NO_GENERATED_ANSWER
-from test_config import DEFAULT_TEST_CONFIG
-from test_results import SYSTEM_PROMPT
+from test_config import DEFAULT_TEST_CONFIG, CURRENT_TEST_CONFIG
+from test_results import SYSTEM_PROMPT, NO_GENERATED_ANSWER
 from test_status import TestStatus
 
 VETTER_STATUS_REPORT_INTERVAL = 5
@@ -385,14 +381,14 @@ class QuestionListVetter:
         date_time_str = now.strftime("%Y-%m-%d-%H-%M-%S")
         full_path = os.path.join(directory, date_time_str + ".json")
         self.test_status = TestStatus(model_list, evaluator_model_list)
+        CURRENT_TEST_CONFIG.default_evaluator.set_test_status(self.test_status)
         self.result = QuestionListVetterResult.create(full_path, question_list, model_list, number_of_trials,
                                                       evaluator_model_list)
         self.result.update_test_status(self.test_status)
         self.done_queue = queue.Queue()
 
     def start(self):
-        evaluator = DefaultEvaluator(self.test_status, self.evaluator_model_list)
-        self.result.start_tests(self, self.model_list, evaluator)
+        self.result.start_tests(self, self.model_list, CURRENT_TEST_CONFIG.default_evaluator)
         self.test_status.start(self)
         return self.done_queue
 

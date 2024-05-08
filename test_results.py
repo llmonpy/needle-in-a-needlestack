@@ -23,7 +23,6 @@ from datetime import datetime
 
 import matplotlib.pyplot as plt
 
-from evaluator import DefaultEvaluator
 from limerick import Limerick
 from llm_client import PROMPT_RETRIES, backoff_after_exception
 from prompt import get_prompt
@@ -814,7 +813,7 @@ class TestResults:
         self.test_result_directory = None
         self.prompt = None
         self.test_status = TestStatus(config.model_list, config.evaluator_model_list)
-        self.evaluator = DefaultEvaluator(self.test_status, self.config.evaluator_model_list)
+        self.config.default_evaluator.set_test_status(self.test_status)
         self.model_results_list = []
         self.started = False
         self.prompt_dict = {}
@@ -900,7 +899,8 @@ class TestResults:
             #need a thread pool for each model to keep one model from blocking another
             thread_pool = concurrent.futures.ThreadPoolExecutor(max_workers=self.config.test_thread_count)
             futures_list += model_results.run_trials(thread_pool, self,
-                                                     self.config.get_model(model_results.model_name), self.evaluator)
+                                                     self.config.get_model(model_results.model_name),
+                                                     self.config.default_evaluator)
         self.test_status.start(self)
         return self.done_queue
 

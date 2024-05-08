@@ -12,6 +12,7 @@
 #  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 #  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 #  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+from evaluator import DefaultEvaluator
 from llm_client import GPT3_5, \
     ANTHROPIC_SONNET, MISTRAL_7B, MISTRAL_8X22B, MISTRAL_SMALL, \
     GPT4, ANTHROPIC_HAIKU, DEEPSEEK
@@ -22,10 +23,11 @@ TEST_DIRECTORY = "tests"
 
 
 class TestConfig:
-    def __init__(self, model_list, evaluator_model_list, test_thread_count,
+    def __init__(self, model_list, evaluator_model_list, default_evaluator, test_thread_count,
                  number_of_questions_per_trial, repeat_question_limerick_count, trial_count, location_count):
         self.model_list = model_list
         self.evaluator_model_list = evaluator_model_list
+        self.default_evaluator = default_evaluator
         self.test_thread_count = test_thread_count
         self.number_of_questions_per_trial = number_of_questions_per_trial
         self.repeat_question_limerick_count = repeat_question_limerick_count
@@ -44,6 +46,7 @@ class TestConfig:
 DEFAULT_TEST_CONFIG = TestConfig(model_list=[MISTRAL_7B],
                                  test_thread_count=100,
                                  evaluator_model_list=EVALUATOR_MODEL_LIST,
+                                 default_evaluator=DefaultEvaluator(EVALUATOR_MODEL_LIST),
                                  number_of_questions_per_trial=1,
                                  repeat_question_limerick_count=1,
                                  trial_count=1,

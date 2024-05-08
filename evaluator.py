@@ -106,11 +106,14 @@ class EvaluatorResult:
 
 
 class DefaultEvaluator(EvaluatorInterface):
-    def __init__(self, test_status, evaluator_model_list, evaluation_prompt=EVALUATION_PROMPT, system_prompt=SYSTEM_PROMPT):
+    def __init__(self, evaluator_model_list, evaluation_prompt=EVALUATION_PROMPT, system_prompt=SYSTEM_PROMPT):
         self.evaluation_prompt = evaluation_prompt
         self.system_prompt = system_prompt
-        self.test_status = test_status
+        self.test_status = None
         self.evaluator_model_list = evaluator_model_list
+
+    def set_test_status(self, test_status):
+        self.test_status = test_status
 
     def evaluate(self, model_name, question, answer):
         model_results = []

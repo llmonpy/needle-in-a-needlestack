@@ -21,9 +21,8 @@ import sys
 
 from answer_analysis import AnswerAnalysis
 from dissent import DissentReport
-from evaluator import DefaultEvaluator
 from limerick import FULL_QUESTION_FILE, Limerick
-from test_config import DEFAULT_TEST_CONFIG
+from test_config import DEFAULT_TEST_CONFIG, CURRENT_TEST_CONFIG
 from test_results import ModelResults, ORIGINAL_MODEL_NAME, REPLACEMENT_MODEL_NAME, REEVALUATION_FILE_PREFIX
 from test_status import TestStatus
 
@@ -54,10 +53,10 @@ class AnswerReevaluator:
     def reevaluate_generated_answers(self):
         futures_list = []
         thread_pool = concurrent.futures.ThreadPoolExecutor(max_workers=1000)
+        CURRENT_TEST_CONFIG.default_evaluator.set_test_status(self.test_status)
         for model_results in self.model_results_list:
             futures_list += model_results.reevaluate_generated_answers(thread_pool, self.test_status,
-                                                                       DefaultEvaluator(self.test_status,
-                                                                                        self.evaluator_model_list))
+                CURRENT_TEST_CONFIG.default_evaluator)
         self.test_status.start(self)
         for future in concurrent.futures.as_completed(futures_list):
             trial, changed_result = future.result()
