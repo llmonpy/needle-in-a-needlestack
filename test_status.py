@@ -13,6 +13,7 @@
 #  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 #  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 import copy
+import sys
 import threading
 
 from tqdm import tqdm
@@ -228,7 +229,9 @@ class NamedProgressBar:
     def __init__(self, name, label, total):
         self.name = name
         self.last_value = 0
-        self.progress_bar = tqdm(total=total, desc=label, ncols=100, colour="green", leave=True)
+        self.bar_format = "{desc} {percentage:.0f}%|{bar}| {n}/{total}"
+        self.progress_bar = tqdm(total=total, desc=label, ncols=80, colour="green", leave=True,
+                                 bar_format=self.bar_format)
 
     def update(self, count):
         increment = count - self.last_value
@@ -289,10 +292,13 @@ class StatusMonitor:
             self.answers_generated_progress_bar.close()
             self.tests_finished_progress_bar.close()
             self.evaluations_progress_bar.close()
-            self.test_results.all_tests_finished()
             for progress_bar in self.model_progress_bars.values():
                 progress_bar.close()
             for progress_bar in self.evaluator_progress_bars.values():
                 progress_bar.close()
+            # Move the cursor to a specific position (e.g., below the progress bar)
+            number_of_rows = 3 + len(self.model_progress_bars) + len(self.evaluator_progress_bars) + 1
+
+            self.test_results.all_tests_finished()
 
 

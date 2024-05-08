@@ -10,4 +10,4 @@ if [ -f "$venv_activate_script" ]; then
 else
     echo "Virtual environment not found or activated."
 fi
-python3 question_vetter.py
+python3 limerick.py

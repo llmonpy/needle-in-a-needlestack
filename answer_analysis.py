@@ -136,7 +136,7 @@ if __name__ == '__main__':
     analyzer.finish()
     results_path = os.path.join(full_results_path, "answer_analysis.json")
     analyzer.write_to_file(results_path)
-    print("Finished")
+    print("Finished writing results to " + results_path)
     exit(0)
 
 

@@ -41,12 +41,12 @@ class TestConfig:
         return result
 
 
-DEFAULT_TEST_CONFIG = TestConfig(model_list=[DEEPSEEK],
+DEFAULT_TEST_CONFIG = TestConfig(model_list=[MISTRAL_7B],
                                  test_thread_count=100,
                                  evaluator_model_list=EVALUATOR_MODEL_LIST,
-                                 number_of_questions_per_trial=5,
+                                 number_of_questions_per_trial=1,
                                  repeat_question_limerick_count=1,
-                                 trial_count=5,
+                                 trial_count=1,
                                  location_count=5)
 
 

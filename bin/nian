@@ -1,1 +1,13 @@
+#!/bin/bash
+
+# Path to the virtual environment's activation script
+venv_activate_script=".venv/bin/activate"
+
+# Check if the virtual environment exists
+if [ -f "$venv_activate_script" ]; then
+    # Activate the virtual environment
+    source "$venv_activate_script"
+else
+    echo "Virtual environment not found or activated."
+fi
 python3 main.py

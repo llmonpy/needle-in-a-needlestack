@@ -16,6 +16,7 @@ import concurrent
 import copy
 import json
 import os
+import queue
 import sys
 
 from answer_analysis import AnswerAnalysis
@@ -48,6 +49,7 @@ class AnswerReevaluator:
             model_name_list.append(model_results.model_name)
             self.model_results_list.append(model_results)
         self.test_status = TestStatus(None, evaluator_model_list, model_name_list)
+        self.done_queue = queue.Queue()
 
     def reevaluate_generated_answers(self):
         futures_list = []
@@ -62,9 +64,13 @@ class AnswerReevaluator:
             if changed_result:
                 trial = copy.deepcopy(trial)
                 self.changed_evaluation_list.append(trial)
-        return futures_list
+        return self.done_queue
 
     def all_tests_finished(self):
+        print("All tests are finished")
+        self.done_queue.put(True)
+
+    def record_results(self):
         for model_results in self.model_results_list:
             full_results_name = REEVALUATION_FILE_PREFIX + model_results.model_name + "_full_results.json"
             file_name = os.path.join(self.directory, full_results_name)
@@ -80,7 +86,6 @@ class AnswerReevaluator:
                     trial_dict = trial.to_dict()
                     trial_dict_list.append(trial_dict)
                 json.dump(trial_dict_list, file, indent=4)
-        print("All tests are finished")
 
 
 if __name__ == '__main__':
@@ -92,7 +97,9 @@ if __name__ == '__main__':
     reevaluator = AnswerReevaluator(full_results_path, test_config.evaluator_model_list,
                                     {ORIGINAL_MODEL_NAME:"gpt-3.5-turbo-0125",
                                      REPLACEMENT_MODEL_NAME:"open-mixtral-8x22b"})
-    reevaluator.reevaluate_generated_answers()
+    done_queue = reevaluator.reevaluate_generated_answers()
+    done_queue.get()
+    reevaluator.record_results()
     analyzer = AnswerAnalysis.create_from_revaluator_results(full_results_path, REEVALUATION_FILE_PREFIX)
     analyzer.finish()
     results_path = os.path.join(full_results_path, "reeval_answer_analysis.json")

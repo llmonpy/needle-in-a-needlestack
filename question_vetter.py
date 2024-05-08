@@ -16,6 +16,7 @@ import concurrent
 import copy
 import json
 import os
+import queue
 import threading
 from datetime import datetime
 from string import Template
@@ -387,19 +388,19 @@ class QuestionListVetter:
         self.result = QuestionListVetterResult.create(full_path, question_list, model_list, number_of_trials,
                                                       evaluator_model_list)
         self.result.update_test_status(self.test_status)
+        self.done_queue = queue.Queue()
 
     def start(self):
         evaluator = DefaultEvaluator(self.test_status, self.evaluator_model_list)
-        futures_list = self.result.start_tests(self, self.model_list, evaluator)
+        self.result.start_tests(self, self.model_list, evaluator)
         self.test_status.start(self)
-        return futures_list
+        return self.done_queue
 
     def all_tests_finished(self):
         self.result.calculate_scores()
         self.result.record_results()
         self.result.write_to_file()
-        print("All tests are finished")
-        exit(0)
+        self.done_queue.put(True)
 
     @staticmethod
     def from_file(question_file_path, result_directory, model_list, number_of_trials, evaluator_model_list):
@@ -416,9 +417,8 @@ if __name__ == '__main__':
     vetter = QuestionListVetter.from_file(FULL_QUESTION_FILE, "vetter_results",
                                           test_config.model_list, 5,
                                           test_config.evaluator_model_list)
-    vetter_futures_list = vetter.start()
-    for future in concurrent.futures.as_completed(vetter_futures_list):
-        generated_answer, score = future.result()
-    print("Tests completed")
+    done_queue = vetter.start()
+    done_queue.get()
+    exit(0)
 
 

@@ -111,7 +111,6 @@ if __name__ == '__main__':
         full_results_path = sys.argv[1]
     else:
         full_results_path = "answer_examples"
-    report = DissentReport.create_from_revaluator_results(full_results_path, REEVALUATION_FILE_PREFIX)
-    #report = DissentReport.create_from_original_results(full_results_path)
+    report = DissentReport.create_from_original_results(full_results_path)
     report.process()
 
