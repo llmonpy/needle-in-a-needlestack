@@ -13,8 +13,8 @@
 #  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 #  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 from llm_client import GPT3_5, \
-    ANTHROPIC_SONNET, MISTRAL_7B,  MISTRAL_8X22B, MISTRAL_SMALL, \
-    GPT4, ANTHROPIC_HAIKU
+    ANTHROPIC_SONNET, MISTRAL_7B, MISTRAL_8X22B, MISTRAL_SMALL, \
+    GPT4, ANTHROPIC_HAIKU, DEEPSEEK
 
 EVALUATOR_MODEL_LIST = [ANTHROPIC_HAIKU, MISTRAL_SMALL, MISTRAL_8X22B, MISTRAL_8X22B,
                         MISTRAL_SMALL]
@@ -41,7 +41,7 @@ class TestConfig:
         return result
 
 
-DEFAULT_TEST_CONFIG = TestConfig(model_list=[MISTRAL_7B],
+DEFAULT_TEST_CONFIG = TestConfig(model_list=[DEEPSEEK],
                                  test_thread_count=100,
                                  evaluator_model_list=EVALUATOR_MODEL_LIST,
                                  number_of_questions_per_trial=5,

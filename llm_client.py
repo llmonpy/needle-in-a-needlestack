@@ -31,11 +31,11 @@ RATE_LIMIT_RETRIES = 100 # requests limits tend to be much higher than token lim
 BASE_RETRY_DELAY = 30 # seconds
 
 
-LIMERICK_PART_API_PREFIX = "LIMERICK_PARK_"
+NIAN_API_PREFIX = "NIAN_"
 
 
 def get_api_key(api_name, exit_on_error=True):
-    key = os.environ.get(LIMERICK_PART_API_PREFIX + api_name)
+    key = os.environ.get(NIAN_API_PREFIX + api_name)
     if key is None:
         key = os.environ.get(api_name)
     if key is None and exit_on_error:
@@ -94,6 +94,25 @@ class OpenAIModel(LlmClient):
         super().__init__(model_name, max_input, rate_limiter, thead_pool)
         key = get_api_key("OPENAI_API_KEY")
         self.client = OpenAI(api_key=key)
+
+    def do_prompt(self, prompt_text, system_prompt="You are an expert at analyzing text."):
+        completion = self.client.chat.completions.create(
+            model=self.model_name,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": prompt_text}
+            ],
+            temperature=0.0
+        )
+        result = completion.choices[0].message.content
+        return result
+
+
+class DeepseekModel(LlmClient):
+    def __init__(self, model_name, max_input, rate_limiter, thead_pool=None):
+        super().__init__(model_name, max_input, rate_limiter, thead_pool)
+        key = get_api_key("DEEPSEEK_API_KEY")
+        self.client = OpenAI(api_key=key, base_url="https://api.deepseek.com/")
 
     def do_prompt(self, prompt_text, system_prompt="You are an expert at analyzing text."):
         completion = self.client.chat.completions.create(
@@ -172,6 +191,7 @@ OLLAMA_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=1)
 MISTRAL_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 ANTHROPIC_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 OPENAI_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
+DEEPSEEK_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 
 MISTRAL_RATE_LIMITER = RateLlmiter(*spread_requests(1000)) #used minute spread to seconds because tokens are TPM not TPS
 
@@ -185,4 +205,4 @@ GPT4 = OpenAIModel('gpt-4-turbo-2024-04-09', 15000, RateLlmiter(*spread_requests
 ANTHROPIC_OPUS = AnthropicModel("claude-3-opus-20240229", 195000, RateLlmiter(*spread_requests(1000)), ANTHROPIC_EXECUTOR)
 ANTHROPIC_SONNET = AnthropicModel("claude-3-sonnet-20240229", 195000, RateLlmiter( *spread_requests(1000)), ANTHROPIC_EXECUTOR)
 ANTHROPIC_HAIKU = AnthropicModel("claude-3-haiku-20240307", 15000, RateLlmiter(*spread_requests(1000)), ANTHROPIC_EXECUTOR)
-
+DEEPSEEK = DeepseekModel("deepseek-chat", 24000, RateLlmiter(*spread_requests(1000)), DEEPSEEK_EXECUTOR)
