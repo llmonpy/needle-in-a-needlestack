@@ -14,7 +14,7 @@ is a new, more challenging benchmark.
 NIAN creates a list of limericks from a large [database of limericks](https://zenodo.org/records/5722527) and asks a 
 question about a specific limerick that have been placed at a test location. Each test will typically use 5 to 10
 test limericks placed at 5 to 10 locations in the prompt.  Each test is repeated 5-10 times.  It is amazing that an 
-LLM can answer these questions at all! Here is a [link to an example prompt](artifacts/prompt_example.txt).  The
+LLM can answer these questions at all! Here is a [link to an example prompt](artifacts/sample_prompt.txt).  The
 question is "Does Mr. Thistle follow our rules?" and the associated limerick is in the middle of the prompt:
 
 > Mr. Thistle, what's this all about?  
