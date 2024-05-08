@@ -733,6 +733,12 @@ class ModelResults:
         for location in self.location_list:
             location.calculate_scores()
 
+    def record_exceptions(self, test_status):
+        self.test_exception_list = test_status.get_test_exception_list(self.model_name)
+        self.failed_test_count = test_status.get_model_answer_generation_failures(self.model_name)
+        self.evaluation_exception_list = test_status.get_evaluation_exception_list(self.model_name)
+        self.failed_evaluation_count = test_status.get_model_evaluation_failures(self.model_name)
+
     def get_location_scores(self):
         result = []
         for location in self.location_list:
@@ -765,16 +771,6 @@ class ModelResults:
             index = 0
             for location in self.location_list:
                 result["location_list"][index] = location.to_dict()
-                index += 1
-        if self.test_exception_list is not None:
-            index = 0
-            for exception_report in self.test_exception_list:
-                result["test_exception_list"][index] = exception_report.to_dict()
-                index += 1
-        if self.evaluation_exception_list is not None:
-            index = 0
-            for exception_report in self.evaluation_exception_list:
-                result["evaluation_exception_list"][index] = exception_report.to_dict()
                 index += 1
         result.pop("directory", None)
         return result
@@ -936,6 +932,7 @@ class TestResults:
         model_score_list = []
         for model_results in current_results_list:
             model_results.calculate_scores()
+            model_results.record_exceptions(self.test_status)
             location_scores = model_results.get_location_scores()
             model_score = ModelScore(model_results.model_name, model_results.date_string,
                                      model_results.repeat_question_limerick_count,

@@ -56,6 +56,8 @@ class ModelTestStatus:
         self.test_exception_count = 0
         self.answer_generation_failure_count = 0
         self.evaluation_failure_count = 0
+        self.test_exception_list = []
+        self.evaluation_exception_list = []
 
     def add_test(self):
         self.test_count += 1
@@ -66,8 +68,12 @@ class ModelTestStatus:
     def record_test_finished(self):
         self.test_finished_count += 1
 
-    def add_test_exception(self):
+    def add_test_exception(self, exception):
         self.test_exception_count += 1
+        self.test_exception_list.append(str(exception))
+
+    def add_evaluation_exception(self, exception):
+        self.evaluation_exception_list.append(str(exception))
 
     def add_answer_generation_failure(self):
         self.answer_generation_failure_count += 1
@@ -98,8 +104,6 @@ class TestStatus:
         for model in evaluator_model_list:
             if self.get_evaluator_model_status(model.model_name) is None:  # avoid duplicates
                 self.evaluator_model_status_list.append(EvaluatorStatus(model.model_name))
-        self.test_exception_list = []
-        self.evaluation_exception_list = []
         self.test_failures = 0
         self.evaluation_failures = 0
 
@@ -158,24 +162,40 @@ class TestStatus:
             self.test_completed += 1
 
     def add_test_exception(self, model_name, exception):
-        print("test exception")
         with STATUS_LOCK:
             model_status = self.get_test_model_status(model_name)
-            model_status.add_test_exception()
-            self.test_exception_list.append(str(exception))
+            model_status.add_test_exception(exception)
 
-    def add_evaluation_exception(self, evaluator_model_name, exception):
-        print("eval exception")
+    def add_evaluation_exception(self, model_name, evaluator_model_name, exception):
         with STATUS_LOCK:
-            model_status = self.get_evaluator_model_status(evaluator_model_name)
-            model_status.add_evaluation_exception()
-            self.evaluation_exception_list.append(str(exception))
+            model_status = self.get_test_model_status(model_name)
+            model_status.add_evaluation_exception(exception)
+            evaluator_status = self.get_evaluator_model_status(evaluator_model_name)
+            evaluator_status.add_evaluation_exception()
+
+    def get_test_exception_list(self, model_name):
+        with STATUS_LOCK:
+            model_status = self.get_test_model_status(model_name)
+            result = model_status.test_exception_list
+        return result
+
+    def get_evaluation_exception_list(self, model_name):
+        with STATUS_LOCK:
+            model_status = self.get_test_model_status(model_name)
+            result = model_status.evaluation_exception_list
+        return result
 
     def add_answer_generation_failure(self, model_name):
         with STATUS_LOCK:
             model_status = self.get_test_model_status(model_name)
             model_status.add_answer_generation_failure()
             self.test_failures += 1
+
+    def get_model_answer_generation_failures(self, model_name):
+        with STATUS_LOCK:
+            model_status = self.get_test_model_status(model_name)
+            result = model_status.answer_generation_failure_count
+        return result
 
     def add_evaluation_failure(self, model_name, evaluator_model_name):
         with STATUS_LOCK:
@@ -184,6 +204,12 @@ class TestStatus:
             evaluator_model_status = self.get_evaluator_model_status(evaluator_model_name)
             evaluator_model_status.add_evaluation_failure()
             self.evaluation_failures += 1
+
+    def get_model_evaluation_failures(self, model_name):
+        with STATUS_LOCK:
+            model_status = self.get_test_model_status(model_name)
+            result = model_status.evaluation_failure_count
+        return result
 
     def print_status(self):
         print("Test count: ", str(self.test_count), "Answers generated: ", str(self.answers_generated),

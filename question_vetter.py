@@ -292,19 +292,9 @@ class QuestionVetterResult:
 
 
 class QuestionListVetterResult:
-    def __init__(self, file_path, question_list=None, test_exception_list=None, failed_test_count=0,
-               evaluation_exception_list=None, failed_evaluation_count=0):
+    def __init__(self, file_path, question_list=None):
         self.file_path = file_path
         self.question_list = question_list if question_list else []
-        self.test_exception_list = test_exception_list
-        if self.test_exception_list is None:
-            self.test_exception_list = []
-        self.failed_test_count = failed_test_count
-        self.evaluation_exception_list = evaluation_exception_list
-        if self.evaluation_exception_list is None:
-            self.evaluation_exception_list = []
-        self.failed_evaluation_count = failed_evaluation_count
-        self.failed_questions = []
 
     def get_trial(self, question_id,  model_name, trial_number):
         for question_vetter_result in self.question_list:

@@ -83,7 +83,7 @@ def evaluate_response(model, evaluation_prompt_text, system_prompt, model_name_b
             break
         except Exception as e:
             response_text = FAIL_ANSWER
-            test_status.add_evaluation_exception(model.model_name, e)
+            test_status.add_evaluation_exception(model_name_being_tested, model.model_name, e)
             if attempt == 2:
                 test_status.add_evaluation_failure(model_name_being_tested, model.model_name)
                 print("Exception on attempt 3")
