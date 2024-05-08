@@ -173,10 +173,7 @@
                         "text": "\"Hey, Mom, I've a chance at my dream \u2014\nThe X-treme Harley Acrobats Team!\"\nShe frowned at me, scaring\nMe out of my daring:\nShe eyebrowed me out of my scheme.",
                         "question": "How did mom scare me out of joining the X-treme Harley Acrobats Team?",
                         "answer": "She frowned at me",
-                        "alternate_answers": [
-                            "She eyebrowed me out of my scheme.",
-                            "Based on the limerick, it seems your mother scared you out of joining the X-treme Harley Acrobats Team by frowning at you and eyebrowing you out of your daring scheme. "
-                        ],
+                        "alternate_answers": null,
                         "token_count": 47,
                         "target_location": 0,
                         "question_vetted": false
@@ -2135,10 +2132,7 @@
                         "text": "\"Hey, Mom, I've a chance at my dream \u2014\nThe X-treme Harley Acrobats Team!\"\nShe frowned at me, scaring\nMe out of my daring:\nShe eyebrowed me out of my scheme.",
                         "question": "How did mom scare me out of joining the X-treme Harley Acrobats Team?",
                         "answer": "She frowned at me",
-                        "alternate_answers": [
-                            "She eyebrowed me out of my scheme.",
-                            "Based on the limerick, it seems your mother scared you out of joining the X-treme Harley Acrobats Team by frowning at you and eyebrowing you out of your daring scheme. "
-                        ],
+                        "alternate_answers": null,
                         "token_count": 47,
                         "target_location": 0,
                         "question_vetted": false
@@ -4097,10 +4091,7 @@
                         "text": "\"Hey, Mom, I've a chance at my dream \u2014\nThe X-treme Harley Acrobats Team!\"\nShe frowned at me, scaring\nMe out of my daring:\nShe eyebrowed me out of my scheme.",
                         "question": "How did mom scare me out of joining the X-treme Harley Acrobats Team?",
                         "answer": "She frowned at me",
-                        "alternate_answers": [
-                            "She eyebrowed me out of my scheme.",
-                            "Based on the limerick, it seems your mother scared you out of joining the X-treme Harley Acrobats Team by frowning at you and eyebrowing you out of your daring scheme. "
-                        ],
+                        "alternate_answers": null,
                         "token_count": 47,
                         "target_location": 0,
                         "question_vetted": false
@@ -4110,18 +4101,18 @@
                             "trial_number": 0,
                             "good_answer": "She frowned at me",
                             "passed": true,
-                            "dissent_count": 1,
+                            "dissent_count": 2,
                             "generated_answer": "Mom frowned at the idea of you joining the X-treme Harley Acrobats Team due to safety concerns.",
                             "evaluator_results": [
                                 {
                                     "model_name": "claude-3-haiku-20240307",
+                                    "passed": true
+                                },
+                                {
+                                    "model_name": "mistral-small",
                                     "passed": false
                                 },
                                 {
-                                    "model_name": "mistral-small",
-                                    "passed": true
-                                },
-                                {
                                     "model_name": "open-mixtral-8x22b",
                                     "passed": true
                                 },
@@ -4131,7 +4122,7 @@
                                 },
                                 {
                                     "model_name": "mistral-small",
-                                    "passed": true
+                                    "passed": false
                                 }
                             ]
                         },
@@ -4139,18 +4130,18 @@
                             "trial_number": 1,
                             "good_answer": "She frowned at me",
                             "passed": true,
-                            "dissent_count": 1,
+                            "dissent_count": 2,
                             "generated_answer": "Mom frowned at the idea of you joining the X-treme Harley Acrobats Team due to safety concerns.",
                             "evaluator_results": [
                                 {
                                     "model_name": "claude-3-haiku-20240307",
+                                    "passed": true
+                                },
+                                {
+                                    "model_name": "mistral-small",
                                     "passed": false
                                 },
                                 {
-                                    "model_name": "mistral-small",
-                                    "passed": true
-                                },
-                                {
                                     "model_name": "open-mixtral-8x22b",
                                     "passed": true
                                 },
@@ -4160,7 +4151,7 @@
                                 },
                                 {
                                     "model_name": "mistral-small",
-                                    "passed": true
+                                    "passed": false
                                 }
                             ]
                         },
@@ -4168,18 +4159,18 @@
                             "trial_number": 2,
                             "good_answer": "She frowned at me",
                             "passed": true,
-                            "dissent_count": 1,
+                            "dissent_count": 2,
                             "generated_answer": "Mom frowned at the idea of you joining the X-treme Harley Acrobats Team due to safety concerns.",
                             "evaluator_results": [
                                 {
                                     "model_name": "claude-3-haiku-20240307",
+                                    "passed": true
+                                },
+                                {
+                                    "model_name": "mistral-small",
                                     "passed": false
                                 },
                                 {
-                                    "model_name": "mistral-small",
-                                    "passed": true
-                                },
-                                {
                                     "model_name": "open-mixtral-8x22b",
                                     "passed": true
                                 },
@@ -4189,7 +4180,7 @@
                                 },
                                 {
                                     "model_name": "mistral-small",
-                                    "passed": true
+                                    "passed": false
                                 }
                             ]
                         },
@@ -4197,18 +4188,18 @@
                             "trial_number": 3,
                             "good_answer": "She frowned at me",
                             "passed": true,
-                            "dissent_count": 1,
+                            "dissent_count": 2,
                             "generated_answer": "Mom frowned at the idea of you joining the X-treme Harley Acrobats Team due to safety concerns.",
                             "evaluator_results": [
                                 {
                                     "model_name": "claude-3-haiku-20240307",
+                                    "passed": true
+                                },
+                                {
+                                    "model_name": "mistral-small",
                                     "passed": false
                                 },
                                 {
-                                    "model_name": "mistral-small",
-                                    "passed": true
-                                },
-                                {
                                     "model_name": "open-mixtral-8x22b",
                                     "passed": true
                                 },
@@ -4218,7 +4209,7 @@
                                 },
                                 {
                                     "model_name": "mistral-small",
-                                    "passed": true
+                                    "passed": false
                                 }
                             ]
                         },
@@ -4226,18 +4217,18 @@
                             "trial_number": 4,
                             "good_answer": "She frowned at me",
                             "passed": true,
-                            "dissent_count": 1,
+                            "dissent_count": 2,
                             "generated_answer": "Mom frowned at the idea of you joining the X-treme Harley Acrobats Team due to safety concerns.",
                             "evaluator_results": [
                                 {
                                     "model_name": "claude-3-haiku-20240307",
+                                    "passed": true
+                                },
+                                {
+                                    "model_name": "mistral-small",
                                     "passed": false
                                 },
                                 {
-                                    "model_name": "mistral-small",
-                                    "passed": true
-                                },
-                                {
                                     "model_name": "open-mixtral-8x22b",
                                     "passed": true
                                 },
@@ -4247,7 +4238,7 @@
                                 },
                                 {
                                     "model_name": "mistral-small",
-                                    "passed": true
+                                    "passed": false
                                 }
                             ]
                         }
@@ -6059,10 +6050,7 @@
                         "text": "\"Hey, Mom, I've a chance at my dream \u2014\nThe X-treme Harley Acrobats Team!\"\nShe frowned at me, scaring\nMe out of my daring:\nShe eyebrowed me out of my scheme.",
                         "question": "How did mom scare me out of joining the X-treme Harley Acrobats Team?",
                         "answer": "She frowned at me",
-                        "alternate_answers": [
-                            "She eyebrowed me out of my scheme.",
-                            "Based on the limerick, it seems your mother scared you out of joining the X-treme Harley Acrobats Team by frowning at you and eyebrowing you out of your daring scheme. "
-                        ],
+                        "alternate_answers": null,
                         "token_count": 47,
                         "target_location": 0,
                         "question_vetted": false
@@ -6072,7 +6060,7 @@
                             "trial_number": 0,
                             "good_answer": "She frowned at me",
                             "passed": true,
-                            "dissent_count": 0,
+                            "dissent_count": 2,
                             "generated_answer": "Mom frowned at me, scaring me out of joining the X-treme Harley Acrobats Team due to her concerns about the risks involved.",
                             "evaluator_results": [
                                 {
@@ -6081,7 +6069,7 @@
                                 },
                                 {
                                     "model_name": "mistral-small",
-                                    "passed": true
+                                    "passed": false
                                 },
                                 {
                                     "model_name": "open-mixtral-8x22b",
@@ -6093,7 +6081,7 @@
                                 },
                                 {
                                     "model_name": "mistral-small",
-                                    "passed": true
+                                    "passed": false
                                 }
                             ]
                         },
@@ -8021,10 +8009,7 @@
                         "text": "\"Hey, Mom, I've a chance at my dream \u2014\nThe X-treme Harley Acrobats Team!\"\nShe frowned at me, scaring\nMe out of my daring:\nShe eyebrowed me out of my scheme.",
                         "question": "How did mom scare me out of joining the X-treme Harley Acrobats Team?",
                         "answer": "She frowned at me",
-                        "alternate_answers": [
-                            "She eyebrowed me out of my scheme.",
-                            "Based on the limerick, it seems your mother scared you out of joining the X-treme Harley Acrobats Team by frowning at you and eyebrowing you out of your daring scheme. "
-                        ],
+                        "alternate_answers": null,
                         "token_count": 47,
                         "target_location": 0,
                         "question_vetted": false

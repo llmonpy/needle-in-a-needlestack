@@ -229,8 +229,8 @@ class StatusMonitor:
         self.test_status = test_status
         self.test_results = test_results
         self.timer = threading.Timer(interval=REPORT_INTERVAL, function=self.print_status)
-        #self.answers_generated_progress_bar = tqdm(total=self.test_status.test_count, desc="Answers Generated", leave=True)
-        #self.tests_finished_progress_bar = tqdm(total=self.test_status.test_count, desc="Tests Finished", leave=True)
+        self.answers_generated_progress_bar = tqdm(total=self.test_status.test_count, desc="Answers Generated")
+        self.tests_finished_progress_bar = tqdm(total=self.test_status.test_count, desc="Tests Finished")
         #self.evaluations_progress_bar = tqdm(total=self.test_status.evaluations_required, desc="Evaluations")
 
     def start(self):
@@ -243,9 +243,9 @@ class StatusMonitor:
             except Exception as exception:
                 print("Exception in status monitor", str(exception))
                 return
-        current_status.print_status()
-        #self.answers_generated_progress_bar.update(current_status.answers_generated)
-        #self.tests_finished_progress_bar.update(current_status.test_completed)
+        #current_status.print_status()
+        self.answers_generated_progress_bar.update(current_status.answers_generated)
+        self.tests_finished_progress_bar.update(current_status.test_completed)
         #self.evaluations_progress_bar.update(current_status.evaluations_completed)
         if not self.test_status.is_finished():
             self.timer = threading.Timer(interval=REPORT_INTERVAL, function=self.print_status)

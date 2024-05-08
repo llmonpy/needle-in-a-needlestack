@@ -173,10 +173,7 @@
                         "text": "\"Hey, Mom, I've a chance at my dream \u2014\nThe X-treme Harley Acrobats Team!\"\nShe frowned at me, scaring\nMe out of my daring:\nShe eyebrowed me out of my scheme.",
                         "question": "How did mom scare me out of joining the X-treme Harley Acrobats Team?",
                         "answer": "She frowned at me",
-                        "alternate_answers": [
-                            "She eyebrowed me out of my scheme.",
-                            "Based on the limerick, it seems your mother scared you out of joining the X-treme Harley Acrobats Team by frowning at you and eyebrowing you out of your daring scheme. "
-                        ],
+                        "alternate_answers": null,
                         "token_count": 47,
                         "target_location": 0,
                         "question_vetted": false
@@ -2135,10 +2132,7 @@
                         "text": "\"Hey, Mom, I've a chance at my dream \u2014\nThe X-treme Harley Acrobats Team!\"\nShe frowned at me, scaring\nMe out of my daring:\nShe eyebrowed me out of my scheme.",
                         "question": "How did mom scare me out of joining the X-treme Harley Acrobats Team?",
                         "answer": "She frowned at me",
-                        "alternate_answers": [
-                            "She eyebrowed me out of my scheme.",
-                            "Based on the limerick, it seems your mother scared you out of joining the X-treme Harley Acrobats Team by frowning at you and eyebrowing you out of your daring scheme. "
-                        ],
+                        "alternate_answers": null,
                         "token_count": 47,
                         "target_location": 0,
                         "question_vetted": false
@@ -2148,12 +2142,12 @@
                             "trial_number": 0,
                             "good_answer": "She frowned at me",
                             "passed": true,
-                            "dissent_count": 0,
+                            "dissent_count": 1,
                             "generated_answer": "By frowning and scaring you out of your daring,\nShe eyebrowed you out of your scheme.",
                             "evaluator_results": [
                                 {
                                     "model_name": "claude-3-haiku-20240307",
-                                    "passed": true
+                                    "passed": false
                                 },
                                 {
                                     "model_name": "mistral-small",
@@ -2177,12 +2171,12 @@
                             "trial_number": 1,
                             "good_answer": "She frowned at me",
                             "passed": false,
-                            "dissent_count": 0,
+                            "dissent_count": 1,
                             "generated_answer": "Your mom scared you out of joining the X-treme Harley Acrobats Team by raising concerns about the dangers and risks involved in such extreme activities.",
                             "evaluator_results": [
                                 {
                                     "model_name": "claude-3-haiku-20240307",
-                                    "passed": false
+                                    "passed": true
                                 },
                                 {
                                     "model_name": "mistral-small",
@@ -2235,12 +2229,12 @@
                             "trial_number": 3,
                             "good_answer": "She frowned at me",
                             "passed": false,
-                            "dissent_count": 0,
+                            "dissent_count": 1,
                             "generated_answer": "Your mom scared you out of joining the X-treme Harley Acrobats Team by raising concerns about the dangers and risks involved in such extreme activities.",
                             "evaluator_results": [
                                 {
                                     "model_name": "claude-3-haiku-20240307",
-                                    "passed": false
+                                    "passed": true
                                 },
                                 {
                                     "model_name": "mistral-small",
@@ -2264,12 +2258,12 @@
                             "trial_number": 4,
                             "good_answer": "She frowned at me",
                             "passed": true,
-                            "dissent_count": 0,
+                            "dissent_count": 1,
                             "generated_answer": "By frowning and scaring you out of your daring,\nShe eyebrowed you out of your scheme.",
                             "evaluator_results": [
                                 {
                                     "model_name": "claude-3-haiku-20240307",
-                                    "passed": true
+                                    "passed": false
                                 },
                                 {
                                     "model_name": "mistral-small",
@@ -4097,10 +4091,7 @@
                         "text": "\"Hey, Mom, I've a chance at my dream \u2014\nThe X-treme Harley Acrobats Team!\"\nShe frowned at me, scaring\nMe out of my daring:\nShe eyebrowed me out of my scheme.",
                         "question": "How did mom scare me out of joining the X-treme Harley Acrobats Team?",
                         "answer": "She frowned at me",
-                        "alternate_answers": [
-                            "She eyebrowed me out of my scheme.",
-                            "Based on the limerick, it seems your mother scared you out of joining the X-treme Harley Acrobats Team by frowning at you and eyebrowing you out of your daring scheme. "
-                        ],
+                        "alternate_answers": null,
                         "token_count": 47,
                         "target_location": 0,
                         "question_vetted": false
@@ -6059,10 +6050,7 @@
                         "text": "\"Hey, Mom, I've a chance at my dream \u2014\nThe X-treme Harley Acrobats Team!\"\nShe frowned at me, scaring\nMe out of my daring:\nShe eyebrowed me out of my scheme.",
                         "question": "How did mom scare me out of joining the X-treme Harley Acrobats Team?",
                         "answer": "She frowned at me",
-                        "alternate_answers": [
-                            "She eyebrowed me out of my scheme.",
-                            "Based on the limerick, it seems your mother scared you out of joining the X-treme Harley Acrobats Team by frowning at you and eyebrowing you out of your daring scheme. "
-                        ],
+                        "alternate_answers": null,
                         "token_count": 47,
                         "target_location": 0,
                         "question_vetted": false
@@ -8021,10 +8009,7 @@
                         "text": "\"Hey, Mom, I've a chance at my dream \u2014\nThe X-treme Harley Acrobats Team!\"\nShe frowned at me, scaring\nMe out of my daring:\nShe eyebrowed me out of my scheme.",
                         "question": "How did mom scare me out of joining the X-treme Harley Acrobats Team?",
                         "answer": "She frowned at me",
-                        "alternate_answers": [
-                            "She eyebrowed me out of my scheme.",
-                            "Based on the limerick, it seems your mother scared you out of joining the X-treme Harley Acrobats Team by frowning at you and eyebrowing you out of your daring scheme. "
-                        ],
+                        "alternate_answers": null,
                         "token_count": 47,
                         "target_location": 0,
                         "question_vetted": false
@@ -8034,12 +8019,12 @@
                             "trial_number": 0,
                             "good_answer": "She frowned at me",
                             "passed": true,
-                            "dissent_count": 0,
+                            "dissent_count": 1,
                             "generated_answer": "By raising her eyebrows at you.",
                             "evaluator_results": [
                                 {
                                     "model_name": "claude-3-haiku-20240307",
-                                    "passed": true
+                                    "passed": false
                                 },
                                 {
                                     "model_name": "mistral-small",
@@ -8092,12 +8077,12 @@
                             "trial_number": 2,
                             "good_answer": "She frowned at me",
                             "passed": true,
-                            "dissent_count": 0,
+                            "dissent_count": 1,
                             "generated_answer": "By raising her eyebrows at you.",
                             "evaluator_results": [
                                 {
                                     "model_name": "claude-3-haiku-20240307",
-                                    "passed": true
+                                    "passed": false
                                 },
                                 {
                                     "model_name": "mistral-small",
@@ -8121,12 +8106,12 @@
                             "trial_number": 3,
                             "good_answer": "She frowned at me",
                             "passed": true,
-                            "dissent_count": 0,
+                            "dissent_count": 1,
                             "generated_answer": "By raising her eyebrow at you.",
                             "evaluator_results": [
                                 {
                                     "model_name": "claude-3-haiku-20240307",
-                                    "passed": true
+                                    "passed": false
                                 },
                                 {
                                     "model_name": "mistral-small",
@@ -8150,12 +8135,12 @@
                             "trial_number": 4,
                             "good_answer": "She frowned at me",
                             "passed": true,
-                            "dissent_count": 0,
+                            "dissent_count": 1,
                             "generated_answer": "By raising her eyebrows at you.",
                             "evaluator_results": [
                                 {
                                     "model_name": "claude-3-haiku-20240307",
-                                    "passed": true
+                                    "passed": false
                                 },
                                 {
                                     "model_name": "mistral-small",

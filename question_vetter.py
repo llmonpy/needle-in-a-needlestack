@@ -295,6 +295,7 @@ class QuestionListVetterResult:
     def __init__(self, file_path, question_list=None):
         self.file_path = file_path
         self.question_list = question_list if question_list else []
+        self.failed_questions = []
 
     def get_trial(self, question_id,  model_name, trial_number):
         for question_vetter_result in self.question_list:
@@ -322,10 +323,13 @@ class QuestionListVetterResult:
             question_vetter_result.calculate_scores()
 
     def record_results(self):
-        self.failed_questions = []
         for question_vetter_result in self.question_list:
             if not question_vetter_result.record_results():
                 self.failed_questions.append(question_vetter_result.question.id)
+        if len(self.failed_questions) > 0:
+            print("Some questions failed")
+        else:
+            print("All questions passed")
 
     def write_to_file(self):
         with open(self.file_path, "w") as file:
