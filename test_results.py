@@ -18,6 +18,7 @@ import json
 import math
 import os
 import queue
+import sys
 import threading
 from datetime import datetime
 
@@ -26,7 +27,7 @@ import matplotlib.pyplot as plt
 from limerick import Limerick
 from llm_client import PROMPT_RETRIES, backoff_after_exception
 from prompt import get_prompt
-from test_config import TEST_DIRECTORY
+from test_config import TEST_DIRECTORY, get_latest_test_directory
 from test_status import TestStatus
 
 STATUS_REPORT_INTERVAL = 5  # seconds
@@ -35,6 +36,7 @@ NO_GENERATED_ANSWER = "ACEGIKMOQSUWY"
 ORIGINAL_MODEL_NAME = "original"
 REPLACEMENT_MODEL_NAME = "replacement"
 REEVALUATION_FILE_PREFIX = "reeval_"
+MODEL_SCORES_FILE = "model_scores.json"
 
 SYSTEM_PROMPT = "You are an expert at understanding limericks and answering questions based on the limericks you read."
 
@@ -949,13 +951,14 @@ class TestResults:
             plot_name = model_results.model_name + "_trial_plot.png"
             plot_file_name = os.path.join(self.test_result_directory, plot_name)
             model_score.write_trial_plot(plot_file_name)
-            plot_name = model_results.model_name + "_question_plot.png"
+            plot_name = model_results.model_name + "_question_plot_"
             plot_file_name = os.path.join(self.test_result_directory, plot_name)
             model_score.write_question_plot(plot_file_name)
             model_score_list.append(model_score)
         test_model_scores = TestModelScores(model_score_list)
-        test_model_scores.write_to_file(os.path.join(self.test_result_directory, "model_scores.json"))
+        test_model_scores.write_to_file(os.path.join(self.test_result_directory, MODEL_SCORES_FILE))
         self.write_full_results(current_results_list)
+        print("Results written to ", self.test_result_directory)
 
     def write_full_results(self, results_list):
         results_list = copy.deepcopy(results_list)
@@ -968,15 +971,21 @@ class TestResults:
 
 
 if __name__ == '__main__':
-    model_scores_path = os.environ.get("MODEL_SCORES")
+    if len(sys.argv) >= 2:
+        model_scores_directory = sys.argv[1]
+    else:
+        model_scores_directory = get_latest_test_directory()
+    model_scores_path = os.path.join(model_scores_directory, MODEL_SCORES_FILE)
     with open(model_scores_path, "r") as file:
         model_scores_dict = json.load(file)
         test_model_scores = TestModelScores.from_dict(model_scores_dict)
         for model_score in test_model_scores.model_scores:
             print("Model: ", model_score.model_name)
-            plot_name = "test_trial_plot_" + model_score.model_name + ".png"
-            model_score.write_trial_plot(plot_name)
-            plot_name = "test_question_plot_" + model_score.model_name + "_"
-            model_score.write_question_plot(plot_name)
-        print("done")
+            plot_name = "test_tp_" + model_score.model_name + ".png"
+            plot_path = os.path.join(model_scores_directory, plot_name)
+            model_score.write_trial_plot(plot_path)
+            plot_name = "test_qp_" + model_score.model_name + "_"
+            plot_path = os.path.join(model_scores_directory, plot_name)
+            model_score.write_question_plot(plot_path)
+        print("plots written to ", model_scores_directory)
         exit(0)

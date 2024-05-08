@@ -5,6 +5,56 @@
 > While Waldo, donned in cap, hid in plain sight,  
 > Like a needle in a haystack, out of the light,  
 > Unseen by me, focus led astray, I missed the play 
+> 
+
+Needle in a haystack (NIAH) has been a wildly popular test for evaluating how effectively LLMs can pay attention to 
+the content in their context window.  As LLMs have improved NIAH has become too easy.  Needle in a Needlestack (NIAN)
+is a new, more challenging benchmark.
+
+NIAN creates a list of limericks from a large [database of limericks](https://zenodo.org/records/5722527) and asks a 
+question about a specific limerick that have been placed at a test location. Each test will typically use 5 to 10
+test limericks placed at 5 to 10 locations in the prompt.  Each test is repeated 5-10 times.  It is amazing that an 
+LLM can answer these questions at all! Here is a [link to an example prompt](artifacts/prompt_example.txt).  The
+question is "Does Mr. Thistle follow our rules?" and the associated limerick is in the middle of the prompt:
+
+> Mr. Thistle, what's this all about?  
+> All our rules you dismiss — baldly flout.  
+> I have read your epistle;  
+> It made my hairs bristle.  
+> I'm blowing the whistle — you're out!
+
+Evaluating the LLM responses is always challenging and NIAN is worthless without accurate evaluation. To get more 
+accurate evaluation, NIAN uses 5 LLMs to evaluate the responses and pass/fail is determined by majority vote.  NIAN 
+includes tools to evaluate the evaluators and improve them with few shot prompting.
+
+Given the number of trials and the 5 LLM calls per trial, it is important that NIAN make many LLM calls in parallel.
+It uses a rate limiter (that will become its own package) to manage the rate of LLM calls.  NIAN is quite fast.  For
+example, it can make 600 LLM calls to evaluate "open-mistral-7b" with 5 questions at 5 locations, 5 times in 35 seconds
+my mac. 
+
+## Running your own tests
+NIAN supports the LLMs I have access too -- OpenAI, Anthropic and Mistral.  Adding new LLMs is easy, and it will be
+covered later in this document.  You can set the rate limits for each LLM, but you will want generous rate limits to
+run the tests.  My development was done with OpenAI Tier 4, Anthropic Tier 4 and Mistral Tier 2.  NIAN looks for the
+standard API keys -- OPENAI_API_KEY, ANTHROPIC_API_KEY, and MISTRAL_API_KEY.  It looks first for these keys prefixed 
+with "NIAN_" if you want to use NIAN specific keys.
+
+## test_config.py
+
+API keys
+
+Tools
+    running tests
+    generating questions
+    evaluating evaluators
+
+Adding new llm clients
+
+
+Adding and evaluating new questions
+
+Improving plots
+
 
 NIAN is a tool to test how well LLMs pay
 attention in specific parts of their context window. It generates

@@ -12,6 +12,8 @@
 #  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 #  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 #  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+import os
+
 from evaluator import DefaultEvaluator
 from llm_client import GPT3_5, \
     ANTHROPIC_SONNET, MISTRAL_7B, MISTRAL_8X22B, MISTRAL_SMALL, \
@@ -47,10 +49,16 @@ DEFAULT_TEST_CONFIG = TestConfig(model_list=[MISTRAL_7B],
                                  test_thread_count=100,
                                  evaluator_model_list=EVALUATOR_MODEL_LIST,
                                  default_evaluator=DefaultEvaluator(EVALUATOR_MODEL_LIST),
-                                 number_of_questions_per_trial=1,
+                                 number_of_questions_per_trial=5,
                                  repeat_question_limerick_count=1,
-                                 trial_count=1,
+                                 trial_count=5,
                                  location_count=5)
 
 
 CURRENT_TEST_CONFIG = DEFAULT_TEST_CONFIG
+
+def get_latest_test_directory():
+    directories = [os.path.join(TEST_DIRECTORY, d) for d in os.listdir(TEST_DIRECTORY) if
+                   os.path.isdir(os.path.join(TEST_DIRECTORY, d))]
+    result = max(directories, key=os.path.getmtime)
+    return result
