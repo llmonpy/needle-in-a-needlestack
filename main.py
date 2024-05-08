@@ -25,7 +25,8 @@ from test_results import TestResults, NO_GENERATED_ANSWER
 
 if __name__ == '__main__':
     test_results = TestResults(CURRENT_TEST_CONFIG)
-    futures_list = test_results.start()
-    for future in concurrent.futures.as_completed(futures_list):
-        generated_answer, score = future.result()
-    print("Tests completed")
+    queue = test_results.start()
+    queue.get()
+    test_results.record_results()
+    print("Done")
+    exit(0)

@@ -17,6 +17,7 @@ import copy
 import json
 import math
 import os
+import queue
 import threading
 from datetime import datetime
 
@@ -818,6 +819,7 @@ class TestResults:
         self.started = False
         self.prompt_dict = {}
         self.create_tests()
+        self.done_queue = queue.Queue()
         print("Test Results Initialized")
 
     def get_prompt_key(self, model_name, location_name, question_id):
@@ -900,7 +902,7 @@ class TestResults:
             futures_list += model_results.run_trials(thread_pool, self,
                                                      self.config.get_model(model_results.model_name), self.evaluator)
         self.test_status.start(self)
-        return futures_list
+        return self.done_queue
 
     def get_model_results(self, model_name):
         result = None
@@ -928,6 +930,12 @@ class TestResults:
             model_result.calculate_scores()
 
     def all_tests_finished(self):
+        print("All tests are finished")
+        # matplotlib only wants to run in the main thread, so start return done_queue and the main thread did a get
+        # and it will call record results when it gets the done signal
+        self.done_queue.put(True)
+
+    def record_results(self):
         current_results_list = self.model_results_list
         model_score_list = []
         for model_results in current_results_list:
@@ -948,8 +956,6 @@ class TestResults:
         test_model_scores = TestModelScores(model_score_list)
         test_model_scores.write_to_file(os.path.join(self.test_result_directory, "model_scores.json"))
         self.write_full_results(current_results_list)
-        print("All tests are finished")
-        exit(0)
 
     def write_full_results(self, results_list):
         results_list = copy.deepcopy(results_list)

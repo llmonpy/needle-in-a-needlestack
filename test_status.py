@@ -224,14 +224,43 @@ class TestStatus:
         print("-------------------------------------")
 
 
+class NamedProgressBar:
+    def __init__(self, name, label, total):
+        self.name = name
+        self.last_value = 0
+        self.progress_bar = tqdm(total=total, desc=label, ncols=100, colour="green", leave=True)
+
+    def update(self, count):
+        increment = count - self.last_value
+        if increment > 0:
+            self.progress_bar.update(increment)
+            self.last_value = count
+
+    def close(self):
+        self.progress_bar.close()
+
+
 class StatusMonitor:
     def __init__(self, test_status, test_results):
         self.test_status = test_status
         self.test_results = test_results
+        self.model_progress_bars = {}
+        self.evaluator_progress_bars = {}
         self.timer = threading.Timer(interval=REPORT_INTERVAL, function=self.print_status)
-        self.answers_generated_progress_bar = tqdm(total=self.test_status.test_count, desc="Answers Generated")
-        self.tests_finished_progress_bar = tqdm(total=self.test_status.test_count, desc="Tests Finished")
-        #self.evaluations_progress_bar = tqdm(total=self.test_status.evaluations_required, desc="Evaluations")
+        self.tests_finished_progress_bar = NamedProgressBar("Tests Finished", "Tests Finished",
+                                                            self.test_status.test_count)
+        self.answers_generated_progress_bar = NamedProgressBar("Answers Generated", "Answers Generated",
+                                                               self.test_status.test_count)
+        self.evaluations_progress_bar = NamedProgressBar("Evaluations", "Evaluations",
+                                                         self.test_status.evaluations_required)
+        for model_status in self.test_status.test_model_status_list:
+            label = "Test " + model_status.model_name
+            progress_bar = NamedProgressBar(model_status.model_name, label, model_status.test_count)
+            self.model_progress_bars[progress_bar.name] = progress_bar
+        for evaluator_status in self.test_status.evaluator_model_status_list:
+            label = "Evaluator " + evaluator_status.evaluator_model_name
+            progress_bar = NamedProgressBar(evaluator_status.evaluator_model_name, label, evaluator_status.evaluation_count)
+            self.evaluator_progress_bars[progress_bar.name] = progress_bar
 
     def start(self):
         self.timer.start()
@@ -246,11 +275,24 @@ class StatusMonitor:
         #current_status.print_status()
         self.answers_generated_progress_bar.update(current_status.answers_generated)
         self.tests_finished_progress_bar.update(current_status.test_completed)
-        #self.evaluations_progress_bar.update(current_status.evaluations_completed)
+        self.evaluations_progress_bar.update(current_status.evaluations_completed)
+        for model_status in current_status.test_model_status_list:
+            progress_bar = self.model_progress_bars[model_status.model_name]
+            progress_bar.update(model_status.answers_generated_count)
+        for evaluator_status in current_status.evaluator_model_status_list:
+            progress_bar = self.evaluator_progress_bars[evaluator_status.evaluator_model_name]
+            progress_bar.update(evaluator_status.evaluation_finished_count)
         if not self.test_status.is_finished():
             self.timer = threading.Timer(interval=REPORT_INTERVAL, function=self.print_status)
             self.timer.start()
         else:
+            self.answers_generated_progress_bar.close()
+            self.tests_finished_progress_bar.close()
+            self.evaluations_progress_bar.close()
             self.test_results.all_tests_finished()
+            for progress_bar in self.model_progress_bars.values():
+                progress_bar.close()
+            for progress_bar in self.evaluator_progress_bars.values():
+                progress_bar.close()
 
 

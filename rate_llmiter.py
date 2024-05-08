@@ -52,7 +52,6 @@ class RateLlmiter:
         with self.token_rate_limit_exceeded_lock:
             self.current_interval += 1
             if self.current_interval % self.intervals_before_refill != 0 and self.token_rate_limit_exceeded_count > 0:
-                print("blocked refill")
                 self.add_to_request_limit_queue = 0 # if we are not at the end of the interval, don't add any tickets
             elif ((self.current_interval % self.intervals_before_refill) == 0) and self.token_rate_limit_exceeded_count > 0:
                 if self.token_rate_limit_exceeded_count < self.request_limit:
@@ -63,8 +62,6 @@ class RateLlmiter:
                     self.token_rate_limit_exceeded_count -= self.request_limit
                     add_too_rate_limit_exceeded_queue = self.request_limit
                     add_to_request_limit_queue = 0
-        if add_too_rate_limit_exceeded_queue > 0:
-            print("Adding tickets to rate limit exceeded queue")
         for _ in range(add_too_rate_limit_exceeded_queue):
             self.token_rate_limit_exceeded_queue.put("ticket")
         while not self.request_limit_queue.empty():
@@ -72,7 +69,10 @@ class RateLlmiter:
         for _ in range(add_to_request_limit_queue):
             self.request_limit_queue.put("ticket")
         self.timer = threading.Timer(interval=self.time_window, function=self.add_tickets)
-        self.timer.start()
+        try:
+            self.timer.start()
+        except RuntimeError as re:
+            pass #not great...but this happens as we are exiting the program
 
     def get_ticket(self):
         try:
