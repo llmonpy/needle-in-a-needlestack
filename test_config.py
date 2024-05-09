@@ -45,13 +45,13 @@ class TestConfig:
         return result
 
 
-DEFAULT_TEST_CONFIG = TestConfig(model_list=[MISTRAL_7B],
+DEFAULT_TEST_CONFIG = TestConfig(model_list=[ANTHROPIC_SONNET],
                                  test_thread_count=100,
                                  evaluator_model_list=EVALUATOR_MODEL_LIST,
                                  default_evaluator=DefaultEvaluator(EVALUATOR_MODEL_LIST),
-                                 number_of_questions_per_trial=10,
+                                 number_of_questions_per_trial=1,
                                  repeat_question_limerick_count=1,
-                                 trial_count=5,
+                                 trial_count=2,
                                  location_count=10)
 
 

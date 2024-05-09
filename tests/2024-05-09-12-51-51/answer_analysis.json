@@ -1,0 +1,145 @@
+{
+    "question_answer_list": [
+        {
+            "question": {
+                "id": 17030,
+                "author": "Howard Spindel",
+                "text": "I've a tree in my yard in a plight;\nAll its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                "question": "What is the plight of the tree in my yard?",
+                "answer": "All its leaves are diseased",
+                "alternate_answers": [
+                    "The tree in the yard has diseased leaves and peeling bark, which is a sight."
+                ],
+                "token_count": 48,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [
+                "All its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                "The tree in your yard is facing a plight,\nIts leaves once so lush, now a sorry sight.\nWith branches that sag, under disease they bend,\nIt's in need of some care, or it might meet its end.",
+                "The tree in your yard is suffering from a disease that causes its leaves to be diseased and its skin to peel excessively, making its bark much worse than its blight.",
+                "The tree in your yard is suffering from a disease that causes its leaves to be diseased and its skin to peel excessively, making it look unhealthy and affecting its overall vitality.",
+                "The tree in your yard is suffering from a disease that causes its leaves to be diseased and its skin to peel significantly, as described in the limerick about the cherry tree.",
+                "The tree in your yard is afflicted with a disease that causes its leaves to be diseased and its skin to peel excessively, making its bark much worse than its blight."
+            ],
+            "failed_answer_list": [
+                "The tree in your yard is facing a plight described in the limerick about the cherry tree. The cherry tree blossoms beautifully, but the blossoms are fugacious, meaning they do not stay long and fall away quickly, leaving a sense of transience and fleeting beauty.",
+                "The tree in your yard is facing a plight described in the limerick about the cherry tree. The cherry tree blossoms beautifully, but the blossoms are fugacious, meaning they do not stay long and fall away quickly, leaving a fleeting beauty that is soon gone.",
+                "The tree in your yard is facing a plight that is not directly mentioned in the limericks provided. However, if we consider common issues that trees face, it could be dealing with diseases, pest infestations, environmental stress, or lack of proper nutrients or water. Without specific details from the limericks, it's challenging to pinpoint the exact plight of the tree in your yard.",
+                "The tree in your yard is facing a plight,\nIts leaves once so green, now nowhere in sight.\nThe branches hang low, the bark feels too tight,\nA sad, silent plea for the sun's warming light.",
+                "The tree in your yard is facing a plight of urban decline, as described in the limerick about Benton Harbor. The area's economic challenges and population decrease have likely affected the tree's environment, contributing to its struggle.",
+                "The plight of the tree in your yard is not directly mentioned in any of the limericks provided. Therefore, I cannot determine the specific condition or situation of the tree based on the information given in the limericks.",
+                "The plight of the tree in your yard is not directly mentioned in the limericks provided. Therefore, I cannot determine the specific condition or situation of the tree based on the information given in the limericks. If you have more details or another limerick that mentions the tree's condition, I'd be happy to help interpret that!",
+                "The plight of the tree in your yard is that it's suffering from a disease called dartars, which is causing its leaves to be marred. You've consulted a vet, but the tree's condition has not improved yet, and you're hoping the scabs won't leave scars.",
+                "The tree in your yard is suffering from a disease called dartars, which is causing its leaves to be marred. Despite consulting a vet, the tree's condition has not improved, and you are hoping the scabs won't leave scars."
+            ]
+        },
+        {
+            "question": {
+                "id": 99730,
+                "author": "Chris J. Strolin",
+                "text": "For me, this is clearly the right shift,\nThe boredom-slash-wild-drunken-fight shift.\nIt's been called D&D\n(\"Death and donuts,\" you see).\nYes, there's nothing like working the night shift.",
+                "question": "What is the nickname for the night shift in a store?",
+                "answer": "Death and donuts or D&D",
+                "alternate_answers": null,
+                "token_count": 50,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [],
+            "failed_answer_list": [
+                "The nickname for the night shift in a store is often called the \"graveyard shift.\""
+            ]
+        },
+        {
+            "question": {
+                "id": 54553,
+                "author": "Richard English",
+                "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",
+                "question": "What is sought by the English top brass?",
+                "answer": "Cranberry glass",
+                "alternate_answers": null,
+                "token_count": 43,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [
+                "Cranberry glass is what they seek, as it's a glass of deep red, with a gold sheen, and said to be sought by the English top brass.",
+                "Cranberry glass is what's sought by the English top brass."
+            ],
+            "failed_answer_list": [
+                "The English top brass seeks to maintain order, uphold standards, and ensure the smooth operation of their respective organizations or military units. They are responsible for strategic decision-making, leadership, and maintaining the highest levels of discipline and professionalism within their ranks.",
+                "The English top brass likely seeks to maintain and enhance the effectiveness, discipline, and overall readiness of their military forces. They may focus on strategic planning, resource management, and leadership development to ensure that their military can effectively fulfill its duties and responsibilities. Additionally, they might be involved in international relations and defense policy to safeguard national security interests.",
+                "The English top brass seeks excellence, discipline, and effective leadership in their ranks, aiming to maintain high standards and uphold traditions within their institutions.",
+                "The English top brass seeks excellence, discipline, and effective leadership within their ranks to maintain high standards and operational success.",
+                "A fine artwork he ventured to steal.\nBrought a copy, the theft to conceal.\nBut he made a mistake\nBy removing the fake,\nWhen thinking the false one was real.",
+                "The English top brass likely seeks excellence, efficiency, and effectiveness in their operations, maintaining high standards in whatever field they are involved in, whether it be military, corporate, or governmental. They aim for strategic success and uphold values such as integrity and professionalism.",
+                "The English top brass likely seeks to maintain and enhance the operational effectiveness and efficiency of their forces, ensure the security and defense of the country, and uphold the values and standards of their respective services. They may also focus on strategic planning, resource management, and international cooperation to address global security challenges.",
+                "The English top brass typically seeks to maintain and enhance the operational effectiveness and readiness of their forces, ensure the security and defense of the country, and uphold international peace and stability through strategic alliances and military cooperation. They also focus on modernizing the armed forces, managing resources efficiently, and addressing any challenges that may arise in the geopolitical landscape.",
+                "The English top brass typically seeks to maintain and enhance the operational effectiveness and readiness of their forces, ensure national security, and uphold the interests of the United Kingdom both domestically and internationally. They focus on strategic planning, resource management, and the welfare of personnel, while also engaging in international diplomacy and cooperation with allies.",
+                "The English top brass typically seeks to maintain and enhance the operational effectiveness and readiness of their forces, ensuring that they are well-equipped, well-trained, and capable of responding to current and future challenges. They also focus on strategic defense planning, international cooperation, and the welfare of their personnel.",
+                "The English top brass typically seeks to maintain and enhance the operational effectiveness and efficiency of the military forces, ensuring they are well-equipped, well-trained, and ready to defend the nation's interests both domestically and internationally. They also focus on strategic planning, resource management, and fostering international alliances to promote peace and security.",
+                "The English top brass typically seeks to maintain and enhance the operational effectiveness and readiness of the military forces, ensuring that they are well-equipped, well-trained, and capable of responding to current and future challenges. They also focus on strategic defense planning, international military cooperation, and the welfare of service personnel. Additionally, they may be involved in high-level decision-making regarding defense policy and national security issues.",
+                "The English top brass typically seeks to maintain and enhance the operational effectiveness and readiness of their forces, ensure the security and defense of the country, and uphold international peace and stability through strategic planning, leadership, and collaboration with international allies. They are also involved in policy-making, strategic decision-making, and the overall management of the military resources and personnel.",
+                "The English top brass typically seeks to maintain and enhance the operational effectiveness and readiness of their military forces. This includes strategic planning, resource allocation, personnel management, and the implementation of policies to ensure the security and defense of the nation. Additionally, they focus on international relations and cooperation with allies to address global security challenges.",
+                "Beryllium, a light metal that's brittle,\nIs what the English top brass might seek.\nIt's used in aerospace and electronics,\nFor its properties unique.",
+                "Beryllium's element four,\nFound in many a mineral ore.\nA light metal that's brittle,\nLong contact with it'll\nCause health problems tough to ignore.",
+                "The English top brass likely seeks efficiency, effectiveness, and excellence in their operations, maintaining high standards in whatever field they are involved in, whether it be military, administrative, or other governmental functions. They aim for strategic success and uphold values such as discipline, integrity, and professionalism."
+            ]
+        },
+        {
+            "question": {
+                "id": 87737,
+                "author": "Joanna Keene",
+                "text": "Joey fingered Big Lou as the one\nWho shot Johnny six times with his gun.\nSnitched him out: \"Louie did it;\nThe goon never hid it.\"\nNow Joey lives life on the run.",
+                "question": "Who did Joey finger for shooting Johnny?",
+                "answer": "Big Lou",
+                "alternate_answers": null,
+                "token_count": 45,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [
+                "Joey fingered Big Lou as the one who shot Johnny six times with his gun.",
+                "Joey fingered Big Lou for shooting Johnny.",
+                "Joey fingered Big Lou as the one who shot Johnny."
+            ],
+            "failed_answer_list": []
+        },
+        {
+            "question": {
+                "id": 98591,
+                "author": "Chris J. Strolin",
+                "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+                "question": "Who do they blame in the blamestorming session after someone dies?",
+                "answer": "Jaun",
+                "alternate_answers": [
+                    "Based on the limericks, it seems the person they blame in the blamestorming session after someone dies is often a scapegoat or someone undeserving of the blame. \n\nFor example, one limerick mentions:\n\n\"Someone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.\"\n\nThis suggests that in the blamestorming session, they unfairly blame an innocent person, like the janitor's helper Juan, rather than finding the true cause of the death."
+                ],
+                "token_count": 39,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [
+                "In the blamestorming session after someone dies, they blame the one person they name, which is a janitor's helper named Juan.",
+                "In the blamestorming session, they blame the janitor's helper named Juan.",
+                "In the blamestorming session after someone dies, they typically blame the janitor's helper named Juan.",
+                "In the blamestorming session after someone dies, they blame the janitor's helper named Juan."
+            ],
+            "failed_answer_list": [
+                "In the blamestorming session after someone dies, they typically blame the person who is perceived to have made a mistake or oversight that led to the death. This could be a specific individual, such as a medical professional, a caregiver, or anyone else who was directly involved in the care or circumstances of the deceased. The focus is on identifying and attributing responsibility for the death, often in a negative and accusatory manner.",
+                "In the blamestorming session after someone dies, they typically blame the person who is perceived as responsible for the circumstances leading to the death, whether due to negligence, error, or direct actions.",
+                "In the blamestorming session after someone dies, they typically blame the person who is perceived as responsible for the circumstances leading to the death, whether due to negligence, error, or direct involvement.",
+                "In the blamestorming session after someone dies, they typically blame the person or persons perceived to be responsible for the circumstances leading to the death, whether due to negligence, error, or intentional actions.",
+                "In the blamestorming session after someone dies, they typically blame the person who is perceived to have made a mistake or oversight that led to the death. This could be a specific individual, such as a medical professional, a caregiver, or anyone else directly involved in the care or circumstances of the deceased. The focus is on identifying and attributing fault or responsibility for the death.",
+                "In the blamestorming session after someone dies, they typically blame the person or persons perceived to be responsible for the circumstances leading to the death, whether due to negligence, error, or intentional actions. The focus is on identifying fault, often to prevent future occurrences or to assign legal or moral responsibility.",
+                "In the blamestorming session after someone dies, they typically blame the person who is perceived to have made a mistake or oversight that led to the death. This could be a medical professional, a caregiver, or anyone else involved in the care or circumstances of the deceased, depending on the specific situation.",
+                "In the blamestorming session after someone dies, they blame the person who is perceived as responsible for the situation that led to the death, often focusing on mistakes, negligence, or poor decision-making. This can involve various individuals or groups, depending on the circumstances surrounding the death.",
+                "In the blamestorming session after someone dies, they typically blame the person who is perceived as responsible for the situation that led to the death. This could be an individual whose actions or negligence directly contributed to the incident, or it could be a group or organization that failed to ensure safety or proper procedures. The focus is on identifying fault and accountability.",
+                "In the blamestorming session after someone dies, they typically blame the person who is perceived as responsible for the circumstances leading to the death. This could be an individual or a group whose actions or negligence are thought to have contributed to the unfortunate event.",
+                "In the blamestorming session after someone dies, they typically blame the person who is perceived as responsible for the circumstances leading to the death, whether due to negligence, error, or direct actions. This could be an individual, a group, or an organization, depending on the specific situation and the details surrounding the death.",
+                "In the blamestorming session after someone dies, they typically blame the person who is perceived as responsible for the circumstances leading to the death, whether due to negligence, error, or direct actions. This could be an individual or a group, depending on the situation."
+            ]
+        },
+    ]
+}

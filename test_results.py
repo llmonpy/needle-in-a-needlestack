@@ -254,7 +254,7 @@ class ModelScore:
         values = [round(location.score * 100) for location in self.location_scores]
         number_of_locations = len(values)
         number_of_trials = self.number_of_trials_per_location
-        percent = round((self.repeat_question_limerick_count / self.limerick_count_in_prompt) * 100, 1)
+        percent = round((self.repeat_question_limerick_count / self.limerick_count_in_prompt) * 100, 4)
         plot_title = f'Tested {self.model_name} on {self.date_string}\nAsk question about {percent}% of {self.limerick_count_in_prompt} limericks in {number_of_trials} trials at {number_of_locations} token positions'
         for subplot_data in subplot_data_list:
             axes.scatter(labels, subplot_data, linewidth=.3, edgecolor='grey', color="#b3d0fc",
