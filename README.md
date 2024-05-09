@@ -9,11 +9,11 @@
 
 Needle in a haystack (NIAH) has been a wildly popular test for evaluating how effectively LLMs can pay attention to 
 the content in their context window.  As LLMs have improved NIAH has become too easy.  Needle in a Needlestack (NIAN)
-is a new, more challenging benchmark.
+is a new, more challenging benchmark.  You can see initial results on the [NIAN website](https://nian.llmonpy.ai).
 
 NIAN creates a list of limericks from a large [database of limericks](https://zenodo.org/records/5722527) and asks a 
 question about a specific limerick that have been placed at a test location. Each test will typically use 5 to 10
-test limericks placed at 5 to 10 locations in the prompt.  Each test is repeated 5-10 times.  It is amazing that an 
+test limericks placed at 5 to 10 locations in the prompt.  Each test is repeated 2-10 times.  It is amazing that an 
 LLM can answer these questions at all! Here is a [link to an example prompt](artifacts/sample_prompt.txt).  The
 question is "Does Mr. Thistle follow our rules?" and the associated limerick is in the middle of the prompt:
 

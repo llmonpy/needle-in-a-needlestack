@@ -15,6 +15,7 @@
 import os
 import sys
 
+from test_config import get_latest_test_directory
 from test_results import ModelResults, REEVALUATION_FILE_PREFIX
 
 
@@ -88,7 +89,6 @@ class DissentReport:
                 file.write(message)
                 print(message)
         print("done")
-        exit(0)
 
     @staticmethod
     def create_from_original_results(directory):
@@ -110,7 +110,9 @@ if __name__ == '__main__':
     if len(sys.argv) >= 2:
         full_results_path = sys.argv[1]
     else:
-        full_results_path = "answer_examples"
+        full_results_path = get_latest_test_directory()
     report = DissentReport.create_from_original_results(full_results_path)
     report.process()
+    exit(0)
+
 

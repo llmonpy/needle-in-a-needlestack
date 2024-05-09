@@ -10,4 +10,4 @@ if [ -f "$venv_activate_script" ]; then
 else
     echo "Virtual environment not found or activated."
 fi
-python3 question_trials_dissent.py $1
+python3 test_results.py $1

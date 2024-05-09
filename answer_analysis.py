@@ -19,6 +19,7 @@ import os
 import sys
 
 from limerick import Limerick, FULL_QUESTION_FILE
+from test_config import get_latest_test_directory
 from test_results import ModelResults, QuestionAnswerCollector
 
 
@@ -131,7 +132,7 @@ if __name__ == '__main__':
     if len(sys.argv) >= 2:
         full_results_path = sys.argv[1]
     else:
-        full_results_path = "answer_examples"
+        full_results_path = get_latest_test_directory()
     analyzer = AnswerAnalysis.create_from_test_runs(full_results_path)
     analyzer.finish()
     results_path = os.path.join(full_results_path, "answer_analysis.json")
