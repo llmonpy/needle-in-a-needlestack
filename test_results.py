@@ -1000,10 +1000,10 @@ if __name__ == '__main__':
         test_model_scores = TestModelScores.from_dict(model_scores_dict)
         for model_score in test_model_scores.model_scores:
             print("Model: ", model_score.model_name)
-            plot_name = "test_tp_" + model_score.model_name + ".png"
+            plot_name = "test_trial_plot_" + model_score.model_name + ".png"
             plot_path = os.path.join(model_scores_directory, plot_name)
             model_score.write_trial_plot(plot_path)
-            plot_name = "test_qp_" + model_score.model_name + "_"
+            plot_name = "test_qpplot_" + model_score.model_name + "_"
             plot_path = os.path.join(model_scores_directory, plot_name)
             model_score.write_question_plot(plot_path)
         print("plots written to ", model_scores_directory)
