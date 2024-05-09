@@ -524,6 +524,18 @@ class QuestionResults:
                 score_accumulator.add_score(trial_result.passed)
                 break
 
+    def trials_have_dissent(self):
+        result = False
+        passed_count = 0
+        failed_count = 0
+        for trial_result in self.trial_results:
+            if trial_result.passed:
+                passed_count += 1
+            else:
+                failed_count += 1
+        result = not(failed_count == 0 or passed_count == 0)
+        return result
+
     def calculate_scores(self):
         correct_results = 0
         finished_trials = 0
@@ -757,6 +769,13 @@ class ModelResults:
             for question_result in location.question_result_list:
                 for trial_result in question_result.trial_results:
                     result.append(trial_result)
+        return result
+
+    def get_all_question_results(self):
+        result = []
+        for location in self.location_list:
+            for question_result in location.question_result_list:
+                result.append(question_result)
         return result
 
     def collect_question_answers(self, question_answer_collector: QuestionAnswerCollector):

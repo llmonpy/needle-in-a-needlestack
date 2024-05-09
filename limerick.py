@@ -17,7 +17,7 @@ import json
 import random
 import tiktoken
 
-NUMBER_OF_TEST_QUESTIONS_TO_GENERATE = 3
+NUMBER_OF_TEST_QUESTIONS_TO_GENERATE = 5
 GENERATED_QUESTION_FILE = "questions.json"
 FULL_QUESTION_FILE = "full_questions.json"
 LIMERICK_DATASET_FILE = "limerick_dataset_oedilf_v3.json"

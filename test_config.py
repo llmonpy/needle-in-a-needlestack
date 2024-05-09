@@ -17,7 +17,7 @@ import os
 from evaluator import DefaultEvaluator
 from llm_client import GPT3_5, \
     ANTHROPIC_SONNET, MISTRAL_7B, MISTRAL_8X22B, MISTRAL_SMALL, \
-    GPT4, ANTHROPIC_HAIKU, DEEPSEEK
+    GPT4, ANTHROPIC_HAIKU, DEEPSEEK, MISTRAL_LARGE, MISTRAL_8X7B
 
 EVALUATOR_MODEL_LIST = [ANTHROPIC_HAIKU, MISTRAL_SMALL, MISTRAL_8X22B, MISTRAL_8X22B,
                         MISTRAL_SMALL]
@@ -45,13 +45,13 @@ class TestConfig:
         return result
 
 
-DEFAULT_TEST_CONFIG = TestConfig(model_list=[MISTRAL_7B],
+DEFAULT_TEST_CONFIG = TestConfig(model_list=[MISTRAL_8X7B],
                                  test_thread_count=100,
                                  evaluator_model_list=EVALUATOR_MODEL_LIST,
                                  default_evaluator=DefaultEvaluator(EVALUATOR_MODEL_LIST),
-                                 number_of_questions_per_trial=5,
+                                 number_of_questions_per_trial=2,
                                  repeat_question_limerick_count=1,
-                                 trial_count=5,
+                                 trial_count=2,
                                  location_count=5)
 
 

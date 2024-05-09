@@ -24,7 +24,7 @@ from mistralai.client import MistralClient
 from mistralai.models.chat_completion import ChatMessage
 from openai import OpenAI
 
-from rate_llmiter import RateLlmiter, SECOND_TIME_WINDOW, spread_requests
+from rate_llmiter import RateLlmiter, SECOND_TIME_WINDOW, spread_requests, MINUTE_TIME_WINDOW
 
 PROMPT_RETRIES = 3
 RATE_LIMIT_RETRIES = 100 # requests limits tend to be much higher than token limits, so can end up with a lot of retries
@@ -196,13 +196,14 @@ DEEPSEEK_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 MISTRAL_RATE_LIMITER = RateLlmiter(*spread_requests(1000)) #used minute spread to seconds because tokens are TPM not TPS
 
 #MIXTRAL tokenizer generates 20% more tokens than openai, so after reduce max_input to 80% of openai
-MISTRAL_8X22B = MistralLlmClient("open-mixtral-8x22b", 50000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
+MISTRAL_8X22B = MistralLlmClient("open-mixtral-8x22b", 24000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 MISTRAL_SMALL = MistralLlmClient("mistral-small", 25000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 MISTRAL_7B = MistralLlmClient("open-mistral-7b", 12000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
-MISTRAL_8X7B = MistralLlmClient("open-mixtral-8x7b", 12000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
+MISTRAL_8X7B = MistralLlmClient("open-mixtral-8x7b", 24000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
+MISTRAL_LARGE = MistralLlmClient("mistral-large-latest", 24000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 15000, RateLlmiter(*spread_requests(2500)), OPENAI_EXECUTOR)
-GPT4 = OpenAIModel('gpt-4-turbo-2024-04-09', 15000, RateLlmiter(*spread_requests(2500)), OPENAI_EXECUTOR)
-ANTHROPIC_OPUS = AnthropicModel("claude-3-opus-20240229", 195000, RateLlmiter(*spread_requests(1000)), ANTHROPIC_EXECUTOR)
-ANTHROPIC_SONNET = AnthropicModel("claude-3-sonnet-20240229", 195000, RateLlmiter( *spread_requests(1000)), ANTHROPIC_EXECUTOR)
+GPT4 = OpenAIModel('gpt-4-turbo-2024-04-09', 120000, RateLlmiter(5, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
+ANTHROPIC_OPUS = AnthropicModel("claude-3-opus-20240229", 195000, RateLlmiter(3, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
+ANTHROPIC_SONNET = AnthropicModel("claude-3-sonnet-20240229", 120000, RateLlmiter(3, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
 ANTHROPIC_HAIKU = AnthropicModel("claude-3-haiku-20240307", 15000, RateLlmiter(*spread_requests(1000)), ANTHROPIC_EXECUTOR)
 DEEPSEEK = DeepseekModel("deepseek-chat", 24000, RateLlmiter(*spread_requests(1000)), DEEPSEEK_EXECUTOR)

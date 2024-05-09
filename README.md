@@ -30,7 +30,7 @@ includes tools to evaluate the evaluators and improve them with few shot prompti
 Given the number of trials and the 5 LLM calls per trial, it is important that NIAN make many LLM calls in parallel.
 It uses a rate limiter (that will become its own package) to manage the rate of LLM calls.  NIAN is quite fast.  For
 example, it can make 600 LLM calls to evaluate "open-mistral-7b" with 5 questions at 5 locations, 5 times in 35 seconds
-my mac. 
+on my mac. 
 
 ## Running your own tests
 NIAN supports the LLMs I have access too -- OpenAI, Anthropic and Mistral.  Adding new LLMs is easy, and it will be
@@ -41,7 +41,6 @@ with "NIAN_" if you want to use NIAN specific keys.
 
 ## test_config.py
 
-API keys
 
 Tools
     running tests
