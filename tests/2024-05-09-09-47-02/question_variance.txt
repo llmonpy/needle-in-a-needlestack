@@ -1,0 +1,1 @@
+Model: open-mistral-7b Percent with variance: 0%Model: open-mixtral-8x7b Percent with variance: 0%Model: mistral-small Percent with variance: 0%Model: gpt-3.5-turbo-0125 Percent with variance: 16%

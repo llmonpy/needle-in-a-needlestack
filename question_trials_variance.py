@@ -24,11 +24,15 @@ class QuestionTrialVarianceReport:
     def __init__(self, directory, model_full_results_file_list):
         self.directory = directory
         self.evaluator_grades = {}
-        for file_name in model_full_results_file_list:
-            file_path = os.path.join(directory, file_name)
-            model_dissent_report = ModelQuestionTrialVarianceReport(file_path)
-            print("Model: " + model_dissent_report.model_results.model_name + " Percent with dissent: "
-                  + str(model_dissent_report.get_percent_with_dissent()) + "%" )
+        output_file_path = os.path.join(self.directory, "question_variance.txt")
+        with open(output_file_path, "w") as file:
+            for file_name in model_full_results_file_list:
+                file_path = os.path.join(directory, file_name)
+                model_dissent_report = ModelQuestionTrialVarianceReport(file_path)
+                message = "Model: " + model_dissent_report.model_results.model_name + " Percent with variance: " \
+                      + str(model_dissent_report.get_percent_with_dissent()) + "%"
+                file.write(message)
+                print(message)
         print("done")
 
 

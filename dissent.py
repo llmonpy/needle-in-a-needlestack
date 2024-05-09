@@ -80,7 +80,7 @@ class DissentReport:
         self.print_evaluator_grade_report()
 
     def print_evaluator_grade_report(self):
-        output_file_path = os.path.join(self.directory, "evaluator_grades.txt")
+        output_file_path = os.path.join(self.directory, "dissent.txt")
         with open(output_file_path, "w") as file:
             print("Dissenting Evaluator Report\n")
             for evaluator_report in self.evaluator_grades.values():
@@ -113,6 +113,6 @@ if __name__ == '__main__':
         full_results_path = get_latest_test_directory()
     report = DissentReport.create_from_original_results(full_results_path)
     report.process()
-    exit(0)
+    os._exit(0)
 
 

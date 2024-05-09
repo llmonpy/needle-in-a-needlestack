@@ -45,14 +45,14 @@ class TestConfig:
         return result
 
 
-DEFAULT_TEST_CONFIG = TestConfig(model_list=[MISTRAL_7B],
+DEFAULT_TEST_CONFIG = TestConfig(model_list=[MISTRAL_7B, GPT3_5, MISTRAL_8X7B, MISTRAL_SMALL],
                                  test_thread_count=100,
                                  evaluator_model_list=EVALUATOR_MODEL_LIST,
                                  default_evaluator=DefaultEvaluator(EVALUATOR_MODEL_LIST),
-                                 number_of_questions_per_trial=2,
-                                 repeat_question_limerick_count=1,
+                                 number_of_questions_per_trial=10,
+                                 repeat_question_limerick_count=10,
                                  trial_count=5,
-                                 location_count=5)
+                                 location_count=10)
 
 
 CURRENT_TEST_CONFIG = DEFAULT_TEST_CONFIG
