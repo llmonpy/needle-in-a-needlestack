@@ -40,7 +40,71 @@ standard API keys -- OPENAI_API_KEY, ANTHROPIC_API_KEY, and MISTRAL_API_KEY.  It
 with "NIAN_" if you want to use NIAN specific keys.
 
 ## test_config.py
+You configure a test by setting the CURRENT_TEST_CONFIG or by changing DEFAULT_TEST_CONFIG. A TestConfig looks like this:
 
+```
+DEFAULT_TEST_CONFIG = TestConfig(model_list=[MISTRAL_7B, GPT3_5],
+                                 test_thread_count=100,
+                                 evaluator_model_list=EVALUATOR_MODEL_LIST,
+                                 default_evaluator=DefaultEvaluator(EVALUATOR_MODEL_LIST),
+                                 number_of_questions_per_trial=5,
+                                 repeat_question_limerick_count=100,
+                                 trial_count=5,
+                                 location_count=10)
+```
+Most of the settings are self-explanatory.  The model_list is the list of LLMs to use for the test.  The 
+test_thread_count is the number of threads to used to generate answers etc.  Repeat_question_limerick_count is the
+is least obvious.  It controls how many times the limerick that the prompt asks a question about is repeated.  When it
+is repeated, it is repeated in the prompt at the same location.  This is a way to test if repeating information in the
+prompt helps the LLM answer the question.  The trial_count is the number of trials to run for each question and each 
+location.  The total number of times a prompt will be sent to each model tested is:
+
+> `number_of_questions_per_trial * trial_count * location_count `
+
+
+## Adding new LLMs
+Adding a new LLM is easy.  You need to create a new class that extends LLMClient.  You need to implement the constructor
+and the do_prompt method.  The client will look something like this.
+
+```
+class OpenAIModel(LlmClient):
+    def __init__(self, model_name, max_input, rate_limiter, thead_pool=None):
+        super().__init__(model_name, max_input, rate_limiter, thead_pool)
+        key = get_api_key("OPENAI_API_KEY")
+        self.client = OpenAI(api_key=key)
+
+    def do_prompt(self, prompt_text, system_prompt="You are an expert at analyzing text."):
+        completion = self.client.chat.completions.create(
+            model=self.model_name,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": prompt_text}
+            ],
+            temperature=0.0
+        )
+        result = completion.choices[0].message.content
+        return result
+
+```
+
+You will also need to create a global variable in llm_clients.py to make the model accessible. The client will need
+a rate limiter and a thread_pool to use for evaluation.  The rate limiter is a RateLimiter object that will be used to
+manage the rate of LLM calls:
+
+```
+MISTRAL_RATE_LIMITER = RateLlmiter(*spread_requests(1000)) #used minute spread to seconds because tokens are TPM not TPS
+MISTRAL_8X22B = MistralLlmClient("open-mixtral-8x22b", 24000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
+```
+
+## Tools
+NIAN includes tools to generate questions and answers for limericks, vet that LLMs can answer the questions,
+identify unique passing and failing answers to questions, report on dissent among LLMs on answer evaluation, report
+on variation in LLM answers when it is asked the same question multiple times at the same location, a tool to 
+create plots from existing tests and a tool to run tests.  All the scripts are in bin and settup the venv for you.
+
+
+### Nian
+Nian runs the tests as configured in test_config.py.  It presents 
 
 Tools
     running tests
