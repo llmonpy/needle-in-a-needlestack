@@ -524,7 +524,7 @@ class QuestionResults:
                 score_accumulator.add_score(trial_result.passed)
                 break
 
-    def trials_have_dissent(self):
+    def trials_have_variance(self):
         result = False
         passed_count = 0
         failed_count = 0

@@ -1,0 +1,1 @@
+Model: open-mistral-7b Percent with variance: 2%Model: open-mixtral-8x7b Percent with variance: 2%Model: mistral-small Percent with variance: 4%Model: open-mixtral-8x22b Percent with variance: 6%Model: mistral-large-latest Percent with variance: 10%

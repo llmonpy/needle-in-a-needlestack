@@ -12,7 +12,7 @@ class ModelQuestionTrialVarianceReport:
         self.question_trial_list = self.model_results.get_all_question_results()
         self.number_with_dissent = 0
         for question in self.question_trial_list:
-            if question.trials_have_dissent():
+            if question.trials_have_variance():
                 self.number_with_dissent += 1
 
     def get_percent_with_dissent(self):
