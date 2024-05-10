@@ -786,6 +786,14 @@ class ModelResults:
                         question_answer_collector.add_answer(question_result.question.id, trial_result.generated_answer,
                                                              trial_result.passed)
 
+    def replace_question(self, source, question_id):
+        for location in self.location_list:
+            for index, question_result in enumerate(location.question_result_list):
+                if question_result.question.id == question_id:
+                    new_result = source.get_question_result_from_location(self.model_name,
+                                                                      location.location_token_position, question_id)
+                    location.question_result_list[index] = new_result
+
     def to_dict(self):
         result = copy.deepcopy(vars(self))
         if self.location_list is not None:
@@ -955,6 +963,23 @@ class TestResults:
         # matplotlib only wants to run in the main thread, so start return done_queue and the main thread did a get
         # and it will call record results when it gets the done signal
         self.done_queue.put(True)
+
+    def get_question_result_from_location(self, model_name, location_token_position, question_id):
+        result = None
+        for model_results in self.model_results_list:
+            if model_results.model_name == model_name:
+                for location in model_results.location_list:
+                    if location.location_token_position == location_token_position:
+                        for question_result in location.question_result_list:
+                            if question_result.question.id == question_id:
+                                result = question_result
+                                break
+        return result
+
+    def replace_question(self, source_results, question_id):
+        model_name = source_results.model_results_list[0].model_name
+        model_results = self.get_model_results(model_name)
+        model_results.replace_question(source_results, question_id)
 
     def record_results(self):
         current_results_list = self.model_results_list

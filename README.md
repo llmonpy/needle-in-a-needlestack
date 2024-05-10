@@ -12,7 +12,7 @@ the content in their context window.  As LLMs have improved NIAH has become too 
 is a new, more challenging benchmark.  You can see initial results on the [NIAN website](https://nian.llmonpy.ai).
 
 NIAN creates a list of limericks from a large [database of limericks](https://zenodo.org/records/5722527) and asks a 
-question about a specific limerick that have been placed at a test location. Each test will typically use 5 to 10
+question about a specific limerick that has been placed at a test location. Each test will typically use 5 to 10
 test limericks placed at 5 to 10 locations in the prompt.  Each test is repeated 2-10 times.  It is amazing that an 
 LLM can answer these questions at all! Here is a [link to an example prompt](artifacts/sample_prompt.txt).  The
 question is "Does Mr. Thistle follow our rules?" and the associated limerick is in the middle of the prompt:
@@ -28,12 +28,10 @@ accurate evaluation, NIAN uses 5 LLMs to evaluate the responses and pass/fail is
 includes tools to evaluate the evaluators and improve them with few shot prompting.
 
 Given the number of trials and the 5 LLM calls per trial, it is important that NIAN make many LLM calls in parallel.
-It uses a rate limiter (that will become its own package) to manage the rate of LLM calls.  NIAN is quite fast.  For
-example, it can make 600 LLM calls to evaluate "open-mistral-7b" with 5 questions at 5 locations, 5 times in 35 seconds
-on my mac. 
+It uses a rate limiter to manage the rate of LLM calls.  NIAN can finish a 125 trial test in about 35 seconds.  
 
 ## Running your own tests
-NIAN supports the LLMs I have access too -- OpenAI, Anthropic and Mistral.  Adding new LLMs is easy, and it will be
+NIAN supports the LLMs I have access to -- OpenAI, Anthropic and Mistral.  Adding new LLMs is easy, and it will be
 covered later in this document.  You can set the rate limits for each LLM, but you will want generous rate limits to
 run the tests.  My development was done with OpenAI Tier 4, Anthropic Tier 4 and Mistral Tier 2.  NIAN looks for the
 standard API keys -- OPENAI_API_KEY, ANTHROPIC_API_KEY, and MISTRAL_API_KEY.  It looks first for these keys prefixed 
@@ -100,49 +98,49 @@ MISTRAL_8X22B = MistralLlmClient("open-mixtral-8x22b", 24000, MISTRAL_RATE_LIMIT
 NIAN includes tools to generate questions and answers for limericks, vet that LLMs can answer the questions,
 identify unique passing and failing answers to questions, report on dissent among LLMs on answer evaluation, report
 on variation in LLM answers when it is asked the same question multiple times at the same location, a tool to 
-create plots from existing tests and a tool to run tests.  All the scripts are in bin and settup the venv for you.
+create plots from existing tests and a tool to run tests.  All the scripts are in bin and set the venv for you.
 
 
 ### Nian
-Nian runs the tests as configured in test_config.py.  It presents progress bars for the model tests and evalutors.
+***nian*** runs the tests as configured in test_config.py.  It presents progress bars for the model tests and evalutors.
 It stores it results in a date based directory in the "tests" directory.
 
 ### dissent
-Dissent reports on the number of times the LLMs disagree on the evaluation of an answer.  "Dissent" means that the
+***dissent*** reports on the number of times the LLMs disagree on the evaluation of an answer.  "Dissent" means that the
 LLM evaluated the answer differently than the majority of the LLMs.  It writes the results to the console and the
 test directory.  It runs on the most recent test unless you provide a test directory as an argument. This test is useful
 to determine if an LLM is an effective evaluator. GPT-3.5 was wrong very often in my tests, so I had to double up
 on mistral models.
 
 ### question_variance
-Question variance reports on the variation in LLM answers when the same question is asked multiple times at the same
+***question_variance*** reports on the variation in LLM answers when the same question is asked multiple times at the same
 location.  It writes the results to the console and the test directory.  It runs on the most recent test unless you
 provide a test directory as an argument.  There is significant variation in LLMs on this test. It helps to determine
 if more trials per question are worthwhile.  
 
 ### answers
-Answers reports on the unique answers to questions that passed and failed.  It writes the result to answer_anlysis.json.
+***answers*** reports on the unique answers to questions that passed and failed.  It writes the result to answer_anlysis.json.
 The information can be used to if the evaluation is done correctly and help provide examples for few-shot prompting. It
 runs on the most recent test unless you provide a test directory as an argument.
 
 ### reevaluate
-Reevaluate is a tool to reevaluate the answers to questions to support refinement of the evaluators.  Typically, you would
+***reevaluate*** is a tool to reevaluate the answers to questions to support refinement of the evaluators.  Typically, you would
 run tests, then use "answers" to analyze the answers, then add "alternate_answers" to the questions in full_questions.json
 to change the few-shot evaluation prompt.  Then run reevaluate to get new evaluations.  It only evaluates the answers, so
 it is quite fast.  I reevaluated 1200 answers in about 2 minutes.  It writes the results to the test directory with
 "reeval_" prefixed to the file name. It runs on the most recent test unless you provide a test directory as an argument.
 
 ### plot
-Plot is used to tweak the plots generated by the test.  The code to generate the plots is in test_results.py.
+***plot*** is used to tweak the plots generated by the test.  The code to generate the plots is in test_results.py.
 It runs on the most recent test unless you provide a test directory as an argument.
 
 ### generate_questions
-Generate questions is a tool to generate questions for limericks.  It picks 5 limericks at random and asks you to
+***generate_questions*** is a tool to generate questions for limericks.  It picks 5 limericks at random and asks you to
 provide a question about the limerick and also provide an answer.  It does not pick limericks that are in full_questions.json.
 It writes the results to questions.json.  You can add the questions you like to full_questions.json.
 
 ### vet
-Vet is a tool to test if the LLMs can answer the questions in full_questions.json. It give every LLM in CURRENT_TEST_CONFIG.model_list
+***vet*** is a tool to test if the LLMs can answer the questions in full_questions.json. It give every LLM in CURRENT_TEST_CONFIG.model_list
 this prompt:
 
 ```

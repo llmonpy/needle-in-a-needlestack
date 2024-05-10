@@ -22,7 +22,7 @@ import sys
 from answer_analysis import AnswerAnalysis
 from dissent import DissentReport
 from limerick import FULL_QUESTION_FILE, Limerick
-from test_config import DEFAULT_TEST_CONFIG, CURRENT_TEST_CONFIG
+from test_config import DEFAULT_TEST_CONFIG, CURRENT_TEST_CONFIG, get_latest_test_directory
 from test_results import ModelResults, ORIGINAL_MODEL_NAME, REPLACEMENT_MODEL_NAME, REEVALUATION_FILE_PREFIX
 from test_status import TestStatus
 
@@ -91,7 +91,7 @@ if __name__ == '__main__':
     if len(sys.argv) >= 2:
         full_results_path = sys.argv[1]
     else:
-        full_results_path = "answer_examples"
+        full_results_path = get_latest_test_directory()
     test_config = DEFAULT_TEST_CONFIG
     reevaluator = AnswerReevaluator(full_results_path, test_config.evaluator_model_list,
                                     {ORIGINAL_MODEL_NAME:"gpt-3.5-turbo-0125",
