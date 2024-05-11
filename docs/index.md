@@ -1,6 +1,6 @@
-| ![GPT-4 Image](1/gpt-4-110k-1.png "Caption for GPT-4 Image") | ![Sonnet Image](1/sonnet-100k-1.png "Caption for Sonnet Image") |
-|:-----------------------------------------------------------:|:-------------------------------------------------------------:|
-| Caption for GPT-4 Image                                     | Caption for Sonnet Image                                     |
+| ![GPT-4 Image](1/gpt-4-110-1.png "Caption for GPT-4 Image") | ![Sonnet Image](1/sonnet-110-1.png "Caption for Sonnet Image") |
+|:-----------------------------------------------------------:|:--------------------------------------------------------------:|
+|                   Caption for GPT-4 Image                   |                    Caption for Sonnet Image                    |
 
 
 gpt & sonnet not good.

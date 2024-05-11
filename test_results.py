@@ -786,13 +786,22 @@ class ModelResults:
                         question_answer_collector.add_answer(question_result.question.id, trial_result.generated_answer,
                                                              trial_result.passed)
 
-    def replace_question(self, source, question_id):
+    def replace_question(self, source, source_question_id, original_question_id):
         for location in self.location_list:
             for index, question_result in enumerate(location.question_result_list):
-                if question_result.question.id == question_id:
-                    new_result = source.get_question_result_from_location(self.model_name,
-                                                                      location.location_token_position, question_id)
+                if question_result.question.id == original_question_id:
+                    new_result = source.get_question_result_from_location(location.location_token_position, source_question_id)
                     location.question_result_list[index] = new_result
+
+    def get_question_result_from_location(self, location_token_position, question_id):
+        result = None
+        for location in self.location_list:
+            if location.location_token_position == location_token_position:
+                for question_result in location.question_result_list:
+                    if question_result.question.id == question_id:
+                        result = question_result
+                        break
+        return result
 
     def to_dict(self):
         result = copy.deepcopy(vars(self))

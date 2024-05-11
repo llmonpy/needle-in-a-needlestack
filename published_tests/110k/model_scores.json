@@ -1,0 +1,1882 @@
+{
+    "model_scores": [
+        {
+            "model_name": "gpt-4-turbo-2024-04-09",
+            "date_string": "2024-05-09-12-51-51",
+            "repeat_question_limerick_count": 1,
+            "limerick_count_in_prompt": 2543,
+            "location_scores": [
+                {
+                    "location_token_position": 1100,
+                    "score": 1.0,
+                    "trial_scores": [
+                        {
+                            "trial_number": 0,
+                            "score": 1.0
+                        },
+                        {
+                            "trial_number": 1,
+                            "score": 1.0
+                        }
+                    ],
+                    "question_scores": [
+                        {
+                            "question": {
+                                "id": 17030,
+                                "author": "Howard Spindel",
+                                "text": "I've a tree in my yard in a plight;\nAll its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                                "question": "What is the plight of the tree in my yard?",
+                                "answer": "All its leaves are diseased",
+                                "alternate_answers": [
+                                    "The tree in the yard has diseased leaves and peeling bark, which is a sight."
+                                ],
+                                "token_count": 48,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 87737,
+                                "author": "Joanna Keene",
+                                "text": "Joey fingered Big Lou as the one\nWho shot Johnny six times with his gun.\nSnitched him out: \"Louie did it;\nThe goon never hid it.\"\nNow Joey lives life on the run.",
+                                "question": "Who did Joey finger for shooting Johnny?",
+                                "answer": "Big Lou",
+                                "alternate_answers": null,
+                                "token_count": 45,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 54553,
+                                "author": "Richard English",
+                                "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",
+                                "question": "What is sought by the English top brass?",
+                                "answer": "Cranberry glass",
+                                "alternate_answers": null,
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 98591,
+                                "author": "Chris J. Strolin",
+                                "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+                                "question": "Who do they blame in the blamestorming session after someone dies?",
+                                "answer": "Jaun",
+                                "alternate_answers": [
+                                    "Based on the limericks, it seems the person they blame in the blamestorming session after someone dies is often a scapegoat or someone undeserving of the blame. \n\nFor example, one limerick mentions:\n\n\"Someone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.\"\n\nThis suggests that in the blamestorming session, they unfairly blame an innocent person, like the janitor's helper Juan, rather than finding the true cause of the death."
+                                ],
+                                "token_count": 39,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 84044,
+                                "author": "SheilaB",
+                                "text": "Uncle Wayne always gives me a pain.\nHis ideas are vain and inane.\nHe's both asinine (fatuous)\nAnd a gas bag who's flatuous.\nI treat the old fool with disdain.",
+                                "question": "What is wrong with Uncle Wayne's ideas?",
+                                "answer": "Uncle Wayne's ideas are vain and inane.",
+                                "alternate_answers": [
+                                    "Uncle Wayne's ideas are considered vain and inane,\nHe's both asinine and flatuous, causing disdain.",
+                                    "Based on the limerick, there are a few things wrong with Uncle Wayne's ideas:\n\n1. They are described as \"vain and inane\" - meaning they are empty, worthless, and foolish.\n\n2. He is characterized as being \"asinine\" - which means stupid or foolish. \n\n3. He is also described as being a \"gas bag\" who is \"flatuous\" - implying his ideas are full of hot air and empty rhetoric.\n\n4. The narrator treats Uncle Wayne with \"disdain\" - showing a strong dislike and lack of respect for his ideas.\n\nOverall, the limerick portrays Uncle Wayne's ideas as being foolish, stupid, and unworthy of serious consideration. The narrator clearly has a very negative view of his uncle's thought processes and opinions."
+                                ],
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 11770,
+                    "score": 0.2,
+                    "trial_scores": [
+                        {
+                            "trial_number": 0,
+                            "score": 0.2
+                        },
+                        {
+                            "trial_number": 1,
+                            "score": 0.2
+                        }
+                    ],
+                    "question_scores": [
+                        {
+                            "question": {
+                                "id": 17030,
+                                "author": "Howard Spindel",
+                                "text": "I've a tree in my yard in a plight;\nAll its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                                "question": "What is the plight of the tree in my yard?",
+                                "answer": "All its leaves are diseased",
+                                "alternate_answers": [
+                                    "The tree in the yard has diseased leaves and peeling bark, which is a sight."
+                                ],
+                                "token_count": 48,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 87737,
+                                "author": "Joanna Keene",
+                                "text": "Joey fingered Big Lou as the one\nWho shot Johnny six times with his gun.\nSnitched him out: \"Louie did it;\nThe goon never hid it.\"\nNow Joey lives life on the run.",
+                                "question": "Who did Joey finger for shooting Johnny?",
+                                "answer": "Big Lou",
+                                "alternate_answers": null,
+                                "token_count": 45,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 54553,
+                                "author": "Richard English",
+                                "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",
+                                "question": "What is sought by the English top brass?",
+                                "answer": "Cranberry glass",
+                                "alternate_answers": null,
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 98591,
+                                "author": "Chris J. Strolin",
+                                "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+                                "question": "Who do they blame in the blamestorming session after someone dies?",
+                                "answer": "Jaun",
+                                "alternate_answers": [
+                                    "Based on the limericks, it seems the person they blame in the blamestorming session after someone dies is often a scapegoat or someone undeserving of the blame. \n\nFor example, one limerick mentions:\n\n\"Someone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.\"\n\nThis suggests that in the blamestorming session, they unfairly blame an innocent person, like the janitor's helper Juan, rather than finding the true cause of the death."
+                                ],
+                                "token_count": 39,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 84044,
+                                "author": "SheilaB",
+                                "text": "Uncle Wayne always gives me a pain.\nHis ideas are vain and inane.\nHe's both asinine (fatuous)\nAnd a gas bag who's flatuous.\nI treat the old fool with disdain.",
+                                "question": "What is wrong with Uncle Wayne's ideas?",
+                                "answer": "Uncle Wayne's ideas are vain and inane.",
+                                "alternate_answers": [
+                                    "Uncle Wayne's ideas are considered vain and inane,\nHe's both asinine and flatuous, causing disdain.",
+                                    "Based on the limerick, there are a few things wrong with Uncle Wayne's ideas:\n\n1. They are described as \"vain and inane\" - meaning they are empty, worthless, and foolish.\n\n2. He is characterized as being \"asinine\" - which means stupid or foolish. \n\n3. He is also described as being a \"gas bag\" who is \"flatuous\" - implying his ideas are full of hot air and empty rhetoric.\n\n4. The narrator treats Uncle Wayne with \"disdain\" - showing a strong dislike and lack of respect for his ideas.\n\nOverall, the limerick portrays Uncle Wayne's ideas as being foolish, stupid, and unworthy of serious consideration. The narrator clearly has a very negative view of his uncle's thought processes and opinions."
+                                ],
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 22440,
+                    "score": 0.2,
+                    "trial_scores": [
+                        {
+                            "trial_number": 0,
+                            "score": 0.2
+                        },
+                        {
+                            "trial_number": 1,
+                            "score": 0.2
+                        }
+                    ],
+                    "question_scores": [
+                        {
+                            "question": {
+                                "id": 17030,
+                                "author": "Howard Spindel",
+                                "text": "I've a tree in my yard in a plight;\nAll its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                                "question": "What is the plight of the tree in my yard?",
+                                "answer": "All its leaves are diseased",
+                                "alternate_answers": [
+                                    "The tree in the yard has diseased leaves and peeling bark, which is a sight."
+                                ],
+                                "token_count": 48,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 87737,
+                                "author": "Joanna Keene",
+                                "text": "Joey fingered Big Lou as the one\nWho shot Johnny six times with his gun.\nSnitched him out: \"Louie did it;\nThe goon never hid it.\"\nNow Joey lives life on the run.",
+                                "question": "Who did Joey finger for shooting Johnny?",
+                                "answer": "Big Lou",
+                                "alternate_answers": null,
+                                "token_count": 45,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 54553,
+                                "author": "Richard English",
+                                "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",
+                                "question": "What is sought by the English top brass?",
+                                "answer": "Cranberry glass",
+                                "alternate_answers": null,
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 98591,
+                                "author": "Chris J. Strolin",
+                                "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+                                "question": "Who do they blame in the blamestorming session after someone dies?",
+                                "answer": "Jaun",
+                                "alternate_answers": [
+                                    "Based on the limericks, it seems the person they blame in the blamestorming session after someone dies is often a scapegoat or someone undeserving of the blame. \n\nFor example, one limerick mentions:\n\n\"Someone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.\"\n\nThis suggests that in the blamestorming session, they unfairly blame an innocent person, like the janitor's helper Juan, rather than finding the true cause of the death."
+                                ],
+                                "token_count": 39,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 84044,
+                                "author": "SheilaB",
+                                "text": "Uncle Wayne always gives me a pain.\nHis ideas are vain and inane.\nHe's both asinine (fatuous)\nAnd a gas bag who's flatuous.\nI treat the old fool with disdain.",
+                                "question": "What is wrong with Uncle Wayne's ideas?",
+                                "answer": "Uncle Wayne's ideas are vain and inane.",
+                                "alternate_answers": [
+                                    "Uncle Wayne's ideas are considered vain and inane,\nHe's both asinine and flatuous, causing disdain.",
+                                    "Based on the limerick, there are a few things wrong with Uncle Wayne's ideas:\n\n1. They are described as \"vain and inane\" - meaning they are empty, worthless, and foolish.\n\n2. He is characterized as being \"asinine\" - which means stupid or foolish. \n\n3. He is also described as being a \"gas bag\" who is \"flatuous\" - implying his ideas are full of hot air and empty rhetoric.\n\n4. The narrator treats Uncle Wayne with \"disdain\" - showing a strong dislike and lack of respect for his ideas.\n\nOverall, the limerick portrays Uncle Wayne's ideas as being foolish, stupid, and unworthy of serious consideration. The narrator clearly has a very negative view of his uncle's thought processes and opinions."
+                                ],
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 33110,
+                    "score": 0.3,
+                    "trial_scores": [
+                        {
+                            "trial_number": 0,
+                            "score": 0.4
+                        },
+                        {
+                            "trial_number": 1,
+                            "score": 0.2
+                        }
+                    ],
+                    "question_scores": [
+                        {
+                            "question": {
+                                "id": 17030,
+                                "author": "Howard Spindel",
+                                "text": "I've a tree in my yard in a plight;\nAll its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                                "question": "What is the plight of the tree in my yard?",
+                                "answer": "All its leaves are diseased",
+                                "alternate_answers": [
+                                    "The tree in the yard has diseased leaves and peeling bark, which is a sight."
+                                ],
+                                "token_count": 48,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.5
+                        },
+                        {
+                            "question": {
+                                "id": 87737,
+                                "author": "Joanna Keene",
+                                "text": "Joey fingered Big Lou as the one\nWho shot Johnny six times with his gun.\nSnitched him out: \"Louie did it;\nThe goon never hid it.\"\nNow Joey lives life on the run.",
+                                "question": "Who did Joey finger for shooting Johnny?",
+                                "answer": "Big Lou",
+                                "alternate_answers": null,
+                                "token_count": 45,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 54553,
+                                "author": "Richard English",
+                                "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",
+                                "question": "What is sought by the English top brass?",
+                                "answer": "Cranberry glass",
+                                "alternate_answers": null,
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 98591,
+                                "author": "Chris J. Strolin",
+                                "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+                                "question": "Who do they blame in the blamestorming session after someone dies?",
+                                "answer": "Jaun",
+                                "alternate_answers": [
+                                    "Based on the limericks, it seems the person they blame in the blamestorming session after someone dies is often a scapegoat or someone undeserving of the blame. \n\nFor example, one limerick mentions:\n\n\"Someone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.\"\n\nThis suggests that in the blamestorming session, they unfairly blame an innocent person, like the janitor's helper Juan, rather than finding the true cause of the death."
+                                ],
+                                "token_count": 39,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 84044,
+                                "author": "SheilaB",
+                                "text": "Uncle Wayne always gives me a pain.\nHis ideas are vain and inane.\nHe's both asinine (fatuous)\nAnd a gas bag who's flatuous.\nI treat the old fool with disdain.",
+                                "question": "What is wrong with Uncle Wayne's ideas?",
+                                "answer": "Uncle Wayne's ideas are vain and inane.",
+                                "alternate_answers": [
+                                    "Uncle Wayne's ideas are considered vain and inane,\nHe's both asinine and flatuous, causing disdain.",
+                                    "Based on the limerick, there are a few things wrong with Uncle Wayne's ideas:\n\n1. They are described as \"vain and inane\" - meaning they are empty, worthless, and foolish.\n\n2. He is characterized as being \"asinine\" - which means stupid or foolish. \n\n3. He is also described as being a \"gas bag\" who is \"flatuous\" - implying his ideas are full of hot air and empty rhetoric.\n\n4. The narrator treats Uncle Wayne with \"disdain\" - showing a strong dislike and lack of respect for his ideas.\n\nOverall, the limerick portrays Uncle Wayne's ideas as being foolish, stupid, and unworthy of serious consideration. The narrator clearly has a very negative view of his uncle's thought processes and opinions."
+                                ],
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 43780,
+                    "score": 0.2,
+                    "trial_scores": [
+                        {
+                            "trial_number": 0,
+                            "score": 0.2
+                        },
+                        {
+                            "trial_number": 1,
+                            "score": 0.2
+                        }
+                    ],
+                    "question_scores": [
+                        {
+                            "question": {
+                                "id": 17030,
+                                "author": "Howard Spindel",
+                                "text": "I've a tree in my yard in a plight;\nAll its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                                "question": "What is the plight of the tree in my yard?",
+                                "answer": "All its leaves are diseased",
+                                "alternate_answers": [
+                                    "The tree in the yard has diseased leaves and peeling bark, which is a sight."
+                                ],
+                                "token_count": 48,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 87737,
+                                "author": "Joanna Keene",
+                                "text": "Joey fingered Big Lou as the one\nWho shot Johnny six times with his gun.\nSnitched him out: \"Louie did it;\nThe goon never hid it.\"\nNow Joey lives life on the run.",
+                                "question": "Who did Joey finger for shooting Johnny?",
+                                "answer": "Big Lou",
+                                "alternate_answers": null,
+                                "token_count": 45,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 54553,
+                                "author": "Richard English",
+                                "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",
+                                "question": "What is sought by the English top brass?",
+                                "answer": "Cranberry glass",
+                                "alternate_answers": null,
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 98591,
+                                "author": "Chris J. Strolin",
+                                "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+                                "question": "Who do they blame in the blamestorming session after someone dies?",
+                                "answer": "Jaun",
+                                "alternate_answers": [
+                                    "Based on the limericks, it seems the person they blame in the blamestorming session after someone dies is often a scapegoat or someone undeserving of the blame. \n\nFor example, one limerick mentions:\n\n\"Someone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.\"\n\nThis suggests that in the blamestorming session, they unfairly blame an innocent person, like the janitor's helper Juan, rather than finding the true cause of the death."
+                                ],
+                                "token_count": 39,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 84044,
+                                "author": "SheilaB",
+                                "text": "Uncle Wayne always gives me a pain.\nHis ideas are vain and inane.\nHe's both asinine (fatuous)\nAnd a gas bag who's flatuous.\nI treat the old fool with disdain.",
+                                "question": "What is wrong with Uncle Wayne's ideas?",
+                                "answer": "Uncle Wayne's ideas are vain and inane.",
+                                "alternate_answers": [
+                                    "Uncle Wayne's ideas are considered vain and inane,\nHe's both asinine and flatuous, causing disdain.",
+                                    "Based on the limerick, there are a few things wrong with Uncle Wayne's ideas:\n\n1. They are described as \"vain and inane\" - meaning they are empty, worthless, and foolish.\n\n2. He is characterized as being \"asinine\" - which means stupid or foolish. \n\n3. He is also described as being a \"gas bag\" who is \"flatuous\" - implying his ideas are full of hot air and empty rhetoric.\n\n4. The narrator treats Uncle Wayne with \"disdain\" - showing a strong dislike and lack of respect for his ideas.\n\nOverall, the limerick portrays Uncle Wayne's ideas as being foolish, stupid, and unworthy of serious consideration. The narrator clearly has a very negative view of his uncle's thought processes and opinions."
+                                ],
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 54450,
+                    "score": 0.2,
+                    "trial_scores": [
+                        {
+                            "trial_number": 0,
+                            "score": 0.2
+                        },
+                        {
+                            "trial_number": 1,
+                            "score": 0.2
+                        }
+                    ],
+                    "question_scores": [
+                        {
+                            "question": {
+                                "id": 17030,
+                                "author": "Howard Spindel",
+                                "text": "I've a tree in my yard in a plight;\nAll its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                                "question": "What is the plight of the tree in my yard?",
+                                "answer": "All its leaves are diseased",
+                                "alternate_answers": [
+                                    "The tree in the yard has diseased leaves and peeling bark, which is a sight."
+                                ],
+                                "token_count": 48,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 87737,
+                                "author": "Joanna Keene",
+                                "text": "Joey fingered Big Lou as the one\nWho shot Johnny six times with his gun.\nSnitched him out: \"Louie did it;\nThe goon never hid it.\"\nNow Joey lives life on the run.",
+                                "question": "Who did Joey finger for shooting Johnny?",
+                                "answer": "Big Lou",
+                                "alternate_answers": null,
+                                "token_count": 45,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 54553,
+                                "author": "Richard English",
+                                "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",
+                                "question": "What is sought by the English top brass?",
+                                "answer": "Cranberry glass",
+                                "alternate_answers": null,
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 98591,
+                                "author": "Chris J. Strolin",
+                                "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+                                "question": "Who do they blame in the blamestorming session after someone dies?",
+                                "answer": "Jaun",
+                                "alternate_answers": [
+                                    "Based on the limericks, it seems the person they blame in the blamestorming session after someone dies is often a scapegoat or someone undeserving of the blame. \n\nFor example, one limerick mentions:\n\n\"Someone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.\"\n\nThis suggests that in the blamestorming session, they unfairly blame an innocent person, like the janitor's helper Juan, rather than finding the true cause of the death."
+                                ],
+                                "token_count": 39,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 84044,
+                                "author": "SheilaB",
+                                "text": "Uncle Wayne always gives me a pain.\nHis ideas are vain and inane.\nHe's both asinine (fatuous)\nAnd a gas bag who's flatuous.\nI treat the old fool with disdain.",
+                                "question": "What is wrong with Uncle Wayne's ideas?",
+                                "answer": "Uncle Wayne's ideas are vain and inane.",
+                                "alternate_answers": [
+                                    "Uncle Wayne's ideas are considered vain and inane,\nHe's both asinine and flatuous, causing disdain.",
+                                    "Based on the limerick, there are a few things wrong with Uncle Wayne's ideas:\n\n1. They are described as \"vain and inane\" - meaning they are empty, worthless, and foolish.\n\n2. He is characterized as being \"asinine\" - which means stupid or foolish. \n\n3. He is also described as being a \"gas bag\" who is \"flatuous\" - implying his ideas are full of hot air and empty rhetoric.\n\n4. The narrator treats Uncle Wayne with \"disdain\" - showing a strong dislike and lack of respect for his ideas.\n\nOverall, the limerick portrays Uncle Wayne's ideas as being foolish, stupid, and unworthy of serious consideration. The narrator clearly has a very negative view of his uncle's thought processes and opinions."
+                                ],
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 65120,
+                    "score": 0.4,
+                    "trial_scores": [
+                        {
+                            "trial_number": 0,
+                            "score": 0.4
+                        },
+                        {
+                            "trial_number": 1,
+                            "score": 0.4
+                        }
+                    ],
+                    "question_scores": [
+                        {
+                            "question": {
+                                "id": 17030,
+                                "author": "Howard Spindel",
+                                "text": "I've a tree in my yard in a plight;\nAll its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                                "question": "What is the plight of the tree in my yard?",
+                                "answer": "All its leaves are diseased",
+                                "alternate_answers": [
+                                    "The tree in the yard has diseased leaves and peeling bark, which is a sight."
+                                ],
+                                "token_count": 48,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 87737,
+                                "author": "Joanna Keene",
+                                "text": "Joey fingered Big Lou as the one\nWho shot Johnny six times with his gun.\nSnitched him out: \"Louie did it;\nThe goon never hid it.\"\nNow Joey lives life on the run.",
+                                "question": "Who did Joey finger for shooting Johnny?",
+                                "answer": "Big Lou",
+                                "alternate_answers": null,
+                                "token_count": 45,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 54553,
+                                "author": "Richard English",
+                                "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",
+                                "question": "What is sought by the English top brass?",
+                                "answer": "Cranberry glass",
+                                "alternate_answers": null,
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 98591,
+                                "author": "Chris J. Strolin",
+                                "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+                                "question": "Who do they blame in the blamestorming session after someone dies?",
+                                "answer": "Jaun",
+                                "alternate_answers": [
+                                    "Based on the limericks, it seems the person they blame in the blamestorming session after someone dies is often a scapegoat or someone undeserving of the blame. \n\nFor example, one limerick mentions:\n\n\"Someone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.\"\n\nThis suggests that in the blamestorming session, they unfairly blame an innocent person, like the janitor's helper Juan, rather than finding the true cause of the death."
+                                ],
+                                "token_count": 39,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 84044,
+                                "author": "SheilaB",
+                                "text": "Uncle Wayne always gives me a pain.\nHis ideas are vain and inane.\nHe's both asinine (fatuous)\nAnd a gas bag who's flatuous.\nI treat the old fool with disdain.",
+                                "question": "What is wrong with Uncle Wayne's ideas?",
+                                "answer": "Uncle Wayne's ideas are vain and inane.",
+                                "alternate_answers": [
+                                    "Uncle Wayne's ideas are considered vain and inane,\nHe's both asinine and flatuous, causing disdain.",
+                                    "Based on the limerick, there are a few things wrong with Uncle Wayne's ideas:\n\n1. They are described as \"vain and inane\" - meaning they are empty, worthless, and foolish.\n\n2. He is characterized as being \"asinine\" - which means stupid or foolish. \n\n3. He is also described as being a \"gas bag\" who is \"flatuous\" - implying his ideas are full of hot air and empty rhetoric.\n\n4. The narrator treats Uncle Wayne with \"disdain\" - showing a strong dislike and lack of respect for his ideas.\n\nOverall, the limerick portrays Uncle Wayne's ideas as being foolish, stupid, and unworthy of serious consideration. The narrator clearly has a very negative view of his uncle's thought processes and opinions."
+                                ],
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 75790,
+                    "score": 0.5,
+                    "trial_scores": [
+                        {
+                            "trial_number": 0,
+                            "score": 0.4
+                        },
+                        {
+                            "trial_number": 1,
+                            "score": 0.6
+                        }
+                    ],
+                    "question_scores": [
+                        {
+                            "question": {
+                                "id": 17030,
+                                "author": "Howard Spindel",
+                                "text": "I've a tree in my yard in a plight;\nAll its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                                "question": "What is the plight of the tree in my yard?",
+                                "answer": "All its leaves are diseased",
+                                "alternate_answers": [
+                                    "The tree in the yard has diseased leaves and peeling bark, which is a sight."
+                                ],
+                                "token_count": 48,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 87737,
+                                "author": "Joanna Keene",
+                                "text": "Joey fingered Big Lou as the one\nWho shot Johnny six times with his gun.\nSnitched him out: \"Louie did it;\nThe goon never hid it.\"\nNow Joey lives life on the run.",
+                                "question": "Who did Joey finger for shooting Johnny?",
+                                "answer": "Big Lou",
+                                "alternate_answers": null,
+                                "token_count": 45,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 54553,
+                                "author": "Richard English",
+                                "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",
+                                "question": "What is sought by the English top brass?",
+                                "answer": "Cranberry glass",
+                                "alternate_answers": null,
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 98591,
+                                "author": "Chris J. Strolin",
+                                "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+                                "question": "Who do they blame in the blamestorming session after someone dies?",
+                                "answer": "Jaun",
+                                "alternate_answers": [
+                                    "Based on the limericks, it seems the person they blame in the blamestorming session after someone dies is often a scapegoat or someone undeserving of the blame. \n\nFor example, one limerick mentions:\n\n\"Someone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.\"\n\nThis suggests that in the blamestorming session, they unfairly blame an innocent person, like the janitor's helper Juan, rather than finding the true cause of the death."
+                                ],
+                                "token_count": 39,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.5
+                        },
+                        {
+                            "question": {
+                                "id": 84044,
+                                "author": "SheilaB",
+                                "text": "Uncle Wayne always gives me a pain.\nHis ideas are vain and inane.\nHe's both asinine (fatuous)\nAnd a gas bag who's flatuous.\nI treat the old fool with disdain.",
+                                "question": "What is wrong with Uncle Wayne's ideas?",
+                                "answer": "Uncle Wayne's ideas are vain and inane.",
+                                "alternate_answers": [
+                                    "Uncle Wayne's ideas are considered vain and inane,\nHe's both asinine and flatuous, causing disdain.",
+                                    "Based on the limerick, there are a few things wrong with Uncle Wayne's ideas:\n\n1. They are described as \"vain and inane\" - meaning they are empty, worthless, and foolish.\n\n2. He is characterized as being \"asinine\" - which means stupid or foolish. \n\n3. He is also described as being a \"gas bag\" who is \"flatuous\" - implying his ideas are full of hot air and empty rhetoric.\n\n4. The narrator treats Uncle Wayne with \"disdain\" - showing a strong dislike and lack of respect for his ideas.\n\nOverall, the limerick portrays Uncle Wayne's ideas as being foolish, stupid, and unworthy of serious consideration. The narrator clearly has a very negative view of his uncle's thought processes and opinions."
+                                ],
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 86460,
+                    "score": 0.6,
+                    "trial_scores": [
+                        {
+                            "trial_number": 0,
+                            "score": 0.6
+                        },
+                        {
+                            "trial_number": 1,
+                            "score": 0.6
+                        }
+                    ],
+                    "question_scores": [
+                        {
+                            "question": {
+                                "id": 17030,
+                                "author": "Howard Spindel",
+                                "text": "I've a tree in my yard in a plight;\nAll its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                                "question": "What is the plight of the tree in my yard?",
+                                "answer": "All its leaves are diseased",
+                                "alternate_answers": [
+                                    "The tree in the yard has diseased leaves and peeling bark, which is a sight."
+                                ],
+                                "token_count": 48,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 87737,
+                                "author": "Joanna Keene",
+                                "text": "Joey fingered Big Lou as the one\nWho shot Johnny six times with his gun.\nSnitched him out: \"Louie did it;\nThe goon never hid it.\"\nNow Joey lives life on the run.",
+                                "question": "Who did Joey finger for shooting Johnny?",
+                                "answer": "Big Lou",
+                                "alternate_answers": null,
+                                "token_count": 45,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 54553,
+                                "author": "Richard English",
+                                "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",
+                                "question": "What is sought by the English top brass?",
+                                "answer": "Cranberry glass",
+                                "alternate_answers": null,
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 98591,
+                                "author": "Chris J. Strolin",
+                                "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+                                "question": "Who do they blame in the blamestorming session after someone dies?",
+                                "answer": "Jaun",
+                                "alternate_answers": [
+                                    "Based on the limericks, it seems the person they blame in the blamestorming session after someone dies is often a scapegoat or someone undeserving of the blame. \n\nFor example, one limerick mentions:\n\n\"Someone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.\"\n\nThis suggests that in the blamestorming session, they unfairly blame an innocent person, like the janitor's helper Juan, rather than finding the true cause of the death."
+                                ],
+                                "token_count": 39,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 84044,
+                                "author": "SheilaB",
+                                "text": "Uncle Wayne always gives me a pain.\nHis ideas are vain and inane.\nHe's both asinine (fatuous)\nAnd a gas bag who's flatuous.\nI treat the old fool with disdain.",
+                                "question": "What is wrong with Uncle Wayne's ideas?",
+                                "answer": "Uncle Wayne's ideas are vain and inane.",
+                                "alternate_answers": [
+                                    "Uncle Wayne's ideas are considered vain and inane,\nHe's both asinine and flatuous, causing disdain.",
+                                    "Based on the limerick, there are a few things wrong with Uncle Wayne's ideas:\n\n1. They are described as \"vain and inane\" - meaning they are empty, worthless, and foolish.\n\n2. He is characterized as being \"asinine\" - which means stupid or foolish. \n\n3. He is also described as being a \"gas bag\" who is \"flatuous\" - implying his ideas are full of hot air and empty rhetoric.\n\n4. The narrator treats Uncle Wayne with \"disdain\" - showing a strong dislike and lack of respect for his ideas.\n\nOverall, the limerick portrays Uncle Wayne's ideas as being foolish, stupid, and unworthy of serious consideration. The narrator clearly has a very negative view of his uncle's thought processes and opinions."
+                                ],
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 107800,
+                    "score": 0.6,
+                    "trial_scores": [
+                        {
+                            "trial_number": 0,
+                            "score": 0.6
+                        },
+                        {
+                            "trial_number": 1,
+                            "score": 0.6
+                        }
+                    ],
+                    "question_scores": [
+                        {
+                            "question": {
+                                "id": 17030,
+                                "author": "Howard Spindel",
+                                "text": "I've a tree in my yard in a plight;\nAll its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                                "question": "What is the plight of the tree in my yard?",
+                                "answer": "All its leaves are diseased",
+                                "alternate_answers": [
+                                    "The tree in the yard has diseased leaves and peeling bark, which is a sight."
+                                ],
+                                "token_count": 48,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 87737,
+                                "author": "Joanna Keene",
+                                "text": "Joey fingered Big Lou as the one\nWho shot Johnny six times with his gun.\nSnitched him out: \"Louie did it;\nThe goon never hid it.\"\nNow Joey lives life on the run.",
+                                "question": "Who did Joey finger for shooting Johnny?",
+                                "answer": "Big Lou",
+                                "alternate_answers": null,
+                                "token_count": 45,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 54553,
+                                "author": "Richard English",
+                                "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",
+                                "question": "What is sought by the English top brass?",
+                                "answer": "Cranberry glass",
+                                "alternate_answers": null,
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 98591,
+                                "author": "Chris J. Strolin",
+                                "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+                                "question": "Who do they blame in the blamestorming session after someone dies?",
+                                "answer": "Jaun",
+                                "alternate_answers": [
+                                    "Based on the limericks, it seems the person they blame in the blamestorming session after someone dies is often a scapegoat or someone undeserving of the blame. \n\nFor example, one limerick mentions:\n\n\"Someone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.\"\n\nThis suggests that in the blamestorming session, they unfairly blame an innocent person, like the janitor's helper Juan, rather than finding the true cause of the death."
+                                ],
+                                "token_count": 39,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 84044,
+                                "author": "SheilaB",
+                                "text": "Uncle Wayne always gives me a pain.\nHis ideas are vain and inane.\nHe's both asinine (fatuous)\nAnd a gas bag who's flatuous.\nI treat the old fool with disdain.",
+                                "question": "What is wrong with Uncle Wayne's ideas?",
+                                "answer": "Uncle Wayne's ideas are vain and inane.",
+                                "alternate_answers": [
+                                    "Uncle Wayne's ideas are considered vain and inane,\nHe's both asinine and flatuous, causing disdain.",
+                                    "Based on the limerick, there are a few things wrong with Uncle Wayne's ideas:\n\n1. They are described as \"vain and inane\" - meaning they are empty, worthless, and foolish.\n\n2. He is characterized as being \"asinine\" - which means stupid or foolish. \n\n3. He is also described as being a \"gas bag\" who is \"flatuous\" - implying his ideas are full of hot air and empty rhetoric.\n\n4. The narrator treats Uncle Wayne with \"disdain\" - showing a strong dislike and lack of respect for his ideas.\n\nOverall, the limerick portrays Uncle Wayne's ideas as being foolish, stupid, and unworthy of serious consideration. The narrator clearly has a very negative view of his uncle's thought processes and opinions."
+                                ],
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        }
+                    ]
+                }
+            ],
+            "number_of_trials_per_location": 10
+        },
+        {
+            "model_name": "claude-3-sonnet-20240229",
+            "date_string": "2024-05-09-13-37-59",
+            "repeat_question_limerick_count": 1,
+            "limerick_count_in_prompt": 2543,
+            "location_scores": [
+                {
+                    "location_token_position": 1100,
+                    "score": 0.8,
+                    "trial_scores": [
+                        {
+                            "trial_number": 0,
+                            "score": 0.8
+                        },
+                        {
+                            "trial_number": 1,
+                            "score": 0.8
+                        }
+                    ],
+                    "question_scores": [
+                        {
+                            "question": {
+                                "id": 17030,
+                                "author": "Howard Spindel",
+                                "text": "I've a tree in my yard in a plight;\nAll its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                                "question": "What is the plight of the tree in my yard?",
+                                "answer": "All its leaves are diseased",
+                                "alternate_answers": [
+                                    "The tree in the yard has diseased leaves and peeling bark, which is a sight."
+                                ],
+                                "token_count": 48,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 87737,
+                                "author": "Joanna Keene",
+                                "text": "Joey fingered Big Lou as the one\nWho shot Johnny six times with his gun.\nSnitched him out: \"Louie did it;\nThe goon never hid it.\"\nNow Joey lives life on the run.",
+                                "question": "Who did Joey finger for shooting Johnny?",
+                                "answer": "Big Lou",
+                                "alternate_answers": null,
+                                "token_count": 45,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 54553,
+                                "author": "Richard English",
+                                "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",
+                                "question": "What is sought by the English top brass?",
+                                "answer": "Cranberry glass",
+                                "alternate_answers": null,
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 98591,
+                                "author": "Chris J. Strolin",
+                                "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+                                "question": "Who do they blame in the blamestorming session after someone dies?",
+                                "answer": "Jaun",
+                                "alternate_answers": [
+                                    "Based on the limericks, it seems the person they blame in the blamestorming session after someone dies is often a scapegoat or someone undeserving of the blame. \n\nFor example, one limerick mentions:\n\n\"Someone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.\"\n\nThis suggests that in the blamestorming session, they unfairly blame an innocent person, like the janitor's helper Juan, rather than finding the true cause of the death."
+                                ],
+                                "token_count": 39,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 84044,
+                                "author": "SheilaB",
+                                "text": "Uncle Wayne always gives me a pain.\nHis ideas are vain and inane.\nHe's both asinine (fatuous)\nAnd a gas bag who's flatuous.\nI treat the old fool with disdain.",
+                                "question": "What is wrong with Uncle Wayne's ideas?",
+                                "answer": "Uncle Wayne's ideas are vain and inane.",
+                                "alternate_answers": [
+                                    "Uncle Wayne's ideas are considered vain and inane,\nHe's both asinine and flatuous, causing disdain.",
+                                    "Based on the limerick, there are a few things wrong with Uncle Wayne's ideas:\n\n1. They are described as \"vain and inane\" - meaning they are empty, worthless, and foolish.\n\n2. He is characterized as being \"asinine\" - which means stupid or foolish. \n\n3. He is also described as being a \"gas bag\" who is \"flatuous\" - implying his ideas are full of hot air and empty rhetoric.\n\n4. The narrator treats Uncle Wayne with \"disdain\" - showing a strong dislike and lack of respect for his ideas.\n\nOverall, the limerick portrays Uncle Wayne's ideas as being foolish, stupid, and unworthy of serious consideration. The narrator clearly has a very negative view of his uncle's thought processes and opinions."
+                                ],
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 11770,
+                    "score": 0.4,
+                    "trial_scores": [
+                        {
+                            "trial_number": 0,
+                            "score": 0.4
+                        },
+                        {
+                            "trial_number": 1,
+                            "score": 0.4
+                        }
+                    ],
+                    "question_scores": [
+                        {
+                            "question": {
+                                "id": 17030,
+                                "author": "Howard Spindel",
+                                "text": "I've a tree in my yard in a plight;\nAll its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                                "question": "What is the plight of the tree in my yard?",
+                                "answer": "All its leaves are diseased",
+                                "alternate_answers": [
+                                    "The tree in the yard has diseased leaves and peeling bark, which is a sight."
+                                ],
+                                "token_count": 48,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 87737,
+                                "author": "Joanna Keene",
+                                "text": "Joey fingered Big Lou as the one\nWho shot Johnny six times with his gun.\nSnitched him out: \"Louie did it;\nThe goon never hid it.\"\nNow Joey lives life on the run.",
+                                "question": "Who did Joey finger for shooting Johnny?",
+                                "answer": "Big Lou",
+                                "alternate_answers": null,
+                                "token_count": 45,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 54553,
+                                "author": "Richard English",
+                                "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",
+                                "question": "What is sought by the English top brass?",
+                                "answer": "Cranberry glass",
+                                "alternate_answers": null,
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 98591,
+                                "author": "Chris J. Strolin",
+                                "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+                                "question": "Who do they blame in the blamestorming session after someone dies?",
+                                "answer": "Jaun",
+                                "alternate_answers": [
+                                    "Based on the limericks, it seems the person they blame in the blamestorming session after someone dies is often a scapegoat or someone undeserving of the blame. \n\nFor example, one limerick mentions:\n\n\"Someone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.\"\n\nThis suggests that in the blamestorming session, they unfairly blame an innocent person, like the janitor's helper Juan, rather than finding the true cause of the death."
+                                ],
+                                "token_count": 39,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 84044,
+                                "author": "SheilaB",
+                                "text": "Uncle Wayne always gives me a pain.\nHis ideas are vain and inane.\nHe's both asinine (fatuous)\nAnd a gas bag who's flatuous.\nI treat the old fool with disdain.",
+                                "question": "What is wrong with Uncle Wayne's ideas?",
+                                "answer": "Uncle Wayne's ideas are vain and inane.",
+                                "alternate_answers": [
+                                    "Uncle Wayne's ideas are considered vain and inane,\nHe's both asinine and flatuous, causing disdain.",
+                                    "Based on the limerick, there are a few things wrong with Uncle Wayne's ideas:\n\n1. They are described as \"vain and inane\" - meaning they are empty, worthless, and foolish.\n\n2. He is characterized as being \"asinine\" - which means stupid or foolish. \n\n3. He is also described as being a \"gas bag\" who is \"flatuous\" - implying his ideas are full of hot air and empty rhetoric.\n\n4. The narrator treats Uncle Wayne with \"disdain\" - showing a strong dislike and lack of respect for his ideas.\n\nOverall, the limerick portrays Uncle Wayne's ideas as being foolish, stupid, and unworthy of serious consideration. The narrator clearly has a very negative view of his uncle's thought processes and opinions."
+                                ],
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 22440,
+                    "score": 0.2,
+                    "trial_scores": [
+                        {
+                            "trial_number": 0,
+                            "score": 0.2
+                        },
+                        {
+                            "trial_number": 1,
+                            "score": 0.2
+                        }
+                    ],
+                    "question_scores": [
+                        {
+                            "question": {
+                                "id": 17030,
+                                "author": "Howard Spindel",
+                                "text": "I've a tree in my yard in a plight;\nAll its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                                "question": "What is the plight of the tree in my yard?",
+                                "answer": "All its leaves are diseased",
+                                "alternate_answers": [
+                                    "The tree in the yard has diseased leaves and peeling bark, which is a sight."
+                                ],
+                                "token_count": 48,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 87737,
+                                "author": "Joanna Keene",
+                                "text": "Joey fingered Big Lou as the one\nWho shot Johnny six times with his gun.\nSnitched him out: \"Louie did it;\nThe goon never hid it.\"\nNow Joey lives life on the run.",
+                                "question": "Who did Joey finger for shooting Johnny?",
+                                "answer": "Big Lou",
+                                "alternate_answers": null,
+                                "token_count": 45,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 54553,
+                                "author": "Richard English",
+                                "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",
+                                "question": "What is sought by the English top brass?",
+                                "answer": "Cranberry glass",
+                                "alternate_answers": null,
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 98591,
+                                "author": "Chris J. Strolin",
+                                "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+                                "question": "Who do they blame in the blamestorming session after someone dies?",
+                                "answer": "Jaun",
+                                "alternate_answers": [
+                                    "Based on the limericks, it seems the person they blame in the blamestorming session after someone dies is often a scapegoat or someone undeserving of the blame. \n\nFor example, one limerick mentions:\n\n\"Someone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.\"\n\nThis suggests that in the blamestorming session, they unfairly blame an innocent person, like the janitor's helper Juan, rather than finding the true cause of the death."
+                                ],
+                                "token_count": 39,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 84044,
+                                "author": "SheilaB",
+                                "text": "Uncle Wayne always gives me a pain.\nHis ideas are vain and inane.\nHe's both asinine (fatuous)\nAnd a gas bag who's flatuous.\nI treat the old fool with disdain.",
+                                "question": "What is wrong with Uncle Wayne's ideas?",
+                                "answer": "Uncle Wayne's ideas are vain and inane.",
+                                "alternate_answers": [
+                                    "Uncle Wayne's ideas are considered vain and inane,\nHe's both asinine and flatuous, causing disdain.",
+                                    "Based on the limerick, there are a few things wrong with Uncle Wayne's ideas:\n\n1. They are described as \"vain and inane\" - meaning they are empty, worthless, and foolish.\n\n2. He is characterized as being \"asinine\" - which means stupid or foolish. \n\n3. He is also described as being a \"gas bag\" who is \"flatuous\" - implying his ideas are full of hot air and empty rhetoric.\n\n4. The narrator treats Uncle Wayne with \"disdain\" - showing a strong dislike and lack of respect for his ideas.\n\nOverall, the limerick portrays Uncle Wayne's ideas as being foolish, stupid, and unworthy of serious consideration. The narrator clearly has a very negative view of his uncle's thought processes and opinions."
+                                ],
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 33110,
+                    "score": 0.2,
+                    "trial_scores": [
+                        {
+                            "trial_number": 0,
+                            "score": 0.2
+                        },
+                        {
+                            "trial_number": 1,
+                            "score": 0.2
+                        }
+                    ],
+                    "question_scores": [
+                        {
+                            "question": {
+                                "id": 17030,
+                                "author": "Howard Spindel",
+                                "text": "I've a tree in my yard in a plight;\nAll its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                                "question": "What is the plight of the tree in my yard?",
+                                "answer": "All its leaves are diseased",
+                                "alternate_answers": [
+                                    "The tree in the yard has diseased leaves and peeling bark, which is a sight."
+                                ],
+                                "token_count": 48,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 87737,
+                                "author": "Joanna Keene",
+                                "text": "Joey fingered Big Lou as the one\nWho shot Johnny six times with his gun.\nSnitched him out: \"Louie did it;\nThe goon never hid it.\"\nNow Joey lives life on the run.",
+                                "question": "Who did Joey finger for shooting Johnny?",
+                                "answer": "Big Lou",
+                                "alternate_answers": null,
+                                "token_count": 45,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 54553,
+                                "author": "Richard English",
+                                "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",
+                                "question": "What is sought by the English top brass?",
+                                "answer": "Cranberry glass",
+                                "alternate_answers": null,
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 98591,
+                                "author": "Chris J. Strolin",
+                                "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+                                "question": "Who do they blame in the blamestorming session after someone dies?",
+                                "answer": "Jaun",
+                                "alternate_answers": [
+                                    "Based on the limericks, it seems the person they blame in the blamestorming session after someone dies is often a scapegoat or someone undeserving of the blame. \n\nFor example, one limerick mentions:\n\n\"Someone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.\"\n\nThis suggests that in the blamestorming session, they unfairly blame an innocent person, like the janitor's helper Juan, rather than finding the true cause of the death."
+                                ],
+                                "token_count": 39,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 84044,
+                                "author": "SheilaB",
+                                "text": "Uncle Wayne always gives me a pain.\nHis ideas are vain and inane.\nHe's both asinine (fatuous)\nAnd a gas bag who's flatuous.\nI treat the old fool with disdain.",
+                                "question": "What is wrong with Uncle Wayne's ideas?",
+                                "answer": "Uncle Wayne's ideas are vain and inane.",
+                                "alternate_answers": [
+                                    "Uncle Wayne's ideas are considered vain and inane,\nHe's both asinine and flatuous, causing disdain.",
+                                    "Based on the limerick, there are a few things wrong with Uncle Wayne's ideas:\n\n1. They are described as \"vain and inane\" - meaning they are empty, worthless, and foolish.\n\n2. He is characterized as being \"asinine\" - which means stupid or foolish. \n\n3. He is also described as being a \"gas bag\" who is \"flatuous\" - implying his ideas are full of hot air and empty rhetoric.\n\n4. The narrator treats Uncle Wayne with \"disdain\" - showing a strong dislike and lack of respect for his ideas.\n\nOverall, the limerick portrays Uncle Wayne's ideas as being foolish, stupid, and unworthy of serious consideration. The narrator clearly has a very negative view of his uncle's thought processes and opinions."
+                                ],
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 43780,
+                    "score": 0.4,
+                    "trial_scores": [
+                        {
+                            "trial_number": 0,
+                            "score": 0.4
+                        },
+                        {
+                            "trial_number": 1,
+                            "score": 0.4
+                        }
+                    ],
+                    "question_scores": [
+                        {
+                            "question": {
+                                "id": 17030,
+                                "author": "Howard Spindel",
+                                "text": "I've a tree in my yard in a plight;\nAll its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                                "question": "What is the plight of the tree in my yard?",
+                                "answer": "All its leaves are diseased",
+                                "alternate_answers": [
+                                    "The tree in the yard has diseased leaves and peeling bark, which is a sight."
+                                ],
+                                "token_count": 48,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 87737,
+                                "author": "Joanna Keene",
+                                "text": "Joey fingered Big Lou as the one\nWho shot Johnny six times with his gun.\nSnitched him out: \"Louie did it;\nThe goon never hid it.\"\nNow Joey lives life on the run.",
+                                "question": "Who did Joey finger for shooting Johnny?",
+                                "answer": "Big Lou",
+                                "alternate_answers": null,
+                                "token_count": 45,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 54553,
+                                "author": "Richard English",
+                                "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",
+                                "question": "What is sought by the English top brass?",
+                                "answer": "Cranberry glass",
+                                "alternate_answers": null,
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 98591,
+                                "author": "Chris J. Strolin",
+                                "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+                                "question": "Who do they blame in the blamestorming session after someone dies?",
+                                "answer": "Jaun",
+                                "alternate_answers": [
+                                    "Based on the limericks, it seems the person they blame in the blamestorming session after someone dies is often a scapegoat or someone undeserving of the blame. \n\nFor example, one limerick mentions:\n\n\"Someone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.\"\n\nThis suggests that in the blamestorming session, they unfairly blame an innocent person, like the janitor's helper Juan, rather than finding the true cause of the death."
+                                ],
+                                "token_count": 39,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 84044,
+                                "author": "SheilaB",
+                                "text": "Uncle Wayne always gives me a pain.\nHis ideas are vain and inane.\nHe's both asinine (fatuous)\nAnd a gas bag who's flatuous.\nI treat the old fool with disdain.",
+                                "question": "What is wrong with Uncle Wayne's ideas?",
+                                "answer": "Uncle Wayne's ideas are vain and inane.",
+                                "alternate_answers": [
+                                    "Uncle Wayne's ideas are considered vain and inane,\nHe's both asinine and flatuous, causing disdain.",
+                                    "Based on the limerick, there are a few things wrong with Uncle Wayne's ideas:\n\n1. They are described as \"vain and inane\" - meaning they are empty, worthless, and foolish.\n\n2. He is characterized as being \"asinine\" - which means stupid or foolish. \n\n3. He is also described as being a \"gas bag\" who is \"flatuous\" - implying his ideas are full of hot air and empty rhetoric.\n\n4. The narrator treats Uncle Wayne with \"disdain\" - showing a strong dislike and lack of respect for his ideas.\n\nOverall, the limerick portrays Uncle Wayne's ideas as being foolish, stupid, and unworthy of serious consideration. The narrator clearly has a very negative view of his uncle's thought processes and opinions."
+                                ],
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 54450,
+                    "score": 0.0,
+                    "trial_scores": [
+                        {
+                            "trial_number": 0,
+                            "score": 0.0
+                        },
+                        {
+                            "trial_number": 1,
+                            "score": 0.0
+                        }
+                    ],
+                    "question_scores": [
+                        {
+                            "question": {
+                                "id": 17030,
+                                "author": "Howard Spindel",
+                                "text": "I've a tree in my yard in a plight;\nAll its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                                "question": "What is the plight of the tree in my yard?",
+                                "answer": "All its leaves are diseased",
+                                "alternate_answers": [
+                                    "The tree in the yard has diseased leaves and peeling bark, which is a sight."
+                                ],
+                                "token_count": 48,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 87737,
+                                "author": "Joanna Keene",
+                                "text": "Joey fingered Big Lou as the one\nWho shot Johnny six times with his gun.\nSnitched him out: \"Louie did it;\nThe goon never hid it.\"\nNow Joey lives life on the run.",
+                                "question": "Who did Joey finger for shooting Johnny?",
+                                "answer": "Big Lou",
+                                "alternate_answers": null,
+                                "token_count": 45,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 54553,
+                                "author": "Richard English",
+                                "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",
+                                "question": "What is sought by the English top brass?",
+                                "answer": "Cranberry glass",
+                                "alternate_answers": null,
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 98591,
+                                "author": "Chris J. Strolin",
+                                "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+                                "question": "Who do they blame in the blamestorming session after someone dies?",
+                                "answer": "Jaun",
+                                "alternate_answers": [
+                                    "Based on the limericks, it seems the person they blame in the blamestorming session after someone dies is often a scapegoat or someone undeserving of the blame. \n\nFor example, one limerick mentions:\n\n\"Someone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.\"\n\nThis suggests that in the blamestorming session, they unfairly blame an innocent person, like the janitor's helper Juan, rather than finding the true cause of the death."
+                                ],
+                                "token_count": 39,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 84044,
+                                "author": "SheilaB",
+                                "text": "Uncle Wayne always gives me a pain.\nHis ideas are vain and inane.\nHe's both asinine (fatuous)\nAnd a gas bag who's flatuous.\nI treat the old fool with disdain.",
+                                "question": "What is wrong with Uncle Wayne's ideas?",
+                                "answer": "Uncle Wayne's ideas are vain and inane.",
+                                "alternate_answers": [
+                                    "Uncle Wayne's ideas are considered vain and inane,\nHe's both asinine and flatuous, causing disdain.",
+                                    "Based on the limerick, there are a few things wrong with Uncle Wayne's ideas:\n\n1. They are described as \"vain and inane\" - meaning they are empty, worthless, and foolish.\n\n2. He is characterized as being \"asinine\" - which means stupid or foolish. \n\n3. He is also described as being a \"gas bag\" who is \"flatuous\" - implying his ideas are full of hot air and empty rhetoric.\n\n4. The narrator treats Uncle Wayne with \"disdain\" - showing a strong dislike and lack of respect for his ideas.\n\nOverall, the limerick portrays Uncle Wayne's ideas as being foolish, stupid, and unworthy of serious consideration. The narrator clearly has a very negative view of his uncle's thought processes and opinions."
+                                ],
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 65120,
+                    "score": 0.4,
+                    "trial_scores": [
+                        {
+                            "trial_number": 0,
+                            "score": 0.4
+                        },
+                        {
+                            "trial_number": 1,
+                            "score": 0.4
+                        }
+                    ],
+                    "question_scores": [
+                        {
+                            "question": {
+                                "id": 17030,
+                                "author": "Howard Spindel",
+                                "text": "I've a tree in my yard in a plight;\nAll its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                                "question": "What is the plight of the tree in my yard?",
+                                "answer": "All its leaves are diseased",
+                                "alternate_answers": [
+                                    "The tree in the yard has diseased leaves and peeling bark, which is a sight."
+                                ],
+                                "token_count": 48,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 87737,
+                                "author": "Joanna Keene",
+                                "text": "Joey fingered Big Lou as the one\nWho shot Johnny six times with his gun.\nSnitched him out: \"Louie did it;\nThe goon never hid it.\"\nNow Joey lives life on the run.",
+                                "question": "Who did Joey finger for shooting Johnny?",
+                                "answer": "Big Lou",
+                                "alternate_answers": null,
+                                "token_count": 45,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 54553,
+                                "author": "Richard English",
+                                "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",
+                                "question": "What is sought by the English top brass?",
+                                "answer": "Cranberry glass",
+                                "alternate_answers": null,
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 98591,
+                                "author": "Chris J. Strolin",
+                                "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+                                "question": "Who do they blame in the blamestorming session after someone dies?",
+                                "answer": "Jaun",
+                                "alternate_answers": [
+                                    "Based on the limericks, it seems the person they blame in the blamestorming session after someone dies is often a scapegoat or someone undeserving of the blame. \n\nFor example, one limerick mentions:\n\n\"Someone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.\"\n\nThis suggests that in the blamestorming session, they unfairly blame an innocent person, like the janitor's helper Juan, rather than finding the true cause of the death."
+                                ],
+                                "token_count": 39,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 84044,
+                                "author": "SheilaB",
+                                "text": "Uncle Wayne always gives me a pain.\nHis ideas are vain and inane.\nHe's both asinine (fatuous)\nAnd a gas bag who's flatuous.\nI treat the old fool with disdain.",
+                                "question": "What is wrong with Uncle Wayne's ideas?",
+                                "answer": "Uncle Wayne's ideas are vain and inane.",
+                                "alternate_answers": [
+                                    "Uncle Wayne's ideas are considered vain and inane,\nHe's both asinine and flatuous, causing disdain.",
+                                    "Based on the limerick, there are a few things wrong with Uncle Wayne's ideas:\n\n1. They are described as \"vain and inane\" - meaning they are empty, worthless, and foolish.\n\n2. He is characterized as being \"asinine\" - which means stupid or foolish. \n\n3. He is also described as being a \"gas bag\" who is \"flatuous\" - implying his ideas are full of hot air and empty rhetoric.\n\n4. The narrator treats Uncle Wayne with \"disdain\" - showing a strong dislike and lack of respect for his ideas.\n\nOverall, the limerick portrays Uncle Wayne's ideas as being foolish, stupid, and unworthy of serious consideration. The narrator clearly has a very negative view of his uncle's thought processes and opinions."
+                                ],
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 75790,
+                    "score": 0.8,
+                    "trial_scores": [
+                        {
+                            "trial_number": 0,
+                            "score": 0.8
+                        },
+                        {
+                            "trial_number": 1,
+                            "score": 0.8
+                        }
+                    ],
+                    "question_scores": [
+                        {
+                            "question": {
+                                "id": 17030,
+                                "author": "Howard Spindel",
+                                "text": "I've a tree in my yard in a plight;\nAll its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                                "question": "What is the plight of the tree in my yard?",
+                                "answer": "All its leaves are diseased",
+                                "alternate_answers": [
+                                    "The tree in the yard has diseased leaves and peeling bark, which is a sight."
+                                ],
+                                "token_count": 48,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 87737,
+                                "author": "Joanna Keene",
+                                "text": "Joey fingered Big Lou as the one\nWho shot Johnny six times with his gun.\nSnitched him out: \"Louie did it;\nThe goon never hid it.\"\nNow Joey lives life on the run.",
+                                "question": "Who did Joey finger for shooting Johnny?",
+                                "answer": "Big Lou",
+                                "alternate_answers": null,
+                                "token_count": 45,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 54553,
+                                "author": "Richard English",
+                                "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",
+                                "question": "What is sought by the English top brass?",
+                                "answer": "Cranberry glass",
+                                "alternate_answers": null,
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 98591,
+                                "author": "Chris J. Strolin",
+                                "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+                                "question": "Who do they blame in the blamestorming session after someone dies?",
+                                "answer": "Jaun",
+                                "alternate_answers": [
+                                    "Based on the limericks, it seems the person they blame in the blamestorming session after someone dies is often a scapegoat or someone undeserving of the blame. \n\nFor example, one limerick mentions:\n\n\"Someone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.\"\n\nThis suggests that in the blamestorming session, they unfairly blame an innocent person, like the janitor's helper Juan, rather than finding the true cause of the death."
+                                ],
+                                "token_count": 39,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 84044,
+                                "author": "SheilaB",
+                                "text": "Uncle Wayne always gives me a pain.\nHis ideas are vain and inane.\nHe's both asinine (fatuous)\nAnd a gas bag who's flatuous.\nI treat the old fool with disdain.",
+                                "question": "What is wrong with Uncle Wayne's ideas?",
+                                "answer": "Uncle Wayne's ideas are vain and inane.",
+                                "alternate_answers": [
+                                    "Uncle Wayne's ideas are considered vain and inane,\nHe's both asinine and flatuous, causing disdain.",
+                                    "Based on the limerick, there are a few things wrong with Uncle Wayne's ideas:\n\n1. They are described as \"vain and inane\" - meaning they are empty, worthless, and foolish.\n\n2. He is characterized as being \"asinine\" - which means stupid or foolish. \n\n3. He is also described as being a \"gas bag\" who is \"flatuous\" - implying his ideas are full of hot air and empty rhetoric.\n\n4. The narrator treats Uncle Wayne with \"disdain\" - showing a strong dislike and lack of respect for his ideas.\n\nOverall, the limerick portrays Uncle Wayne's ideas as being foolish, stupid, and unworthy of serious consideration. The narrator clearly has a very negative view of his uncle's thought processes and opinions."
+                                ],
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 86460,
+                    "score": 0.6,
+                    "trial_scores": [
+                        {
+                            "trial_number": 0,
+                            "score": 0.6
+                        },
+                        {
+                            "trial_number": 1,
+                            "score": 0.6
+                        }
+                    ],
+                    "question_scores": [
+                        {
+                            "question": {
+                                "id": 17030,
+                                "author": "Howard Spindel",
+                                "text": "I've a tree in my yard in a plight;\nAll its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                                "question": "What is the plight of the tree in my yard?",
+                                "answer": "All its leaves are diseased",
+                                "alternate_answers": [
+                                    "The tree in the yard has diseased leaves and peeling bark, which is a sight."
+                                ],
+                                "token_count": 48,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 87737,
+                                "author": "Joanna Keene",
+                                "text": "Joey fingered Big Lou as the one\nWho shot Johnny six times with his gun.\nSnitched him out: \"Louie did it;\nThe goon never hid it.\"\nNow Joey lives life on the run.",
+                                "question": "Who did Joey finger for shooting Johnny?",
+                                "answer": "Big Lou",
+                                "alternate_answers": null,
+                                "token_count": 45,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 54553,
+                                "author": "Richard English",
+                                "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",
+                                "question": "What is sought by the English top brass?",
+                                "answer": "Cranberry glass",
+                                "alternate_answers": null,
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 98591,
+                                "author": "Chris J. Strolin",
+                                "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+                                "question": "Who do they blame in the blamestorming session after someone dies?",
+                                "answer": "Jaun",
+                                "alternate_answers": [
+                                    "Based on the limericks, it seems the person they blame in the blamestorming session after someone dies is often a scapegoat or someone undeserving of the blame. \n\nFor example, one limerick mentions:\n\n\"Someone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.\"\n\nThis suggests that in the blamestorming session, they unfairly blame an innocent person, like the janitor's helper Juan, rather than finding the true cause of the death."
+                                ],
+                                "token_count": 39,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 84044,
+                                "author": "SheilaB",
+                                "text": "Uncle Wayne always gives me a pain.\nHis ideas are vain and inane.\nHe's both asinine (fatuous)\nAnd a gas bag who's flatuous.\nI treat the old fool with disdain.",
+                                "question": "What is wrong with Uncle Wayne's ideas?",
+                                "answer": "Uncle Wayne's ideas are vain and inane.",
+                                "alternate_answers": [
+                                    "Uncle Wayne's ideas are considered vain and inane,\nHe's both asinine and flatuous, causing disdain.",
+                                    "Based on the limerick, there are a few things wrong with Uncle Wayne's ideas:\n\n1. They are described as \"vain and inane\" - meaning they are empty, worthless, and foolish.\n\n2. He is characterized as being \"asinine\" - which means stupid or foolish. \n\n3. He is also described as being a \"gas bag\" who is \"flatuous\" - implying his ideas are full of hot air and empty rhetoric.\n\n4. The narrator treats Uncle Wayne with \"disdain\" - showing a strong dislike and lack of respect for his ideas.\n\nOverall, the limerick portrays Uncle Wayne's ideas as being foolish, stupid, and unworthy of serious consideration. The narrator clearly has a very negative view of his uncle's thought processes and opinions."
+                                ],
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        }
+                    ]
+                },
+                {
+                    "location_token_position": 107800,
+                    "score": 0.6,
+                    "trial_scores": [
+                        {
+                            "trial_number": 0,
+                            "score": 0.6
+                        },
+                        {
+                            "trial_number": 1,
+                            "score": 0.6
+                        }
+                    ],
+                    "question_scores": [
+                        {
+                            "question": {
+                                "id": 17030,
+                                "author": "Howard Spindel",
+                                "text": "I've a tree in my yard in a plight;\nAll its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                                "question": "What is the plight of the tree in my yard?",
+                                "answer": "All its leaves are diseased",
+                                "alternate_answers": [
+                                    "The tree in the yard has diseased leaves and peeling bark, which is a sight."
+                                ],
+                                "token_count": 48,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        },
+                        {
+                            "question": {
+                                "id": 87737,
+                                "author": "Joanna Keene",
+                                "text": "Joey fingered Big Lou as the one\nWho shot Johnny six times with his gun.\nSnitched him out: \"Louie did it;\nThe goon never hid it.\"\nNow Joey lives life on the run.",
+                                "question": "Who did Joey finger for shooting Johnny?",
+                                "answer": "Big Lou",
+                                "alternate_answers": null,
+                                "token_count": 45,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 54553,
+                                "author": "Richard English",
+                                "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",
+                                "question": "What is sought by the English top brass?",
+                                "answer": "Cranberry glass",
+                                "alternate_answers": null,
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 98591,
+                                "author": "Chris J. Strolin",
+                                "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+                                "question": "Who do they blame in the blamestorming session after someone dies?",
+                                "answer": "Jaun",
+                                "alternate_answers": [
+                                    "Based on the limericks, it seems the person they blame in the blamestorming session after someone dies is often a scapegoat or someone undeserving of the blame. \n\nFor example, one limerick mentions:\n\n\"Someone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.\"\n\nThis suggests that in the blamestorming session, they unfairly blame an innocent person, like the janitor's helper Juan, rather than finding the true cause of the death."
+                                ],
+                                "token_count": 39,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 1.0
+                        },
+                        {
+                            "question": {
+                                "id": 84044,
+                                "author": "SheilaB",
+                                "text": "Uncle Wayne always gives me a pain.\nHis ideas are vain and inane.\nHe's both asinine (fatuous)\nAnd a gas bag who's flatuous.\nI treat the old fool with disdain.",
+                                "question": "What is wrong with Uncle Wayne's ideas?",
+                                "answer": "Uncle Wayne's ideas are vain and inane.",
+                                "alternate_answers": [
+                                    "Uncle Wayne's ideas are considered vain and inane,\nHe's both asinine and flatuous, causing disdain.",
+                                    "Based on the limerick, there are a few things wrong with Uncle Wayne's ideas:\n\n1. They are described as \"vain and inane\" - meaning they are empty, worthless, and foolish.\n\n2. He is characterized as being \"asinine\" - which means stupid or foolish. \n\n3. He is also described as being a \"gas bag\" who is \"flatuous\" - implying his ideas are full of hot air and empty rhetoric.\n\n4. The narrator treats Uncle Wayne with \"disdain\" - showing a strong dislike and lack of respect for his ideas.\n\nOverall, the limerick portrays Uncle Wayne's ideas as being foolish, stupid, and unworthy of serious consideration. The narrator clearly has a very negative view of his uncle's thought processes and opinions."
+                                ],
+                                "token_count": 43,
+                                "target_location": 0,
+                                "question_vetted": false
+                            },
+                            "score": 0.0
+                        }
+                    ]
+                }
+            ],
+            "number_of_trials_per_location": 10
+        }
+    ]
+}
