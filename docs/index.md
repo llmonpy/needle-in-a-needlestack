@@ -1,13 +1,6 @@
-<p align="center">
-    <figure style="display: inline-block; margin-right: 20px;">
-        <img src="1/gpt-4-110k-1.png" width="35%" alt="GPT-4 Image">
-        <figcaption>Caption for GPT-4 Image</figcaption>
-    </figure>
-    <figure style="display: inline-block;">
-        <img src="1/sonnet-100k-1.png" width="35%" alt="Sonnet Image">
-        <figcaption>Caption for Sonnet Image</figcaption>
-    </figure>
-</p>
+| ![GPT-4 Image](1/gpt-4-110k-1.png "Caption for GPT-4 Image") | ![Sonnet Image](1/sonnet-100k-1.png "Caption for Sonnet Image") |
+|:-----------------------------------------------------------:|:-------------------------------------------------------------:|
+| Caption for GPT-4 Image                                     | Caption for Sonnet Image                                     |
 
 
 gpt & sonnet not good.
