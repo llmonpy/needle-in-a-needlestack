@@ -9,8 +9,14 @@
 
 Needle in a haystack (NIAH) has been a wildly popular test for evaluating how effectively LLMs can pay attention to 
 the content in their context window.  As LLMs have improved NIAH has become too easy.  Needle in a Needlestack (NIAN)
-is a new, more challenging benchmark.  You can see initial results on the [NIAN website](https://nian.llmonpy.ai).
+is a new, more challenging benchmark.  Even GPT-4-turbo struggles with this benchmark:
 
+<p align="center">
+  <img src="docs/1/gpt-4-110-1.png">
+</p>
+<br><br>
+You can see more results on the [NIAN website](https://nian.llmonpy.ai).
+<br><br>
 NIAN creates a list of limericks from a large [database of limericks](https://zenodo.org/records/5722527) and asks a 
 question about a specific limerick that has been placed at a test location. Each test will typically use 5 to 10
 test limericks placed at 5 to 10 locations in the prompt.  Each test is repeated 2-10 times.  It is amazing that an 

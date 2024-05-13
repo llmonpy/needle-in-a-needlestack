@@ -15,9 +15,12 @@ LLM was very good at this benchmark.  Here are GPT-4 Turbo and Claude-3 Sonnet's
   <img src="1/gpt-4o-120-1.png" alt="Wow! GPT-4o is almost perfect">
 </p>
 <p align="center"><em>Wow! GPT-4o is almost perfect</em></p>
-
 <br><br>
-Mistral's new 8x22 model had a really hard time with this benchmark. Even at the beginning of the prompt it could only
+
+###  I wonder when OpenAI will reveal what they did to make GPT-4o so much better than GPT-4 Turbo?
+<br><br>
+Mistral's models are really nice to work with.  Their API is very fast and consistent.
+However, Mistral's new 8x22 model had a really hard time with this benchmark. Even at the beginning of the prompt it could only
 answer the question correctly 50% of the time.  Mistral large did better, but still only got up to 70% correct. *Note: I used OpenAI's tokenizer to estimate token counts.  Mistral uses a different tokenizer that generates about 25% more
 tokens, so the token counts in the graphs are lower than the actual token counts.*
 
@@ -43,6 +46,6 @@ limerick the prompt asks about is repeated 10 times.
 |         limerick used once         |       limerick used 10 times        |   
 
 <br><br>
-You can get the [code for this benchmark here.](https://github.com/llmonpy/needle-in-a-needlestack)  It should be
+The [code for this benchmark is here.](https://github.com/llmonpy/needle-in-a-needlestack)  It should be
 easy to add support for additional models.  You can [read more about how answers are evaluated and questions are
 vetted on the methodology page](methodology.md).  If you have any questions, please [contact me](mailto:public@llmonpy.ai)
