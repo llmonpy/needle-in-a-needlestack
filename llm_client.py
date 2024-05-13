@@ -203,6 +203,7 @@ MISTRAL_8X7B = MistralLlmClient("open-mixtral-8x7b", 24000, MISTRAL_RATE_LIMITER
 MISTRAL_LARGE = MistralLlmClient("mistral-large-latest", 24000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 15000, RateLlmiter(*spread_requests(2500)), OPENAI_EXECUTOR)
 GPT4 = OpenAIModel('gpt-4-turbo-2024-04-09', 16000, RateLlmiter(40, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
+GPT4o = OpenAIModel('gpt-4o', 120000, RateLlmiter(15, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
 ANTHROPIC_OPUS = AnthropicModel("claude-3-opus-20240229", 195000, RateLlmiter(3, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
 ANTHROPIC_SONNET = AnthropicModel("claude-3-sonnet-20240229", 110000, RateLlmiter(3, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
 ANTHROPIC_HAIKU = AnthropicModel("claude-3-haiku-20240307", 15000, RateLlmiter(*spread_requests(1000)), ANTHROPIC_EXECUTOR)

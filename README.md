@@ -140,7 +140,7 @@ provide a question about the limerick and also provide an answer.  It does not p
 It writes the results to questions.json.  You can add the questions you like to full_questions.json.
 
 ### vet
-***vet*** is a tool to test if the LLMs can answer the questions in full_questions.json. It give every LLM in CURRENT_TEST_CONFIG.model_list
+***vet*** is a tool to test if the LLMs can answer the questions in full_questions.json. It gives every LLM in CURRENT_TEST_CONFIG.model_list
 this prompt:
 
 ```

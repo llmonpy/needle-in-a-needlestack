@@ -1,0 +1,284 @@
+{
+    "question_answer_list": [
+        {
+            "question": {
+                "id": 17030,
+                "author": "Howard Spindel",
+                "text": "I've a tree in my yard in a plight;\nAll its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                "question": "What is the plight of the tree in my yard?",
+                "answer": "All its leaves are diseased",
+                "alternate_answers": [
+                    "The tree in the yard has diseased leaves and peeling bark, which is a sight."
+                ],
+                "token_count": 48,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [
+                "The tree in your yard is in a plight because all its leaves are diseased, and its bark is peeling to such a degree that its bark is much worse than its blight.",
+                "The tree in your yard is diseased, with its leaves showing signs of illness, and its bark peeling significantly, making its bark worse than its blight.",
+                "The tree in your yard is suffering from a disease, as indicated by the line: \"All its leaves are diseased \u2014 it's a sight.\" Additionally, the tree's bark is peeling significantly, which is described as: \"And the skin of that tree / Peels to such a degree / That its bark is much worse than its blight.\"",
+                "The tree in your yard is suffering from a disease, as indicated by the limerick:\n\nI've a tree in my yard in a plight;\nAll its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.\n\nThe tree's leaves are diseased, and its bark is peeling significantly.",
+                "The tree in your yard is in a plight because all its leaves are diseased, and the skin of the tree peels to such a degree that its bark is much worse than its blight.",
+                "The plight of the tree in your yard is that all its leaves are diseased, and its bark is peeling to such a degree that its bark is much worse than its blight.",
+                "The tree in your yard is diseased, with its leaves showing signs of severe affliction. The bark is peeling significantly, indicating that the tree's bark is in worse condition than its blight.",
+                "The tree in your yard is diseased, with its leaves showing signs of disease and its bark peeling significantly. The condition of the tree is described as having a bark that is much worse than its blight.",
+                "The tree in your yard is suffering from a disease, as indicated by the line \"All its leaves are diseased \u2014 it's a sight.\" The tree's condition is further described by the line \"And the skin of that tree Peels to such a degree,\" suggesting that the tree's bark is peeling significantly. The limerick concludes with the observation that \"its bark is much worse than its blight,\" implying that while the disease (blight) is serious, the peeling bark is even more problematic.",
+                "The tree in your yard has a disease,\nIts leaves are all sick, if you please.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                "The tree in your yard is diseased, with its leaves showing signs of illness, and its bark peeling off, making the tree's bark worse than its blight.",
+                "The tree in your yard is diseased, with its leaves showing signs of chlorosis (yellowing), and its bark peeling off, indicating that its bark is much worse than its blight.",
+                "The tree in your yard is diseased, with all its leaves affected. The skin of the tree is peeling to such an extent that its bark is much worse than its blight.",
+                "The tree in your yard is diseased, with all its leaves affected. The bark is peeling, making the situation worse than just a blight.",
+                "The tree in your yard is diseased, with its leaves showing signs of illness. The bark is peeling, making the situation worse. In short, the tree's bark is much worse than its blight.",
+                "The tree in your yard is diseased, with its leaves showing signs of distress. Additionally, the bark is peeling, which indicates that the tree's bark is in worse condition than its blight.",
+                "The tree in your yard is diseased, with its leaves affected and its bark peeling, making its bark worse than its blight.",
+                "The tree in your yard is diseased, with its leaves in a terrible state, and its bark peeling off, making its bark worse than its blight.",
+                "The tree in your yard is diseased, with its leaves in a terrible state, and its bark peeling off, making it look worse than its blight.",
+                "The tree in your yard is diseased, with its leaves in a terrible state. The bark is peeling, indicating that the tree's condition is quite severe. The situation is described as \"its bark is much worse than its blight,\" suggesting that while the peeling bark is bad, the underlying disease (blight) is even more problematic."
+            ],
+            "failed_answer_list": [
+                "The tree in your yard is suffering from a disease, as indicated by the limerick:\n\nMy garden's all spotty with cu-\ncumber blight, called mosaic, it's true.\nThis plant-eating virus\nLeaves no one desirous\nOf sampling my veggie fondue.\n\nThe tree is likely affected by a similar plant-eating virus, causing it to be diseased.",
+                "The tree in your yard is suffering from a disease, as indicated by the limerick:\n\n\"My garden's all spotty with cu-\ncumber blight, called mosaic, it's true.\nThis plant-eating virus\nLeaves no one desirous\nOf sampling my veggie fondue.\"\n\nThe tree is afflicted with a plant-eating virus, specifically cucumber mosaic virus, which is causing it to be diseased and spotty.",
+                "The tree in your yard is suffering from a disease, as indicated by the limerick:\n\nMy garden's all spotty with cu-\ncumber blight, called mosaic, it's true.\nThis plant-eating virus\nLeaves no one desirous\nOf sampling my veggie fondue.\n\nThe plight of the tree is that it is diseased, likely with a plant-eating virus similar to the cucumber blight mentioned in the limerick.",
+                "The tree in your yard is suffering from a disease called chlorosis, which causes its leaves to turn yellow. The exact cause of this condition is not specified, but it could be due to issues with light, water, nutrition, or disease, potentially leading to necrosis."
+            ]
+        },
+        {
+            "question": {
+                "id": 92599,
+                "author": "MikeAq",
+                "text": "Mr. Thistle, what's this all about?\nAll our rules you dismiss \u2014 baldly flout.\nI have read your epistle;\nIt made my hairs bristle.\nI'm blowing the whistle \u2014 you're out!",
+                "question": "Does Mr. Thistle follow our rules?",
+                "answer": "No ",
+                "alternate_answers": [
+                    "Mr. Thistle does not follow the rules consistently. He often disregards them without explanation or justification.",
+                    "Based on the limericks provided, the question appears to be about the limerick that mentions \"Mr. Thistle\". The relevant limerick is:\n\n\"Mr. Thistle, what's this all about? \nAll our rules you dismiss \u2014 baldly flout.\nI have read your epistle;\nIt made my hairs bristle.\nI'm blowing the whistle \u2014 you're out!\"\n\nThis limerick suggests that Mr. Thistle does not follow the rules, as the speaker is blowing the whistle on him for dismissing and flouting the rules."
+                ],
+                "token_count": 46,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [
+                "No, Mr. Thistle does not follow the rules.",
+                "No, Mr. Thistle does not follow your rules."
+            ],
+            "failed_answer_list": []
+        },
+        {
+            "question": {
+                "id": 85401,
+                "author": "MikeAq",
+                "text": "To compose a morose epicedium\nCan brighten one's torpor and tedium.\nI myself have an urge\nTo create a sad dirge \u2014\nOne not overly mournful, just medium.",
+                "question": "How can one brighten one's torpor and tedium?",
+                "answer": "Compose a morose epicedium",
+                "alternate_answers": [
+                    "The limerick suggests that composing a morose epicedium (a funeral song or poem) can help brighten one's torpor and tedium. The limerick states:\n\n\"To compose a morose epicedium \nCan brighten one's torpor and tedium.\nI myself have an urge\nTo create a sad dirge \u2014\nOne not overly mournful, just medium.\"\n\nSo the answer is that writing a moderately melancholy funeral poem or song can help alleviate boredom and listlessness, according to the limerick.",
+                    "Compose a morose epicedium.\nCraft a sad dirge, not too mournful,\nJust medium, not scornful,\nTo lift your spirits, a musical medium."
+                ],
+                "token_count": 43,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [
+                "To compose a morose epicedium.",
+                "By composing a morose epicedium.",
+                "Compose an epicedium.",
+                "By composing a slightly mournful epicedium.",
+                "By composing a good epicedium."
+            ],
+            "failed_answer_list": [
+                "By composing a slightly defectious epicedium."
+            ]
+        },
+        {
+            "question": {
+                "id": 54553,
+                "author": "Richard English",
+                "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",
+                "question": "What is sought by the English top brass?",
+                "answer": "Cranberry glass",
+                "alternate_answers": null,
+                "token_count": 43,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [
+                "Cranberry glass.",
+                "The English top brass seek cranberry glass.",
+                "The English top brass seeks cranberry glass.",
+                "The English top brass seek the cranberry glass.",
+                "The English top brass sought cranberry glass.",
+                "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass."
+            ],
+            "failed_answer_list": []
+        },
+        {
+            "question": {
+                "id": 90715,
+                "author": "proof",
+                "text": "Have a car and my clothes without fail\nOutside of this old county jail.\nIt has only one fence,\n Which does not make much sense,\nSo tomorrow I'll scale it and bail.",
+                "question": "what about the county jail does not make much sense?",
+                "answer": "It has only one fence",
+                "alternate_answers": [
+                    "The limerick about the county jail mentions a person who plans to scale the fence to escape the jail, which is not a typical or sensible way to leave a jail.",
+                    "Based on the limerick, the detail that does not make much sense about the county jail is that it \"has only one fence\". The limerick suggests this is odd, implying a typical county jail would have more than one fence to help secure the facility and prevent inmates from escaping."
+                ],
+                "token_count": 38,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [
+                "The county jail has only one fence, which does not make much sense.",
+                "The county jail has only one fence, which seems insufficient for security.",
+                "The county jail has only one fence, which is considered insufficient for security, making it easy to scale and escape.",
+                "The county jail mentioned in the limerick has only one fence, which seems inadequate for a secure facility. This lack of sufficient barriers makes it easier for inmates to escape, as implied by the plan to scale the fence and bail.",
+                "The limerick about the county jail is as follows:\n\nHave a car and my clothes without fail\nOutside of this old county jail.\nIt has only one fence,\n Which does not make much sense,\nSo tomorrow I'll scale it and bail.\n\nThe aspect that \"does not make much sense\" is the fact that the county jail has only one fence. Typically, jails are expected to have multiple layers of security, including more than one fence, to prevent inmates from escaping. The presence of just one fence implies a lack of adequate security, making it easier for inmates to escape by simply scaling the single fence.",
+                "The county jail has only one fence, which the speaker finds nonsensical because it implies that it would be easy to escape.",
+                "The county jail mentioned in the limerick has only one fence, which the speaker finds nonsensical. Typically, jails are expected to have multiple layers of security, including several fences, to prevent inmates from escaping. The presence of just one fence seems inadequate for a facility meant to confine individuals securely.",
+                "The county jail in the limerick has only one fence, which does not make much sense. This implies that the security is inadequate, making it relatively easy for someone to escape by simply scaling the fence.",
+                "The county jail has only one fence, which seems inadequate for a secure facility.",
+                "The county jail in the limerick has only one fence, which the speaker finds nonsensical because it implies that escaping would be relatively easy. The speaker plans to scale the fence and bail, highlighting the perceived inadequacy of the jail's security.",
+                "The county jail has only one fence, which seems inadequate for a secure facility. This makes it easier for inmates to escape, as implied by the plan to scale the fence and bail.",
+                "The county jail has only one fence, which seems inadequate for a facility meant to securely detain inmates. This single fence might not provide sufficient security, making it easier for inmates to escape.",
+                "The county jail has only one fence, which seems inadequate for a secure facility. This makes it easier for inmates to escape by simply scaling the fence.",
+                "The county jail has only one fence, which seems inadequate for a facility meant to securely detain inmates. This minimal security measure implies that it would be relatively easy for someone to escape by simply scaling the single fence.",
+                "The county jail has only one fence, which does not make much sense because it implies that the security is insufficient, making it easier for inmates to escape.",
+                "The county jail has only one fence, which does not make much sense. This implies that the security is inadequate, making it relatively easy for inmates to escape by simply scaling the single fence."
+            ],
+            "failed_answer_list": []
+        },
+        {
+            "question": {
+                "id": 99013,
+                "author": "Celia Warren",
+                "text": "Oh, don't throw your toys out your pram!\nYes, I treat all your emails as spam.\nHurt your feelings? Don't care;\nI don't like you, so there!\nJust accept that I don't give a damn!",
+                "question": "Why do I treat all your emails as spam?",
+                "answer": "I don't like you",
+                "alternate_answers": [
+                    "Because I don't like you, so there!\nYour feelings? I don't really care.\nJust accept that I'm cold,\nAnd your messages, old,\nAre as welcome as a grizzly bear."
+                ],
+                "token_count": 50,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [
+                "Because I don't give a damn!",
+                "Because you don't like the person and don't care about their feelings.",
+                "Because I don't like you, so there!",
+                "Because you don't like me, so there!",
+                "Because you don't like me and don't give a damn.",
+                "Because you don't give a damn."
+            ],
+            "failed_answer_list": [
+                "Because you send them to everyone, dear Pam.",
+                "Because you send them in bulk, like a ham.",
+                "Because you send too many and I don't give a damn.",
+                "Because you send me too many, you ham!",
+                "Because you send me too many, and I don't give a damn.",
+                "Because you send them in bulk, like a scam."
+            ]
+        },
+        {
+            "question": {
+                "id": 87737,
+                "author": "Joanna Keene",
+                "text": "Joey fingered Big Lou as the one\nWho shot Johnny six times with his gun.\nSnitched him out: \"Louie did it;\nThe goon never hid it.\"\nNow Joey lives life on the run.",
+                "question": "Who did Joey finger for shooting Johnny?",
+                "answer": "Big Lou",
+                "alternate_answers": null,
+                "token_count": 45,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [
+                "Joey fingered Big Lou as the one who shot Johnny six times with his gun.",
+                "Big Lou",
+                "Joey fingered Big Lou as the one who shot Johnny."
+            ],
+            "failed_answer_list": []
+        },
+        {
+            "question": {
+                "id": 98591,
+                "author": "Chris J. Strolin",
+                "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+                "question": "Who do they blame in the blamestorming session after someone dies?",
+                "answer": "Jaun",
+                "alternate_answers": [
+                    "Based on the limericks, it seems the person they blame in the blamestorming session after someone dies is often a scapegoat or someone undeserving of the blame. \n\nFor example, one limerick mentions:\n\n\"Someone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.\"\n\nThis suggests that in the blamestorming session, they unfairly blame an innocent person, like the janitor's helper Juan, rather than finding the true cause of the death."
+                ],
+                "token_count": 39,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [
+                "In the blamestorming session, they blame a janitor's helper named Juan.",
+                "A janitor's helper named Juan.",
+                "In the blamestorming session, the group ultimately blames a janitor's helper named Juan.",
+                "In the blamestorming session, the blame is placed on a janitor's helper named Juan.",
+                "The janitor's helper named Juan.",
+                "They blame a janitor's helper named Juan."
+            ],
+            "failed_answer_list": []
+        },
+        {
+            "question": {
+                "id": 84044,
+                "author": "SheilaB",
+                "text": "Uncle Wayne always gives me a pain.\nHis ideas are vain and inane.\nHe's both asinine (fatuous)\nAnd a gas bag who's flatuous.\nI treat the old fool with disdain.",
+                "question": "What is wrong with Uncle Wayne's ideas?",
+                "answer": "Uncle Wayne's ideas are vain and inane.",
+                "alternate_answers": [
+                    "Uncle Wayne's ideas are considered vain and inane,\nHe's both asinine and flatuous, causing disdain.",
+                    "Based on the limerick, there are a few things wrong with Uncle Wayne's ideas:\n\n1. They are described as \"vain and inane\" - meaning they are empty, worthless, and foolish.\n\n2. He is characterized as being \"asinine\" - which means stupid or foolish. \n\n3. He is also described as being a \"gas bag\" who is \"flatuous\" - implying his ideas are full of hot air and empty rhetoric.\n\n4. The narrator treats Uncle Wayne with \"disdain\" - showing a strong dislike and lack of respect for his ideas.\n\nOverall, the limerick portrays Uncle Wayne's ideas as being foolish, stupid, and unworthy of serious consideration. The narrator clearly has a very negative view of his uncle's thought processes and opinions."
+                ],
+                "token_count": 43,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [
+                "Uncle Wayne's ideas are described as vain and inane, meaning they are self-centered and foolish. Additionally, he is characterized as asinine (fatuous) and a gas bag who's flatuous, indicating that his ideas are not only silly but also verbose and full of hot air. Therefore, his ideas are not taken seriously and are treated with disdain.",
+                "Uncle Wayne's ideas are described as vain and inane, meaning they are self-centered and foolish. He is also characterized as asinine (fatuous) and a gas bag who is flatuous, indicating that his ideas are not only silly but also verbose and full of hot air.",
+                "They are vain and inane.",
+                "Uncle Wayne's ideas are vain and inane.",
+                "Uncle Wayne's ideas are inane and asinine.",
+                "Uncle Wayne's ideas are inane and impractical.",
+                "Uncle Wayne's ideas are vain and inane, making him come across as a fool.",
+                "Uncle Wayne's ideas are vain and inane, making him seem foolish and out of touch."
+            ],
+            "failed_answer_list": [
+                "Uncle Wayne's ideas are inane and inane, making him a fool who doesn't know much."
+            ]
+        },
+        {
+            "question": {
+                "id": 99817,
+                "author": "Chris J. Strolin",
+                "text": "That damn call button jockey, room 9,\nIs a pain in the base of my spine.\nFor no reason he rings\nAbout minuscule things.\nHis sole purpose? To hear himself whine.",
+                "question": "What is the sole purpose of the occupant of room 9?",
+                "answer": "To hear himself whine",
+                "alternate_answers": [
+                    "The sole purpose of the occupant of room 9 is to repeatedly press the call button, which can be quite frustrating for others.",
+                    "The sole purpose of the occupant of room 9 is to ring the call button for no significant reason, mainly to hear himself whine."
+                ],
+                "token_count": 43,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [
+                "The sole purpose of the occupant of room 9 is to hear himself whine.",
+                "The sole purpose of the occupant of room 9 is to incessantly use the call button, causing a nuisance by ringing about minuscule things, seemingly just to hear himself whine.",
+                "The sole purpose of the occupant of room 9 is to press the call button incessantly, causing a nuisance to the staff.",
+                "The sole purpose of the occupant of room 9 is to incessantly press the call button, causing a nuisance to the staff.",
+                "The sole purpose of the occupant of room 9 is to press the call button frequently, causing a nuisance to the staff.",
+                "The sole purpose of the occupant of room 9 is to incessantly use the call button, causing a nuisance by ringing it for minuscule reasons, primarily to hear himself whine.",
+                "The sole purpose of the occupant of room 9 is to press the call button incessantly, causing a nuisance by ringing about minuscule things.",
+                "The sole purpose of the occupant of room 9 is to press the call button and make minuscule requests, essentially to hear himself whine.",
+                "The sole purpose of the occupant of room 9 is to press the call button incessantly, causing frustration for the staff.",
+                "The sole purpose of the occupant of room 9 is to press the call button incessantly, causing a nuisance.",
+                "The sole purpose of the occupant of room 9 is to press the call button and complain about minuscule things, essentially to hear himself whine."
+            ],
+            "failed_answer_list": []
+        }
+    ]
+}

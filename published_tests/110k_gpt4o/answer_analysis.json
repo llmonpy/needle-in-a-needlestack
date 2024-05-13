@@ -1,0 +1,224 @@
+{
+    "question_answer_list": [
+        {
+            "question": {
+                "id": 17030,
+                "author": "Howard Spindel",
+                "text": "I've a tree in my yard in a plight;\nAll its leaves are diseased \u2014 it's a sight.\nAnd the skin of that tree\nPeels to such a degree\nThat its bark is much worse than its blight.",
+                "question": "What is the plight of the tree in my yard?",
+                "answer": "All its leaves are diseased",
+                "alternate_answers": [
+                    "The tree in the yard has diseased leaves and peeling bark, which is a sight."
+                ],
+                "token_count": 48,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [
+                "The tree in your yard is in a plight because all its leaves are diseased, and its bark is peeling to such a degree that its bark is much worse than its blight.",
+                "The tree in your yard is in a dire condition. Its leaves are diseased, and the bark is peeling to such a degree that its bark is much worse than its blight.",
+                "The tree in your yard has diseased leaves and peeling bark, indicating that its bark is much worse than its blight.",
+                "The tree in your yard has diseased leaves and its bark is peeling, indicating that its bark is much worse than its blight.",
+                "The tree in your yard is in a plight because all its leaves are diseased, making it look unsightly. Additionally, the skin of the tree is peeling to such a degree that its bark is much worse than its blight.",
+                "The tree in your yard is diseased, with its leaves in a plight. The skin of the tree peels to such a degree that its bark is much worse than its blight.",
+                "The tree in your yard is diseased, with all its leaves affected, and its bark is peeling, making its condition worse than its blight.",
+                "The plight of the tree in your yard is that all its leaves are diseased, and the skin of the tree is peeling to such a degree that its bark is much worse than its blight.",
+                "The tree in your yard is diseased, with its leaves showing signs of illness, and its bark peeling off, making it look worse than its blight.",
+                "The tree in your yard is diseased, with its leaves showing signs of illness, and its bark peeling significantly, indicating that its bark is in worse condition than its blight.",
+                "The tree in your yard is diseased, with all its leaves affected, and its bark is peeling, making it appear worse than its blight.",
+                "The tree in your yard is diseased, with all its leaves affected and its bark peeling, making its bark worse than its blight.",
+                "The tree in your yard is diseased, with all its leaves affected, and its bark is peeling, making its condition worse than just having a blight.",
+                "The tree in your yard is diseased, with its leaves affected and its bark peeling, making its bark worse than its blight.",
+                "The tree in your yard is diseased, with its leaves affected and the bark peeling, making it appear worse than its blight.",
+                "The tree in your yard is diseased, with its leaves affected and the bark peeling, making its bark worse than its blight.",
+                "The tree in your yard is diseased, with its leaves in a terrible state, and its bark is peeling, making it look worse than its blight."
+            ],
+            "failed_answer_list": []
+        },
+        {
+            "question": {
+                "id": 92599,
+                "author": "MikeAq",
+                "text": "Mr. Thistle, what's this all about?\nAll our rules you dismiss \u2014 baldly flout.\nI have read your epistle;\nIt made my hairs bristle.\nI'm blowing the whistle \u2014 you're out!",
+                "question": "Does Mr. Thistle follow our rules?",
+                "answer": "No ",
+                "alternate_answers": [
+                    "Mr. Thistle does not follow the rules consistently. He often disregards them without explanation or justification.",
+                    "Based on the limericks provided, the question appears to be about the limerick that mentions \"Mr. Thistle\". The relevant limerick is:\n\n\"Mr. Thistle, what's this all about? \nAll our rules you dismiss \u2014 baldly flout.\nI have read your epistle;\nIt made my hairs bristle.\nI'm blowing the whistle \u2014 you're out!\"\n\nThis limerick suggests that Mr. Thistle does not follow the rules, as the speaker is blowing the whistle on him for dismissing and flouting the rules."
+                ],
+                "token_count": 46,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [],
+            "failed_answer_list": []
+        },
+        {
+            "question": {
+                "id": 85401,
+                "author": "MikeAq",
+                "text": "To compose a morose epicedium\nCan brighten one's torpor and tedium.\nI myself have an urge\nTo create a sad dirge \u2014\nOne not overly mournful, just medium.",
+                "question": "How can one brighten one's torpor and tedium?",
+                "answer": "Compose a morose epicedium",
+                "alternate_answers": [
+                    "The limerick suggests that composing a morose epicedium (a funeral song or poem) can help brighten one's torpor and tedium. The limerick states:\n\n\"To compose a morose epicedium \nCan brighten one's torpor and tedium.\nI myself have an urge\nTo create a sad dirge \u2014\nOne not overly mournful, just medium.\"\n\nSo the answer is that writing a moderately melancholy funeral poem or song can help alleviate boredom and listlessness, according to the limerick.",
+                    "Compose a morose epicedium.\nCraft a sad dirge, not too mournful,\nJust medium, not scornful,\nTo lift your spirits, a musical medium."
+                ],
+                "token_count": 43,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [],
+            "failed_answer_list": []
+        },
+        {
+            "question": {
+                "id": 54553,
+                "author": "Richard English",
+                "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",
+                "question": "What is sought by the English top brass?",
+                "answer": "Cranberry glass",
+                "alternate_answers": null,
+                "token_count": 43,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [
+                "Cranberry glass.",
+                "The English top brass seek cranberry glass.",
+                "The English top brass seek cranberry glass, which is a type of deep red glass with a gold sheen."
+            ],
+            "failed_answer_list": []
+        },
+        {
+            "question": {
+                "id": 90715,
+                "author": "proof",
+                "text": "Have a car and my clothes without fail\nOutside of this old county jail.\nIt has only one fence,\n Which does not make much sense,\nSo tomorrow I'll scale it and bail.",
+                "question": "what about the county jail does not make much sense?",
+                "answer": "It has only one fence",
+                "alternate_answers": [
+                    "The limerick about the county jail mentions a person who plans to scale the fence to escape the jail, which is not a typical or sensible way to leave a jail.",
+                    "Based on the limerick, the detail that does not make much sense about the county jail is that it \"has only one fence\". The limerick suggests this is odd, implying a typical county jail would have more than one fence to help secure the facility and prevent inmates from escaping."
+                ],
+                "token_count": 38,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [],
+            "failed_answer_list": []
+        },
+        {
+            "question": {
+                "id": 99013,
+                "author": "Celia Warren",
+                "text": "Oh, don't throw your toys out your pram!\nYes, I treat all your emails as spam.\nHurt your feelings? Don't care;\nI don't like you, so there!\nJust accept that I don't give a damn!",
+                "question": "Why do I treat all your emails as spam?",
+                "answer": "I don't like you",
+                "alternate_answers": [
+                    "Because I don't like you, so there!\nYour feelings? I don't really care.\nJust accept that I'm cold,\nAnd your messages, old,\nAre as welcome as a grizzly bear."
+                ],
+                "token_count": 50,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [],
+            "failed_answer_list": []
+        },
+        {
+            "question": {
+                "id": 87737,
+                "author": "Joanna Keene",
+                "text": "Joey fingered Big Lou as the one\nWho shot Johnny six times with his gun.\nSnitched him out: \"Louie did it;\nThe goon never hid it.\"\nNow Joey lives life on the run.",
+                "question": "Who did Joey finger for shooting Johnny?",
+                "answer": "Big Lou",
+                "alternate_answers": null,
+                "token_count": 45,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [
+                "Joey fingered Big Lou as the one who shot Johnny.",
+                "Joey fingered Big Lou as the one who shot Johnny six times with his gun.",
+                "Big Lou"
+            ],
+            "failed_answer_list": []
+        },
+        {
+            "question": {
+                "id": 98591,
+                "author": "Chris J. Strolin",
+                "text": "Our most serious faces we don\nAs the blamestorming session goes on.\nSomeone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.",
+                "question": "Who do they blame in the blamestorming session after someone dies?",
+                "answer": "Jaun",
+                "alternate_answers": [
+                    "Based on the limericks, it seems the person they blame in the blamestorming session after someone dies is often a scapegoat or someone undeserving of the blame. \n\nFor example, one limerick mentions:\n\n\"Someone died. Who's to blame?\nThe one person we name\nIs a janitor's helper named Juan.\"\n\nThis suggests that in the blamestorming session, they unfairly blame an innocent person, like the janitor's helper Juan, rather than finding the true cause of the death."
+                ],
+                "token_count": 39,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [
+                "A janitor's helper named Juan.",
+                "In the blamestorming session, the one person they name and blame is a janitor's helper named Juan.",
+                "In the blamestorming session, the group ultimately blames a janitor's helper named Juan.",
+                "In the blamestorming session, they blame a janitor's helper named Juan.",
+                "In the blamestorming session, the janitor's helper named Juan is blamed.",
+                "In the blamestorming session, the crowd blames a janitor's helper named Juan.",
+                "In the blamestorming session, the person they blame is a janitor's helper named Juan.",
+                "In the blamestorming session, the group ultimately decides to blame a janitor's helper named Juan."
+            ],
+            "failed_answer_list": []
+        },
+        {
+            "question": {
+                "id": 84044,
+                "author": "SheilaB",
+                "text": "Uncle Wayne always gives me a pain.\nHis ideas are vain and inane.\nHe's both asinine (fatuous)\nAnd a gas bag who's flatuous.\nI treat the old fool with disdain.",
+                "question": "What is wrong with Uncle Wayne's ideas?",
+                "answer": "Uncle Wayne's ideas are vain and inane.",
+                "alternate_answers": [
+                    "Uncle Wayne's ideas are considered vain and inane,\nHe's both asinine and flatuous, causing disdain.",
+                    "Based on the limerick, there are a few things wrong with Uncle Wayne's ideas:\n\n1. They are described as \"vain and inane\" - meaning they are empty, worthless, and foolish.\n\n2. He is characterized as being \"asinine\" - which means stupid or foolish. \n\n3. He is also described as being a \"gas bag\" who is \"flatuous\" - implying his ideas are full of hot air and empty rhetoric.\n\n4. The narrator treats Uncle Wayne with \"disdain\" - showing a strong dislike and lack of respect for his ideas.\n\nOverall, the limerick portrays Uncle Wayne's ideas as being foolish, stupid, and unworthy of serious consideration. The narrator clearly has a very negative view of his uncle's thought processes and opinions."
+                ],
+                "token_count": 43,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [
+                "Uncle Wayne's ideas are described as vain, inane, asinine, and flatuous, indicating that they are self-centered, foolish, lacking in intelligence, and full of hot air.",
+                "Uncle Wayne's ideas are described as vain, inane, asinine, and flatuous, indicating that they are self-centered, foolish, absurd, and full of hot air.",
+                "Uncle Wayne's ideas are vain and inane.",
+                "Uncle Wayne's ideas are vain and inane, meaning they are self-centered and foolish. Additionally, he is described as both asinine (fatuous) and a gas bag who is flatuous, indicating that his ideas are not only silly but also verbose and full of hot air.",
+                "Uncle Wayne's ideas are described as vain and inane, meaning they are self-centered and foolish. He is characterized as both asinine (fatuous) and a gas bag who is flatuous, indicating he is both silly and full of hot air. This combination of traits leads to his ideas being treated with disdain.",
+                "Uncle Wayne's ideas are vain and inane, meaning they are self-centered and foolish. Additionally, he is described as asinine (fatuous) and a gas bag who is flatuous, indicating that his ideas are not only silly but also verbose and filled with hot air.",
+                "Uncle Wayne's ideas are vain and inane. He is described as asinine (fatuous) and a gas bag who is flatuous, leading the speaker to treat him with disdain.",
+                "Uncle Wayne's ideas are vain and inane. He's both asinine (fatuous) and a gas bag who's flatuous, which means he is foolish, silly, and full of hot air.",
+                "Uncle Wayne's ideas are vain and inane, meaning they are self-centered and foolish. He is described as both asinine (fatuous) and a gas bag who is flatuous, indicating that he is not only silly and unintelligent but also talks excessively and is prone to flatulence. This combination of traits leads to him being treated with disdain.",
+                "Uncle Wayne's ideas are vain and inane, meaning they are self-centered and foolish. He is described as both asinine (fatuous) and a gas bag who is flatuous, indicating that his ideas are not only silly but also verbose and full of hot air.",
+                "Uncle Wayne's ideas are vain and inane. They are both asinine (fatuous) and he is a gas bag who is flatuous.",
+                "Uncle Wayne's ideas are described as vain and inane, meaning they are self-centered and foolish. Additionally, he is characterized as asinine (fatuous) and a gas bag who is flatuous, indicating that his ideas are not only silly but also verbose and filled with hot air. Overall, his ideas lack substance and are not taken seriously.",
+                "Uncle Wayne's ideas are vain and inane, making him appear asinine and a gas bag, which leads to him being treated with disdain."
+            ],
+            "failed_answer_list": []
+        },
+        {
+            "question": {
+                "id": 99817,
+                "author": "Chris J. Strolin",
+                "text": "That damn call button jockey, room 9,\nIs a pain in the base of my spine.\nFor no reason he rings\nAbout minuscule things.\nHis sole purpose? To hear himself whine.",
+                "question": "What is the sole purpose of the occupant of room 9?",
+                "answer": "To hear himself whine",
+                "alternate_answers": [
+                    "The sole purpose of the occupant of room 9 is to repeatedly press the call button, which can be quite frustrating for others.",
+                    "The sole purpose of the occupant of room 9 is to ring the call button for no significant reason, mainly to hear himself whine."
+                ],
+                "token_count": 43,
+                "target_location": 0,
+                "question_vetted": false
+            },
+            "passed_answer_list": [],
+            "failed_answer_list": []
+        }
+    ]
+}
