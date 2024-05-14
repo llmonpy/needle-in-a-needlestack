@@ -1,4 +1,5 @@
 # GPT-4o's Memory Breakthrough! [(NIAN code)](https://github.com/llmonpy/needle-in-a-needlestack)
+*by [Tom Burns](mailto:public@llmonpy.ai)* <br>
 
 Needle in a Needlestack is a new benchmark to measure how well LLMs pay attention to the information in their context
 window.  NIAN creates a prompt that includes thousands of limericks and the prompt asks a question about one limerick
