@@ -17,6 +17,7 @@ import copy
 import json
 import os
 import sys
+import nothingpy
 
 from limerick import Limerick, FULL_QUESTION_FILE
 from test_config import get_latest_test_directory

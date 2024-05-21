@@ -19,7 +19,8 @@ import math
 import os
 import queue
 import sys
-import threading
+
+from nothingpy import Nothing
 from datetime import datetime
 
 import matplotlib.pyplot as plt
@@ -815,11 +816,10 @@ class ModelResults:
 
     @staticmethod
     def from_dict(dictionary):
-        location_list = dictionary.get("location_list", None)
-        if location_list is not None:
-            dictionary.pop("location_list", None)
-            location_list = [LocationResults.from_dict(location) for location in location_list]
-            dictionary["location_list"] = location_list
+        location_list = dictionary.get("location_list", Nothing)
+        dictionary.pop("location_list", None)
+        location_list = [LocationResults.from_dict(location) for location in location_list]
+        dictionary["location_list"] = location_list
         if "directory" not in dictionary:
             dictionary["directory"] = ""
         result = ModelResults(**dictionary)

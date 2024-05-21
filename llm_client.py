@@ -196,12 +196,12 @@ DEEPSEEK_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 MISTRAL_RATE_LIMITER = RateLlmiter(*spread_requests(1000)) #used minute spread to seconds because tokens are TPM not TPS
 
 #MIXTRAL tokenizer generates 20% more tokens than openai, so after reduce max_input to 80% of openai
-MISTRAL_8X22B = MistralLlmClient("open-mixtral-8x22b", 24000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
+MISTRAL_8X22B = MistralLlmClient("open-mixtral-8x22b", 8000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 MISTRAL_SMALL = MistralLlmClient("mistral-small", 24000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 MISTRAL_7B = MistralLlmClient("open-mistral-7b", 24000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 MISTRAL_8X7B = MistralLlmClient("open-mixtral-8x7b", 24000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 MISTRAL_LARGE = MistralLlmClient("mistral-large-latest", 24000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
-GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 15000, RateLlmiter(*spread_requests(2500)), OPENAI_EXECUTOR)
+GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 15000, RateLlmiter(125, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
 GPT4 = OpenAIModel('gpt-4-turbo-2024-04-09', 16000, RateLlmiter(40, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
 GPT4o = OpenAIModel('gpt-4o', 120000, RateLlmiter(15, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
 ANTHROPIC_OPUS = AnthropicModel("claude-3-opus-20240229", 195000, RateLlmiter(3, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)

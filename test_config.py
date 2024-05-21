@@ -45,13 +45,13 @@ class TestConfig:
         return result
 
 
-DEFAULT_TEST_CONFIG = TestConfig(model_list=[GPT4o],
+DEFAULT_TEST_CONFIG = TestConfig(model_list=[GPT3_5],
                                  test_thread_count=100,
                                  evaluator_model_list=EVALUATOR_MODEL_LIST,
                                  default_evaluator=DefaultEvaluator(EVALUATOR_MODEL_LIST),
                                  number_of_questions_per_trial=10,
                                  repeat_question_limerick_count=1,
-                                 trial_count=3,
+                                 trial_count=10,
                                  location_count=10)
 
 
