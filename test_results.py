@@ -706,7 +706,6 @@ class ModelResults:
                     for evaluator_result in trial_result.evaluator_results:
                         if evaluator_result.model_name == replacement_dict[ORIGINAL_MODEL_NAME]:
                             evaluator_result.model_name = replacement_dict[REPLACEMENT_MODEL_NAME]
-                            print("updated evaluator model name")
 
     def set_limerick_count_in_prompt(self, limerick_count_in_prompt):
         self.limerick_count_in_prompt = limerick_count_in_prompt

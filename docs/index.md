@@ -49,4 +49,4 @@ limerick the prompt asks about is repeated 10 times.
 <br><br>
 The [code for this benchmark is here.](https://github.com/llmonpy/needle-in-a-needlestack)  It should be
 easy to add support for additional models.  You can [read more about how answers are evaluated and questions are
-vetted on the methodology page](methodology.md).  If you have any questions, please [contact me](mailto:public@llmonpy.ai)
+vetted on the methodology page](https://nian.llmonpy.ai/methodology).  If you have any questions, please [contact me](mailto:public@llmonpy.ai)
