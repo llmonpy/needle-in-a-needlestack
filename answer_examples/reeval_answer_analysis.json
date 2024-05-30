@@ -182,48 +182,6 @@
         },
         {
             "question": {
-                "id": 99730,
-                "author": "Chris J. Strolin",
-                "text": "For me, this is clearly the right shift,\nThe boredom-slash-wild-drunken-fight shift.\nIt's been called D&D\n(\"Death and donuts,\" you see).\nYes, there's nothing like working the night shift.",
-                "question": "What is the nickname for the night shift in a store?",
-                "answer": "Death and donuts or D&D",
-                "alternate_answers": null,
-                "token_count": 50,
-                "target_location": 0,
-                "question_vetted": false
-            },
-            "passed_answer_list": [
-                "The night shift in a store is sometimes referred to as the \"Death and donuts\" (D&D) shift, according to the limerick provided:\n\n\"For me, this is clearly the right shift,\nThe boredom-slash-wild-drunken-fight shift. \nIt's been called D&D\n(\"Death and donuts,\" you see).\nYes, there's nothing like working the night shift.\"",
-                "The night shift in a store is sometimes referred to as the \"Death and donuts\" shift, according to the limerick provided:\n\n\"For me, this is clearly the right shift,\nThe boredom-slash-wild-drunken-fight shift. \nIt's been called D&D\n(\"Death and donuts,\" you see).\nYes, there's nothing like working the night shift.\"",
-                "According to the limericks, the nickname for the night shift in a store is \"D&D\", which stands for \"Death and donuts\".",
-                "The night shift in a store is often referred to as the \"Death and Donuts\" (D&D) shift.",
-                "Based on the limericks provided, the nickname for the night shift in a store is the \"D&D\" (Death and Donuts) shift. The relevant limerick is:\n\n\"For me, this is clearly the right shift,\nThe boredom-slash-wild-drunken-fight shift.\nIt's been called D&D\n(\"Death and donuts,\" you see).\nYes, there's nothing like working the night shift.\"",
-                "The night shift in a store is often referred to as the \"Death and donuts\" (D&D) shift.",
-                "Based on the limerick provided, the nickname for the night shift in a store is \"D&D\", which stands for \"Death and donuts\". The limerick states:\n\n\"For me, this is clearly the right shift,\nThe boredom-slash-wild-drunken-fight shift. \nIt's been called D&D\n(\"Death and donuts,\" you see).\nYes, there's nothing like working the night shift.\"",
-                "Based on the limericks provided, the nickname for the night shift in a store is the \"D&D\" shift, which stands for \"Death and donuts\" shift.\n\nThe relevant limerick is:\n\n\"For me, this is clearly the right shift,\nThe boredom-slash-wild-drunken-fight shift. \nIt's been called D&D\n(\"Death and donuts,\" you see).\nYes, there's nothing like working the night shift.\"",
-                "Based on the limerick provided, the nickname for the night shift in a store is the \"D&D\" shift, which stands for \"Death and donuts\" shift.\n\nThe relevant lines are:\n\n\"For me, this is clearly the right shift,\nThe boredom-slash-wild-drunken-fight shift. \nIt's been called D&D\n(\"Death and donuts,\" you see).\nYes, there's nothing like working the night shift.\"",
-                "The night shift in a store is often referred to as the \"D&D\" shift, which stands for \"Death and donuts.\"",
-                "The nickname for the night shift in a store is \"D&D\" which stands for \"Death and donuts.\"",
-                "The night shift in a store is often nicknamed \"Death and donuts.\"",
-                "The night shift in a store is often nicknamed \"Death and donuts\" or \"D&D.\"",
-                "The nickname for the night shift in a store, as mentioned in the limerick, is \"D&D,\" which stands for \"Death and donuts.\"",
-                "The nickname for the night shift in a store is the \"Death and donuts\" shift, also called \"D&D.\"",
-                "The nickname for the night shift in a store is the \"Death and donuts\" shift, also called the D&D shift.",
-                "The nickname for the night shift in a store, as mentioned in the limerick, is the \"D&D\" which stands for \"Death and donuts.\"",
-                "The nickname for the night shift in a store, as mentioned in the limerick, is the \"Death and donuts\" shift.",
-                "The nickname for the night shift in a store, as mentioned in the limerick, is the \"Death and donuts\" shift, often abbreviated as the \"D&D\" shift."
-            ],
-            "failed_answer_list": [
-                "The nickname for the night shift in a store is often referred to as the \"graveyard shift.\"",
-                "The night shift in a store is often referred to as the \"graveyard shift\".",
-                "The night shift in a store is often referred to as the \"graveyard shift.\"",
-                "The night shift in a store is often nicknamed the \"graveyard shift.\"",
-                "The nickname for the night shift in a store is \"graveyard shift.\"",
-                "The nickname for the night shift in a store is the \"graveyard shift.\""
-            ]
-        },
-        {
-            "question": {
                 "id": 54553,
                 "author": "Richard English",
                 "text": "Some folks might think cranberry glass\nIs for fruit of the cranberry class.\nBut it's glass of deep red,\nWith a gold sheen, and said\nTo be sought by the English top brass.",

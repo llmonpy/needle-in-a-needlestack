@@ -20,9 +20,11 @@ from queue import Queue, Empty
 
 import anthropic
 import ollama
+from google.generativeai.types import HarmCategory, HarmBlockThreshold
 from mistralai.client import MistralClient
 from mistralai.models.chat_completion import ChatMessage
 from openai import OpenAI
+import google.generativeai as genai
 
 from rate_llmiter import RateLlmiter, SECOND_TIME_WINDOW, spread_requests, MINUTE_TIME_WINDOW
 
@@ -33,6 +35,17 @@ BASE_RETRY_DELAY = 30 # seconds
 
 NIAN_API_PREFIX = "NIAN_"
 
+gVERTEX_AI_INITED = False
+
+'''
+def init_vertex_ai():
+    global gVERTEX_AI_INITED
+    if not gVERTEX_AI_INITED:
+        PROJECT_ID = os.environ.get("GCLOUD_PROJECT")
+        REGION = os.environ.get("GCLOUD_REGION")
+        vertexai.init(project=PROJECT_ID, location=REGION)
+    gVERTEX_AI_INITED = True
+'''
 
 def get_api_key(api_name, exit_on_error=True):
     key = os.environ.get(NIAN_API_PREFIX + api_name)
@@ -187,12 +200,35 @@ class OllamaModel(LlmClient):
         result = response.choices[0].message.content
         return result
 
+
+# https://ai.google.dev/gemini-api/docs/get-started/tutorial?authuser=2&lang=python
+class GeminiModel(LlmClient):
+    def __init__(self, model_name, max_input, rate_limiter, thead_pool=None):
+        super().__init__(model_name, max_input, rate_limiter, thead_pool)
+        key = get_api_key("GEMINI_API_KEY")
+        genai.configure(api_key=key)
+        self.client = genai.GenerativeModel(self.model_name)
+
+    def do_prompt(self, prompt_text, system_prompt="You are an expert at analyzing text."):
+        full_prompt = system_prompt + "\n\n" + prompt_text
+        model_response = self.client.generate_content(full_prompt,
+                                        safety_settings={
+                                            HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
+                                            HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
+                                            HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
+                                            HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE
+                                        },
+                                        generation_config=genai.GenerationConfig(temperature=0.0))
+        result = model_response.text
+        return result
+
+
 OLLAMA_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=1)
 MISTRAL_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 ANTHROPIC_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 OPENAI_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 DEEPSEEK_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
-
+GEMINI_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 MISTRAL_RATE_LIMITER = RateLlmiter(*spread_requests(1000)) #used minute spread to seconds because tokens are TPM not TPS
 
 #MIXTRAL tokenizer generates 20% more tokens than openai, so after reduce max_input to 80% of openai
@@ -208,3 +244,5 @@ ANTHROPIC_OPUS = AnthropicModel("claude-3-opus-20240229", 195000, RateLlmiter(3,
 ANTHROPIC_SONNET = AnthropicModel("claude-3-sonnet-20240229", 110000, RateLlmiter(3, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
 ANTHROPIC_HAIKU = AnthropicModel("claude-3-haiku-20240307", 15000, RateLlmiter(*spread_requests(1000)), ANTHROPIC_EXECUTOR)
 DEEPSEEK = DeepseekModel("deepseek-chat", 24000, RateLlmiter(*spread_requests(1000)), DEEPSEEK_EXECUTOR)
+GEMINI_FLASH = GeminiModel("gemini-1.5-flash", 120000, RateLlmiter(10,MINUTE_TIME_WINDOW), GEMINI_EXECUTOR)
+GEMINI_PRO = GeminiModel("gemini-1.5-pro", 120000, RateLlmiter(10,MINUTE_TIME_WINDOW), GEMINI_EXECUTOR)
