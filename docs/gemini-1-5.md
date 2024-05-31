@@ -7,8 +7,10 @@ release of the Gemini 1.5 models, I tested them out on this benchmark today.  Ge
 expensive models like GPT-4 Turbo: <br><br>
 
 | ![GPT-4 Image](1/gpt-4-110-1.png ) | ![Gemini-Flash Image](2/gemini-flash-120-1.png ) |
-|:-----------------------------------------------------------:|:------------------------------------------------:|
-|                   gpt-4-turbo-2024-04-09                    |                 gemini-1.5-flash                 |
+|:----------------------------------:|:------------------------------------------------:|
+|  gpt-4-turbo-2024-04-09            |             gemini-1.5-flash                     |
+
+
 <br><br>
 Gemini 1.5 Pro does really well on NIAN.  The only model that can match it is GPT-4o <br><br>
 
