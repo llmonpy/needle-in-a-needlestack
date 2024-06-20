@@ -1,4 +1,4 @@
-# Sonnet 3.5 does much better at NIAN than Sonnet 3.0
+# Sonnet 3.5 Does Much Better at NIAN Than Sonnet 3.0
 *by [Tom Burns](mailto:public@llmonpy.ai)* <br><br>
 Needle in a Needlestack is a new benchmark to measure how well LLMs pay attention to the information in their context
 window.  NIAN creates a prompt that includes thousands of limericks and the prompt asks a question about one limerick
