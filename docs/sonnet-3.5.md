@@ -16,6 +16,7 @@ However, Google's Gemini Pro costs about the same as Sonnet 3.5, but Gemini does
 | ![Gemini Pro Image](2/gemini-pro-120-1.png ) | ![3.5 Image](3/sonnet-3-5-110-1.png ) |
 |:--------------------------------------------:|:-------------------------------------:|
 |                Gemini Pro 1.5                |              Sonnet 3.5               |
+
 <br><br>
 The [code for this benchmark is here.](https://github.com/llmonpy/needle-in-a-needlestack)  It should be
 easy to add support for additional models.  You can [read more about how answers are evaluated and questions are
