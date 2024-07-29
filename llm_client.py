@@ -20,6 +20,7 @@ from queue import Queue, Empty
 
 import anthropic
 import ollama
+from fireworks.client import Fireworks
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
 from mistralai.client import MistralClient
 from mistralai.models.chat_completion import ChatMessage
@@ -223,28 +224,70 @@ class GeminiModel(LlmClient):
         return result
 
 
+class FireworksAIModel(LlmClient):
+    def __init__(self, model_name, max_input, rate_limiter, thead_pool=None, system_role_supported=True):
+        super().__init__(model_name, max_input, rate_limiter, thead_pool)
+        self.client = None
+        self.system_role_supported = system_role_supported
+
+    def start(self):
+        key = get_api_key("FIREWORKS_API_KEY")
+        self.client = Fireworks(api_key=key)
+
+    def do_prompt(self, prompt_text, system_prompt="You are an expert at analyzing text."):
+        system_prompt = system_prompt if system_prompt is not None else "You are an expert at analyzing text."
+        result = None
+        if self.system_role_supported:
+            completion = self.client.chat.completions.create(
+                model=self.model_name,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": prompt_text}
+                ],
+            )
+        else:
+            full_prompt = str(system_prompt) + "\n\n" + prompt_text
+            completion = self.client.chat.completions.create(
+                model=self.model_name,
+                messages=[
+                    {"role": "user", "content": full_prompt}
+                ],
+            )
+        result = completion.choices[0].message.content
+        return result
+
 OLLAMA_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=1)
 MISTRAL_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 ANTHROPIC_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 OPENAI_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 DEEPSEEK_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 GEMINI_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
+FIREWORKS_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 MISTRAL_RATE_LIMITER = RateLlmiter(*spread_requests(1000)) #used minute spread to seconds because tokens are TPM not TPS
+FIREWORKS_RATE_LIMITER = RateLlmiter(*spread_requests(600), MINUTE_TIME_WINDOW)
 
 #MIXTRAL tokenizer generates 20% more tokens than openai, so after reduce max_input to 80% of openai
 MISTRAL_8X22B = MistralLlmClient("open-mixtral-8x22b", 8000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 MISTRAL_SMALL = MistralLlmClient("mistral-small", 20000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 MISTRAL_7B = MistralLlmClient("open-mistral-7b", 20000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
-MISTRAL_NEMO_12B = MistralLlmClient("open-mistral-nemo-latest", 32000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
+MISTRAL_NEMO_12B = MistralLlmClient("open-mistral-nemo-2407", 32000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 MISTRAL_8X7B = MistralLlmClient("open-mixtral-8x7b", 24000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 MISTRAL_LARGE = MistralLlmClient("mistral-large-latest", 24000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
+MISTRAL_LARGE2 = MistralLlmClient("mistral-large-2407", 120000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 12000, RateLlmiter(5000, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
 GPT4 = OpenAIModel('gpt-4-turbo-2024-04-09', 16000, RateLlmiter(5000, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
 GPT4o = OpenAIModel('gpt-4o', 12000, RateLlmiter(10000, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
-GPT4omini = OpenAIModel('gpt-4o-mini', 120000, RateLlmiter(120, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
+GPT4omini = OpenAIModel('gpt-4o-mini', 120000, RateLlmiter(10000, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
 ANTHROPIC_OPUS = AnthropicModel("claude-3-opus-20240229", 195000, RateLlmiter(3, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
 ANTHROPIC_SONNET = AnthropicModel("claude-3-5-sonnet-20240620", 110000, RateLlmiter(500, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
 ANTHROPIC_HAIKU = AnthropicModel("claude-3-haiku-20240307", 12000, RateLlmiter(500, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
 DEEPSEEK = DeepseekModel("deepseek-chat", 24000, RateLlmiter(20, MINUTE_TIME_WINDOW), DEEPSEEK_EXECUTOR)
 GEMINI_FLASH = GeminiModel("gemini-1.5-flash", 120000, RateLlmiter(1000,MINUTE_TIME_WINDOW), GEMINI_EXECUTOR)
 GEMINI_PRO = GeminiModel("gemini-1.5-pro", 120000, RateLlmiter(10,MINUTE_TIME_WINDOW), GEMINI_EXECUTOR)
+FIREWORKS_LLAMA3_1_8B = FireworksAIModel("accounts/fireworks/models/llama-v3p1-8b-instruct", 120000,
+                                        FIREWORKS_RATE_LIMITER, FIREWORKS_EXECUTOR)
+FIREWORKS_LLAMA3_1_405B = FireworksAIModel("accounts/fireworks/models/llama-v3p1-405b-instruct", 120000,
+                                        FIREWORKS_RATE_LIMITER, FIREWORKS_EXECUTOR)
+FIREWORKS_LLAMA3_1_70B = FireworksAIModel("accounts/fireworks/models/llama-v3p1-70b-instruct", 120000,
+                                        FIREWORKS_RATE_LIMITER, FIREWORKS_EXECUTOR)
+
