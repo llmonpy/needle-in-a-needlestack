@@ -23,7 +23,8 @@ from answer_analysis import AnswerAnalysis
 from dissent import DissentReport
 from limerick import FULL_QUESTION_FILE, Limerick
 from test_config import DEFAULT_TEST_CONFIG, CURRENT_TEST_CONFIG, get_latest_test_directory
-from test_results import ModelResults, ORIGINAL_MODEL_NAME, REPLACEMENT_MODEL_NAME, REEVALUATION_FILE_PREFIX
+from test_results import ModelResults, ORIGINAL_MODEL_NAME, REPLACEMENT_MODEL_NAME, REEVALUATION_FILE_PREFIX, \
+    sanitize_file_name
 from test_status import TestStatus
 
 
@@ -56,7 +57,7 @@ class AnswerReevaluator:
         CURRENT_TEST_CONFIG.default_evaluator.set_test_status(self.test_status)
         for model_results in self.model_results_list:
             futures_list += model_results.reevaluate_generated_answers(thread_pool, self.test_status,
-                CURRENT_TEST_CONFIG.default_evaluator)
+                                                                       CURRENT_TEST_CONFIG.default_evaluator)
         self.test_status.start(self)
         for future in concurrent.futures.as_completed(futures_list):
             trial, changed_result = future.result()
@@ -72,6 +73,7 @@ class AnswerReevaluator:
     def record_results(self):
         for model_results in self.model_results_list:
             full_results_name = REEVALUATION_FILE_PREFIX + model_results.model_name + "_full_results.json"
+            full_results_name = sanitize_file_name(full_results_name)
             file_name = os.path.join(self.directory, full_results_name)
             with open(file_name, "w") as file:
                 results_dict = model_results.to_dict()
@@ -94,8 +96,8 @@ if __name__ == '__main__':
         full_results_path = get_latest_test_directory()
     test_config = DEFAULT_TEST_CONFIG
     reevaluator = AnswerReevaluator(full_results_path, test_config.evaluator_model_list,
-                                    {ORIGINAL_MODEL_NAME:"gpt-3.5-turbo-0125",
-                                     REPLACEMENT_MODEL_NAME:"open-mixtral-8x22b"})
+                                    {ORIGINAL_MODEL_NAME: "gpt-3.5-turbo-0125",
+                                     REPLACEMENT_MODEL_NAME: "open-mixtral-8x22b"})
     done_queue = reevaluator.reevaluate_generated_answers()
     done_queue.get()
     reevaluator.record_results()

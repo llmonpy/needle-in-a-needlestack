@@ -42,6 +42,12 @@ MODEL_SCORES_FILE = "model_scores.json"
 SYSTEM_PROMPT = "You are an expert at understanding limericks and answering questions based on the limericks you read."
 
 
+# fireworks ai has / in their model names and it causes problems with file names
+def sanitize_file_name(file_name):
+    result = file_name.replace("/", "-")
+    return result
+
+
 class QuestionAnswerCollector:
     def add_answer(self, question_id, answer, passed):
         raise NotImplementedError
@@ -194,7 +200,8 @@ class ModelScore:
         return result
 
     def get_location_question_scores(self):
-        question_plot_list = [QuestionPlotLine(question_score.question) for question_score in self.location_scores[0].question_scores]
+        question_plot_list = [QuestionPlotLine(question_score.question) for question_score in
+                              self.location_scores[0].question_scores]
         for question_plot in question_plot_list:
             for location_score in self.location_scores:
                 question_score = location_score.get_question_score(question_plot.question.id)
@@ -213,7 +220,7 @@ class ModelScore:
         for question_plot in location_question_score_list:
             plot_file_name = base_plot_file_name + str(question_plot.question.id) + ".png"
             self.write_line_plot(plot_file_name, question_plot.question.text, question_plot.question.question,
-                                    question_plot.scores)
+                                 question_plot.scores)
 
     def write_line_plot(self, plot_file_name, limerick, question_text, question_score_list):
         figure, axes = plt.subplots(figsize=(6, 4))
@@ -245,7 +252,7 @@ class ModelScore:
         plt.figtext(0.5, 0.04, f"{limerick}\n{question_text}", ha="center", fontsize=8,
                     bbox={"facecolor": "lightgrey", "alpha": 0.5, "pad": 5})
 
-        #plt.tight_layout()
+        # plt.tight_layout()
         plt.savefig(plot_file_name, dpi=300)
         plt.close()
 
@@ -534,7 +541,7 @@ class QuestionResults:
                 passed_count += 1
             else:
                 failed_count += 1
-        result = not(failed_count == 0 or passed_count == 0)
+        result = not (failed_count == 0 or passed_count == 0)
         return result
 
     def calculate_scores(self):
@@ -596,7 +603,8 @@ class LocationResults:
     def run_trials(self, thread_pool, results, model, evaluator):
         futures_list = []
         for question_result in self.question_result_list:
-            prompt_text = results.get_prompt(model.model_name, self.location_token_position, question_result.question.id)
+            prompt_text = results.get_prompt(model.model_name, self.location_token_position,
+                                             question_result.question.id)
             futures_list += question_result.run_trials(thread_pool, results.test_status, prompt_text, model, evaluator)
         return futures_list
 
@@ -790,7 +798,8 @@ class ModelResults:
         for location in self.location_list:
             for index, question_result in enumerate(location.question_result_list):
                 if question_result.question.id == original_question_id:
-                    new_result = source.get_question_result_from_location(location.location_token_position, source_question_id)
+                    new_result = source.get_question_result_from_location(location.location_token_position,
+                                                                          source_question_id)
                     location.question_result_list[index] = new_result
 
     def get_question_result_from_location(self, location_token_position, question_id):
@@ -922,7 +931,7 @@ class TestResults:
         result = []
         initial_location = previous_location = round(max_input * 0.01)
         max_input = last_location = round(max_input * 0.98)
-        increment = round( (max_input - initial_location) / self.config.location_count)
+        increment = round((max_input - initial_location) / self.config.location_count)
         result.append(initial_location)
         for i in range(1, (self.config.location_count - 1)):
             result.append(previous_location + increment)
@@ -933,7 +942,7 @@ class TestResults:
     def start(self):
         futures_list = []
         for model_results in self.model_results_list:
-            #need a thread pool for each model to keep one model from blocking another
+            # need a thread pool for each model to keep one model from blocking another
             thread_pool = concurrent.futures.ThreadPoolExecutor(max_workers=self.config.test_thread_count)
             futures_list += model_results.run_trials(thread_pool, self,
                                                      self.config.get_model(model_results.model_name),
@@ -1001,9 +1010,11 @@ class TestResults:
                                      model_results.limerick_count_in_prompt, location_scores,
                                      model_results.number_of_trials_per_location)
             plot_name = model_results.model_name + "_trial_plot.png"
+            plot_name = sanitize_file_name(plot_name)
             plot_file_name = os.path.join(self.test_result_directory, plot_name)
             model_score.write_trial_plot(plot_file_name)
             plot_name = model_results.model_name + "_question_plot_"
+            plot_name = sanitize_file_name(plot_name)
             plot_file_name = os.path.join(self.test_result_directory, plot_name)
             model_score.write_question_plot(plot_file_name)
             model_score_list.append(model_score)
@@ -1016,6 +1027,7 @@ class TestResults:
         results_list = copy.deepcopy(results_list)
         for model_results in results_list:
             full_results_name = model_results.model_name + "_full_results.json"
+            full_results_name = sanitize_file_name(full_results_name)
             file_name = os.path.join(self.test_result_directory, full_results_name)
             with open(file_name, "w") as file:
                 results_dict = model_results.to_dict()

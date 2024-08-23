@@ -20,6 +20,8 @@ from queue import Queue, Empty
 
 import anthropic
 import ollama
+from ai21 import AI21Client
+from ai21.models.chat import SystemMessage, UserMessage
 from fireworks.client import Fireworks
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
 from mistralai.client import MistralClient
@@ -30,9 +32,8 @@ import google.generativeai as genai
 from rate_llmiter import RateLlmiter, SECOND_TIME_WINDOW, spread_requests, MINUTE_TIME_WINDOW
 
 PROMPT_RETRIES = 3
-RATE_LIMIT_RETRIES = 100 # requests limits tend to be much higher than token limits, so can end up with a lot of retries
-BASE_RETRY_DELAY = 30 # seconds
-
+RATE_LIMIT_RETRIES = 100  # requests limits tend to be much higher than token limits, so can end up with a lot of retries
+BASE_RETRY_DELAY = 30  # seconds
 
 NIAN_API_PREFIX = "NIAN_"
 
@@ -47,6 +48,7 @@ def init_vertex_ai():
         vertexai.init(project=PROJECT_ID, location=REGION)
     gVERTEX_AI_INITED = True
 '''
+
 
 def get_api_key(api_name, exit_on_error=True):
     key = os.environ.get(NIAN_API_PREFIX + api_name)
@@ -68,6 +70,7 @@ class LlmClientRateLimitException(Exception):
         super().__init__("Rate limit exceeded")
         self.status_code = 429
 
+
 class LlmClient:
     def __init__(self, model_name, max_input, rate_limiter, thead_pool=None):
         self.model_name = model_name
@@ -87,7 +90,7 @@ class LlmClient:
                 else:
                     break
             except Exception as e:
-                if getattr(e,"status_code", None) is not None and e.status_code == 429:
+                if getattr(e, "status_code", None) is not None and e.status_code == 429:
                     self.rate_limiter.wait_for_ticket_after_rate_limit_exceeded()
                     continue
                 else:
@@ -174,7 +177,7 @@ class MistralLlmClient(LlmClient):
     def do_prompt(self, prompt_text, system_prompt="You are an expert at analyzing text."):
         prompt_messages = [
             ChatMessage(role="system", content=system_prompt),
-            ChatMessage(role="user",content=prompt_text)
+            ChatMessage(role="user", content=prompt_text)
         ]
         response = self.client.chat(
             model=self.model_name,
@@ -213,13 +216,13 @@ class GeminiModel(LlmClient):
     def do_prompt(self, prompt_text, system_prompt="You are an expert at analyzing text."):
         full_prompt = system_prompt + "\n\n" + prompt_text
         model_response = self.client.generate_content(full_prompt,
-                                        safety_settings={
-                                            HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
-                                            HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
-                                            HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
-                                            HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE
-                                        },
-                                        generation_config=genai.GenerationConfig(temperature=0.0))
+                                                      safety_settings={
+                                                          HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
+                                                          HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
+                                                          HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
+                                                          HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE
+                                                      },
+                                                      generation_config=genai.GenerationConfig(temperature=0.0))
         result = model_response.text
         return result
 
@@ -227,12 +230,9 @@ class GeminiModel(LlmClient):
 class FireworksAIModel(LlmClient):
     def __init__(self, model_name, max_input, rate_limiter, thead_pool=None, system_role_supported=True):
         super().__init__(model_name, max_input, rate_limiter, thead_pool)
-        self.client = None
-        self.system_role_supported = system_role_supported
-
-    def start(self):
         key = get_api_key("FIREWORKS_API_KEY")
         self.client = Fireworks(api_key=key)
+        self.system_role_supported = system_role_supported
 
     def do_prompt(self, prompt_text, system_prompt="You are an expert at analyzing text."):
         system_prompt = system_prompt if system_prompt is not None else "You are an expert at analyzing text."
@@ -240,6 +240,7 @@ class FireworksAIModel(LlmClient):
         if self.system_role_supported:
             completion = self.client.chat.completions.create(
                 model=self.model_name,
+                temperature=0.0,
                 messages=[
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": prompt_text}
@@ -256,6 +257,28 @@ class FireworksAIModel(LlmClient):
         result = completion.choices[0].message.content
         return result
 
+
+class AI21Model(LlmClient):
+    def __init__(self, model_name, max_input, rate_limiter, thead_pool=None):
+        super().__init__(model_name, max_input, rate_limiter, thead_pool)
+        key = get_api_key("AI21_API_KEY")
+        self.client = AI21Client(api_key=key)
+
+    def do_prompt(self, prompt_text, system_prompt="You are an expert at analyzing text."):
+        system_prompt = system_prompt if system_prompt is not None else "You are an expert at analyzing text."
+        result = None
+        completion = self.client.chat.completions.create(
+            model=self.model_name,
+            temperature=0.0,
+            messages=[
+                SystemMessage(content=system_prompt),
+                UserMessage(content=prompt_text)
+            ],
+        )
+        result = completion.choices[0].message.content
+        return result
+
+
 OLLAMA_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=1)
 MISTRAL_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 ANTHROPIC_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
@@ -263,10 +286,13 @@ OPENAI_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 DEEPSEEK_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 GEMINI_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 FIREWORKS_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
-MISTRAL_RATE_LIMITER = RateLlmiter(*spread_requests(1000)) #used minute spread to seconds because tokens are TPM not TPS
+AI21_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
+MISTRAL_RATE_LIMITER = RateLlmiter(
+    *spread_requests(1000))  # used minute spread to seconds because tokens are TPM not TPS
 FIREWORKS_RATE_LIMITER = RateLlmiter(*spread_requests(600), MINUTE_TIME_WINDOW)
+AI21_RATE_LIMITER = RateLlmiter(*spread_requests(60), MINUTE_TIME_WINDOW)
 
-#MIXTRAL tokenizer generates  20% more tokens than openai, so after reduce max_input to 80% of openai
+# MIXTRAL tokenizer generates  20% more tokens than openai, so after reduce max_input to 80% of openai
 MISTRAL_8X22B = MistralLlmClient("open-mixtral-8x22b", 8000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 MISTRAL_SMALL = MistralLlmClient("mistral-small", 20000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 MISTRAL_7B = MistralLlmClient("open-mistral-7b", 20000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
@@ -278,16 +304,21 @@ GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 12000, RateLlmiter(5000, MINUTE_TIME_
 GPT4 = OpenAIModel('gpt-4-turbo-2024-04-09', 16000, RateLlmiter(5000, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
 GPT4o = OpenAIModel('gpt-4o', 12000, RateLlmiter(10000, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
 GPT4omini = OpenAIModel('gpt-4o-mini', 120000, RateLlmiter(10000, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
-ANTHROPIC_OPUS = AnthropicModel("claude-3-opus-20240229", 195000, RateLlmiter(3, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
-ANTHROPIC_SONNET = AnthropicModel("claude-3-5-sonnet-20240620", 110000, RateLlmiter(500, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
-ANTHROPIC_HAIKU = AnthropicModel("claude-3-haiku-20240307", 12000, RateLlmiter(500, MINUTE_TIME_WINDOW), ANTHROPIC_EXECUTOR)
+ANTHROPIC_OPUS = AnthropicModel("claude-3-opus-20240229", 195000, RateLlmiter(3, MINUTE_TIME_WINDOW),
+                                ANTHROPIC_EXECUTOR)
+ANTHROPIC_SONNET = AnthropicModel("claude-3-5-sonnet-20240620", 110000, RateLlmiter(500, MINUTE_TIME_WINDOW),
+                                  ANTHROPIC_EXECUTOR)
+ANTHROPIC_HAIKU = AnthropicModel("claude-3-haiku-20240307", 12000, RateLlmiter(500, MINUTE_TIME_WINDOW),
+                                 ANTHROPIC_EXECUTOR)
 DEEPSEEK = DeepseekModel("deepseek-chat", 24000, RateLlmiter(20, MINUTE_TIME_WINDOW), DEEPSEEK_EXECUTOR)
-GEMINI_FLASH = GeminiModel("gemini-1.5-flash", 120000, RateLlmiter(1000,MINUTE_TIME_WINDOW), GEMINI_EXECUTOR)
-GEMINI_PRO = GeminiModel("gemini-1.5-pro", 120000, RateLlmiter(10,MINUTE_TIME_WINDOW), GEMINI_EXECUTOR)
-FIREWORKS_LLAMA3_1_8B = FireworksAIModel("accounts/fireworks/models/llama-v3p1-8b-instruct", 120000,
-                                        FIREWORKS_RATE_LIMITER, FIREWORKS_EXECUTOR)
-FIREWORKS_LLAMA3_1_405B = FireworksAIModel("accounts/fireworks/models/llama-v3p1-405b-instruct", 120000,
-                                        FIREWORKS_RATE_LIMITER, FIREWORKS_EXECUTOR)
-FIREWORKS_LLAMA3_1_70B = FireworksAIModel("accounts/fireworks/models/llama-v3p1-70b-instruct", 120000,
-                                        FIREWORKS_RATE_LIMITER, FIREWORKS_EXECUTOR)
+GEMINI_FLASH = GeminiModel("gemini-1.5-flash", 12000, RateLlmiter(1000, MINUTE_TIME_WINDOW), GEMINI_EXECUTOR)
+GEMINI_PRO = GeminiModel("gemini-1.5-pro", 120000, RateLlmiter(10, MINUTE_TIME_WINDOW), GEMINI_EXECUTOR)
+FIREWORKS_LLAMA3_1_8B = FireworksAIModel("accounts/fireworks/models/llama-v3p1-8b-instruct", 12000,
+                                         FIREWORKS_RATE_LIMITER, FIREWORKS_EXECUTOR)
+FIREWORKS_LLAMA3_1_405B = FireworksAIModel("accounts/fireworks/models/llama-v3p1-405b-instruct", 12000,
+                                           FIREWORKS_RATE_LIMITER, FIREWORKS_EXECUTOR)
+FIREWORKS_LLAMA3_1_70B = FireworksAIModel("accounts/fireworks/models/llama-v3p1-70b-instruct", 12000,
+                                          FIREWORKS_RATE_LIMITER, FIREWORKS_EXECUTOR)
+AI21_JAMBA_1_5_MINI = AI21Model("jamba-1.5-mini", 12000,
+                                AI21_RATE_LIMITER, AI21_EXECUTOR)
 
