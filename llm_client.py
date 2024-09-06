@@ -278,6 +278,23 @@ class AI21Model(LlmClient):
         result = completion.choices[0].message.content
         return result
 
+class HyberbolicModel(LlmClient):
+    def __init__(self, model_name, max_input, rate_limiter, thead_pool=None):
+        super().__init__(model_name, max_input, rate_limiter, thead_pool)
+        key = get_api_key("HYPERBOLIC_API_KEY")
+        self.client = OpenAI(api_key=key, base_url="https://api.hyperbolic.xyz/v1")
+
+    def do_prompt(self, prompt_text, system_prompt="You are an expert at analyzing text."):
+        completion = self.client.chat.completions.create(
+            model=self.model_name,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": prompt_text}
+            ],
+            temperature=0.0
+        )
+        result = completion.choices[0].message.content
+        return result
 
 OLLAMA_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=1)
 MISTRAL_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
@@ -287,10 +304,13 @@ DEEPSEEK_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 GEMINI_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 FIREWORKS_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 AI21_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
+HYPERBOLIC_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
+
 MISTRAL_RATE_LIMITER = RateLlmiter(
     *spread_requests(1000))  # used minute spread to seconds because tokens are TPM not TPS
 FIREWORKS_RATE_LIMITER = RateLlmiter(*spread_requests(600), MINUTE_TIME_WINDOW)
 AI21_RATE_LIMITER = RateLlmiter(*spread_requests(60), MINUTE_TIME_WINDOW)
+HYPERBOLIC_RATE_LIMITER = RateLlmiter(*spread_requests(60), MINUTE_TIME_WINDOW)
 
 # MIXTRAL tokenizer generates  20% more tokens than openai, so after reduce max_input to 80% of openai
 MISTRAL_8X22B = MistralLlmClient("open-mixtral-8x22b", 8000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
@@ -321,4 +341,6 @@ FIREWORKS_LLAMA3_1_70B = FireworksAIModel("accounts/fireworks/models/llama-v3p1-
                                           FIREWORKS_RATE_LIMITER, FIREWORKS_EXECUTOR)
 AI21_JAMBA_1_5_MINI = AI21Model("jamba-1.5-mini", 12000,
                                 AI21_RATE_LIMITER, AI21_EXECUTOR)
+HYPERBOLIC_REFLECTIVITY = HyberbolicModel("mattshumer/Reflection-70B", 2000,
+                                HYPERBOLIC_RATE_LIMITER, AI21_EXECUTOR)
 

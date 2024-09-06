@@ -18,9 +18,9 @@ from evaluator import DefaultEvaluator
 from llm_client import GPT3_5, \
     ANTHROPIC_SONNET, MISTRAL_7B, MISTRAL_8X22B, MISTRAL_SMALL, \
     GPT4, ANTHROPIC_HAIKU, DEEPSEEK, MISTRAL_LARGE, MISTRAL_8X7B, ANTHROPIC_OPUS, GPT4o, GEMINI_FLASH, GEMINI_PRO, \
-    GPT4omini, MISTRAL_NEMO_12B, MISTRAL_LARGE2, AI21_JAMBA_1_5_MINI
+    GPT4omini, MISTRAL_NEMO_12B, MISTRAL_LARGE2, AI21_JAMBA_1_5_MINI, HYPERBOLIC_REFLECTIVITY
 
-EVALUATOR_MODEL_LIST = [MISTRAL_SMALL, MISTRAL_7B, GEMINI_FLASH, ANTHROPIC_HAIKU,
+EVALUATOR_MODEL_LIST = [GPT3_5, MISTRAL_7B, GEMINI_FLASH, ANTHROPIC_HAIKU,
                         GPT4omini]
 TEST_DIRECTORY = "tests"
 
@@ -46,7 +46,7 @@ class TestConfig:
         return result
 
 
-DEFAULT_TEST_CONFIG = TestConfig(model_list=[AI21_JAMBA_1_5_MINI],
+DEFAULT_TEST_CONFIG = TestConfig(model_list=[HYPERBOLIC_REFLECTIVITY],
                                  test_thread_count=100,
                                  evaluator_model_list=EVALUATOR_MODEL_LIST,
                                  default_evaluator=DefaultEvaluator(EVALUATOR_MODEL_LIST),
