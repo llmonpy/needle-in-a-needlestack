@@ -19,6 +19,8 @@ import queue
 from datetime import datetime
 from string import Template
 
+from ratellmiter.rate_llmiter import get_rate_limiter_monitor
+
 from limerick import Limerick, FULL_QUESTION_FILE
 from llm_client import PROMPT_RETRIES, backoff_after_exception
 from test_config import DEFAULT_TEST_CONFIG, CURRENT_TEST_CONFIG
@@ -409,12 +411,16 @@ class QuestionListVetter:
 
 
 if __name__ == '__main__':
-    test_config = DEFAULT_TEST_CONFIG
-    vetter = QuestionListVetter.from_file(FULL_QUESTION_FILE, "vetter_results",
-                                          test_config.model_list, 5,
-                                          test_config.evaluator_model_list)
-    done_queue = vetter.start()
-    done_queue.get()
+    get_rate_limiter_monitor().start(log_directory=os.path.join(os.getcwd(), "logs"))
+    try:
+        test_config = DEFAULT_TEST_CONFIG
+        vetter = QuestionListVetter.from_file(FULL_QUESTION_FILE, "vetter_results",
+                                              test_config.model_list, 5,
+                                              test_config.evaluator_model_list)
+        done_queue = vetter.start()
+        done_queue.get()
+    finally:
+        get_rate_limiter_monitor().stop()
     exit(0)
 
 

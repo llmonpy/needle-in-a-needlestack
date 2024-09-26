@@ -287,6 +287,14 @@ class ModelScore:
         plt.tight_layout()
         plt.savefig(plot_file_name, dpi=300)
         plt.close()
+        self.write_plot_data(plot_file_name, values)
+
+    def write_plot_data(self, plot_file_name, values):
+        data_file_name = plot_file_name.replace(".png", ".csv")
+        with open(data_file_name, "w") as file:
+            for value in values:
+                file.write(f"{value},")
+            file.write("\n")
 
     def generate_x_labels(self, labels):
         result = []

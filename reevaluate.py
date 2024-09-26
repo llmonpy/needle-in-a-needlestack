@@ -19,6 +19,8 @@ import os
 import queue
 import sys
 
+from ratellmiter.rate_llmiter import get_rate_limiter_monitor
+
 from answer_analysis import AnswerAnalysis
 from dissent import DissentReport
 from limerick import FULL_QUESTION_FILE, Limerick
@@ -90,22 +92,26 @@ class AnswerReevaluator:
 
 
 if __name__ == '__main__':
-    if len(sys.argv) >= 2:
-        full_results_path = sys.argv[1]
-    else:
-        full_results_path = get_latest_test_directory()
-    test_config = DEFAULT_TEST_CONFIG
-    reevaluator = AnswerReevaluator(full_results_path, test_config.evaluator_model_list,
-                                    {ORIGINAL_MODEL_NAME: "gpt-3.5-turbo-0125",
-                                     REPLACEMENT_MODEL_NAME: "open-mixtral-8x22b"})
-    done_queue = reevaluator.reevaluate_generated_answers()
-    done_queue.get()
-    reevaluator.record_results()
-    analyzer = AnswerAnalysis.create_from_revaluator_results(full_results_path, REEVALUATION_FILE_PREFIX)
-    analyzer.finish()
-    results_path = os.path.join(full_results_path, "reeval_answer_analysis.json")
-    analyzer.write_to_file(results_path)
-    dissent_report = DissentReport.create_from_revaluator_results(full_results_path, REEVALUATION_FILE_PREFIX)
-    dissent_report.process()
-    print("Finished")
+    get_rate_limiter_monitor().start(log_directory=os.path.join(os.getcwd(), "logs"))
+    try:
+        if len(sys.argv) >= 2:
+            full_results_path = sys.argv[1]
+        else:
+            full_results_path = get_latest_test_directory()
+        test_config = DEFAULT_TEST_CONFIG
+        reevaluator = AnswerReevaluator(full_results_path, test_config.evaluator_model_list,
+                                        {ORIGINAL_MODEL_NAME: "gpt-3.5-turbo-0125",
+                                         REPLACEMENT_MODEL_NAME: "open-mixtral-8x22b"})
+        done_queue = reevaluator.reevaluate_generated_answers()
+        done_queue.get()
+        reevaluator.record_results()
+        analyzer = AnswerAnalysis.create_from_revaluator_results(full_results_path, REEVALUATION_FILE_PREFIX)
+        analyzer.finish()
+        results_path = os.path.join(full_results_path, "reeval_answer_analysis.json")
+        analyzer.write_to_file(results_path)
+        dissent_report = DissentReport.create_from_revaluator_results(full_results_path, REEVALUATION_FILE_PREFIX)
+        dissent_report.process()
+        print("Finished")
+    finally:
+        get_rate_limiter_monitor().stop()
     exit(0)

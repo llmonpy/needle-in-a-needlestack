@@ -303,7 +303,7 @@ MISTRAL_LARGE2 = MistralLlmClient("mistral-large-2407", 120000, MISTRAL_RATE_LIM
 GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 12000, BucketRateLimiter(5000), OPENAI_EXECUTOR)
 GPT4 = OpenAIModel('gpt-4-turbo-2024-04-09', 16000, BucketRateLimiter(5000), OPENAI_EXECUTOR)
 GPT4o = OpenAIModel('gpt-4o', 12000, BucketRateLimiter(10000), OPENAI_EXECUTOR)
-GPT4omini = OpenAIModel('gpt-4o-mini', 120000, BucketRateLimiter(10000), OPENAI_EXECUTOR)
+GPT4omini = OpenAIModel('gpt-4o-mini', 32000, BucketRateLimiter(10000), OPENAI_EXECUTOR)
 ANTHROPIC_OPUS = AnthropicModel("claude-3-opus-20240229", 195000, BucketRateLimiter(3),
                                 ANTHROPIC_EXECUTOR)
 ANTHROPIC_SONNET = AnthropicModel("claude-3-5-sonnet-20240620", 110000, BucketRateLimiter(480),
@@ -312,11 +312,15 @@ ANTHROPIC_HAIKU = AnthropicModel("claude-3-haiku-20240307", 12000, BucketRateLim
                                  ANTHROPIC_EXECUTOR)
 GEMINI_FLASH = GeminiModel("gemini-1.5-flash-002", 12000, BucketRateLimiter(1000), GEMINI_EXECUTOR)
 GEMINI_PRO = GeminiModel("gemini-1.5-pro-002", 120000, BucketRateLimiter(10), GEMINI_EXECUTOR)
-FIREWORKS_LLAMA3_1_8B = FireworksAIModel("accounts/fireworks/models/llama-v3p1-8b-instruct", 12000,
+FIREWORKS_LLAMA3_2_1B = FireworksAIModel("accounts/fireworks/models/llama-v3p2-1b-instruct", 4000,
                                          FIREWORKS_RATE_LIMITER, FIREWORKS_EXECUTOR)
-FIREWORKS_LLAMA3_1_405B = FireworksAIModel("accounts/fireworks/models/llama-v3p1-405b-instruct", 12000,
+FIREWORKS_LLAMA3_2_3B = FireworksAIModel("accounts/fireworks/models/llama-v3p2-3b-instruct", 8000,
+                                         FIREWORKS_RATE_LIMITER, FIREWORKS_EXECUTOR)
+FIREWORKS_LLAMA3_1_8B = FireworksAIModel("accounts/fireworks/models/llama-v3p1-8b-instruct", 8000,
+                                         FIREWORKS_RATE_LIMITER, FIREWORKS_EXECUTOR)
+FIREWORKS_LLAMA3_1_405B = FireworksAIModel("accounts/fireworks/models/llama-v3p1-405b-instruct", 4000,
                                            FIREWORKS_RATE_LIMITER, FIREWORKS_EXECUTOR)
-FIREWORKS_LLAMA3_1_70B = FireworksAIModel("accounts/fireworks/models/llama-v3p1-70b-instruct", 12000,
+FIREWORKS_LLAMA3_1_70B = FireworksAIModel("accounts/fireworks/models/llama-v3p1-70b-instruct", 4000,
                                           FIREWORKS_RATE_LIMITER, FIREWORKS_EXECUTOR)
 AI21_JAMBA_1_5_MINI = AI21Model("jamba-1.5-mini", 12000,
                                 AI21_RATE_LIMITER, AI21_EXECUTOR)
