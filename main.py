@@ -14,14 +14,20 @@
 #  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 import os
 
+from ratellmiter.rate_llmiter import get_rate_limiter_monitor
+
 from test_config import  CURRENT_TEST_CONFIG
 from test_results import TestResults
 
 
 if __name__ == '__main__':
-    test_results = TestResults(CURRENT_TEST_CONFIG)
-    queue = test_results.start()
-    queue.get()
-    test_results.record_results()
+    get_rate_limiter_monitor().start(log_directory=os.path.join(os.getcwd(), "logs"))
+    try:
+        test_results = TestResults(CURRENT_TEST_CONFIG)
+        queue = test_results.start()
+        queue.get()
+        test_results.record_results()
+    finally:
+        get_rate_limiter_monitor().stop()
     print("Done")
     exit(0)

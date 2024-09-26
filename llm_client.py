@@ -28,8 +28,7 @@ from mistralai.client import MistralClient
 from mistralai.models.chat_completion import ChatMessage
 from openai import OpenAI
 import google.generativeai as genai
-
-from rate_llmiter import RateLlmiter, SECOND_TIME_WINDOW, spread_requests, MINUTE_TIME_WINDOW
+from ratellmiter.rate_llmiter import BucketRateLimiter
 
 PROMPT_RETRIES = 3
 RATE_LIMIT_RETRIES = 100  # requests limits tend to be much higher than token limits, so can end up with a lot of retries
@@ -289,11 +288,9 @@ FIREWORKS_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 AI21_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 HYPERBOLIC_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 
-MISTRAL_RATE_LIMITER = RateLlmiter(
-    *spread_requests(1000))  # used minute spread to seconds because tokens are TPM not TPS
-FIREWORKS_RATE_LIMITER = RateLlmiter(*spread_requests(600), MINUTE_TIME_WINDOW)
-AI21_RATE_LIMITER = RateLlmiter(*spread_requests(60), MINUTE_TIME_WINDOW)
-HYPERBOLIC_RATE_LIMITER = RateLlmiter(*spread_requests(60), MINUTE_TIME_WINDOW)
+MISTRAL_RATE_LIMITER = BucketRateLimiter(1000)
+FIREWORKS_RATE_LIMITER = BucketRateLimiter(600)
+AI21_RATE_LIMITER = BucketRateLimiter(60)
 
 # MIXTRAL tokenizer generates  20% more tokens than openai, so after reduce max_input to 80% of openai
 MISTRAL_8X22B = MistralLlmClient("open-mixtral-8x22b", 8000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
@@ -303,19 +300,18 @@ MISTRAL_NEMO_12B = MistralLlmClient("open-mistral-nemo-2407", 32000, MISTRAL_RAT
 MISTRAL_8X7B = MistralLlmClient("open-mixtral-8x7b", 24000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 MISTRAL_LARGE = MistralLlmClient("mistral-large-latest", 24000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 MISTRAL_LARGE2 = MistralLlmClient("mistral-large-2407", 120000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
-GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 12000, RateLlmiter(5000, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
-GPT4 = OpenAIModel('gpt-4-turbo-2024-04-09', 16000, RateLlmiter(5000, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
-GPT4o = OpenAIModel('gpt-4o', 12000, RateLlmiter(10000, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
-GPT4omini = OpenAIModel('gpt-4o-mini', 120000, RateLlmiter(10000, MINUTE_TIME_WINDOW), OPENAI_EXECUTOR)
-ANTHROPIC_OPUS = AnthropicModel("claude-3-opus-20240229", 195000, RateLlmiter(3, MINUTE_TIME_WINDOW),
+GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 12000, BucketRateLimiter(5000), OPENAI_EXECUTOR)
+GPT4 = OpenAIModel('gpt-4-turbo-2024-04-09', 16000, BucketRateLimiter(5000), OPENAI_EXECUTOR)
+GPT4o = OpenAIModel('gpt-4o', 12000, BucketRateLimiter(10000), OPENAI_EXECUTOR)
+GPT4omini = OpenAIModel('gpt-4o-mini', 120000, BucketRateLimiter(10000), OPENAI_EXECUTOR)
+ANTHROPIC_OPUS = AnthropicModel("claude-3-opus-20240229", 195000, BucketRateLimiter(3),
                                 ANTHROPIC_EXECUTOR)
-ANTHROPIC_SONNET = AnthropicModel("claude-3-5-sonnet-20240620", 110000, RateLlmiter(500, MINUTE_TIME_WINDOW),
+ANTHROPIC_SONNET = AnthropicModel("claude-3-5-sonnet-20240620", 110000, BucketRateLimiter(480),
                                   ANTHROPIC_EXECUTOR)
-ANTHROPIC_HAIKU = AnthropicModel("claude-3-haiku-20240307", 12000, RateLlmiter(500, MINUTE_TIME_WINDOW),
+ANTHROPIC_HAIKU = AnthropicModel("claude-3-haiku-20240307", 12000, BucketRateLimiter(480),
                                  ANTHROPIC_EXECUTOR)
-DEEPSEEK = DeepseekModel("deepseek-chat", 24000, RateLlmiter(20, MINUTE_TIME_WINDOW), DEEPSEEK_EXECUTOR)
-GEMINI_FLASH = GeminiModel("gemini-1.5-flash", 12000, RateLlmiter(1000, MINUTE_TIME_WINDOW), GEMINI_EXECUTOR)
-GEMINI_PRO = GeminiModel("gemini-1.5-pro", 120000, RateLlmiter(10, MINUTE_TIME_WINDOW), GEMINI_EXECUTOR)
+GEMINI_FLASH = GeminiModel("gemini-1.5-flash-002", 12000, BucketRateLimiter(1000), GEMINI_EXECUTOR)
+GEMINI_PRO = GeminiModel("gemini-1.5-pro-002", 120000, BucketRateLimiter(10), GEMINI_EXECUTOR)
 FIREWORKS_LLAMA3_1_8B = FireworksAIModel("accounts/fireworks/models/llama-v3p1-8b-instruct", 12000,
                                          FIREWORKS_RATE_LIMITER, FIREWORKS_EXECUTOR)
 FIREWORKS_LLAMA3_1_405B = FireworksAIModel("accounts/fireworks/models/llama-v3p1-405b-instruct", 12000,
