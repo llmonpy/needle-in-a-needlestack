@@ -28,7 +28,7 @@ from mistralai.client import MistralClient
 from mistralai.models.chat_completion import ChatMessage
 from openai import OpenAI
 import google.generativeai as genai
-from ratellmiter.rate_llmiter import BucketRateLimiter
+from ratellmiter.rate_llmiter import BucketRateLimiter, llmiter
 
 PROMPT_RETRIES = 3
 RATE_LIMIT_RETRIES = 100  # requests limits tend to be much higher than token limits, so can end up with a lot of retries
@@ -77,7 +77,29 @@ class LlmClient:
         self.rate_limiter = rate_limiter
         self.thread_pool = thead_pool
 
-    def prompt(self, prompt_text, system_prompt=None):
+    def get_ratellmiter(self):
+        return self.rate_limiter
+
+    def ratellmiter_is_llm_blocked(self):
+        result = True
+        print("Testing if blocked")
+        try:
+            self.start() # this should init API.
+            response = self.do_prompt("Hello? Respond with 'World'","You are a helpful assistant", False,
+                                      temp=0.0, max_output=10)
+            result = response.response_text is None
+            print("Blocked test response: " + str(result))
+        except Exception as e:
+            print("Blocked test exception: " + str(e))
+            result = True
+        return result
+
+    def get_service_name(self):
+        return self.model_name
+
+
+@llmiter()
+def prompt(self, prompt_text, system_prompt=None):
         result = None
         self.rate_limiter.get_ticket()
         for attempt in range(RATE_LIMIT_RETRIES):
@@ -288,8 +310,8 @@ FIREWORKS_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 AI21_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 HYPERBOLIC_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 
-MISTRAL_RATE_LIMITER = BucketRateLimiter(1000)
-FIREWORKS_RATE_LIMITER = BucketRateLimiter(600)
+MISTRAL_RATE_LIMITER = BucketRateLimiter(300)
+FIREWORKS_RATE_LIMITER = BucketRateLimiter(300)
 AI21_RATE_LIMITER = BucketRateLimiter(60)
 
 # MIXTRAL tokenizer generates  20% more tokens than openai, so after reduce max_input to 80% of openai
@@ -311,6 +333,7 @@ ANTHROPIC_SONNET = AnthropicModel("claude-3-5-sonnet-20240620", 110000, BucketRa
 ANTHROPIC_HAIKU = AnthropicModel("claude-3-haiku-20240307", 12000, BucketRateLimiter(480),
                                  ANTHROPIC_EXECUTOR)
 GEMINI_FLASH = GeminiModel("gemini-1.5-flash-002", 12000, BucketRateLimiter(1000), GEMINI_EXECUTOR)
+GEMINI_FLASH_8B = GeminiModel("gemini-1.5-flash-8b", 120000, BucketRateLimiter(60), GEMINI_EXECUTOR)
 GEMINI_PRO = GeminiModel("gemini-1.5-pro-002", 120000, BucketRateLimiter(10), GEMINI_EXECUTOR)
 FIREWORKS_LLAMA3_2_1B = FireworksAIModel("accounts/fireworks/models/llama-v3p2-1b-instruct", 4000,
                                          FIREWORKS_RATE_LIMITER, FIREWORKS_EXECUTOR)
