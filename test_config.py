@@ -21,7 +21,7 @@ from llm_client import GPT3_5, \
     GPT4omini, MISTRAL_NEMO_12B, MISTRAL_LARGE2, AI21_JAMBA_1_5_MINI, FIREWORKS_LLAMA3_2_1B, FIREWORKS_LLAMA3_2_3B, \
     FIREWORKS_LLAMA3_1_8B, FIREWORKS_LLAMA3_1_70B, GEMINI_FLASH_8B
 
-EVALUATOR_MODEL_LIST = [GPT3_5, GEMINI_FLASH, FIREWORKS_LLAMA3_1_8B, ANTHROPIC_HAIKU,
+EVALUATOR_MODEL_LIST = [GEMINI_FLASH_8B, GEMINI_FLASH, FIREWORKS_LLAMA3_1_8B, ANTHROPIC_HAIKU,
                         GPT4omini]
 TEST_DIRECTORY = "tests"
 
@@ -47,8 +47,8 @@ class TestConfig:
         return result
 
 
-DEFAULT_TEST_CONFIG = TestConfig(model_list=[GEMINI_FLASH_8B],
-                                 test_thread_count=100,
+DEFAULT_TEST_CONFIG = TestConfig(model_list=[MISTRAL_NEMO_12B],
+                                 test_thread_count=300,
                                  evaluator_model_list=EVALUATOR_MODEL_LIST,
                                  default_evaluator=DefaultEvaluator(EVALUATOR_MODEL_LIST),
                                  number_of_questions_per_trial=10,

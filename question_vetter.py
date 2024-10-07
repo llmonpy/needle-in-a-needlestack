@@ -411,7 +411,8 @@ class QuestionListVetter:
 
 
 if __name__ == '__main__':
-    get_rate_limiter_monitor().start(log_directory=os.path.join(os.getcwd(), "logs"))
+    get_rate_limiter_monitor().config(log_directory=os.path.join(os.getcwd(), "logs"))
+    get_rate_limiter_monitor().start()
     try:
         test_config = DEFAULT_TEST_CONFIG
         vetter = QuestionListVetter.from_file(FULL_QUESTION_FILE, "vetter_results",

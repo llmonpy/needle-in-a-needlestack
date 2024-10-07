@@ -92,7 +92,8 @@ class AnswerReevaluator:
 
 
 if __name__ == '__main__':
-    get_rate_limiter_monitor().start(log_directory=os.path.join(os.getcwd(), "logs"))
+    get_rate_limiter_monitor().config(log_directory=os.path.join(os.getcwd(), "logs"))
+    get_rate_limiter_monitor().start()
     try:
         if len(sys.argv) >= 2:
             full_results_path = sys.argv[1]

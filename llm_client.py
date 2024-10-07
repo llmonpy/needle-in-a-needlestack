@@ -28,7 +28,7 @@ from mistralai.client import MistralClient
 from mistralai.models.chat_completion import ChatMessage
 from openai import OpenAI
 import google.generativeai as genai
-from ratellmiter.rate_llmiter import BucketRateLimiter, llmiter
+from ratellmiter.rate_llmiter import BucketRateLimiter, llmiter, RateLimitedService
 
 PROMPT_RETRIES = 3
 RATE_LIMIT_RETRIES = 100  # requests limits tend to be much higher than token limits, so can end up with a lot of retries
@@ -70,25 +70,25 @@ class LlmClientRateLimitException(Exception):
         self.status_code = 429
 
 
-class LlmClient:
+class LlmClient(RateLimitedService):
     def __init__(self, model_name, max_input, rate_limiter, thead_pool=None):
         self.model_name = model_name
         self.max_input = max_input
         self.rate_limiter = rate_limiter
+        if self.rate_limiter is not None:
+            rate_limiter.set_rate_limited_service(self)
         self.thread_pool = thead_pool
 
-    def get_ratellmiter(self):
+    def get_ratellmiter(self, model_name=None):
         return self.rate_limiter
 
     def ratellmiter_is_llm_blocked(self):
         result = True
         print("Testing if blocked")
         try:
-            self.start() # this should init API.
-            response = self.do_prompt("Hello? Respond with 'World'","You are a helpful assistant", False,
-                                      temp=0.0, max_output=10)
-            result = response.response_text is None
-            print("Blocked test response: " + str(result))
+            self.do_prompt("What is the capital of France?","You are a helpful assistant")
+            result = False
+            print(self.model_name + " is not blocked")
         except Exception as e:
             print("Blocked test exception: " + str(e))
             result = True
@@ -98,8 +98,14 @@ class LlmClient:
         return self.model_name
 
 
-@llmiter()
-def prompt(self, prompt_text, system_prompt=None):
+    @llmiter(debug=False)
+    def prompt(self, prompt_text, system_prompt=None):
+        result = None
+        result = self.do_prompt(prompt_text, system_prompt)
+        return result
+
+    '''
+    def prompt(self, prompt_text, system_prompt=None):
         result = None
         self.rate_limiter.get_ticket()
         for attempt in range(RATE_LIMIT_RETRIES):
@@ -119,7 +125,7 @@ def prompt(self, prompt_text, system_prompt=None):
         if result is None:
             raise LlmClientRateLimitException()
         return result
-
+    '''
     def do_prompt(self, prompt_text, system_prompt=None):
         raise Exception("Not implemented")
 
@@ -140,7 +146,8 @@ class OpenAIModel(LlmClient):
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": prompt_text}
             ],
-            temperature=0.0
+            temperature=0.0,
+            timeout=90
         )
         result = completion.choices[0].message.content
         return result
@@ -310,9 +317,9 @@ FIREWORKS_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 AI21_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 HYPERBOLIC_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 
-MISTRAL_RATE_LIMITER = BucketRateLimiter(300)
-FIREWORKS_RATE_LIMITER = BucketRateLimiter(300)
-AI21_RATE_LIMITER = BucketRateLimiter(60)
+MISTRAL_RATE_LIMITER = BucketRateLimiter(300, "MISTRAL")
+FIREWORKS_RATE_LIMITER = BucketRateLimiter(480, "FIREWORKS")
+AI21_RATE_LIMITER = BucketRateLimiter(60, "AI21")
 
 # MIXTRAL tokenizer generates  20% more tokens than openai, so after reduce max_input to 80% of openai
 MISTRAL_8X22B = MistralLlmClient("open-mixtral-8x22b", 8000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
@@ -325,15 +332,15 @@ MISTRAL_LARGE2 = MistralLlmClient("mistral-large-2407", 120000, MISTRAL_RATE_LIM
 GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 12000, BucketRateLimiter(5000), OPENAI_EXECUTOR)
 GPT4 = OpenAIModel('gpt-4-turbo-2024-04-09', 16000, BucketRateLimiter(5000), OPENAI_EXECUTOR)
 GPT4o = OpenAIModel('gpt-4o', 12000, BucketRateLimiter(10000), OPENAI_EXECUTOR)
-GPT4omini = OpenAIModel('gpt-4o-mini', 32000, BucketRateLimiter(10000), OPENAI_EXECUTOR)
+GPT4omini = OpenAIModel('gpt-4o-mini', 12000, BucketRateLimiter(10000), OPENAI_EXECUTOR)
 ANTHROPIC_OPUS = AnthropicModel("claude-3-opus-20240229", 195000, BucketRateLimiter(3),
                                 ANTHROPIC_EXECUTOR)
 ANTHROPIC_SONNET = AnthropicModel("claude-3-5-sonnet-20240620", 110000, BucketRateLimiter(480),
                                   ANTHROPIC_EXECUTOR)
 ANTHROPIC_HAIKU = AnthropicModel("claude-3-haiku-20240307", 12000, BucketRateLimiter(480),
                                  ANTHROPIC_EXECUTOR)
-GEMINI_FLASH = GeminiModel("gemini-1.5-flash-002", 12000, BucketRateLimiter(1000), GEMINI_EXECUTOR)
-GEMINI_FLASH_8B = GeminiModel("gemini-1.5-flash-8b", 120000, BucketRateLimiter(60), GEMINI_EXECUTOR)
+GEMINI_FLASH = GeminiModel("gemini-1.5-flash-002", 12000, BucketRateLimiter(1200), GEMINI_EXECUTOR)
+GEMINI_FLASH_8B = GeminiModel("gemini-1.5-flash-8b", 12000, BucketRateLimiter(1200), GEMINI_EXECUTOR)
 GEMINI_PRO = GeminiModel("gemini-1.5-pro-002", 120000, BucketRateLimiter(10), GEMINI_EXECUTOR)
 FIREWORKS_LLAMA3_2_1B = FireworksAIModel("accounts/fireworks/models/llama-v3p2-1b-instruct", 4000,
                                          FIREWORKS_RATE_LIMITER, FIREWORKS_EXECUTOR)

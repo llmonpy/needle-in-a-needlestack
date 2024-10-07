@@ -24,6 +24,7 @@ from nothingpy import Nothing
 from datetime import datetime
 
 import matplotlib.pyplot as plt
+from ratellmiter.rate_llmiter import get_rate_limiter_monitor
 
 from limerick import Limerick
 from llm_client import PROMPT_RETRIES, backoff_after_exception
@@ -948,6 +949,7 @@ class TestResults:
         return result
 
     def start(self):
+        get_rate_limiter_monitor().start()
         futures_list = []
         for model_results in self.model_results_list:
             # need a thread pool for each model to keep one model from blocking another

@@ -13,6 +13,7 @@
 #  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 #  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 import os
+import resource
 
 from ratellmiter.rate_llmiter import get_rate_limiter_monitor
 
@@ -21,7 +22,9 @@ from test_results import TestResults
 
 
 if __name__ == '__main__':
-    get_rate_limiter_monitor().start(log_directory=os.path.join(os.getcwd(), "logs"))
+    soft_limit, hard_limit = resource.getrlimit(resource.RLIMIT_NOFILE)
+    resource.setrlimit(resource.RLIMIT_NOFILE, (4096, hard_limit))
+    get_rate_limiter_monitor().config(log_directory=os.path.join(os.getcwd(), "logs"))
     try:
         test_results = TestResults(CURRENT_TEST_CONFIG)
         queue = test_results.start()
