@@ -310,6 +310,7 @@ class AI21Model(LlmClient):
 OLLAMA_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=1)
 MISTRAL_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 ANTHROPIC_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
+ANTHROPIC_TEST_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=3) # rate limit for below 60/min case
 OPENAI_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 DEEPSEEK_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 GEMINI_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
@@ -317,7 +318,7 @@ FIREWORKS_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 AI21_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 HYPERBOLIC_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 
-MISTRAL_RATE_LIMITER = BucketRateLimiter(300, "MISTRAL")
+MISTRAL_RATE_LIMITER = BucketRateLimiter(600, "MISTRAL")
 FIREWORKS_RATE_LIMITER = BucketRateLimiter(480, "FIREWORKS")
 AI21_RATE_LIMITER = BucketRateLimiter(60, "AI21")
 
@@ -325,6 +326,8 @@ AI21_RATE_LIMITER = BucketRateLimiter(60, "AI21")
 MISTRAL_8X22B = MistralLlmClient("open-mixtral-8x22b", 8000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 MISTRAL_SMALL = MistralLlmClient("mistral-small-2409", 20000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 MISTRAL_7B = MistralLlmClient("open-mistral-7b", 20000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
+MINISTRAL_3B = MistralLlmClient("ministral-3b-latest", 12000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
+MINISTRAL_8B = MistralLlmClient("ministral-8b-latest", 12000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 MISTRAL_NEMO_12B = MistralLlmClient("open-mistral-nemo-2407", 32000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 MISTRAL_8X7B = MistralLlmClient("open-mixtral-8x7b", 24000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 MISTRAL_LARGE = MistralLlmClient("mistral-large-latest", 24000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
@@ -335,16 +338,16 @@ GPT4o = OpenAIModel('gpt-4o', 12000, BucketRateLimiter(10000), OPENAI_EXECUTOR)
 GPT4omini = OpenAIModel('gpt-4o-mini', 12000, BucketRateLimiter(10000), OPENAI_EXECUTOR)
 ANTHROPIC_OPUS = AnthropicModel("claude-3-opus-20240229", 195000, BucketRateLimiter(3),
                                 ANTHROPIC_EXECUTOR)
-ANTHROPIC_SONNET = AnthropicModel("claude-3-5-sonnet-20240620", 32000, BucketRateLimiter(480),
-                                  ANTHROPIC_EXECUTOR)
+ANTHROPIC_SONNET = AnthropicModel("claude-3-5-sonnet-20241022", 120000, BucketRateLimiter(480),
+                                  ANTHROPIC_TEST_EXECUTOR)
 ANTHROPIC_HAIKU = AnthropicModel("claude-3-haiku-20240307", 12000, BucketRateLimiter(480),
                                  ANTHROPIC_EXECUTOR)
-GEMINI_FLASH = GeminiModel("gemini-1.5-flash-002", 12000, BucketRateLimiter(1200), GEMINI_EXECUTOR)
-GEMINI_FLASH_8B = GeminiModel("gemini-1.5-flash-8b", 12000, BucketRateLimiter(1200), GEMINI_EXECUTOR)
+GEMINI_FLASH = GeminiModel("gemini-1.5-flash-002", 120000, BucketRateLimiter(600), GEMINI_EXECUTOR)
+GEMINI_FLASH_8B = GeminiModel("gemini-1.5-flash-8b", 120000, BucketRateLimiter(600), GEMINI_EXECUTOR)
 GEMINI_PRO = GeminiModel("gemini-1.5-pro-002", 120000, BucketRateLimiter(10), GEMINI_EXECUTOR)
 FIREWORKS_LLAMA3_2_1B = FireworksAIModel("accounts/fireworks/models/llama-v3p2-1b-instruct", 4000,
                                          FIREWORKS_RATE_LIMITER, FIREWORKS_EXECUTOR)
-FIREWORKS_LLAMA3_2_3B = FireworksAIModel("accounts/fireworks/models/llama-v3p2-3b-instruct", 8000,
+FIREWORKS_LLAMA3_2_3B = FireworksAIModel("accounts/fireworks/models/llama-v3p2-3b-instruct", 12000,
                                          FIREWORKS_RATE_LIMITER, FIREWORKS_EXECUTOR)
 FIREWORKS_LLAMA3_1_8B = FireworksAIModel("accounts/fireworks/models/llama-v3p1-8b-instruct", 8000,
                                          FIREWORKS_RATE_LIMITER, FIREWORKS_EXECUTOR)
