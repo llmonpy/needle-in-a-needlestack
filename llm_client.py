@@ -335,7 +335,7 @@ MISTRAL_LARGE2 = MistralLlmClient("mistral-large-2411", 32000, MISTRAL_RATE_LIMI
 GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 12000, BucketRateLimiter(5000), OPENAI_EXECUTOR)
 GPT4 = OpenAIModel('gpt-4-turbo-2024-04-09', 16000, BucketRateLimiter(5000), OPENAI_EXECUTOR)
 GPT4o = OpenAIModel('gpt-4o', 12000, BucketRateLimiter(10000), OPENAI_EXECUTOR)
-GPT4omini = OpenAIModel('gpt-4o-mini', 64000, BucketRateLimiter(10000), OPENAI_EXECUTOR)
+GPT4omini = OpenAIModel('gpt-4o-mini', 120000, BucketRateLimiter(10000), OPENAI_EXECUTOR)
 ANTHROPIC_OPUS = AnthropicModel("claude-3-opus-20240229", 195000, BucketRateLimiter(3),
                                 ANTHROPIC_EXECUTOR)
 ANTHROPIC_SONNET = AnthropicModel("claude-3-5-sonnet-20241022", 120000, BucketRateLimiter(480),
