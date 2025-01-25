@@ -331,11 +331,11 @@ MINISTRAL_8B = MistralLlmClient("ministral-8b-latest", 12000, MISTRAL_RATE_LIMIT
 MISTRAL_NEMO_12B = MistralLlmClient("open-mistral-nemo-2407", 32000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 MISTRAL_8X7B = MistralLlmClient("open-mixtral-8x7b", 24000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 MISTRAL_LARGE = MistralLlmClient("mistral-large-latest", 24000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
-MISTRAL_LARGE2 = MistralLlmClient("mistral-large-2407", 32000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
+MISTRAL_LARGE2 = MistralLlmClient("mistral-large-2411", 32000, MISTRAL_RATE_LIMITER, MISTRAL_EXECUTOR)
 GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 12000, BucketRateLimiter(5000), OPENAI_EXECUTOR)
 GPT4 = OpenAIModel('gpt-4-turbo-2024-04-09', 16000, BucketRateLimiter(5000), OPENAI_EXECUTOR)
 GPT4o = OpenAIModel('gpt-4o', 12000, BucketRateLimiter(10000), OPENAI_EXECUTOR)
-GPT4omini = OpenAIModel('gpt-4o-mini', 12000, BucketRateLimiter(10000), OPENAI_EXECUTOR)
+GPT4omini = OpenAIModel('gpt-4o-mini', 64000, BucketRateLimiter(10000), OPENAI_EXECUTOR)
 ANTHROPIC_OPUS = AnthropicModel("claude-3-opus-20240229", 195000, BucketRateLimiter(3),
                                 ANTHROPIC_EXECUTOR)
 ANTHROPIC_SONNET = AnthropicModel("claude-3-5-sonnet-20241022", 120000, BucketRateLimiter(480),
@@ -343,7 +343,7 @@ ANTHROPIC_SONNET = AnthropicModel("claude-3-5-sonnet-20241022", 120000, BucketRa
 ANTHROPIC_HAIKU = AnthropicModel("claude-3-haiku-20240307", 12000, BucketRateLimiter(480),
                                  ANTHROPIC_EXECUTOR)
 GEMINI_FLASH = GeminiModel("gemini-1.5-flash-002", 120000, BucketRateLimiter(600), GEMINI_EXECUTOR)
-GEMINI_FLASH_8B = GeminiModel("gemini-1.5-flash-8b", 120000, BucketRateLimiter(600), GEMINI_EXECUTOR)
+GEMINI_FLASH_8B = GeminiModel("gemini-1.5-flash-8b", 16000, BucketRateLimiter(360), GEMINI_EXECUTOR)
 GEMINI_PRO = GeminiModel("gemini-1.5-pro-002", 120000, BucketRateLimiter(10), GEMINI_EXECUTOR)
 FIREWORKS_LLAMA3_2_1B = FireworksAIModel("accounts/fireworks/models/llama-v3p2-1b-instruct", 4000,
                                          FIREWORKS_RATE_LIMITER, FIREWORKS_EXECUTOR)
