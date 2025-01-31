@@ -18,10 +18,10 @@ from evaluator import DefaultEvaluator
 from llm_client import GPT3_5, \
     ANTHROPIC_SONNET, MISTRAL_7B, MISTRAL_8X22B, MISTRAL_SMALL, \
     GPT4, ANTHROPIC_HAIKU, MISTRAL_LARGE, MISTRAL_8X7B, ANTHROPIC_OPUS, GPT4o, GEMINI_FLASH, GEMINI_PRO, \
-    GPT4omini, MISTRAL_NEMO_12B, MISTRAL_LARGE2, AI21_JAMBA_1_5_MINI, FIREWORKS_LLAMA3_2_1B, FIREWORKS_LLAMA3_2_3B, \
-    FIREWORKS_LLAMA3_1_8B, FIREWORKS_LLAMA3_1_70B, GEMINI_FLASH_8B, MINISTRAL_8B, MINISTRAL_3B
+    GPT4omini, MISTRAL_NEMO_12B, MISTRAL_LARGE2, \
+    GEMINI_FLASH_8B, MINISTRAL_8B, MINISTRAL_3B
 
-EVALUATOR_MODEL_LIST = [GEMINI_FLASH, MISTRAL_7B, FIREWORKS_LLAMA3_1_8B, ANTHROPIC_HAIKU,
+EVALUATOR_MODEL_LIST = [GEMINI_FLASH, MISTRAL_7B, GEMINI_FLASH_8B, ANTHROPIC_HAIKU,
                         GPT4omini]
 TEST_DIRECTORY = "tests"
 
@@ -51,10 +51,10 @@ DEFAULT_TEST_CONFIG = TestConfig(model_list=[GPT4omini],
                                  test_thread_count=300,
                                  evaluator_model_list=EVALUATOR_MODEL_LIST,
                                  default_evaluator=DefaultEvaluator(EVALUATOR_MODEL_LIST),
-                                 number_of_questions_per_trial=1,
+                                 number_of_questions_per_trial=10,
                                  repeat_question_limerick_count=1,
-                                 trial_count=1,
-                                 location_count=5)
+                                 trial_count=5,
+                                 location_count=10)
 
 
 CURRENT_TEST_CONFIG = DEFAULT_TEST_CONFIG

@@ -1,0 +1,7 @@
+pip install --upgrade matplotlib
+pip install --upgrade tqdm
+pip install --upgrade ratellmiter-ai
+pip install --upgrade google-generativeai
+pip install --upgrade openai
+pip install --upgrade anthropic
+pip install --upgrade mistralai

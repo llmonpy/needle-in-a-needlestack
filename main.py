@@ -14,6 +14,7 @@
 #  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 import os
 import resource
+import time
 
 from ratellmiter.rate_llmiter import get_rate_limiter_monitor
 
@@ -31,6 +32,8 @@ if __name__ == '__main__':
         queue.get()
         test_results.record_results()
     finally:
+        print("waiting for rate limiter to stop")
+        time.sleep(60)
         get_rate_limiter_monitor().stop()
     print("Done")
     exit(0)

@@ -15,12 +15,15 @@
 import copy
 import json
 import random
-import tiktoken
+# import tiktoken
 
 NUMBER_OF_TEST_QUESTIONS_TO_GENERATE = 5
 GENERATED_QUESTION_FILE = "questions.json"
 FULL_QUESTION_FILE = "full_questions.json"
 LIMERICK_DATASET_FILE = "limerick_dataset_oedilf_v3.json"
+AVERAGE_TEXT_TO_GPT4_TOKEN_RATIO = 1.4813021426742123 # calculated from the limerick dataset and tiktoken
+
+#token_ratio_list = [] # used to calculate the average token ratio of the limerick dataset
 
 class Limerick:
     def __init__(self, id, author, text, question=None, answer=None, tokens=None, token_count=None, target_location=0,
@@ -37,8 +40,21 @@ class Limerick:
         self.question_vetted = question_vetted
 
     def generate_tokens(self, encoder):
-        self.tokens = encoder.encode(self.text)
-        self.token_count = len(self.tokens)
+        if encoder is None:
+            self.tokens = []
+            word_count = len(self.text.split())
+            self.token_count = word_count * AVERAGE_TEXT_TO_GPT4_TOKEN_RATIO
+        elif self.text is None or len(self.text) == 0 or len(self.text.split()) == 0:
+            self.tokens = []
+            self.token_count = 0
+        else:
+            # this is only used to calculate AVERAGE_TEXT_TO_GPT4_TOKEN_RATIO, don't want to import tiktoken
+            raise NotImplementedError("This method is not implemented yet")
+            #self.tokens = encoder.encode(self.text)
+            word_count = len(self.text.split())
+            #self.token_count = len(self.tokens)
+            self.token_count = word_count * AVERAGE_TEXT_TO_GPT4_TOKEN_RATIO
+            #token_ratio_list.append(self.token_count/word_count)
 
     def has_alternate_answers(self):
         result = self.alternate_answers is not None and len(self.alternate_answers) > 0
@@ -68,12 +84,12 @@ class Limerick:
 
 def read_and_init_limericks(file_path):
     result = []
-    encoder = tiktoken.encoding_for_model("gpt-4")
+    #encoder = tiktoken.encoding_for_model("gpt-4")
     with open(file_path, "r") as file:
         limerick_dict_list = json.load(file)
         for limerick_dict in limerick_dict_list:
             limerick = Limerick.from_dict(limerick_dict)
-            limerick.generate_tokens(encoder)
+            limerick.generate_tokens(None)
             result.append(limerick)
     return result
 
@@ -107,5 +123,6 @@ def generate_answers(limerick_list, number_of_answers, file_path):
 
 
 if __name__ == '__main__':
-    generate_answers(read_and_init_limericks(LIMERICK_DATASET_FILE), NUMBER_OF_TEST_QUESTIONS_TO_GENERATE, GENERATED_QUESTION_FILE)
-
+    #generate_answers(read_and_init_limericks(LIMERICK_DATASET_FILE), NUMBER_OF_TEST_QUESTIONS_TO_GENERATE, GENERATED_QUESTION_FILE)
+    read_and_init_limericks(LIMERICK_DATASET_FILE)
+    #print("Average token ratio: "+str(sum(token_ratio_list)/len(token_ratio_list)))

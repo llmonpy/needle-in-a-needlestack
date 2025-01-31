@@ -14,18 +14,13 @@
 #  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 import concurrent
 import os
-import threading
 import time
-from queue import Queue, Empty
-
 import anthropic
-import ollama
-from ai21 import AI21Client
-from ai21.models.chat import SystemMessage, UserMessage
-from fireworks.client import Fireworks
+#from ai21 import AI21Client
+#from ai21.models.chat import SystemMessage, UserMessage
+#from fireworks.client import Fireworks
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
-from mistralai.client import MistralClient
-from mistralai.models.chat_completion import ChatMessage
+from mistralai import Mistral
 from openai import OpenAI
 import google.generativeai as genai
 from ratellmiter.rate_llmiter import BucketRateLimiter, llmiter, RateLimitedService
@@ -196,18 +191,22 @@ class AnthropicModel(LlmClient):
         return result
 
 
+class ChatMessage:
+    pass
+
+
 class MistralLlmClient(LlmClient):
     def __init__(self, model_name, max_input, rate_limiter, thead_pool):
         super().__init__(model_name, max_input, rate_limiter, thead_pool)
         key = get_api_key("MISTRAL_API_KEY")
-        self.client = MistralClient(api_key=key)
+        self.client = Mistral(api_key=key)
 
     def do_prompt(self, prompt_text, system_prompt="You are an expert at analyzing text."):
         prompt_messages = [
-            ChatMessage(role="system", content=system_prompt),
-            ChatMessage(role="user", content=prompt_text)
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": prompt_text}
         ]
-        response = self.client.chat(
+        response = self.client.chat.complete(
             model=self.model_name,
             max_tokens=1024,
             temperature=0.0,
@@ -216,21 +215,6 @@ class MistralLlmClient(LlmClient):
         result = response.choices[0].message.content
         return result
 
-
-class OllamaModel(LlmClient):
-    def __init__(self, model_name, max_input, rate_limiter, thead_pool=None):
-        super().__init__(model_name, max_input, rate_limiter, thead_pool)
-
-    def do_prompt(self, prompt_text, system_prompt="You are an expert at analyzing text."):
-        response = ollama.generate(
-            model=self.model_name,
-            stream=False,
-            system_prompt=system_prompt,
-            prompt=prompt_text,
-            temperature=0.0
-        )
-        result = response.choices[0].message.content
-        return result
 
 
 # https://ai.google.dev/gemini-api/docs/get-started/tutorial?authuser=2&lang=python
@@ -254,7 +238,7 @@ class GeminiModel(LlmClient):
         result = model_response.text
         return result
 
-
+'''
 class FireworksAIModel(LlmClient):
     def __init__(self, model_name, max_input, rate_limiter, thead_pool=None, system_role_supported=True):
         super().__init__(model_name, max_input, rate_limiter, thead_pool)
@@ -305,9 +289,8 @@ class AI21Model(LlmClient):
         )
         result = completion.choices[0].message.content
         return result
+'''
 
-
-OLLAMA_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=1)
 MISTRAL_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 ANTHROPIC_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 ANTHROPIC_TEST_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=3) # rate limit for below 60/min case
@@ -316,7 +299,6 @@ DEEPSEEK_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 GEMINI_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 FIREWORKS_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 AI21_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
-HYPERBOLIC_EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=250)
 
 MISTRAL_RATE_LIMITER = BucketRateLimiter(600, "MISTRAL")
 FIREWORKS_RATE_LIMITER = BucketRateLimiter(480, "FIREWORKS")
@@ -335,7 +317,7 @@ MISTRAL_LARGE2 = MistralLlmClient("mistral-large-2411", 32000, MISTRAL_RATE_LIMI
 GPT3_5 = OpenAIModel('gpt-3.5-turbo-0125', 12000, BucketRateLimiter(5000), OPENAI_EXECUTOR)
 GPT4 = OpenAIModel('gpt-4-turbo-2024-04-09', 16000, BucketRateLimiter(5000), OPENAI_EXECUTOR)
 GPT4o = OpenAIModel('gpt-4o', 12000, BucketRateLimiter(10000), OPENAI_EXECUTOR)
-GPT4omini = OpenAIModel('gpt-4o-mini', 120000, BucketRateLimiter(10000), OPENAI_EXECUTOR)
+GPT4omini = OpenAIModel('gpt-4o-mini', 12000, BucketRateLimiter(10000), OPENAI_EXECUTOR)
 ANTHROPIC_OPUS = AnthropicModel("claude-3-opus-20240229", 195000, BucketRateLimiter(3),
                                 ANTHROPIC_EXECUTOR)
 ANTHROPIC_SONNET = AnthropicModel("claude-3-5-sonnet-20241022", 120000, BucketRateLimiter(480),
@@ -345,6 +327,8 @@ ANTHROPIC_HAIKU = AnthropicModel("claude-3-haiku-20240307", 12000, BucketRateLim
 GEMINI_FLASH = GeminiModel("gemini-1.5-flash-002", 120000, BucketRateLimiter(600), GEMINI_EXECUTOR)
 GEMINI_FLASH_8B = GeminiModel("gemini-1.5-flash-8b", 16000, BucketRateLimiter(360), GEMINI_EXECUTOR)
 GEMINI_PRO = GeminiModel("gemini-1.5-pro-002", 120000, BucketRateLimiter(10), GEMINI_EXECUTOR)
+
+'''
 FIREWORKS_LLAMA3_2_1B = FireworksAIModel("accounts/fireworks/models/llama-v3p2-1b-instruct", 4000,
                                          FIREWORKS_RATE_LIMITER, FIREWORKS_EXECUTOR)
 FIREWORKS_LLAMA3_2_3B = FireworksAIModel("accounts/fireworks/models/llama-v3p2-3b-instruct", 12000,
@@ -357,5 +341,4 @@ FIREWORKS_LLAMA3_1_70B = FireworksAIModel("accounts/fireworks/models/llama-v3p1-
                                           FIREWORKS_RATE_LIMITER, FIREWORKS_EXECUTOR)
 AI21_JAMBA_1_5_MINI = AI21Model("jamba-1.5-mini", 12000,
                                 AI21_RATE_LIMITER, AI21_EXECUTOR)
-
-
+'''

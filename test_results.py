@@ -20,7 +20,6 @@ import os
 import queue
 import sys
 
-from nothingpy import Nothing
 from datetime import datetime
 
 import matplotlib.pyplot as plt
@@ -833,7 +832,7 @@ class ModelResults:
 
     @staticmethod
     def from_dict(dictionary):
-        location_list = dictionary.get("location_list", Nothing)
+        location_list = dictionary.get("location_list", None)
         dictionary.pop("location_list", None)
         location_list = [LocationResults.from_dict(location) for location in location_list]
         dictionary["location_list"] = location_list
